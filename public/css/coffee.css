@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display&display=swap');
+*{
+    font-family: 'Michroma', sans-serif;
+}
+.font-custom{
+    font-family: 'Playfair Display', serif;
+}
+.font-custom-2{
+    font-family: 'Big Shoulders Display', cursive;
+    letter-spacing: 0.1em;
+}
