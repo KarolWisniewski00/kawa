@@ -2,10 +2,16 @@
 @section('content')
 <!--VIDEO-->
 <section>
-    <div class="container-fluid px-0">
+    <div class="container-fluid px-0 position-relative">
         <video autoplay loop muted class="w-100">
             <source src="{{asset('video/video_1.mp4')}}">
         </video>
+        <div class="position-absolute top-50 start-50 translate-middle">
+            <div class="d-flex flex-column justify-content-center align-items-center text-center">
+                <h1 class="font-custom text-white" style="font-size: 4rem;">Kawa wysokiej jakości z dostawą pod Twoje drzwi</h1>
+                <a href="{{route('shop')}}" class="btn btn-lg btn-outline-light">Kupuj teraz</a>
+            </div>
+        </div>
     </div>
 </section>
 <!--VIDEO-->
@@ -15,50 +21,50 @@
         <div class="row my-5 pb-5">
             <div class="col-12">
                 <div class="d-flex flex-column justify-content-center align-items-center my-3 text-center">
-                    <h3 class="text-primary mt-5 font-custom-2">SKLEP</h3>
+                    <h3 class="mt-5 font-custom-2" style="color:#F9CAAC">SKLEP</h3>
                     <h1 class="font-custom">Szerokie spektrum smaków i esencji</h1>
                 </div>
             </div>
             <div class="col-12 col-md-4">
-                <div class="d-flex flex-column justify-content-center align-items-center">
+                <a href="" class="d-flex flex-column justify-content-center align-items-center text-decoration-none">
                     <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
-                    <h4 class="font-custom">Mexico Cafeco Bio</h4>
+                    <h4 class="font-custom mt-2">Mexico Cafeco Bio</h4>
                     <p>14,90 PLN - 50,10 PLN</p>
-                </div>
+                </a>
             </div>
             <div class="col-12 col-md-4">
-                <div class="d-flex flex-column justify-content-center align-items-center">
+                <a href="" class="d-flex flex-column justify-content-center align-items-center text-decoration-none">
                     <div class="d-flex flex-column justify-content-center align-items-center">
                         <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
-                        <h4 class="font-custom">Mexico Cafeco Bio</h4>
+                        <h4 class="font-custom mt-2">Mexico Cafeco Bio</h4>
                         <p>14,90 PLN - 50,10 PLN</p>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="col-12 col-md-4">
-                <div class="d-flex flex-column justify-content-center align-items-center">
+                <a href="" class="d-flex flex-column justify-content-center align-items-center text-decoration-none">
                     <div class="d-flex flex-column justify-content-center align-items-center">
                         <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
-                        <h4 class="font-custom">Mexico Cafeco Bio</h4>
+                        <h4 class="font-custom mt-2">Mexico Cafeco Bio</h4>
                         <p>14,90 PLN - 50,10 PLN</p>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="col-12">
                 <div class="d-flex flex-column justify-content-center align-items-center my-3 text-center">
-                    <button type="button" class="btn btn-primary">Zobacz więcej</button>
+                    <a href="{{route('shop')}}" class="btn btn-primary"><i class="fa-solid fa-angles-right me-2"></i>Zobacz więcej</a>
                 </div>
             </div>
         </div>
     </div>
 </section>
 <!--ABOUT-->
-<section class="bg-primary bg-opacity-25">
+<section style="background-color:RGBA(249, 202, 172,0.25)">
     <div class="container">
         <div class="row my-5 pb-5">
             <div class="col-12">
                 <div class="d-flex flex-column justify-content-center align-items-center my-3 text-center">
-                    <h3 class="text-primary mt-5 font-custom-2">O NAS</h3>
+                    <h3 class="mt-5 font-custom-2" style="color:#F9CAAC">O NAS</h3>
                     <h1 class="font-custom">Ponieważ kochamy kawę</h1>
                     <p class="w-75">Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym. Został po raz pierwszy użyty w XV w. przez nieznanego drukarza do wypełnienia tekstem próbnej książki. Pięć wieków później zaczął być używany przemyśle elektronicznym, pozostając praktycznie niezmienionym. Spopularyzował się w latach 60. XX w. wraz z publikacją arkuszy Letrasetu, zawierających fragmenty Lorem Ipsum, a ostatnio z zawierającym różne wersje Lorem Ipsum oprogramowaniem przeznaczonym do realizacji druków na komputerach osobistych, jak Aldus PageMaker</p>
                 </div>
@@ -92,7 +98,7 @@
         <div class="row my-5 pb-5">
             <div class="col-12">
                 <div class="d-flex flex-column justify-content-center align-items-center my-3 text-center">
-                    <h3 class="text-primary mt-5 font-custom-2">BLOG</h3>
+                    <h3 class="mt-5 font-custom-2" style="color:#F9CAAC">BLOG</h3>
                     <h1 class="font-custom">Najbardziej popularne wpisy</h1>
                 </div>
             </div>
@@ -100,9 +106,9 @@
                 <div class="d-flex flex-column justify-content-center align-items-center my-2">
                     <div class="row">
                         <div class="col-5">
-                            <div class="d-flex flex-column justify-content-center align-items-end">
+                            <a href="" class="d-flex flex-column justify-content-center align-items-end">
                                 <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
-                            </div>
+                            </a>
                         </div>
                         <div class="col-7">
                             <div class="d-flex flex-column justify-content-center align-items-start">
@@ -111,9 +117,9 @@
                                 <p>
                                     Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym. Został po raz pierwszy użyty w XV w. przez nieznanego drukarza do wypełnienia tekstem próbnej książki. Pięć wieków później zaczął być używany przemyśle elektronicznym, pozostając praktycznie niezmienionym. Spopularyzował się w latach 60. XX w. wraz z publikacją arkuszy Letrasetu, zawierających fragmenty Lorem Ipsum, a ostatnio z zawierającym różne wersje Lorem Ipsum oprogramowaniem przeznaczonym do realizacji druków na komputerach osobistych, jak Aldus PageMaker
                                 </p>
-                                <button type="button" class="btn btn-primary">
-                                    Czytaj więcej
-                                </button>
+                                <a href="" class="btn btn-primary">
+                                    <i class="fa-solid fa-angles-right me-2"></i>Czytaj więcej
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -123,9 +129,9 @@
                 <div class="d-flex flex-column justify-content-center align-items-center my-2">
                     <div class="row">
                         <div class="col-5">
-                            <div class="d-flex flex-column justify-content-center align-items-end">
+                            <a href="" class="d-flex flex-column justify-content-center align-items-end">
                                 <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
-                            </div>
+                            </a>
                         </div>
                         <div class="col-7">
                             <div class="d-flex flex-column justify-content-center align-items-start">
@@ -134,9 +140,9 @@
                                 <p>
                                     Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym. Został po raz pierwszy użyty w XV w. przez nieznanego drukarza do wypełnienia tekstem próbnej książki. Pięć wieków później zaczął być używany przemyśle elektronicznym, pozostając praktycznie niezmienionym. Spopularyzował się w latach 60. XX w. wraz z publikacją arkuszy Letrasetu, zawierających fragmenty Lorem Ipsum, a ostatnio z zawierającym różne wersje Lorem Ipsum oprogramowaniem przeznaczonym do realizacji druków na komputerach osobistych, jak Aldus PageMaker
                                 </p>
-                                <button type="button" class="btn btn-primary">
-                                    Czytaj więcej
-                                </button>
+                                <a href="" class="btn btn-primary">
+                                    <i class="fa-solid fa-angles-right me-2"></i>Czytaj więcej
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -146,9 +152,9 @@
                 <div class="d-flex flex-column justify-content-center align-items-center my-2">
                     <div class="row">
                         <div class="col-5">
-                            <div class="d-flex flex-column justify-content-center align-items-end">
+                            <a href="" class="d-flex flex-column justify-content-center align-items-end">
                                 <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
-                            </div>
+                            </a>
                         </div>
                         <div class="col-7">
                             <div class="d-flex flex-column justify-content-center align-items-start">
@@ -157,9 +163,9 @@
                                 <p>
                                     Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym. Został po raz pierwszy użyty w XV w. przez nieznanego drukarza do wypełnienia tekstem próbnej książki. Pięć wieków później zaczął być używany przemyśle elektronicznym, pozostając praktycznie niezmienionym. Spopularyzował się w latach 60. XX w. wraz z publikacją arkuszy Letrasetu, zawierających fragmenty Lorem Ipsum, a ostatnio z zawierającym różne wersje Lorem Ipsum oprogramowaniem przeznaczonym do realizacji druków na komputerach osobistych, jak Aldus PageMaker
                                 </p>
-                                <button type="button" class="btn btn-primary">
-                                    Czytaj więcej
-                                </button>
+                                <a href="" class="btn btn-primary">
+                                    <i class="fa-solid fa-angles-right me-2"></i>Czytaj więcej
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -175,65 +181,65 @@
         <div class="row my-5 pb-5">
             <div class="col-12">
                 <div class="d-flex flex-column justify-content-center align-items-center my-3 text-center">
-                    <h3 class="text-primary mt-5 font-custom-2">@nazwa</h3>
+                    <h3 class="mt-5 font-custom-2" style="color:#F9CAAC">@nazwa</h3>
                     <h1 class="font-custom">Obserwuj na na Instagramie</h1>
                 </div>
             </div>
             <div class="col-12 col-md-3">
-                <div class="d-flex flex-column justify-content-center align-items-center p-2">
+                <a href="" class="d-flex flex-column justify-content-center align-items-center p-2">
                     <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
-                </div>
+                </a>
             </div>
             <div class="col-12 col-md-3">
-                <div class="d-flex flex-column justify-content-center align-items-center p-2">
+                <a href="" class="d-flex flex-column justify-content-center align-items-center p-2">
                     <div class="d-flex flex-column justify-content-center align-items-center">
                         <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
                     </div>
-                </div>
+                </a>
             </div>
             <div class="col-12 col-md-3">
-                <div class="d-flex flex-column justify-content-center align-items-center p-2">
+                <a href="" class="d-flex flex-column justify-content-center align-items-center p-2">
                     <div class="d-flex flex-column justify-content-center align-items-center">
                         <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
                     </div>
-                </div>
+                </a>
             </div>
             <div class="col-12 col-md-3">
-                <div class="d-flex flex-column justify-content-center align-items-center p-2">
+                <a href="" class="d-flex flex-column justify-content-center align-items-center p-2">
                     <div class="d-flex flex-column justify-content-center align-items-center">
                         <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
                     </div>
-                </div>
+                </a>
             </div>
             <div class="col-12 col-md-3">
-                <div class="d-flex flex-column justify-content-center align-items-center p-2">
+                <a href="" class="d-flex flex-column justify-content-center align-items-center p-2">
                     <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
-                </div>
+                </a>
             </div>
             <div class="col-12 col-md-3">
-                <div class="d-flex flex-column justify-content-center align-items-center p-2">
+                <a href="" class="d-flex flex-column justify-content-center align-items-center p-2">
                     <div class="d-flex flex-column justify-content-center align-items-center">
                         <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
                     </div>
-                </div>
+                </a>
             </div>
             <div class="col-12 col-md-3">
-                <div class="d-flex flex-column justify-content-center align-items-center p-2">
+                <a href="" class="d-flex flex-column justify-content-center align-items-center p-2">
                     <div class="d-flex flex-column justify-content-center align-items-center">
                         <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
                     </div>
-                </div>
+                </a>
             </div>
             <div class="col-12 col-md-3">
-                <div class="d-flex flex-column justify-content-center align-items-center p-2">
+                <a href="" class="d-flex flex-column justify-content-center align-items-center p-2">
                     <div class="d-flex flex-column justify-content-center align-items-center">
                         <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
                     </div>
-                </div>
+                </a>
             </div>
             <div class="col-12">
                 <div class="d-flex flex-column justify-content-center align-items-center my-3 text-center">
-                    <button type="button" class="btn btn-primary">Obsrwuj nas</button>
+                    <a href="" class="btn btn-primary"><i class="fa-solid fa-plus me-2"></i>Obsrwuj nas</a>
                 </div>
             </div>
         </div>
@@ -244,24 +250,32 @@
 <section>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-3 bg-primary">
-                <div class="d-flex flex-column justify-content-center align-items-center">
-                    cd
+            <div class="col-3" style="background-color: #F1FAC5;">
+                <div class="d-flex flex-column justify-content-center align-items-center p-5">
+                    <div class="text-primary text-center h1"><i class="fa-solid fa-box"></i></div>
+                    <div class="text-primary text-center font-custom h4 my-2">Wysyłka gratis pod twoje drzwi</div>
+                    <p class="text-primary text-center m-0 p-0 my-2">przy zamówieniu pożyżej 66 PLN</p>
                 </div>
             </div>
-            <div class="col-3 bg-secondary">
-                <div class="d-flex flex-column justify-content-center align-items-center">
-                    cd
+            <div class="col-3" style="background-color: #F9CAAC;">
+                <div class="d-flex flex-column justify-content-center align-items-center p-5">
+                    <div class="text-primary text-center h1"><i class="fa-solid fa-heart"></i></div>
+                    <div class="text-primary text-center font-custom h4 my-2">Wysyłka gratis pod twoje drzwi</div>
+                    <p class="text-primary text-center m-0 p-0 my-2">przy zamówieniu pożyżej 66 PLN</p>
                 </div>
             </div>
-            <div class="col-3 bg-dark">
-                <div class="d-flex flex-column justify-content-center align-items-center">
-                    cd
+            <div class="col-3" style="background-color: #93F7FA;">
+                <div class="d-flex flex-column justify-content-center align-items-center p-5">
+                    <div class="text-primary text-center h1"><i class="fa-solid fa-leaf"></i></div>
+                    <div class="text-primary text-center font-custom h4 my-2">Wysyłka gratis pod twoje drzwi</div>
+                    <p class="text-primary text-center m-0 p-0 my-2">przy zamówieniu pożyżej 66 PLN</p>
                 </div>
             </div>
-            <div class="col-3 bg-white">
-                <div class="d-flex flex-column justify-content-center align-items-center">
-                    cd
+            <div class="col-3" style="background-color: #D8A0FA;">
+                <div class="d-flex flex-column justify-content-center align-items-center p-5">
+                    <div class="text-primary text-center h1"><i class="fa-solid fa-handshake-angle"></i></div>
+                    <div class="text-primary text-center font-custom h4 my-2">Wysyłka gratis pod twoje drzwi</div>
+                    <p class="text-primary text-center m-0 p-0 my-2">przy zamówieniu pożyżej 66 PLN</p>
                 </div>
             </div>
         </div>
