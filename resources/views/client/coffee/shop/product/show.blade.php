@@ -4,9 +4,10 @@
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-12">
-                <div class="d-flex flex-column justify-content-center align-items-center my-3 text-center">
-                    <h1 class="font-custom">Nazwa</h1>
+            <div class="col-12 py-4 mb-4" style="background-image: url('{{ asset('image/Depositphotos_199823494_XL.jpg') }}'); background-size: cover; background-position: center;">
+                <div class="d-flex justify-content-between align-items-center my-3 text-center">
+                    <h1 class="font-custom text-white">Nazwa</h1>
+                    {{ Breadcrumbs::render() }}
                 </div>
             </div>
             <div class="col-12 col-md-6">

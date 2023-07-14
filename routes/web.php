@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopController;
@@ -26,7 +27,8 @@ Route::prefix('shop')->group(function () {
 });
 
 Route::prefix('blog')->group(function () {
-    Route::get('/', [IndexController::class, 'index'])->name('blog');
+    Route::get('/', [BlogController::class, 'index'])->name('blog');
+    Route::get('{slug}', [BlogController::class, 'show'])->name('blog.show');
 });
 
 Route::prefix('about')->group(function () {

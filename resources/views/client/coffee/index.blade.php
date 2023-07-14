@@ -1,10 +1,17 @@
 @extends('layout.coffee')
 @section('content')
 <!--VIDEO-->
+<style>
+        @media (min-width: 768px) {
+        .video-container {
+            max-height: 40em; /* Dostosuj maksymalną wysokość, aby zmieścić się na komputerze */
+        }
+    }
+</style>
 <section>
-    <div class="container-fluid px-0 position-relative">
+    <div class="container-fluid px-0 position-relative video-container overflow-hidden">
         <video autoplay loop muted class="w-100">
-            <source src="{{asset('video/video_1.mp4')}}">
+            <source src="{{asset('video/video_11.mp4')}}">
         </video>
         <div class="position-absolute top-50 start-50 translate-middle">
             <div class="d-flex flex-column justify-content-center align-items-center text-center">
@@ -108,7 +115,7 @@
                 <div class="d-flex flex-column justify-content-center align-items-center my-2">
                     <div class="row">
                         <div class="col-12 col-md-5">
-                            <a href="" class="d-flex flex-column justify-content-center align-items-end">
+                            <a href="{{route('blog.show','test')}}" class="d-flex flex-column justify-content-center align-items-end">
                                 <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
                             </a>
                         </div>
@@ -119,7 +126,7 @@
                                 <p class="d-none d-md-flex">
                                     Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym. Został po raz pierwszy użyty w XV w. przez nieznanego drukarza do wypełnienia tekstem próbnej książki. Pięć wieków później zaczął być używany przemyśle elektronicznym, pozostając praktycznie niezmienionym. Spopularyzował się w latach 60. XX w. wraz z publikacją arkuszy Letrasetu, zawierających fragmenty Lorem Ipsum, a ostatnio z zawierającym różne wersje Lorem Ipsum oprogramowaniem przeznaczonym do realizacji druków na komputerach osobistych, jak Aldus PageMaker
                                 </p>
-                                <a href="" class="btn btn-primary">
+                                <a href="{{route('blog.show','test')}}" class="btn btn-primary">
                                     <i class="fa-solid fa-angles-right me-2"></i>Czytaj więcej
                                 </a>
                             </div>
@@ -131,7 +138,7 @@
                 <div class="d-flex flex-column justify-content-center align-items-center my-2">
                     <div class="row">
                         <div class="col-12 col-md-5">
-                            <a href="" class="d-flex flex-column justify-content-center align-items-end">
+                            <a href="{{route('blog.show','test')}}" class="d-flex flex-column justify-content-center align-items-end">
                                 <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
                             </a>
                         </div>
@@ -142,7 +149,7 @@
                                 <p class="d-none d-md-flex">
                                     Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym. Został po raz pierwszy użyty w XV w. przez nieznanego drukarza do wypełnienia tekstem próbnej książki. Pięć wieków później zaczął być używany przemyśle elektronicznym, pozostając praktycznie niezmienionym. Spopularyzował się w latach 60. XX w. wraz z publikacją arkuszy Letrasetu, zawierających fragmenty Lorem Ipsum, a ostatnio z zawierającym różne wersje Lorem Ipsum oprogramowaniem przeznaczonym do realizacji druków na komputerach osobistych, jak Aldus PageMaker
                                 </p>
-                                <a href="" class="btn btn-primary">
+                                <a href="{{route('blog.show','test')}}" class="btn btn-primary">
                                     <i class="fa-solid fa-angles-right me-2"></i>Czytaj więcej
                                 </a>
                             </div>
@@ -154,7 +161,7 @@
                 <div class="d-flex flex-column justify-content-center align-items-center my-2">
                     <div class="row">
                         <div class="col-12 col-md-5">
-                            <a href="" class="d-flex flex-column justify-content-center align-items-end">
+                            <a href="{{route('blog.show','test')}}" class="d-flex flex-column justify-content-center align-items-end">
                                 <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
                             </a>
                         </div>
@@ -165,7 +172,7 @@
                                 <p class="d-none d-md-flex">
                                     Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym. Został po raz pierwszy użyty w XV w. przez nieznanego drukarza do wypełnienia tekstem próbnej książki. Pięć wieków później zaczął być używany przemyśle elektronicznym, pozostając praktycznie niezmienionym. Spopularyzował się w latach 60. XX w. wraz z publikacją arkuszy Letrasetu, zawierających fragmenty Lorem Ipsum, a ostatnio z zawierającym różne wersje Lorem Ipsum oprogramowaniem przeznaczonym do realizacji druków na komputerach osobistych, jak Aldus PageMaker
                                 </p>
-                                <a href="" class="btn btn-primary">
+                                <a href="{{route('blog.show','test')}}" class="btn btn-primary">
                                     <i class="fa-solid fa-angles-right me-2"></i>Czytaj więcej
                                 </a>
                             </div>

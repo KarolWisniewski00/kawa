@@ -4,9 +4,10 @@
 <section>
     <div class="container">
         <div class="row my-5 pb-5">
-            <div class="col-12">
-                <div class="d-flex flex-column justify-content-center align-items-center my-3 text-center">
-                    <h1 class="font-custom">Sklep</h1>
+            <div class="col-12 py-4" style="background-image: url('{{ asset('image/Depositphotos_145612235_DS.jpg') }}'); background-size: cover; background-position: center;">
+                <div class="d-flex justify-content-between align-items-center my-3 text-center">
+                    <h1 class="font-custom text-white">Sklep</h1>
+                            {{ Breadcrumbs::render() }}
                 </div>
             </div>
             <div class="col-12">
@@ -86,7 +87,9 @@
                     </div>
                 </a>
             </div>
-
+            <div class="col-12 my-2">
+                @include('client.coffee.module.pagination')
+            </div>
         </div>
     </div>
 </section>
