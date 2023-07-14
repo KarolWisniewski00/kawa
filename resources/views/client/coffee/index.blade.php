@@ -240,6 +240,7 @@
     </div>
 </section>
 <!--INSTAGRAM-->
+<!--INFO-->
 <section>
     <div class="container-fluid">
         <div class="row">
@@ -266,4 +267,5 @@
         </div>
     </div>
 </section>
+<!--INFO-->
 @endsection

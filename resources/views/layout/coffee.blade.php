@@ -12,23 +12,41 @@
 
 <body>
     <!--NAV + HEADER-->
-    <div class="container">
-        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4">
-            <ul class="nav col-md-3 justify-content-center">
-                <li><a href="#" class="nav-link px-2 link-dark">Home</a></li>
-                <li><a href="#" class="nav-link px-2 link-dark">O nas</a></li>
-                <li><a href="#" class="nav-link px-2 link-dark">Sklep</a></li>
-            </ul>
-            <a href="/" class="d-flex align-items-center justify-content-center col-12 col-md-auto">
-                <img class="img-fluid" src="{{asset('logo/COFFEESUMMIT-LOGO-przezroczyste-tlo.png')}}" style="height: 6em;">
-            </a>
-            <ul class="nav col-md-3 justify-content-center">
-                <li><a href="#" class="nav-link px-2 link-dark">Blog</a></li>
-                <li><a href="#" class="nav-link px-2 link-dark">Współpraca</a></li>
-                <li><a href="#" class="nav-link px-2 link-dark">Kontakt</a></li>
-            </ul>
-        </header>
-    </div>
+    <section class="fixed-top bg-white">
+        <nav class="py-1 bg-dark">
+            <div class="container">
+                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between">
+                    <ul class="nav col-md-3 justify-content-center">
+                        <li class="nav-item text-white px-1 text-end font-custom-2"> </li>
+                    </ul>
+                    <ul class="nav col-md-3 justify-content-center">
+                        <li class="nav-item text-white px-1 text-end font-custom-2">Darmowa wysyłka powyżej 100 PLN</li>
+                    </ul>
+                    <ul class="nav col-md-3 justify-content-end">
+                        <li class="nav-item text-white px-1"><a href="" class="text-white" style="text-decoration: none;"><i class="fa-brands fa-instagram"></i></a></li>
+                        <li class="nav-item text-white px-1"><a href="" class="text-white" style="text-decoration: none;"><i class="fa-brands fa-facebook"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-2 mb-2">
+                <ul class="nav col-md-3 justify-content-center order-2 order-md-1">
+                    <li><a href="{{route('index')}}" class="nav-link px-2 link-dark">Home</a></li>
+                    <li><a href="{{route('about')}}" class="nav-link px-2 link-dark">Firma</a></li>
+                    <li><a href="{{route('shop')}}" class="nav-link px-2 link-dark">Sklep</a></li>
+                </ul>
+                <a href="/" class="d-flex align-items-center justify-content-center col-12 col-md-auto order-1 order-md-2">
+                    <img class="img-fluid" src="{{asset('logo/COFFEESUMMIT-LOGO-przezroczyste-tlo.png')}}" style="height: 6em;">
+                </a>
+                <ul class="nav col-md-3 justify-content-center order-3">
+                    <li><a href="{{route('blog')}}" class="nav-link px-2 link-dark">Blog</a></li>
+                    <li><a href="{{route('collaboration')}}" class="nav-link px-2 link-dark">Współpraca</a></li>
+                    <li><a href="{{route('contact')}}" class="nav-link px-2 link-dark">Kontakt</a></li>
+                </ul>
+            </header>
+        </div>
+    </section>
     <!--END NAV + HEADER-->
     <!--ALERT-->
     <div class="container">
@@ -47,71 +65,24 @@
     <!--END ALERT-->
     @yield('content')
     <!--FOOTER-->
-    <div class="container">
-        <footer class="py-5">
-            <div class="row">
-                <div class="col-6 col-md-2 mb-3">
-                    <h5>Section</h5>
-                    <ul class="nav flex-column">
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-6 col-md-2 mb-3">
-                    <h5>Section</h5>
-                    <ul class="nav flex-column">
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-6 col-md-2 mb-3">
-                    <h5>Section</h5>
-                    <ul class="nav flex-column">
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-md-5 offset-md-1 mb-3">
-                    <form>
-                        <h5>Subscribe to our newsletter</h5>
-                        <p>Monthly digest of what's new and exciting from us.</p>
-                        <div class="d-flex flex-column flex-sm-row w-100 gap-2">
-                            <label for="newsletter1" class="visually-hidden">Email address</label>
-                            <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
-                            <button class="btn btn-primary" type="button">Subscribe</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
-                <p>&copy; 2022 Company, Inc. All rights reserved.</p>
-                <ul class="list-unstyled d-flex">
-                    <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24">
-                                <use xlink:href="#twitter" />
-                            </svg></a></li>
-                    <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24">
-                                <use xlink:href="#instagram" />
-                            </svg></a></li>
-                    <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24">
-                                <use xlink:href="#facebook" />
-                            </svg></a></li>
+    <section class="bg-dark">
+        <div class="container">
+            <footer class="d-flex flex-wrap justify-content-between align-items-center py-4">
+                <ul class="nav col-md-3 justify-content-center order-2 order-md-1 mx-auto my-2">
+                    <li class="nav-item"><span class="nav-link px-2 text-white">&copy; 2023 Desinged by Karol Wiśniewski</span></li>
                 </ul>
-            </div>
-        </footer>
-    </div>
+                <a href="/" class="d-flex align-items-center justify-content-center col-12 col-md-auto order-1 order-md-2 mx-auto">
+                    <img class="img-fluid" src="{{asset('logo/COFFEESUMMIT-LOGO-BIALE-przezroczyste-tlo.png')}}" style="height: 6em;">
+                </a>
+
+                <ul class="nav col-md-3 justify-content-center order-3 mx-auto">
+                    <li class="nav-item"><a href="{{route('policy-priv')}}" class="nav-link px-2 text-white">Polityka prywatności</a></li>
+                    <li class="nav-item"><a href="{{route('policy-cookies')}}" class="nav-link px-2 text-white">Polityka Cookies</a></li>
+                    <li class="nav-item"><a href="{{route('info')}}" class="nav-link px-2 text-white">Informacje wysyłkowe</a></li>
+                </ul>
+            </footer>
+        </div>
+    </section>
     <!--END FOOTER-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
