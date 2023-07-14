@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +19,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [IndexController::class, 'index'])->name('index');
 
 Route::prefix('shop')->group(function () {
-    Route::get('/', [IndexController::class, 'index'])->name('shop');
+    Route::get('/', [ShopController::class, 'index'])->name('shop');
+    Route::prefix('product')->group(function () {
+        Route::get('{slug}', [ProductController::class, 'show'])->name('shop.product.show');
+    });
 });
 
 Route::prefix('blog')->group(function () {
