@@ -15,7 +15,7 @@
                     <div class="row">
                         <div class="col-12 col-md-5">
                                 <a href="{{route('blog.show','test')}}" class="d-flex flex-column justify-content-center align-items-end">
-                                <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
+                                <img class="img-fluid" alt="" src="{{asset('image/tumblr_1bd8c3de5a5dbeb95701cd89b83e5afe_0ed295b8_500.jpeg')}}">
                             </a>
                         </div>
                         <div class="col-12 col-md-7">
@@ -38,7 +38,7 @@
                     <div class="row">
                         <div class="col-12 col-md-5">
                                 <a href="{{route('blog.show','test')}}" class="d-flex flex-column justify-content-center align-items-end">
-                                <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
+                                <img class="img-fluid" alt="" src="{{asset('image/tumblr_1bd8c3de5a5dbeb95701cd89b83e5afe_0ed295b8_500.jpeg')}}">
                             </a>
                         </div>
                         <div class="col-12 col-md-7">
@@ -61,7 +61,7 @@
                     <div class="row">
                         <div class="col-12 col-md-5">
                                 <a href="{{route('blog.show','test')}}" class="d-flex flex-column justify-content-center align-items-end">
-                                <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
+                                <img class="img-fluid" alt="" src="{{asset('image/tumblr_1bd8c3de5a5dbeb95701cd89b83e5afe_0ed295b8_500.jpeg')}}">
                             </a>
                         </div>
                         <div class="col-12 col-md-7">
@@ -84,7 +84,7 @@
                     <div class="row">
                         <div class="col-12 col-md-5">
                                 <a href="{{route('blog.show','test')}}" class="d-flex flex-column justify-content-center align-items-end">
-                                <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
+                                <img class="img-fluid" alt="" src="{{asset('image/tumblr_1bd8c3de5a5dbeb95701cd89b83e5afe_0ed295b8_500.jpeg')}}">
                             </a>
                         </div>
                         <div class="col-12 col-md-7">
@@ -107,7 +107,7 @@
                     <div class="row">
                         <div class="col-12 col-md-5">
                                 <a href="{{route('blog.show','test')}}" class="d-flex flex-column justify-content-center align-items-end">
-                                <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
+                                <img class="img-fluid" alt="" src="{{asset('image/tumblr_1bd8c3de5a5dbeb95701cd89b83e5afe_0ed295b8_500.jpeg')}}">
                             </a>
                         </div>
                         <div class="col-12 col-md-7">
@@ -130,7 +130,7 @@
                     <div class="row">
                         <div class="col-12 col-md-5">
                                 <a href="{{route('blog.show','test')}}" class="d-flex flex-column justify-content-center align-items-end">
-                                <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
+                                <img class="img-fluid" alt="" src="{{asset('image/tumblr_1bd8c3de5a5dbeb95701cd89b83e5afe_0ed295b8_500.jpeg')}}">
                             </a>
                         </div>
                         <div class="col-12 col-md-7">

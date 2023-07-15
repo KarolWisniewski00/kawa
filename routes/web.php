@@ -2,11 +2,18 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\BusketController;
 use App\Http\Controllers\CollaborationController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\InfoController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PolicyCookiesController;
+use App\Http\Controllers\PolicyPrivController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RuleController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,11 +50,11 @@ Route::prefix('contact')->group(function () {
 });
 
 Route::prefix('policy-cookies')->group(function () {
-    Route::get('/', [IndexController::class, 'index'])->name('policy-cookies');
+    Route::get('/', [PolicyCookiesController::class, 'index'])->name('policy-cookies');
 });
 
 Route::prefix('policy-priv')->group(function () {
-    Route::get('/', [IndexController::class, 'index'])->name('policy-priv');
+    Route::get('/', [PolicyPrivController::class, 'index'])->name('policy-priv');
 });
 
 Route::prefix('collaboration')->group(function () {
@@ -55,5 +62,19 @@ Route::prefix('collaboration')->group(function () {
 });
 
 Route::prefix('info')->group(function () {
-    Route::get('/', [IndexController::class, 'index'])->name('info');
+    Route::get('/', [InfoController::class, 'index'])->name('info');
+});
+Route::prefix('rule')->group(function () {
+    Route::get('/', [RuleController::class, 'index'])->name('rule');
+});
+Route::prefix('account')->group(function () {
+    Route::prefix('user')->group(function () {
+        Route::get('/', [UserController::class, 'index'])->name('account.user');
+    });
+    Route::prefix('order')->group(function () {
+        Route::get('/', [OrderController::class, 'index'])->name('account.order');
+    });
+    Route::prefix('busket')->group(function () {
+        Route::get('/', [BusketController::class, 'index'])->name('account.busket');
+    });
 });

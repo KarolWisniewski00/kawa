@@ -24,7 +24,8 @@
                     </ul>
                     <ul class="nav col-md-3 justify-content-end">
                         <li class="nav-item text-white mx-1 me-5"><a href="" class="text-white" style="text-decoration: none;"><i class="fa-brands fa-instagram"></i></a></li>
-                        <li class="nav-item text-white mx-1"><a href="" class="text-white" style="text-decoration: none;"><i class="fa-brands fa-facebook"></i></a></li>
+                        <li class="nav-item text-white mx-1 me-5"><a href="" class="text-white" style="text-decoration: none;"><i class="fa-brands fa-facebook"></i></a></li>
+                        <li class="nav-item text-white mx-1"><a href="" class="text-white" style="text-decoration: none;"><i class="fa-solid fa-magnifying-glass"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -39,14 +40,97 @@
                 <a href="/" class="d-flex align-items-center justify-content-center col-12 col-md-auto order-1 order-md-2">
                     <img class="img-fluid" src="{{asset('logo/COFFEESUMMIT-LOGO-przezroczyste-tlo.png')}}" style="height: 6em;">
                 </a>
-                <ul class="nav col-md-3 justify-content-center order-3">
+                <ul class="nav col-md-3 justify-content-center align-items-center order-3">
                     <li><a href="{{route('blog')}}" class="nav-link px-2 link-primary">Blog</a></li>
                     <li><a href="{{route('collaboration')}}" class="nav-link px-2 link-primary">Współpraca</a></li>
                     <li><a href="{{route('contact')}}" class="nav-link px-2 link-primary">Kontakt</a></li>
+                    <li>
+                        <div class="dropdown text-end nav-link px-2 link-primary">
+                            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="{{asset('image/undraw_drink_coffee_av1x.svg')}}" alt="mdo" width="32" height="32" class="rounded-circle">
+                            </a>
+                            <ul class="dropdown-menu text-small">
+                                <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-right-to-bracket me-2"></i>Logowanie</button></li>
+                                <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i class="fa-solid fa-check me-2"></i>Rejestracja</button></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="{{route('account.user')}}"><i class="fa-solid fa-user me-2"></i>Konto</a></li>
+                                <li><a class="dropdown-item" href="{{route('account.order')}}"><i class="fa-solid fa-tag me-2"></i>Zamówienia</a></li>
+                                <li><a class="dropdown-item" href="{{route('account.busket')}}"><i class="fa-solid fa-cart-shopping me-2"></i>Koszyk</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-power-off me-2"></i>Wyloguj</a></li>
+                            </ul>
+                        </div>
+                    </li>
                 </ul>
             </header>
         </div>
     </section>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content rounded-4 shadow">
+                <div class="modal-header p-5 pb-4 border-bottom-0">
+                    <!-- <h1 class="modal-title fs-5" >Modal title</h1> -->
+                    <h1 class="fw-bold mb-0 fs-2">Logowanie</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body p-5 pt-0">
+                    <form class="">
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="name@example.com">
+                            <label for="floatingInput">Email</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password">
+                            <label for="floatingPassword">Hasło</label>
+                        </div>
+                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Zaloguj</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModal2Label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content rounded-4 shadow">
+                <div class="modal-header p-5 pb-4 border-bottom-0">
+                    <!-- <h1 class="modal-title fs-5" >Modal title</h1> -->
+                    <h1 class="fw-bold mb-0 fs-2">Rejestracja</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body p-5 pt-0">
+                    <form class="">
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="name@example.com">
+                            <label for="floatingInput">Email</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control rounded-3" id="floatingInput" placeholder="name@example.com">
+                            <label for="floatingInput">Imię</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control rounded-3" id="floatingInput" placeholder="name@example.com">
+                            <label for="floatingInput">Nazwisko</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password">
+                            <label for="floatingPassword">Hasło</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password">
+                            <label for="floatingPassword">Powtórz hasło</label>
+                        </div>
+                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Zarejestruj</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <!--END NAV + HEADER-->
     <!--ALERT-->
     <div class="container">
@@ -80,6 +164,7 @@
                 <ul class="nav col-md-3 justify-content-center order-3 mx-auto">
                     <li class="nav-item mx-0"><a href="{{route('policy-priv')}}" class="nav-link px-2 text-white">Polityka prywatności</a></li>
                     <li class="nav-item mx-0"><a href="{{route('policy-cookies')}}" class="nav-link px-2 text-white">Polityka Cookies</a></li>
+                    <li class="nav-item mx-0"><a href="{{route('rule')}}" class="nav-link px-2 text-white">Regulamin</a></li>
                     <li class="nav-item mx-0"><a href="{{route('info')}}" class="nav-link px-2 text-white">Informacje wysyłkowe</a></li>
                 </ul>
             </footer>

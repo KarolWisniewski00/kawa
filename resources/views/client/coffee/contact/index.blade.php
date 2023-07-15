@@ -4,7 +4,7 @@
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-12 py-4 mb-4" style="background-image: url('{{ asset('image/Depositphotos_177032298_XL.jpg') }}'); background-size: cover; background-position: center;">
+            <div class="col-12 py-4 mb-4" style="background-image: url('{{ asset('image/Depositphotos_79160678_DS.jpg') }}'); background-size: cover; background-position: center;">
                 <div class="d-flex justify-content-between align-items-center my-3 text-center">
                     <h1 class="font-custom text-white">Kontakt</h1>
                     {{ Breadcrumbs::render() }}

@@ -113,7 +113,7 @@
                     <div class="row">
                         <div class="col-12 col-md-5">
                             <a href="{{route('blog.show','test')}}" class="d-flex flex-column justify-content-center align-items-end">
-                                <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
+                                <img class="img-fluid" alt="" src="{{asset('image/tumblr_1bd8c3de5a5dbeb95701cd89b83e5afe_0ed295b8_500.jpeg')}}">
                             </a>
                         </div>
                         <div class="col-12 col-md-7">
@@ -136,7 +136,7 @@
                     <div class="row">
                         <div class="col-12 col-md-5">
                             <a href="{{route('blog.show','test')}}" class="d-flex flex-column justify-content-center align-items-end">
-                                <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
+                                <img class="img-fluid" alt="" src="{{asset('image/tumblr_1bd8c3de5a5dbeb95701cd89b83e5afe_0ed295b8_500.jpeg')}}">
                             </a>
                         </div>
                         <div class="col-12 col-md-7">
@@ -159,7 +159,7 @@
                     <div class="row">
                         <div class="col-12 col-md-5">
                             <a href="{{route('blog.show','test')}}" class="d-flex flex-column justify-content-center align-items-end">
-                                <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
+                                <img class="img-fluid" alt="" src="{{asset('image/tumblr_1bd8c3de5a5dbeb95701cd89b83e5afe_0ed295b8_500.jpeg')}}">
                             </a>
                         </div>
                         <div class="col-12 col-md-7">
@@ -193,53 +193,53 @@
             </div>
             <div class="col-12 col-md-3">
                 <a href="" class="d-flex flex-column justify-content-center align-items-center p-2">
-                    <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
+                    <img class="img-fluid" alt="" src="{{asset('image/tumblr_1f1966a4de0868ddfd104b304c016bd3_d02c9147_640.jpg')}}">
                 </a>
             </div>
             <div class="col-12 col-md-3">
                 <a href="" class="d-flex flex-column justify-content-center align-items-center p-2">
                     <div class="d-flex flex-column justify-content-center align-items-center">
-                        <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
+                        <img class="img-fluid" alt="" src="{{asset('image/tumblr_1f1966a4de0868ddfd104b304c016bd3_d02c9147_640.jpg')}}">
                     </div>
                 </a>
             </div>
             <div class="col-12 col-md-3">
                 <a href="" class="d-flex flex-column justify-content-center align-items-center p-2">
                     <div class="d-flex flex-column justify-content-center align-items-center">
-                        <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
+                        <img class="img-fluid" alt="" src="{{asset('image/tumblr_1f1966a4de0868ddfd104b304c016bd3_d02c9147_640.jpg')}}">
                     </div>
                 </a>
             </div>
             <div class="col-12 col-md-3">
                 <a href="" class="d-flex flex-column justify-content-center align-items-center p-2">
                     <div class="d-flex flex-column justify-content-center align-items-center">
-                        <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
+                        <img class="img-fluid" alt="" src="{{asset('image/tumblr_1f1966a4de0868ddfd104b304c016bd3_d02c9147_640.jpg')}}">
                     </div>
                 </a>
             </div>
             <div class="col-12 col-md-3">
                 <a href="" class="d-flex flex-column justify-content-center align-items-center p-2">
-                    <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
+                    <img class="img-fluid" alt="" src="{{asset('image/tumblr_1f1966a4de0868ddfd104b304c016bd3_d02c9147_640.jpg')}}">
                 </a>
             </div>
             <div class="col-12 col-md-3">
                 <a href="" class="d-flex flex-column justify-content-center align-items-center p-2">
                     <div class="d-flex flex-column justify-content-center align-items-center">
-                        <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
-                    </div>
-                </a>
-            </div>
-            <div class="col-12 col-md-3">
-                <a href="" class="d-flex flex-column justify-content-center align-items-center p-2">
-                    <div class="d-flex flex-column justify-content-center align-items-center">
-                        <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
+                        <img class="img-fluid" alt="" src="{{asset('image/tumblr_1f1966a4de0868ddfd104b304c016bd3_d02c9147_640.jpg')}}">
                     </div>
                 </a>
             </div>
             <div class="col-12 col-md-3">
                 <a href="" class="d-flex flex-column justify-content-center align-items-center p-2">
                     <div class="d-flex flex-column justify-content-center align-items-center">
-                        <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
+                        <img class="img-fluid" alt="" src="{{asset('image/tumblr_1f1966a4de0868ddfd104b304c016bd3_d02c9147_640.jpg')}}">
+                    </div>
+                </a>
+            </div>
+            <div class="col-12 col-md-3">
+                <a href="" class="d-flex flex-column justify-content-center align-items-center p-2">
+                    <div class="d-flex flex-column justify-content-center align-items-center">
+                        <img class="img-fluid" alt="" src="{{asset('image/tumblr_1f1966a4de0868ddfd104b304c016bd3_d02c9147_640.jpg')}}">
                     </div>
                 </a>
             </div>
