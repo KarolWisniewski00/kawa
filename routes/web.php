@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CollaborationController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopController;
@@ -49,7 +50,7 @@ Route::prefix('policy-priv')->group(function () {
 });
 
 Route::prefix('collaboration')->group(function () {
-    Route::get('/', [IndexController::class, 'index'])->name('collaboration');
+    Route::get('/', [CollaborationController::class, 'index'])->name('collaboration');
 });
 
 Route::prefix('info')->group(function () {
