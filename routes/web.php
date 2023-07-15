@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CollaborationController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopController;
@@ -38,7 +39,7 @@ Route::prefix('about')->group(function () {
 });
 
 Route::prefix('contact')->group(function () {
-    Route::get('/', [IndexController::class, 'index'])->name('contact');
+    Route::get('/', [ContactController::class, 'index'])->name('contact');
 });
 
 Route::prefix('policy-cookies')->group(function () {

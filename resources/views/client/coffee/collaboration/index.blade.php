@@ -71,7 +71,7 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid px-0 my-5">
+        <div class="px-0 my-5">
             <div class="row p-0 m-0 py-2">
                 <div class="col-12 col-md-6">
                     <div class="d-flex flex-column justify-content-center align-items-center my-3 text-center h-100">
