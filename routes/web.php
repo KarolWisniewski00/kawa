@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProductController;
@@ -32,7 +33,7 @@ Route::prefix('blog')->group(function () {
 });
 
 Route::prefix('about')->group(function () {
-    Route::get('/', [IndexController::class, 'index'])->name('about');
+    Route::get('/', [AboutController::class, 'index'])->name('about');
 });
 
 Route::prefix('contact')->group(function () {

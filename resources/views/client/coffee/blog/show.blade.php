@@ -18,7 +18,7 @@
         <hr>
         <h2 class="font-custom fw-bold">Nagłówek</h2>
         <h3>Mniejszy nagłówek</h3>
-        <p>Paragraf</p>
+        <p class="lead">Paragraf</p>
     </div>
 </div>
 @endsection

@@ -12,7 +12,7 @@
 
 <body>
     <!--NAV + HEADER-->
-    <section id="nav" class="fixed-top bg-white">
+    <section id="nav" class="fixed-top bg-white" style="width: 100vw;">
         <nav class="py-1 bg-primary">
             <div class="container">
                 <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between">

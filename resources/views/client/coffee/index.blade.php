@@ -75,7 +75,7 @@
                 <div class="d-flex flex-column justify-content-center align-items-center my-3 text-center">
                     <h3 class="mt-5 font-custom-2" style="color:#F9CAAC">O NAS</h3>
                     <h1 class="font-custom">Ponieważ kochamy kawę</h1>
-                    <p class="w-75">Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym. Został po raz pierwszy użyty w XV w. przez nieznanego drukarza do wypełnienia tekstem próbnej książki. Pięć wieków później zaczął być używany przemyśle elektronicznym, pozostając praktycznie niezmienionym. Spopularyzował się w latach 60. XX w. wraz z publikacją arkuszy Letrasetu, zawierających fragmenty Lorem Ipsum, a ostatnio z zawierającym różne wersje Lorem Ipsum oprogramowaniem przeznaczonym do realizacji druków na komputerach osobistych, jak Aldus PageMaker</p>
+                    <p class="w-75 lead">Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym. Został po raz pierwszy użyty w XV w. przez nieznanego drukarza do wypełnienia tekstem próbnej książki. Pięć wieków później zaczął być używany przemyśle elektronicznym, pozostając praktycznie niezmienionym. Spopularyzował się w latach 60. XX w. wraz z publikacją arkuszy Letrasetu, zawierających fragmenty Lorem Ipsum, a ostatnio z zawierającym różne wersje Lorem Ipsum oprogramowaniem przeznaczonym do realizacji druków na komputerach osobistych, jak Aldus PageMaker</p>
                 </div>
             </div>
             <div class="col-12 col-md-4">
@@ -123,7 +123,7 @@
                             <div class="d-flex flex-column justify-content-center align-items-start">
                                 <h3 class="text-muted mt-5 font-custom-2">1 marca 2022</h3>
                                 <h1 class="font-custom">Jakie tu będą wpisy?</h1>
-                                <p class="d-none d-md-flex">
+                                <p class="d-none d-md-flex lead">
                                     Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym. Został po raz pierwszy użyty w XV w. przez nieznanego drukarza do wypełnienia tekstem próbnej książki. Pięć wieków później zaczął być używany przemyśle elektronicznym, pozostając praktycznie niezmienionym. Spopularyzował się w latach 60. XX w. wraz z publikacją arkuszy Letrasetu, zawierających fragmenty Lorem Ipsum, a ostatnio z zawierającym różne wersje Lorem Ipsum oprogramowaniem przeznaczonym do realizacji druków na komputerach osobistych, jak Aldus PageMaker
                                 </p>
                                 <a href="{{route('blog.show','test')}}" class="btn btn-primary">
@@ -146,7 +146,7 @@
                             <div class="d-flex flex-column justify-content-center align-items-start">
                                 <h3 class="text-muted mt-5 font-custom-2">1 marca 2022</h3>
                                 <h1 class="font-custom">Jakie tu będą wpisy?</h1>
-                                <p class="d-none d-md-flex">
+                                <p class="d-none d-md-flex lead">
                                     Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym. Został po raz pierwszy użyty w XV w. przez nieznanego drukarza do wypełnienia tekstem próbnej książki. Pięć wieków później zaczął być używany przemyśle elektronicznym, pozostając praktycznie niezmienionym. Spopularyzował się w latach 60. XX w. wraz z publikacją arkuszy Letrasetu, zawierających fragmenty Lorem Ipsum, a ostatnio z zawierającym różne wersje Lorem Ipsum oprogramowaniem przeznaczonym do realizacji druków na komputerach osobistych, jak Aldus PageMaker
                                 </p>
                                 <a href="{{route('blog.show','test')}}" class="btn btn-primary">
@@ -169,7 +169,7 @@
                             <div class="d-flex flex-column justify-content-center align-items-start">
                                 <h3 class="text-muted mt-5 font-custom-2">1 marca 2022</h3>
                                 <h1 class="font-custom">Jakie tu będą wpisy?</h1>
-                                <p class="d-none d-md-flex">
+                                <p class="d-none d-md-flex lead">
                                     Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym. Został po raz pierwszy użyty w XV w. przez nieznanego drukarza do wypełnienia tekstem próbnej książki. Pięć wieków później zaczął być używany przemyśle elektronicznym, pozostając praktycznie niezmienionym. Spopularyzował się w latach 60. XX w. wraz z publikacją arkuszy Letrasetu, zawierających fragmenty Lorem Ipsum, a ostatnio z zawierającym różne wersje Lorem Ipsum oprogramowaniem przeznaczonym do realizacji druków na komputerach osobistych, jak Aldus PageMaker
                                 </p>
                                 <a href="{{route('blog.show','test')}}" class="btn btn-primary">
