@@ -2,9 +2,10 @@
 @section('content')
 <!--VIDEO-->
 <style>
-        @media (min-width: 768px) {
+    @media (min-width: 768px) {
         .video-container {
-            max-height: 40em; /* Dostosuj maksymalną wysokość, aby zmieścić się na komputerze */
+            max-height: 40em;
+            /* Dostosuj maksymalną wysokość, aby zmieścić się na komputerze */
         }
     }
 </style>
@@ -79,23 +80,19 @@
                 </div>
             </div>
             <div class="col-12 col-md-4">
-                <div class="d-flex flex-column justify-content-center align-items-center">
-                    <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
-                </div>
+                <a href="{{route('about')}}" class="d-flex flex-column justify-content-center align-items-center">
+                    <img class="img-fluid" alt="" src="{{asset('image/Depositphotos_86094158_DS.jpg')}}">
+                </a>
             </div>
             <div class="col-12 col-md-4">
-                <div class="d-flex flex-column justify-content-center align-items-center">
-                    <div class="d-flex flex-column justify-content-center align-items-center">
-                        <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
-                    </div>
-                </div>
+                <a href="{{route('about')}}" class="d-flex flex-column justify-content-center align-items-center">
+                    <img class="img-fluid" alt="" src="{{asset('image/Depositphotos_123317734_DS.jpg')}}">
+                </a>
             </div>
             <div class="col-12 col-md-4">
-                <div class="d-flex flex-column justify-content-center align-items-center">
-                    <div class="d-flex flex-column justify-content-center align-items-center">
-                        <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
-                    </div>
-                </div>
+                <a href="{{route('about')}}" class="d-flex flex-column justify-content-center align-items-center">
+                    <img class="img-fluid" alt="" src="{{asset('image/Depositphotos_199823784_DS.jpg')}}">
+                </a>
             </div>
         </div>
     </div>
