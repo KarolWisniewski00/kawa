@@ -12,7 +12,7 @@
 
 <body>
     <!--NAV + HEADER-->
-    <section id="nav" class="fixed-top bg-white" style="width: 100vw;">
+    <section id="nav" class="fixed-top bg-secondary" style="width: 100vw;">
         <nav class="py-1 bg-primary">
             <div class="container">
                 <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between">
@@ -38,7 +38,7 @@
                     <li><a href="{{route('shop')}}" class="nav-link px-2 link-primary">Sklep</a></li>
                 </ul>
                 <a href="/" class="d-flex align-items-center justify-content-center col-12 col-md-auto order-1 order-md-2">
-                    <img class="img-fluid" src="{{asset('logo/COFFEESUMMIT-LOGO-przezroczyste-tlo.png')}}" style="height: 6em;">
+                    <img id="logo" class="img-fluid" src="{{asset('logo/COFFEESUMMIT-LOGO-przezroczyste-tlo.png')}}" style="height: 6em;">
                 </a>
                 <ul class="nav col-md-3 justify-content-center align-items-center order-3">
                     <li><a href="{{route('blog')}}" class="nav-link px-2 link-primary">Blog</a></li>
@@ -155,34 +155,86 @@
         <div class="container">
             <footer class="d-flex flex-wrap justify-content-between align-items-center py-5">
                 <ul class="nav col-md-3 justify-content-center order-2 order-md-1 mx-auto my-2">
-                    <li class="nav-item mx-0"><span class="nav-link px-2 text-white text-center">&copy; 2023 Desinged by Karol Wiśniewski</span></li>
+                    <li class="nav-item mx-0"><span class="nav-link px-2 text-secondary text-center">&copy; 2023 Desinged by Karol Wiśniewski</span></li>
                 </ul>
                 <a href="/" class="d-flex align-items-center justify-content-center col-12 col-md-auto order-1 order-md-2 mx-auto">
                     <img class="img-fluid" src="{{asset('logo/COFFEESUMMIT-LOGO-BIALE-przezroczyste-tlo.png')}}" style="height: 6em;">
                 </a>
 
                 <ul class="nav col-md-3 justify-content-center order-3 mx-auto">
-                    <li class="nav-item mx-0"><a href="{{route('policy-priv')}}" class="nav-link px-2 text-white">Polityka prywatności</a></li>
-                    <li class="nav-item mx-0"><a href="{{route('policy-cookies')}}" class="nav-link px-2 text-white">Polityka Cookies</a></li>
-                    <li class="nav-item mx-0"><a href="{{route('rule')}}" class="nav-link px-2 text-white">Regulamin</a></li>
-                    <li class="nav-item mx-0"><a href="{{route('info')}}" class="nav-link px-2 text-white">Informacje wysyłkowe</a></li>
+                    <li class="nav-item mx-0"><a href="{{route('policy-priv')}}" class="nav-link px-2 text-secondary">Polityka prywatności</a></li>
+                    <li class="nav-item mx-0"><a href="{{route('policy-cookies')}}" class="nav-link px-2 text-secondary">Polityka Cookies</a></li>
+                    <li class="nav-item mx-0"><a href="{{route('rule')}}" class="nav-link px-2 text-secondary">Regulamin</a></li>
+                    <li class="nav-item mx-0"><a href="{{route('info')}}" class="nav-link px-2 text-secondary">Informacje wysyłkowe</a></li>
                 </ul>
             </footer>
         </div>
     </section>
+    <input type="hidden" name="white" id="white" value="{{asset('logo/COFFEESUMMIT-LOGO-BIALE-przezroczyste-tlo.png')}}">
+    <input type="hidden" name="black" id="black" value="{{asset('logo/COFFEESUMMIT-LOGO-przezroczyste-tlo.png')}}">
     <!--END FOOTER-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $(document).ready(function() {
-            function updateMargin() {
-                var navHeight = $("#nav").height();
-                $("#content").css("margin-top", navHeight);
+        // Funkcja do sprawdzania na scrollu
+        function checkIfOnElement() {
+            try {
+                // Sprawdź pozycję paska nawigacyjnego
+                var navBar = $("#nav");
+                var navBarTop = navBar.offset().top;
+                var navBarHeight = navBar.outerHeight();
+
+                // Sprawdź pozycję wideo w hero
+                var heroVideo = $(".hero");
+                var heroTop = heroVideo.offset().top;
+                var heroHeight = heroVideo.outerHeight() - navBar.outerHeight();
+            } catch (error) {
+                return 1
             }
+            // Sprawdź pozycję paska nawigacyjnego
+            var navBar = $("#nav");
+            var navBarTop = navBar.offset().top;
+            var navBarHeight = navBar.outerHeight();
 
-            updateMargin(); // Aktualizuj margines na początku
+            // Sprawdź pozycję wideo w hero
+            var heroVideo = $(".hero");
+            var heroTop = heroVideo.offset().top;
+            var heroHeight = heroVideo.outerHeight() - navBar.outerHeight();
 
+            // Sprawdź, czy pasek nawigacyjny jest na wideo w hero
+            if (navBarTop + navBarHeight > heroTop && navBarTop < heroTop + heroHeight) {
+                var link = $("#nav .link-primary");
+                navBar.addClass("bg-transparent");
+                navBar.removeClass("bg-secondary");
+                link.addClass("link-secondary");
+                link.removeClass("link-primary");
+                $("#logo").attr("src", $("#white").val());
+
+            } else {
+                var link = $("#nav .link-secondary");
+                navBar.addClass("bg-secondary");
+                navBar.removeClass("bg-transparent");
+                link.addClass("link-primary");
+                link.removeClass("link-secondary");
+                $("#logo").attr("src", $("#black").val());
+            }
+        }
+
+        function navBarMarginToContant() {
+            var navHeight = $("#nav").height();
+            $("#content").css("margin-top", navHeight);
+            console.log($("#nav").height())
+        }
+
+        // Po załadowaniu strony i na scrollu
+        $(document).ready(function() {
+            var r = checkIfOnElement();
+            if(r == 1){navBarMarginToContant()};
             $(window).resize(function() {
-                updateMargin(); // Aktualizuj margines przy zmianie rozmiaru okna
+                if(r = 1){navBarMarginToContant()};
+            });
+            // Nasłuchuj zdarzenia scroll i sprawdzaj na każdym przewinięciu
+            $(window).scroll(function() {
+                checkIfOnElement();
             });
         });
     </script>

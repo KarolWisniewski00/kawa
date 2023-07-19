@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 .font-custom{
-    font-family: 'Playfair Display', serif!important;
+    font-family: 'Playfair', serif!important;
 }
 .font-custom-1{
-    font-family: 'Michroma', sans-serif!important;
+    font-family: 'Montserrat', sans-serif!important;
 }

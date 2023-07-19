@@ -4,12 +4,12 @@
 <style>
     @media (min-width: 768px) {
         .video-container {
-            max-height: 40em;
+            max-height: 100vh;
             /* Dostosuj maksymalną wysokość, aby zmieścić się na komputerze */
         }
     }
 </style>
-<section>
+<section class="hero">
     <div class="container-fluid px-0 position-relative video-container overflow-hidden">
         <video autoplay loop muted class="w-100">
             <source src="{{asset('video/video_11.mp4')}}">
