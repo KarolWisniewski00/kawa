@@ -4,9 +4,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-.font-custom{
-    font-family: 'Playfair', serif!important;
+.font-custom {
+    font-family: 'Playfair', serif !important;
 }
-.font-custom-1{
-    font-family: 'Montserrat', sans-serif!important;
+
+.font-custom-1 {
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+.img-hover {
+    transition: transform 0.3s;
+}
+
+.img-hover:hover {
+    transform: scale(1.05);
 }

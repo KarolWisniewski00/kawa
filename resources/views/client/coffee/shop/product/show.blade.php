@@ -42,6 +42,9 @@
                     <div class="d-flex flex-row justify-content-start align-items-center flex-wrap mb-2">
                         <button type="button" class="btn btn-secondary">rozmiar</button>
                     </div>
+                    <div>
+                        <div class="alert alert-info">Informacja o wybranym sposobie mielenia</div>
+                    </div>
                     <p class="fw-bold mt-4">Ilość</p>
                     <div class="d-flex flex-row justify-content-start align-items-center flex-wrap mb-2">
                         <label for="customRange1" class="form-label">0</label>
