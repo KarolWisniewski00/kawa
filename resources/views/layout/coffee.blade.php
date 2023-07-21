@@ -19,8 +19,8 @@
                     <ul class="nav col-md-3 justify-content-center">
                         <li class="nav-item text-white px-1 text-end"> </li>
                     </ul>
-                    <ul class="nav col-md-3 justify-content-center">
-                        <li class="nav-item text-white px-1 text-center mx-0">Darmowa wysyłka powyżej 100 PLN</li>
+                    <ul class="nav col-md-4 justify-content-center">
+                        <li class="nav-item text-white px-1 text-center mx-0 font-custom-1">Darmowa wysyłka powyżej 100 PLN</li>
                     </ul>
                     <ul class="nav col-md-3 justify-content-end">
                         <li class="nav-item text-white mx-1 me-5"><a href="" class="text-white" style="text-decoration: none;"><i class="fa-brands fa-instagram"></i></a></li>
@@ -31,8 +31,8 @@
             </div>
         </nav>
         <div class="container">
-            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-2 mb-2">
-                <ul class="nav col-md-3 justify-content-center order-2 order-md-1">
+            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-2 mb-2 font-custom-1">
+                <ul class="nav col-md-4 justify-content-center order-2 order-md-1">
                     <li><a href="{{route('index')}}" class="nav-link px-2 link-primary">Home</a></li>
                     <li><a href="{{route('about')}}" class="nav-link px-2 link-primary">Firma</a></li>
                     <li><a href="{{route('shop')}}" class="nav-link px-2 link-primary">Sklep</a></li>
@@ -40,7 +40,7 @@
                 <a href="/" class="d-flex align-items-center justify-content-center col-12 col-md-auto order-1 order-md-2">
                     <img id="logo" class="img-fluid" src="{{asset('logo/COFFEESUMMIT-LOGO-przezroczyste-tlo.png')}}" style="height: 6em;">
                 </a>
-                <ul class="nav col-md-3 justify-content-center align-items-center order-3">
+                <ul class="nav col-md-4 justify-content-center align-items-center order-3">
                     <li><a href="{{route('blog')}}" class="nav-link px-2 link-primary">Blog</a></li>
                     <li><a href="{{route('collaboration')}}" class="nav-link px-2 link-primary">Współpraca</a></li>
                     <li><a href="{{route('contact')}}" class="nav-link px-2 link-primary">Kontakt</a></li>
@@ -229,9 +229,6 @@
         $(document).ready(function() {
             var r = checkIfOnElement();
             if(r == 1){navBarMarginToContant()};
-            $(window).resize(function() {
-                if(r = 1){navBarMarginToContant()};
-            });
             // Nasłuchuj zdarzenia scroll i sprawdzaj na każdym przewinięciu
             $(window).scroll(function() {
                 checkIfOnElement();
