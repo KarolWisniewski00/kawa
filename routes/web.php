@@ -8,8 +8,10 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PhotoAdminController;
 use App\Http\Controllers\PolicyCookiesController;
 use App\Http\Controllers\PolicyPrivController;
+use App\Http\Controllers\ProductAdminController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RuleController;
 use App\Http\Controllers\ShopController;
@@ -79,12 +81,20 @@ Route::prefix('account')->group(function () {
     });
 });
 
+//ADMIN
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::prefix('dashboard')->group(function () {
+        Route::get('/', function () {return view('dashboard');})->name('dashboard');
+        Route::prefix('photo')->group(function () {
+            Route::get('/', [PhotoAdminController::class, 'index'])->name('dashboard.photo');
+        });
+        Route::prefix('product')->group(function () {
+            Route::get('/', [ProductAdminController::class, 'index'])->name('dashboard.product');
+            Route::get('/create', [ProductAdminController::class, 'create'])->name('dashboard.product.create');
+        });
+    });
 });

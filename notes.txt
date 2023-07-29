@@ -1,0 +1,1 @@
+przy deploy ustawić livewire w config/livewire.php
