@@ -69,23 +69,13 @@ Route::prefix('info')->group(function () {
 Route::prefix('rule')->group(function () {
     Route::get('/', [RuleController::class, 'index'])->name('rule');
 });
-Route::prefix('account')->group(function () {
-    Route::prefix('user')->group(function () {
-        Route::get('/', [UserController::class, 'index'])->name('account.user');
-    });
-    Route::prefix('order')->group(function () {
-        Route::get('/', [OrderController::class, 'index'])->name('account.order');
-    });
-    Route::prefix('busket')->group(function () {
-        Route::get('/', [BusketController::class, 'index'])->name('account.busket');
-    });
-});
 
 //ADMIN
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
-    'verified'
+    'verified',
+    'admin',
 ])->group(function () {
     Route::prefix('dashboard')->group(function () {
         Route::get('/', function () {return view('dashboard');})->name('dashboard');
@@ -95,6 +85,24 @@ Route::middleware([
         Route::prefix('product')->group(function () {
             Route::get('/', [ProductAdminController::class, 'index'])->name('dashboard.product');
             Route::get('/create', [ProductAdminController::class, 'create'])->name('dashboard.product.create');
+        });
+    });
+});
+//LOGGED IN
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::prefix('account')->group(function () {
+        Route::prefix('user')->group(function () {
+            Route::get('/', [UserController::class, 'index'])->name('account.user');
+        });
+        Route::prefix('order')->group(function () {
+            Route::get('/', [OrderController::class, 'index'])->name('account.order');
+        });
+        Route::prefix('busket')->group(function () {
+            Route::get('/', [BusketController::class, 'index'])->name('account.busket');
         });
     });
 });

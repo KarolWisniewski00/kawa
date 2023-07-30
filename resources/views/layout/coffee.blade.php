@@ -37,7 +37,7 @@
                     <li><a href="{{route('about')}}" class="nav-link px-2 link-primary">Firma</a></li>
                     <li><a href="{{route('shop')}}" class="nav-link px-2 link-primary">Sklep</a></li>
                 </ul>
-                <a href="/" class="d-flex align-items-center justify-content-center col-12 col-md-auto order-1 order-md-2">
+                <a href="{{route('index')}}" class="d-flex align-items-center justify-content-center col-12 col-md-auto order-1 order-md-2">
                     <img id="logo" class="img-fluid" src="{{asset('logo/COFFEESUMMIT-LOGO-przezroczyste-tlo.png')}}" style="height: 6em;">
                 </a>
                 <ul class="nav col-md-4 justify-content-center align-items-center order-3">
@@ -50,15 +50,19 @@
                                 <img src="{{asset('image/undraw_drink_coffee_av1x.svg')}}" alt="mdo" width="32" height="32" class="rounded-circle">
                             </a>
                             <ul class="dropdown-menu text-small">
-                                <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-right-to-bracket me-2"></i>Logowanie</button></li>
-                                <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i class="fa-solid fa-check me-2"></i>Rejestracja</button></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
+                                @auth
                                 <li><a class="dropdown-item" href="{{route('account.user')}}"><i class="fa-solid fa-user me-2"></i>Konto</a></li>
                                 <li><a class="dropdown-item" href="{{route('account.order')}}"><i class="fa-solid fa-tag me-2"></i>Zamówienia</a></li>
                                 <li><a class="dropdown-item" href="{{route('account.busket')}}"><i class="fa-solid fa-cart-shopping me-2"></i>Koszyk</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-power-off me-2"></i>Wyloguj</a></li>
+                                <li><form method="POST" action="{{ route('logout') }}" x-data>@csrf<button type="submit" class="dropdown-item"><i class="fa-solid fa-power-off me-2"></i>Wyloguj</button></form></li>
+                                @can('admin dashboard')
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{{route('dashboard')}}"><i class="fa-solid fa-toolbox me-2"></i>Panel Admina</a></li>
+                                @endcan
+                                @else
+                                <li><a href="{{route('login')}}" class="dropdown-item"><i class="fa-solid fa-right-to-bracket me-2"></i>Logowanie</a></li>
+                                <li><a href="{{route('register')}}" class="dropdown-item"><i class="fa-solid fa-check me-2"></i>Rejestracja</a></li>
+                                @endauth
                             </ul>
                         </div>
                     </li>
@@ -66,72 +70,6 @@
             </header>
         </div>
     </section>
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content rounded-4 shadow">
-                <div class="modal-header p-5 pb-4 border-bottom-0">
-                    <!-- <h1 class="modal-title fs-5" >Modal title</h1> -->
-                    <h1 class="fw-bold mb-0 fs-2">Logowanie</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-
-                <div class="modal-body p-5 pt-0">
-                    <form class="">
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="name@example.com">
-                            <label for="floatingInput">Email</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password">
-                            <label for="floatingPassword">Hasło</label>
-                        </div>
-                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Zaloguj</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModal2Label" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content rounded-4 shadow">
-                <div class="modal-header p-5 pb-4 border-bottom-0">
-                    <!-- <h1 class="modal-title fs-5" >Modal title</h1> -->
-                    <h1 class="fw-bold mb-0 fs-2">Rejestracja</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-
-                <div class="modal-body p-5 pt-0">
-                    <form class="">
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="name@example.com">
-                            <label for="floatingInput">Email</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control rounded-3" id="floatingInput" placeholder="name@example.com">
-                            <label for="floatingInput">Imię</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control rounded-3" id="floatingInput" placeholder="name@example.com">
-                            <label for="floatingInput">Nazwisko</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password">
-                            <label for="floatingPassword">Hasło</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password">
-                            <label for="floatingPassword">Powtórz hasło</label>
-                        </div>
-                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Zarejestruj</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--END NAV + HEADER-->
     <!--ALERT-->
     <div class="container">
         @if(Session::has('success'))
@@ -228,7 +166,9 @@
         // Po załadowaniu strony i na scrollu
         $(document).ready(function() {
             var r = checkIfOnElement();
-            if(r == 1){navBarMarginToContant()};
+            if (r == 1) {
+                navBarMarginToContant()
+            };
             // Nasłuchuj zdarzenia scroll i sprawdzaj na każdym przewinięciu
             $(window).scroll(function() {
                 checkIfOnElement();
