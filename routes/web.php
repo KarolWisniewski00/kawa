@@ -15,6 +15,7 @@ use App\Http\Controllers\ProductAdminController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RuleController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\SizeAdminController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -84,9 +85,19 @@ Route::middleware([
             Route::post('/upload', [PhotoAdminController::class, 'upload'])->name('dashboard.photo.upload');
             Route::delete('/delete/{slug}', [PhotoAdminController::class, 'delete'])->name('dashboard.photo.delete');
         });
-        Route::prefix('product')->group(function () {
-            Route::get('/', [ProductAdminController::class, 'index'])->name('dashboard.product');
-            Route::get('/create', [ProductAdminController::class, 'create'])->name('dashboard.product.create');
+        Route::prefix('shop')->group(function () {
+            Route::prefix('product')->group(function () {
+                Route::get('/', [ProductAdminController::class, 'index'])->name('dashboard.shop.product');
+                Route::get('/create', [ProductAdminController::class, 'create'])->name('dashboard.shop.product.create');
+            });
+            Route::prefix('size')->group(function () {
+                Route::get('/', [SizeAdminController::class, 'index'])->name('dashboard.shop.size');
+                Route::get('/create', [SizeAdminController::class, 'create'])->name('dashboard.shop.size.create');
+                Route::post('/store', [SizeAdminController::class, 'store'])->name('dashboard.shop.size.store');
+                Route::get('/edit/{size}', [SizeAdminController::class, 'edit'])->name('dashboard.shop.size.edit');
+                Route::put('/update/{size}', [SizeAdminController::class, 'update'])->name('dashboard.shop.size.update');
+                Route::delete('/delete/{size}', [SizeAdminController::class, 'delete'])->name('dashboard.shop.size.delete');
+            });
         });
     });
 });

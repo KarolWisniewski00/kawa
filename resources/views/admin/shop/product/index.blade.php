@@ -1,6 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        @include('admin.module.nav-shop')
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight mt-8">
             {{ __('Produkty') }}
         </h2>
     </x-slot>
@@ -9,12 +10,13 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 lg:p-8 bg-white border-b border-gray-200">
+                    @include('admin.module.alerts')
                     <x-application-logo class="block h-12 w-auto" />
                     <div class="flex flex-row justify-between">
                         <h1 class="mt-8 mb-4 text-2xl font-medium text-gray-900">
-                            Wsszystkie produkty <span class="text-gray-400">12 wyników</span>
+                            Wszystkie produkty <span class="text-gray-400">12 wyników</span>
                         </h1>
-                        <a href="{{route('dashboard.product.create')}}" class="inline-flex items-center justify-center w-10 h-10 mr-2 text-green-100 transition-colors duration-150 bg-green-500 rounded-full focus:shadow-outline hover:bg-green-600">
+                        <a href="{{route('dashboard.shop.product.create')}}" class="inline-flex items-center justify-center w-10 h-10 mr-2 text-green-100 transition-colors duration-150 bg-green-500 rounded-full focus:shadow-outline hover:bg-green-600">
                             <i class="fa-solid fa-plus"></i>
                         </a>
                     </div>
