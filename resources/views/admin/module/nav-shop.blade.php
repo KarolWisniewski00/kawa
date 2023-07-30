@@ -7,6 +7,11 @@
             </x-nav-link>
         </div>
         <div class="space-x-8 -my-px ml-10 flex">
+            <x-nav-link href="{{ route('dashboard.shop.grinding') }}" :active="Str::startsWith(request()->path(), 'dashboard/shop/grinding')">
+                {{ __('Rodzaje mielenia') }}
+            </x-nav-link>
+        </div>
+        <div class="space-x-8 -my-px ml-10 flex">
             <x-nav-link href="{{ route('dashboard.shop.product') }}" :active="Str::startsWith(request()->path(), 'dashboard/shop/product')">
                 {{ __('Produkty') }}
             </x-nav-link>

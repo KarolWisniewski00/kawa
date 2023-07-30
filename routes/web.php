@@ -5,6 +5,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BusketController;
 use App\Http\Controllers\CollaborationController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\GrindingAdminController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\OrderController;
@@ -97,6 +98,14 @@ Route::middleware([
                 Route::get('/edit/{size}', [SizeAdminController::class, 'edit'])->name('dashboard.shop.size.edit');
                 Route::put('/update/{size}', [SizeAdminController::class, 'update'])->name('dashboard.shop.size.update');
                 Route::delete('/delete/{size}', [SizeAdminController::class, 'delete'])->name('dashboard.shop.size.delete');
+            });
+            Route::prefix('grinding')->group(function () {
+                Route::get('/', [GrindingAdminController::class, 'index'])->name('dashboard.shop.grinding');
+                Route::get('/create', [GrindingAdminController::class, 'create'])->name('dashboard.shop.grinding.create');
+                Route::post('/store', [GrindingAdminController::class, 'store'])->name('dashboard.shop.grinding.store');
+                Route::get('/edit/{grinding}', [GrindingAdminController::class, 'edit'])->name('dashboard.shop.grinding.edit');
+                Route::put('/update/{grinding}', [GrindingAdminController::class, 'update'])->name('dashboard.shop.grinding.update');
+                Route::delete('/delete/{grinding}', [GrindingAdminController::class, 'delete'])->name('dashboard.shop.grinding.delete');
             });
         });
     });
