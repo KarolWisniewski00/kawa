@@ -81,6 +81,8 @@ Route::middleware([
         Route::get('/', function () {return view('dashboard');})->name('dashboard');
         Route::prefix('photo')->group(function () {
             Route::get('/', [PhotoAdminController::class, 'index'])->name('dashboard.photo');
+            Route::post('/upload', [PhotoAdminController::class, 'upload'])->name('dashboard.photo.upload');
+            Route::delete('/delete/{slug}', [PhotoAdminController::class, 'delete'])->name('dashboard.photo.delete');
         });
         Route::prefix('product')->group(function () {
             Route::get('/', [ProductAdminController::class, 'index'])->name('dashboard.product');

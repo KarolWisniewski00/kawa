@@ -5,3 +5,6 @@
 [x-cloak] {
     display: none;
 }
+.dropzone .dz-preview.dz-image-preview {
+    background: transparent!important;
+}
