@@ -8,6 +8,7 @@
     <link href="https://bootswatch.com/5/lux/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/e37acf9c2e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ asset('css/coffee.css')}}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -111,7 +112,6 @@
     <input type="hidden" name="white" id="white" value="{{asset('logo/COFFEESUMMIT-LOGO-BIALE-przezroczyste-tlo.png')}}">
     <input type="hidden" name="black" id="black" value="{{asset('logo/COFFEESUMMIT-LOGO-przezroczyste-tlo.png')}}">
     <!--END FOOTER-->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         // Funkcja do sprawdzania na scrollu
         function checkIfOnElement() {

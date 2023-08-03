@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('seo_description')->nullable();
             $table->boolean('visibility_in_google')->default(true);
             $table->boolean('visibility_on_website')->default(true);
+            $table->unsignedInteger('order');
             $table->timestamps();
         });
     }

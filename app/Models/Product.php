@@ -13,6 +13,7 @@ class Product extends Model
         'price',
         'promotional_price',
         'seo_title',
+        'order',
         'seo_description',
         'visibility_in_google',
         'visibility_on_website',

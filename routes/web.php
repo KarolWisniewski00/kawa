@@ -90,6 +90,10 @@ Route::middleware([
             Route::prefix('product')->group(function () {
                 Route::get('/', [ProductAdminController::class, 'index'])->name('dashboard.shop.product');
                 Route::get('/create', [ProductAdminController::class, 'create'])->name('dashboard.shop.product.create');
+                Route::post('/store', [ProductAdminController::class, 'store'])->name('dashboard.shop.product.store');
+                Route::get('/edit/{size}', [ProductAdminController::class, 'edit'])->name('dashboard.shop.product.edit');
+                Route::put('/update/{size}', [ProductAdminController::class, 'update'])->name('dashboard.shop.product.update');
+                Route::delete('/delete/{size}', [ProductAdminController::class, 'delete'])->name('dashboard.shop.product.delete');
             });
             Route::prefix('size')->group(function () {
                 Route::get('/', [SizeAdminController::class, 'index'])->name('dashboard.shop.size');

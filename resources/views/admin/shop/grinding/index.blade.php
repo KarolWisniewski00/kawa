@@ -28,6 +28,9 @@
                                         Rodzaj mielenia
                                     </th>
                                     <th scope="col" class="px-6 py-3">
+                                        Info
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
                                         Edycja
                                     </th>
                                     <th scope="col" class="px-6 py-3">
@@ -40,6 +43,9 @@
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <td class="px-6 py-4">
                                         {{ $grindType->name }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ $grindType->usage_information }}
                                     </td>
                                     <td class="px-6 py-4">
                                         <a href="{{ route('dashboard.shop.grinding.edit', $grindType->id) }}" class="text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-indigo-600 dark:hover:bg-indigo-700 focus:outline-none dark:focus:ring-indigo-800">
