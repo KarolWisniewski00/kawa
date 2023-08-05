@@ -13,16 +13,7 @@
                 <div class="d-flex flex-column justify-content-center align-items-center text-center my-4">
                     <h1>Koszyk</h1>
                 </div>
-                <nav class="py-2 mb-2">
-                    <div class="container d-flex flex-wrap">
-                        <ul class="nav mx-auto">
-                            <li class="nav-item"><a href="{{route('account.user')}}" class="nav-link link-dark px-2"><i class="fa-solid fa-user me-2"></i>Konto</a></li>
-                            <li class="nav-item"><a href="{{route('account.order')}}" class="nav-link link-dark px-2"><i class="fa-solid fa-tag me-2"></i>Zamówienia</a></li>
-                            <li class="nav-item"><a href="{{route('account.busket')}}" class="nav-link link-dark px-2"><i class="fa-solid fa-cart-shopping me-2"></i>Koszyk</a></li>
-                            <li class="nav-item"><a href="" class="nav-link link-dark px-2" onclick="return confirm('Czy na pewno chcesz się wylogować?');"><i class="fa-solid fa-right-from-bracket me-2"></i>Wyloguj</a></li>
-                        </ul>
-                    </div>
-                </nav>
+                @include('client.coffee.module.nav-acc')
                 <div class="col-12 mb-4" style="overflow:auto;">
                     <table class="table">
                         <thead>
@@ -70,6 +61,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @if ($cartItems->isEmpty())
                             <tr>
                                 <th colspan="8">
                                     <div class="d-flex flex-column justify-content-center align-items-center">
@@ -78,73 +70,81 @@
                                                 <div class="d-flex flex-column justify-content-center align-items-center">
                                                     <img class="img-fluid" alt="" src="{{asset('image/undraw_shopping_app_flsj.svg')}}">
                                                     <div class="h4 m-0 p-0 my-3">Twój koszyk jest pusty!</div>
-                                                    <a href="" class="btn btn-primary my-3 btn-lg"><i class="fa-solid fa-cart-shopping me-2"></i>Zrób zakupy</a>
+                                                    <a href="{{route('shop')}}" class="btn btn-primary my-3 btn-lg"><i class="fa-solid fa-cart-shopping me-2"></i>Zrób zakupy</a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </th>
                             </tr>
+                            @else
+                            @foreach ($cartItems as $item)
                             <tr>
-                                <th>
-                                    <div class="d-flex flex-column justify-content-center align-items-center">
-                                        <div class="fw-bold">1</div>
-                                    </div>
-                                </th>
-                                <td>
-                                    <div class="d-flex flex-column justify-content-center align-items-center">
-                                        <div style="max-width:50px"><img alt="product_photo" src="{{ asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}" class="img-fluid"></div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-column justify-content-center align-items-center">
-                                        <div class="fw-bold">Nazwa > Rozmiar Opakowania > Rozmiar mielenia</div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-column justify-content-center align-items-center">
-                                        <div class="fw-bold">SKU</div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-row justify-content-center align-items-center">
-                                        <div class="fw-bold">100 PLN</div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-row justify-content-center align-items-center">
-                                        <form method="POST" action="">
-                                            @csrf
-                                            <input type="hidden" name="product_id" value="">
-                                            <input type="hidden" name="quantity" value="-1">
-                                            <input type="hidden" name="size_value" value="">
-                                            <button type="submit" class="btn btn-sm btn-danger me-2" onclick="return confirm('Czy na pewno chcesz usunąć ten produkt?');">
-                                                <i class="fa-solid fa-minus"></i>
-                                            </button>
-                                        </form>
-                                        <div class="fw-bold">2</div>
-                                        <form method="POST" action="">
-                                            @csrf
-                                            <input type="hidden" name="product_id" value="">
-                                            <input type="hidden" name="quantity" value="1">
-                                            <input type="hidden" name="size_value" value="">
-                                            <button type="submit" class="btn btn-sm btn-success ms-2">
-                                                <i class="fa-solid fa-plus"></i>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-column justify-content-center align-items-center">
-                                        <div class="fw-bold"> 200 PLN</div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d-flex flex-column justify-content-center align-items-center">
-                                        <div><a href="" class="btn btn-danger" onclick="return confirm('Czy na pewno chcesz usunąć ten produkt?');"><i class="fa-solid fa-trash"></i></a></div>
-                                    </div>
-                                </td>
+                            <th>
+                                <div class="d-flex flex-column justify-content-center align-items-center">
+                                    <div class="fw-bold">1</div>
+                                </div>
+                            </th>
+                            <td>
+                                <div class="d-flex flex-column justify-content-center align-items-center">
+                                    @foreach($photos as $photo)
+                                    @if($photo->product_id == $item->associatedModel->id)
+                                    @if($photo->order == 1)
+                                    <div style="max-width:50px"><img src="{{ asset('photo/' . $photo->image_path) }}" alt="" class="img-fluid" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;"></div>
+                                    @endif
+                                    @endif
+                                    @endforeach
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column justify-content-center align-items-center">
+                                    <div class="fw-bold">{{ $item->name }}</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column justify-content-center align-items-center">
+                                    <div class="fw-bold">SKU</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-row justify-content-center align-items-center">
+                                    <div class="fw-bold">{{ $item->price }} PLN</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-row justify-content-center align-items-center">
+                                    <form method="POST" action="{{route('account.busket.minus', $item->associatedModel)}}">
+                                        @csrf
+                                        <button type="submit" class="btn btn-sm btn-danger me-2" onclick="return confirm('Czy na pewno chcesz usunąć ten produkt?');">
+                                            <i class="fa-solid fa-minus"></i>
+                                        </button>
+                                    </form>
+                                    <div class="fw-bold">{{ $item->quantity }}</div>
+                                    <form method="POST" action="{{route('account.busket.add', $item->associatedModel)}}">
+                                        @csrf
+                                        <button type="submit" class="btn btn-sm btn-success ms-2">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column justify-content-center align-items-center">
+                                    <div class="fw-bold">{{ $item->quantity*$item->price }} PLN</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column justify-content-center align-items-center">
+                                    <form method="POST" action="{{route('account.busket.remove', $item->associatedModel)}}">
+                                        @csrf
+                                        <button href="" class="btn btn-danger" onclick="return confirm('Czy na pewno chcesz usunąć ten produkt?');"><i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
                             </tr>
+                            @endforeach
+                            @endif
                         </tbody>
                     </table>
                     <div>
@@ -163,7 +163,7 @@
                             </li>
                         </ul>
                         <div class="d-flex justify-content-start align-items-center mt-4">
-                            <a href="" class="me-2 btn btn-primary"><i class="fa-solid fa-forward me-2"></i>Przejdź do płatności</a>
+                            <a href="{{route('account.order.create')}}" class="me-2 btn btn-primary"><i class="fa-solid fa-forward me-2"></i>Przejdź do płatności</a>
                             <a href="{{route('shop')}}" class="btn btn-dark"><i class="fa-solid fa-cart-shopping me-2"></i>Kup coś jeszcze</a>
                         </div>
                     </div>

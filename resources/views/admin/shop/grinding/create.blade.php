@@ -24,7 +24,17 @@
                         @csrf
                         <div class="mb-6">
                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nazwa rodzaju mielenia</label>
-                            <input type="text" name="name" id="name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Wprowadź nazwę rodzaju mielenia" required>
+                            <input value="{{ old('name') ? old('name') : ''}}" type="text" name="name" id="name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Wprowadź nazwę rodzaju mielenia" required>
+                            @error('name')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-6">
+                            <label for="usage_information" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Informacje o przeznaczeniu</label>
+                            <input value="{{ old('usage_information') ? old('usage_information') : ''}}" type="text" name="usage_information" id="usage_information" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Wprowadź informacje o przeznaczeniu rodzaju mielenia" required>
+                            @error('usage_information')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Dodaj tutaj inne pola związane z rodzajem mielenia, jeśli są dostępne -->
                         <button type="submit" class="text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 me-2">

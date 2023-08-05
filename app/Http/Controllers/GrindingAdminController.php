@@ -25,7 +25,7 @@ class GrindingAdminController extends Controller
     {
         $res = Grinding::create([
             'name' => $request->name,
-            'description' => $request->description,
+            'usage_information' => $request->usage_information,
         ]);
 
         if ($res) {
@@ -46,7 +46,7 @@ class GrindingAdminController extends Controller
     {
         $res = $grinding->update([
             'name' => $request->name,
-            'description' => $request->description,
+            'usage_information' => $request->usage_information,
         ]);
 
         if ($res) {

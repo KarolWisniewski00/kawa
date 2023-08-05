@@ -8,6 +8,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\GrindingAdminController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\InfoController;
+use App\Http\Controllers\OrderAdminController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PhotoAdminController;
 use App\Http\Controllers\PolicyCookiesController;
@@ -80,7 +81,12 @@ Route::middleware([
     'admin',
 ])->group(function () {
     Route::prefix('dashboard')->group(function () {
-        Route::get('/', function () {return view('dashboard');})->name('dashboard');
+        Route::prefix('/')->group(function () {
+            Route::get('/', [OrderAdminController::class, 'index'])->name('dashboard');
+            Route::get('/show/{order}', [OrderAdminController::class, 'show'])->name('dashboard.order.show');
+            Route::put('/update/{order}', [OrderAdminController::class, 'update'])->name('dashboard.order.update');
+            Route::delete('/delete/{order}', [OrderAdminController::class, 'delete'])->name('dashboard.order.delete');
+        });
         Route::prefix('photo')->group(function () {
             Route::get('/', [PhotoAdminController::class, 'index'])->name('dashboard.photo');
             Route::post('/upload', [PhotoAdminController::class, 'upload'])->name('dashboard.photo.upload');
@@ -91,9 +97,9 @@ Route::middleware([
                 Route::get('/', [ProductAdminController::class, 'index'])->name('dashboard.shop.product');
                 Route::get('/create', [ProductAdminController::class, 'create'])->name('dashboard.shop.product.create');
                 Route::post('/store', [ProductAdminController::class, 'store'])->name('dashboard.shop.product.store');
-                Route::get('/edit/{size}', [ProductAdminController::class, 'edit'])->name('dashboard.shop.product.edit');
-                Route::put('/update/{size}', [ProductAdminController::class, 'update'])->name('dashboard.shop.product.update');
-                Route::delete('/delete/{size}', [ProductAdminController::class, 'delete'])->name('dashboard.shop.product.delete');
+                Route::get('/edit/{product}', [ProductAdminController::class, 'edit'])->name('dashboard.shop.product.edit');
+                Route::put('/update/{product}', [ProductAdminController::class, 'update'])->name('dashboard.shop.product.update');
+                Route::delete('/delete/{product}', [ProductAdminController::class, 'delete'])->name('dashboard.shop.product.delete');
             });
             Route::prefix('size')->group(function () {
                 Route::get('/', [SizeAdminController::class, 'index'])->name('dashboard.shop.size');
@@ -126,9 +132,15 @@ Route::middleware([
         });
         Route::prefix('order')->group(function () {
             Route::get('/', [OrderController::class, 'index'])->name('account.order');
+            Route::get('{slug}', [OrderController::class, 'show'])->name('account.order.show');
+            Route::get('/create', [OrderController::class, 'create'])->name('account.order.create');
+            Route::post('/store', [OrderController::class, 'store'])->name('account.order.store');
         });
         Route::prefix('busket')->group(function () {
             Route::get('/', [BusketController::class, 'index'])->name('account.busket');
+            Route::post('/add/{product}', [BusketController::class, 'add'])->name('account.busket.add');
+            Route::post('/minus/{product}', [BusketController::class, 'minus'])->name('account.busket.minus');
+            Route::post('/remove/{product}', [BusketController::class, 'remove'])->name('account.busket.remove');
         });
     });
 });

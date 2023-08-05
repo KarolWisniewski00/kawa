@@ -7,7 +7,7 @@
             <div class="col-12 py-4" style="background-image: url('{{ asset('image/Depositphotos_145612235_DS.jpg') }}'); background-size: cover; background-position: center;">
                 <div class="d-flex justify-content-between align-items-center my-3 text-center">
                     <h1 class="font-custom text-white">Sklep</h1>
-                            {{ Breadcrumbs::render() }}
+                    {{ Breadcrumbs::render() }}
                 </div>
             </div>
             <div class="col-12">
@@ -26,69 +26,53 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-3">
-                <a href="{{route('shop.product.show', 'test')}}" class="d-flex flex-column justify-content-center align-items-center text-decoration-none">
-                    <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
-                    <h4 class="font-custom mt-2">Mexico Cafeco Bio</h4>
-                    <p>14,90 PLN - 50,10 PLN</p>
-                </a>
-            </div>
-            <div class="col-12 col-md-3">
-                <a href="{{route('shop.product.show', 'test')}}" class="d-flex flex-column justify-content-center align-items-center text-decoration-none">
+            @foreach($products as $product)
+            <div class="col-12 col-md-4">
+                <a href="{{route('shop.product.show', $product->id)}}" class="d-flex flex-column justify-content-center align-items-center text-decoration-none">
                     <div class="d-flex flex-column justify-content-center align-items-center">
-                        <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
-                        <h4 class="font-custom mt-2">Mexico Cafeco Bio</h4>
-                        <p>14,90 PLN - 50,10 PLN</p>
+                        @foreach($photos as $photo)
+                        @if($photo->product_id == $product->id)
+                        @if($photo->order == 1)
+                        <img src="{{ asset('photo/' . $photo->image_path) }}" alt="" class="img-fluid" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
+                        @endif
+                        @endif
+                        @endforeach
+                        <h4 class="font-custom mt-2">{{$product->name}}</h4>
+                        <p>
+                            @php
+                            $minPrice = null;
+                            $maxPrice = null;
+                            @endphp
+
+                            @foreach($variants as $variant)
+                            @if($variant->product_id == $product->id && $variant->size_id != null)
+                            @php
+                            // Sprawdź minimalną cenę
+                            if ($minPrice === null || $variant->price < $minPrice) { $minPrice=$variant->price;
+                                }
+
+                                // Sprawdź maksymalną cenę
+                                if ($maxPrice === null || $variant->price > $maxPrice) {
+                                $maxPrice = $variant->price;
+                                }
+                                @endphp
+                                @endif
+                                @endforeach
+
+                                @if($minPrice !== null && $maxPrice !== null)
+                                {{$minPrice}} PLN - {{$maxPrice}} PLN
+                                @else
+                                Brak dostępnych cen.
+                                @endif
+                        </p>
                     </div>
                 </a>
             </div>
-            <div class="col-12 col-md-3">
-                <a href="{{route('shop.product.show', 'test')}}" class="d-flex flex-column justify-content-center align-items-center text-decoration-none">
-                    <div class="d-flex flex-column justify-content-center align-items-center">
-                        <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
-                        <h4 class="font-custom mt-2">Mexico Cafeco Bio</h4>
-                        <p>14,90 PLN - 50,10 PLN</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-12 col-md-3">
-                <a href="{{route('shop.product.show', 'test')}}" class="d-flex flex-column justify-content-center align-items-center text-decoration-none">
-                    <div class="d-flex flex-column justify-content-center align-items-center">
-                        <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
-                        <h4 class="font-custom mt-2">Mexico Cafeco Bio</h4>
-                        <p>14,90 PLN - 50,10 PLN</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-12 col-md-3">
-                <a href="{{route('shop.product.show', 'test')}}" class="d-flex flex-column justify-content-center align-items-center text-decoration-none">
-                    <div class="d-flex flex-column justify-content-center align-items-center">
-                        <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
-                        <h4 class="font-custom mt-2">Mexico Cafeco Bio</h4>
-                        <p>14,90 PLN - 50,10 PLN</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-12 col-md-3">
-                <a href="{{route('shop.product.show', 'test')}}" class="d-flex flex-column justify-content-center align-items-center text-decoration-none">
-                    <div class="d-flex flex-column justify-content-center align-items-center">
-                        <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
-                        <h4 class="font-custom mt-2">Mexico Cafeco Bio</h4>
-                        <p>14,90 PLN - 50,10 PLN</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-12 col-md-3">
-                <a href="{{route('shop.product.show', 'test')}}" class="d-flex flex-column justify-content-center align-items-center text-decoration-none">
-                    <div class="d-flex flex-column justify-content-center align-items-center">
-                        <img class="img-fluid" alt="" src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}">
-                        <h4 class="font-custom mt-2">Mexico Cafeco Bio</h4>
-                        <p>14,90 PLN - 50,10 PLN</p>
-                    </div>
-                </a>
-            </div>
+            @endforeach
             <div class="col-12 my-2">
-                @include('client.coffee.module.pagination')
+                <div class="px-4 py-2">
+                    {{ $products->links() }}
+                </div>
             </div>
         </div>
     </div>

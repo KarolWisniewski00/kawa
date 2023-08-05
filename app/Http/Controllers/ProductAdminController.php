@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Grinding;
 use App\Models\Product;
+use App\Models\ProductImage;
+use App\Models\ProductVariant;
 use App\Models\Size;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -13,7 +15,9 @@ class ProductAdminController extends Controller
     public function index()
     {
         return view('admin.shop.product.index', [
-            'products' => Product::orderBy('created_at', 'desc')->paginate(20)
+            'products' => Product::orderBy('created_at', 'desc')->paginate(20),
+            'variants' => ProductVariant::get(),
+            'photos' => ProductImage::get(),
         ]);
     }
     public function create()
@@ -33,18 +37,62 @@ class ProductAdminController extends Controller
     }
     public function store(Request $request)
     {
-        $res = Product::create([
+        $product = Product::create([
             'name' => $request->name,
             'description' => $request->description,
-            'price' => $request->price,
-            'promotional_price' => $request->promotional_price,
             'order' => $request->order,
-            'visibility_on_website' => $request->visibility_on_website  ? 1 : 0,
+            'view' => 0,
+            'busket' => 0,
+            'sell' => 0,
+            'visibility_on_website' => $request->visibility_on_website == "1"  ? 1 : 0,
             'seo_title' => $request->seo_title,
             'seo_description' => $request->seo_description,
-            'visibility_in_google' => $request->visibility_in_google  ? 1 : 0,
+            'visibility_in_google' => $request->visibility_in_google == "1"  ? 1 : 0,
         ]);
-        if ($res) {
+        if ($product) {
+            // Save product variants
+            $sizes = $request->size;
+            $grinds = $request->grind;
+            $prices = array_filter($request->price);
+
+
+            if (!empty($sizes)) {
+                foreach ($sizes as $key => $size) {
+                    $variant = new ProductVariant([
+                        'product_id' => $product->id,
+                        'size_id' => $size,
+                        'grinding_id' => null,
+                        'price' => $prices[$key]
+                    ]);
+                    $variant->save();
+                }
+            }
+            if (!empty($grinds)) {
+                foreach ($grinds as  $grind) {
+                    $variant = new ProductVariant([
+                        'product_id' => $product->id,
+                        'grinding_id' => $grind,
+                        'size_id' => null,
+                        'price' => null
+                    ]);
+                    $variant->save();
+                }
+            }
+
+            // Save product images with the given order
+            $photos = $request->photo;
+
+            if (!empty($photos)) {
+                foreach ($photos as $key => $photo) {
+                    $image = new ProductImage([
+                        'product_id' => $product->id,
+                        'image_path' => $photo,
+                        'order' => $key + 1,
+                    ]);
+                    $image->save();
+                }
+            }
+
             return redirect()->route('dashboard.shop.product')
                 ->with('success', 'Produkt został dodany.');
         } else {
@@ -53,36 +101,99 @@ class ProductAdminController extends Controller
         }
     }
 
-    public function edit(Grinding $grinding)
+    public function edit(Product $product)
     {
-        return view('admin.shop.grinding.edit', compact('grinding'));
+        $sizes = Size::get();
+        $grindTypes = Grinding::get();
+        $photos = File::files(public_path('photo'));
+        $productSizes = ProductVariant::where('product_id', $product->id)->where('size_id', '!=', null)->get();
+        $productGrinds = ProductVariant::where('product_id', $product->id)->where('grinding_id', '!=', null)->get();
+        $productPhotos = ProductImage::where('product_id', $product->id)->get();
+
+        // Sortowanie tablicy $photos od najnowszych do najstarszych na podstawie daty utworzenia.
+        usort($photos, function ($a, $b) {
+            return filemtime($b) - filemtime($a);
+        });
+        return view('admin.shop.product.edit', compact('product', 'sizes', 'grindTypes', 'photos', 'productSizes', 'productGrinds', 'productPhotos'));
     }
 
-    public function update(Request $request, Grinding $grinding)
+    public function update(Request $request, Product $product)
     {
-        $res = $grinding->update([
+        // Aktualizujemy dane produktu
+        $res = $product->update([
             'name' => $request->name,
             'description' => $request->description,
+            'order' => $request->order,
+            'visibility_on_website' => $request->visibility_on_website == 1  ? 1 : 0,
+            'seo_title' => $request->seo_title,
+            'seo_description' => $request->seo_description,
+            'visibility_in_google' => $request->visibility_in_google == 1  ? 1 : 0,
         ]);
 
-        if ($res) {
-            return redirect()->route('dashboard.shop.grinding')
-                ->with('success', 'Rodzaj mielenia został zaktualizowany.');
-        } else {
-            return redirect()->route('dashboard.shop.grinding.edit', $grinding->id)
-                ->with('fail', 'Wystąpił błąd podczas aktualizacji rodzaju mielenia.');
+        // Usuwamy wszystkie stare warianty produktu i zapisujemy nowe dane
+        $sizes = $request->size;
+        $grinds = $request->grind;
+        $prices = $request->price;
+
+        ProductVariant::where('product_id', $product->id)->delete();
+        if (!empty($sizes)) {
+            foreach ($sizes as $key => $size) {
+                $variant = new ProductVariant([
+                    'product_id' => $product->id,
+                    'size_id' => $size,
+                    'grinding_id' => null,
+                    'price' => $prices[$key]
+                ]);
+                $variant->save();
+            }
         }
+
+        if (!empty($grinds)) {
+            foreach ($grinds as $grind) {
+                $variant = new ProductVariant([
+                    'product_id' => $product->id,
+                    'grinding_id' => $grind,
+                    'size_id' => null,
+                    'price' => null
+                ]);
+                $variant->save();
+            }
+        }
+
+        // Usuwamy wszystkie stare zdjęcia produktu i zapisujemy nowe dane
+        $photos = $request->photo;
+
+        ProductImage::where('product_id', $product->id)->delete();
+
+        if (!empty($photos)) {
+            foreach ($photos as $key => $photo) {
+                $image = new ProductImage([
+                    'product_id' => $product->id,
+                    'image_path' => $photo,
+                    'order' => $key + 1,
+                ]);
+                $image->save();
+            }
+        }
+        if ($res) {
+            return redirect()->route('dashboard.shop.product')
+                ->with('success', 'Produkt został zaktualizowany.');
+        } else {
+            return redirect()->route('dashboard.shop.product.edit', $product->id)
+                ->with('Fail', 'Wystąpił błąd podczas aktualizowania produktu.');
+        }
+        //todo:zrobić zdjęcia ordering oraz checkboxy widoczności
     }
 
-    public function delete(Grinding $grinding)
+    public function delete(Product $product)
     {
-        $res = $grinding->delete();
+        $res = $product->delete();
         if ($res) {
-            return redirect()->route('dashboard.shop.grinding')
-                ->with('success', 'Rodzaj mielenia został usunięty.');
+            return redirect()->route('dashboard.shop.product')
+                ->with('success', 'Produkt został usunięty.');
         } else {
-            return redirect()->route('dashboard.shop.grinding')
-                ->with('fail', 'Wystąpił błąd podczas usuwania rodzaju mielenia.');
+            return redirect()->route('dashboard.shop.product')
+                ->with('fail', 'Wystąpił błąd podczas usuwania produktu.');
         }
     }
 }

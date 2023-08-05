@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "darryldecode/cart": "^4.2",
         "davejamesmiller/laravel-breadcrumbs": "^5.3",
         "enyo/dropzone": "^5.9",
         "guzzlehttp/guzzle": "^7.2",

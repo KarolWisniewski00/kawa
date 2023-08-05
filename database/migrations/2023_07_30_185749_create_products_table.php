@@ -15,13 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->decimal('price', 8, 2);
-            $table->decimal('promotional_price', 8, 2)->nullable();
             $table->string('seo_title')->nullable();
             $table->text('seo_description')->nullable();
             $table->boolean('visibility_in_google')->default(true);
             $table->boolean('visibility_on_website')->default(true);
             $table->unsignedInteger('order');
+            $table->unsignedInteger('view');
+            $table->unsignedInteger('busket');
+            $table->unsignedInteger('sell');
             $table->timestamps();
         });
     }

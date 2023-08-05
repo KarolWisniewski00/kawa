@@ -1,1 +1,9 @@
 przy deploy ustawić livewire w config/livewire.php
+sortowanie w sklepie
+produkty ceny z rozmiarami
+logowanie i rejestracja
+zdjęcia
+kontakt i współpraca
+dodac białe na ścieżki
+nie działają komunikaty przy dodawaniu do koszyka
+walidacja dla produktów

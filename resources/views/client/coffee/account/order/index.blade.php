@@ -13,16 +13,7 @@
                 <div class="d-flex flex-column justify-content-center align-items-center text-center my-4">
                     <h1>Zamówienia</h1>
                 </div>
-                <nav class="py-2 mb-2">
-                    <div class="container d-flex flex-wrap">
-                        <ul class="nav mx-auto">
-                            <li class="nav-item"><a href="{{route('account.user')}}" class="nav-link link-dark px-2"><i class="fa-solid fa-user me-2"></i>Konto</a></li>
-                            <li class="nav-item"><a href="{{route('account.order')}}" class="nav-link link-dark px-2"><i class="fa-solid fa-tag me-2"></i>Zamówienia</a></li>
-                            <li class="nav-item"><a href="{{route('account.busket')}}" class="nav-link link-dark px-2"><i class="fa-solid fa-cart-shopping me-2"></i>Koszyk</a></li>
-                            <li class="nav-item"><a href="" class="nav-link link-dark px-2" onclick="return confirm('Czy na pewno chcesz się wylogować?');"><i class="fa-solid fa-right-from-bracket me-2"></i>Wyloguj</a></li>
-                        </ul>
-                    </div>
-                </nav>
+                @include('client.coffee.module.nav-acc')
                 <div class="col-12" style="overflow:auto;">
                     <table class="table">
                         <thead>
@@ -60,6 +51,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @if(!$orders)
                             <tr>
                                 <th colspan="6">
                                     <div class="d-flex flex-column justify-content-center align-items-center">
@@ -75,40 +67,47 @@
                                     </div>
                                 </th>
                             </tr>
+                            @else
+                            @foreach($orders as $key => $order)
                             <tr>
                                 <th>
                                     <div class="d-flex flex-column justify-content-center align-items-center">
-                                        <div class="fw-bold">1</div>
+                                        <div class="fw-bold">{{$key+1}}</div>
                                     </div>
                                 </th>
                                 <td>
                                     <div class="d-flex flex-column justify-content-center align-items-center">
-                                        <div class="fw-bold">123-123</div>
+                                        <div class="fw-bold">{{$order->number}}</div>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="d-flex flex-column justify-content-center align-items-center">
-                                        <div class="fw-bold">100 PLN</div>
+                                        <div class="fw-bold">{{$order->total}} PLN</div>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="d-flex flex-column justify-content-center align-items-center">
-                                        <div class="fw-bold text-danger">Oczekujące na płatność</div>
+                                        <div class="fw-bold">{{$order->status}}</div>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="d-flex flex-row justify-content-center align-items-center">
-                                        <div class="fw-bold">Data</div>
+                                        <div class="fw-bold">{{$order->created_at}}</div>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="d-flex flex-column justify-content-center align-items-center">
-                                        <div><a href="" class="btn btn-sm btn-primary"><i class="fa-solid fa-magnifying-glass"></i></a></div>
+                                        <div><a href="{{route('account.order.show', $order->id)}}" class="btn btn-sm btn-primary"><i class="fa-solid fa-magnifying-glass"></i></a></div>
                                     </div>
                                 </td>
                             </tr>
+                            @endforeach
+                            @endif
                         </tbody>
                     </table>
+                    <div class="px-4 py-2">
+                        {{ $orders->links() }}
+                    </div>
                 </div>
             </div>
         </div>

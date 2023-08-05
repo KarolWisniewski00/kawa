@@ -15,7 +15,7 @@ class UpdateGrindingRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255|unique:grindings,name,' . $this->grinding->id,
-            'description' => 'nullable|string',
+            'usage_information' => 'nullable|string',
         ];
     }
 

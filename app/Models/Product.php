@@ -10,10 +10,11 @@ class Product extends Model
     protected $fillable = [
         'name',
         'description',
-        'price',
-        'promotional_price',
         'seo_title',
         'order',
+        'view',
+        'busket',
+        'sell',
         'seo_description',
         'visibility_in_google',
         'visibility_on_website',
