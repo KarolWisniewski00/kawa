@@ -7,3 +7,8 @@ kontakt i współpraca
 dodac białe na ścieżki
 nie działają komunikaty przy dodawaniu do koszyka
 walidacja dla produktów
+filmy z strony głównej
+oagrnąć wektory
+font
+zrobić zdjęcia ordering oraz checkboxy widoczności
+usunąć błąd dodawnie produktu bez ceny

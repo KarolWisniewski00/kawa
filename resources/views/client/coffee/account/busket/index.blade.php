@@ -137,7 +137,7 @@
                                 <div class="d-flex flex-column justify-content-center align-items-center">
                                     <form method="POST" action="{{route('account.busket.remove', $item->associatedModel)}}">
                                         @csrf
-                                        <button href="" class="btn btn-danger" onclick="return confirm('Czy na pewno chcesz usunąć ten produkt?');"><i class="fa-solid fa-trash"></i>
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Czy na pewno chcesz usunąć ten produkt?');"><i class="fa-solid fa-trash"></i>
                                         </button>
                                     </form>
                                 </div>

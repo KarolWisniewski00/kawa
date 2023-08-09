@@ -21,13 +21,13 @@
                     <x-nav-link href="{{ route('dashboard.shop.product') }}" :active="Str::startsWith(request()->path(), 'dashboard/shop')">
                         {{ __('Sklep') }}
                     </x-nav-link>
-                    <x-nav-link href="" >
+                    <x-nav-link href="">
                         {{ __('Blog') }}
                     </x-nav-link>
-                    <x-nav-link href="" >
+                    <x-nav-link href="{{ route('dashboard.technic.rule') }}" :active="Str::startsWith(request()->path(), 'dashboard/technic')">
                         {{ __('Strony techniczne') }}
                     </x-nav-link>
-                    <x-nav-link href="" >
+                    <x-nav-link href="{{ route('dashboard.user') }}" :active="request()->routeIs('dashboard.user')">
                         {{ __('Użytkownicy') }}
                     </x-nav-link>
                 </div>
@@ -162,13 +162,13 @@
             <x-responsive-nav-link href="{{ route('dashboard.shop.product') }}" :active="request()->routeIs('dashboard.shop.product')">
                 {{ __('Sklep') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link href="" >
+            <x-responsive-nav-link href="">
                 {{ __('Blog') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link href="" >
+            <x-responsive-nav-link href="{{ route('dashboard.technic.rule') }}" :active="request()->routeIs('dashboard.technic.rule')">
                 {{ __('Strony Techniczne') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link href="" >
+            <x-responsive-nav-link href="{{ route('dashboard.user') }}" :active="request()->routeIs('dashboard.user')">
                 {{ __('Użytkownicy') }}
             </x-responsive-nav-link>
         </div>

@@ -78,7 +78,7 @@ class OrderController extends Controller
     public function show($slug){
         $user = Auth::user();
         $order = Order::where('id',$slug)->first();
-        $orders = OrderItem::where('order_id', $order->id)->get();
+        $orders = OrderItem::where('order_id', $slug)->get();
         $photos = ProductImage::get();
         return view('client.coffee.account.order.show', compact('order','orders','photos'));
     }

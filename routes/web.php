@@ -5,19 +5,24 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BusketController;
 use App\Http\Controllers\CollaborationController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CookiesAdminController;
 use App\Http\Controllers\GrindingAdminController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\InfoAdminController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\OrderAdminController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PhotoAdminController;
 use App\Http\Controllers\PolicyCookiesController;
 use App\Http\Controllers\PolicyPrivController;
+use App\Http\Controllers\PrivAdminController;
 use App\Http\Controllers\ProductAdminController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RuleAdminController;
 use App\Http\Controllers\RuleController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\SizeAdminController;
+use App\Http\Controllers\UserAdminController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -86,6 +91,7 @@ Route::middleware([
             Route::get('/show/{order}', [OrderAdminController::class, 'show'])->name('dashboard.order.show');
             Route::put('/update/{order}', [OrderAdminController::class, 'update'])->name('dashboard.order.update');
             Route::delete('/delete/{order}', [OrderAdminController::class, 'delete'])->name('dashboard.order.delete');
+            Route::get('/status/{id}/{slug}', [OrderAdminController::class, 'status'])->name('dashboard.order.status');
         });
         Route::prefix('photo')->group(function () {
             Route::get('/', [PhotoAdminController::class, 'index'])->name('dashboard.photo');
@@ -118,6 +124,44 @@ Route::middleware([
                 Route::delete('/delete/{grinding}', [GrindingAdminController::class, 'delete'])->name('dashboard.shop.grinding.delete');
             });
         });
+        Route::prefix('technic')->group(function () {
+            Route::prefix('rule')->group(function () {
+                Route::get('/', [RuleAdminController::class, 'index'])->name('dashboard.technic.rule');
+                Route::get('/create', [RuleAdminController::class, 'create'])->name('dashboard.technic.rule.create');
+                Route::post('/store', [RuleAdminController::class, 'store'])->name('dashboard.technic.rule.store');
+                Route::get('/edit/{element}', [RuleAdminController::class, 'edit'])->name('dashboard.technic.rule.edit');
+                Route::put('/update/{element}', [RuleAdminController::class, 'update'])->name('dashboard.technic.rule.update');
+                Route::delete('/delete/{element}', [RuleAdminController::class, 'delete'])->name('dashboard.technic.rule.delete');
+            });
+            Route::prefix('priv')->group(function () {
+                Route::get('/', [PrivAdminController::class, 'index'])->name('dashboard.technic.priv');
+                Route::get('/create', [PrivAdminController::class, 'create'])->name('dashboard.technic.priv.create');
+                Route::post('/store', [PrivAdminController::class, 'store'])->name('dashboard.technic.priv.store');
+                Route::get('/edit/{element}', [PrivAdminController::class, 'edit'])->name('dashboard.technic.priv.edit');
+                Route::put('/update/{element}', [PrivAdminController::class, 'update'])->name('dashboard.technic.priv.update');
+                Route::delete('/delete/{element}', [PrivAdminController::class, 'delete'])->name('dashboard.technic.priv.delete');
+            });
+            Route::prefix('cookies')->group(function () {
+                Route::get('/', [CookiesAdminController::class, 'index'])->name('dashboard.technic.cookies');
+                Route::get('/create', [CookiesAdminController::class, 'create'])->name('dashboard.technic.cookies.create');
+                Route::post('/store', [CookiesAdminController::class, 'store'])->name('dashboard.technic.cookies.store');
+                Route::get('/edit/{element}', [CookiesAdminController::class, 'edit'])->name('dashboard.technic.cookies.edit');
+                Route::put('/update/{element}', [CookiesAdminController::class, 'update'])->name('dashboard.technic.cookies.update');
+                Route::delete('/delete/{element}', [CookiesAdminController::class, 'delete'])->name('dashboard.technic.cookies.delete');
+            });
+            Route::prefix('info')->group(function () {
+                Route::get('/', [InfoAdminController::class, 'index'])->name('dashboard.technic.info');
+                Route::get('/create', [InfoAdminController::class, 'create'])->name('dashboard.technic.info.create');
+                Route::post('/store', [InfoAdminController::class, 'store'])->name('dashboard.technic.info.store');
+                Route::get('/edit/{element}', [InfoAdminController::class, 'edit'])->name('dashboard.technic.info.edit');
+                Route::put('/update/{element}', [InfoAdminController::class, 'update'])->name('dashboard.technic.info.update');
+                Route::delete('/delete/{element}', [InfoAdminController::class, 'delete'])->name('dashboard.technic.info.delete');
+            });
+        });
+        Route::prefix('user')->group(function () {
+            Route::get('/', [UserAdminController::class, 'index'])->name('dashboard.user');
+            Route::delete('/delete/{user}', [UserAdminController::class, 'delete'])->name('dashboard.user.delete');
+        });
     });
 });
 //LOGGED IN
@@ -132,7 +176,7 @@ Route::middleware([
         });
         Route::prefix('order')->group(function () {
             Route::get('/', [OrderController::class, 'index'])->name('account.order');
-            Route::get('{slug}', [OrderController::class, 'show'])->name('account.order.show');
+            Route::get('/show/{slug}', [OrderController::class, 'show'])->name('account.order.show');
             Route::get('/create', [OrderController::class, 'create'])->name('account.order.create');
             Route::post('/store', [OrderController::class, 'store'])->name('account.order.store');
         });

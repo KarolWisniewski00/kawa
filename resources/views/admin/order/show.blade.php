@@ -82,111 +82,66 @@
                             <dd class="text-lg font-semibold">{{$order->extra}}</dd>
                         </div>
                     </dl>
-                    <div class="col-12 my-4" style="overflow:auto;">
-                        <h3 class="my-4">Szczegóły zamówienia</h3>
-                        <table class="table">
-                            <thead>
+                    <div class="flex flex row">
+                        <a href="{{route('dashboard.order.status', ['id'=>$order->id, 'slug'=>'0'])}}" type="button" class="mt-8 mb-4 text-white bg-amber-500 hover:bg-amber-600 focus:ring-4 focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-amber-600 dark:hover:bg-amber-700 focus:outline-none dark:focus:ring-amber-800"><i class="fa-solid fa-clock mr-2"></i>Oczekujące na płatność</a>
+                        <a href="{{route('dashboard.order.status', ['id'=>$order->id, 'slug'=>'1'])}}" type="button" class="mt-8 mb-4 text-white bg-lime-500 hover:bg-lime-600 focus:ring-4 focus:ring-lime-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-lime-600 dark:hover:bg-lime-700 focus:outline-none dark:focus:ring-lime-800"><i class="fa-solid fa-business-time mr-2"></i>W trakcie realizacji</a>
+                        <a href="{{route('dashboard.order.status', ['id'=>$order->id, 'slug'=>'2'])}}" type="button" class="mt-8 mb-4 text-white bg-emerald-500 hover:bg-emerald-600 focus:ring-4 focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-emerald-600 dark:hover:bg-emerald-700 focus:outline-none dark:focus:ring-emerald-800"><i class="fa-solid fa-check mr-2"></i>Zrealizowane</a>
+                        <a href="{{route('dashboard.order.status', ['id'=>$order->id, 'slug'=>'3'])}}" type="button" class="mt-8 mb-4 text-white bg-rose-500 hover:bg-rose-600 focus:ring-4 focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-rose-600 dark:hover:bg-rose-700 focus:outline-none dark:focus:ring-rose-800"><i class="fa-solid fa-x mr-2"></i>Anulowano</a>
+                    </div>
+                    <div class="flex flex-row justify-between">
+                        <h1 class="mt-8 mb-4 text-2xl font-medium text-gray-900">
+                            Zamówienie
+                        </h1>
+                    </div>
+                    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 table-fixed">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
-                                    <th scope="col">
-                                        <div class="d-flex flex-column justify-content-center align-items-center">
-                                            <div class="fw-bold">#</div>
-                                        </div>
+                                    <th scope="col" class="px-6 py-3">
+                                        Zdjęcie
                                     </th>
-                                    <th scope="col">
-                                        <div class="d-flex flex-column justify-content-center align-items-center">
-                                            <div class="fw-bold">Zdjęcie</div>
-                                        </div>
+                                    <th scope="col" class="px-6 py-3">
+                                        Nazwa
                                     </th>
-                                    <th scope="col">
-                                        <div class="d-flex flex-column justify-content-center align-items-center">
-                                            <div class="fw-bold">Nazwa</div>
-                                        </div>
+                                    <th scope="col" class="px-6 py-3">
+                                        Cena
                                     </th>
-                                    <th scope="col">
-                                        <div class="d-flex flex-column justify-content-center align-items-center">
-                                            <div class="fw-bold">Cena</div>
-                                        </div>
+                                    <th scope="col" class="px-6 py-3">
+                                        Ilość
                                     </th>
-                                    <th scope="col">
-                                        <div class="d-flex flex-column justify-content-center align-items-center">
-                                            <div class="fw-bold">Ilość</div>
-                                        </div>
-                                    </th>
-                                    <th scope="col">
-                                        <div class="d-flex flex-column justify-content-center align-items-center">
-                                            <div class="fw-bold">Łącznie</div>
-                                        </div>
+                                    <th scope="col" class="px-6 py-3">
+                                        Łącznie
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($orders as $key => $o)
-                                <tr>
-                                    <th>
-                                        <div class="d-flex flex-column justify-content-center align-items-center">
-                                            <div class="fw-bold">{{$key+1}}</div>
-                                        </div>
+                                @foreach($orders as $o)
+                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        @foreach($photos as $photo)
+                                        @if($photo->product_id == $o->product_id)
+                                        @if($photo->order == 1)
+                                        <img src="{{ asset('photo/' . $photo->image_path) }}" alt="" class="img-fluid" height="48px" width="48px" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
+                                        @endif
+                                        @endif
+                                        @endforeach
                                     </th>
-                                    <td>
-                                        <div class="d-flex flex-column justify-content-center align-items-center">
-                                            @foreach($photos as $photo)
-                                            @if($photo->product_id == $o->product_id)
-                                            @if($photo->order == 1)
-                                            <div style="max-width:50px"><img src="{{ asset('photo/' . $photo->image_path) }}" alt="" class="img-fluid" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;"></div>
-                                            @endif
-                                            @endif
-                                            @endforeach
-                                        </div>
+                                    <td class="px-6 py-4">
+                                        {{$o->name}}
                                     </td>
-                                    <td>
-                                        <div class="d-flex flex-column justify-content-center align-items-center">
-                                            <div class="fw-bold">{{$o->name}}</div>
-                                        </div>
+                                    <td class="px-6 py-4">
+                                        {{$o->price}}
                                     </td>
-                                    <td>
-                                        <div class="d-flex flex-row justify-content-center align-items-center">
-                                            <div class="fw-bold"> {{$o->price}} PLN</div>
-                                        </div>
+                                    <td class="px-6 py-4">
+                                        {{$o->quantity}}
                                     </td>
-                                    <td>
-                                        <div class="d-flex flex-row justify-content-center align-items-center">
-                                            <div class="fw-bold">{{$o->quantity}}</div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex flex-column justify-content-center align-items-center">
-                                            <div class="fw-bold">{{$o->quantity*$o->price}} PLN</div>
-                                        </div>
+                                    <td class="px-6 py-4">
+                                        {{$o->quantity*$o->price}} PLN
                                     </td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                        <div>
-                            <ul class="list-group ">
-                                <li class="list-group-item d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Wysyłka PDP + 16 PLN</div>
-                                    </div>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Przelew bankowy</div>
-                                    </div>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <div class="fw-bold">{{$order->status}}</div>
-                                    </div>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <div class="fw-bold">Łącznie</div>
-                                        {{$order->total}} PLN
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </div>
