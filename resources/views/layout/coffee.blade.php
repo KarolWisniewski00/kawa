@@ -21,7 +21,7 @@
                         <li class="nav-item text-white px-1 text-end"> </li>
                     </ul>
                     <ul class="nav col-md-4 justify-content-center">
-                        <li class="nav-item text-white px-1 text-center mx-0 font-custom-1">Darmowa wysyłka powyżej 100 PLN</li>
+                        <li class="nav-item text-white px-1 text-center mx-0 font-custom-1">{{ $company[6]->content }}</li>
                     </ul>
                     <ul class="nav col-md-3 justify-content-end">
                         <li class="nav-item text-white mx-1 me-5"><a href="" class="text-white" style="text-decoration: none;"><i class="fa-brands fa-instagram"></i></a></li>

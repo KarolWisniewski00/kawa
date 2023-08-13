@@ -55,9 +55,9 @@
                 </div>
             </div>
             <div class="col-12 text-center my-5">
-                <p class="text-primary h3 m-0 p-0 my-2"><i class="fa-solid fa-location-dot me-2"></i>Al. Jerozolimskie 1 00‑000 Warszawa</p>
-                <p class="text-primary h3 m-0 p-0 my-2"><a href="tel:123123123" class="text-decoration-none"><i class="fa-solid fa-phone me-2"></i>123 123 123</a></p>
-                <p class="text-primary h3 m-0 p-0 my-2"><a href="mailto:info@przykład.pl" class="text-decoration-none"><i class="fa-solid fa-envelope me-2"></i>info@przykład.pl</a></p>
+                <p class="text-primary h3 m-0 p-0 my-2"><i class="fa-solid fa-location-dot me-2"></i>{{ $company[7]->content }}</p>
+                <p class="text-primary h3 m-0 p-0 my-2"><a href="tel:{{ $company[8]->content }}" class="text-decoration-none"><i class="fa-solid fa-phone me-2"></i>{{ $company[8]->content }}</a></p>
+                <p class="text-primary h3 m-0 p-0 my-2"><a href="mailto:{{ $company[9]->content }}" class="text-decoration-none"><i class="fa-solid fa-envelope me-2"></i>{{ $company[9]->content }}</a></p>
             </div>
         </div>
     </div>

@@ -199,6 +199,7 @@
 </section>
 <!--BLOG-->
 <!--INSTAGRAM-->
+@if(count($instagrams)>0)
 <section>
     <div class="container">
         <div class="row my-5 pb-5">
@@ -208,58 +209,17 @@
                     <h1 class="font-custom">Obserwuj na na Instagramie</h1>
                 </div>
             </div>
-            <div class="col-12 col-md-3">
-                <a href="" class="d-flex flex-column justify-content-center align-items-center p-2">
-                    <img class="img-fluid" alt="" src="{{asset('image/tumblr_1f1966a4de0868ddfd104b304c016bd3_d02c9147_640.jpg')}}">
+        </div>
+        <div class="row">
+            @foreach($instagrams as $ig)
+            <div class="col-12 col-md-3 mx-auto">
+                <a href="{{$ig->url}}" class="d-flex flex-column justify-content-center align-items-center p-2">
+                    <img class="img-fluid" alt="" src="{{asset('photo/'.$ig->photo)}}">
                 </a>
             </div>
-            <div class="col-12 col-md-3">
-                <a href="" class="d-flex flex-column justify-content-center align-items-center p-2">
-                    <div class="d-flex flex-column justify-content-center align-items-center">
-                        <img class="img-fluid" alt="" src="{{asset('image/tumblr_1f1966a4de0868ddfd104b304c016bd3_d02c9147_640.jpg')}}">
-                    </div>
-                </a>
-            </div>
-            <div class="col-12 col-md-3">
-                <a href="" class="d-flex flex-column justify-content-center align-items-center p-2">
-                    <div class="d-flex flex-column justify-content-center align-items-center">
-                        <img class="img-fluid" alt="" src="{{asset('image/tumblr_1f1966a4de0868ddfd104b304c016bd3_d02c9147_640.jpg')}}">
-                    </div>
-                </a>
-            </div>
-            <div class="col-12 col-md-3">
-                <a href="" class="d-flex flex-column justify-content-center align-items-center p-2">
-                    <div class="d-flex flex-column justify-content-center align-items-center">
-                        <img class="img-fluid" alt="" src="{{asset('image/tumblr_1f1966a4de0868ddfd104b304c016bd3_d02c9147_640.jpg')}}">
-                    </div>
-                </a>
-            </div>
-            <div class="col-12 col-md-3">
-                <a href="" class="d-flex flex-column justify-content-center align-items-center p-2">
-                    <img class="img-fluid" alt="" src="{{asset('image/tumblr_1f1966a4de0868ddfd104b304c016bd3_d02c9147_640.jpg')}}">
-                </a>
-            </div>
-            <div class="col-12 col-md-3">
-                <a href="" class="d-flex flex-column justify-content-center align-items-center p-2">
-                    <div class="d-flex flex-column justify-content-center align-items-center">
-                        <img class="img-fluid" alt="" src="{{asset('image/tumblr_1f1966a4de0868ddfd104b304c016bd3_d02c9147_640.jpg')}}">
-                    </div>
-                </a>
-            </div>
-            <div class="col-12 col-md-3">
-                <a href="" class="d-flex flex-column justify-content-center align-items-center p-2">
-                    <div class="d-flex flex-column justify-content-center align-items-center">
-                        <img class="img-fluid" alt="" src="{{asset('image/tumblr_1f1966a4de0868ddfd104b304c016bd3_d02c9147_640.jpg')}}">
-                    </div>
-                </a>
-            </div>
-            <div class="col-12 col-md-3">
-                <a href="" class="d-flex flex-column justify-content-center align-items-center p-2">
-                    <div class="d-flex flex-column justify-content-center align-items-center">
-                        <img class="img-fluid" alt="" src="{{asset('image/tumblr_1f1966a4de0868ddfd104b304c016bd3_d02c9147_640.jpg')}}">
-                    </div>
-                </a>
-            </div>
+            @endforeach
+        </div>
+        <div class="row">
             <div class="col-12">
                 <div class="d-flex flex-column justify-content-center align-items-center my-3 text-center">
                     <a href="" class="btn btn-primary"><i class="fa-solid fa-plus me-2"></i>Obsrwuj nas</a>
@@ -268,6 +228,7 @@
         </div>
     </div>
 </section>
+@endif
 <!--INSTAGRAM-->
 <!--INFO-->
 <section>

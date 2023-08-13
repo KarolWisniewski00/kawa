@@ -13,14 +13,16 @@
     </div>
     <div class="container">
         <div class="row">
+            <div class="col-12">
+                <div class="d-flex flex-column justify-content-center align-items-center text-center my-4">
+                    <h1>Kasa</h1>
+                </div>
+                @include('client.coffee.module.nav-acc')
+            </div>
             <div class="col-12 col-md-6">
                 <form class="form text-center my-4" action="{{route('account.order.store')}}" method="POST">
                     <!--TOKEN-->
                     @csrf
-                    <div class="d-flex flex-column justify-content-center align-items-center text-center my-4">
-                        <h1>Kasa</h1>
-                    </div>
-                    @include('client.coffee.module.nav-acc')
                     <div class="form-floating my-3">
                         <input type="text" class="form-control" id="name" value="{{ old('name') ? old('name') : $user->name}}" name="name" required>
                         <label for="name">Imię i nazwisko</label>
@@ -84,7 +86,7 @@
                     <div class="form-check text-start">
                         <input class="form-check-input" type="checkbox" value="{{ old('rules') ? 'checked' : ''}}" id="rules" required>
                         <label class="form-check-label" for="rules">
-                            Oświadczam, że zapoznałem/am się z treścią strony <a href="">regulamin</a>
+                            Oświadczam, że zapoznałem/am się z treścią strony <a href="{{route('rule')}}">regulamin</a>
                         </label>
                     </div>
                     <input type="hidden" name="total" value="">
@@ -93,9 +95,6 @@
                 </form>
             </div>
             <div class="col-12 col-md-6" style="overflow:auto;">
-                <div class="d-flex flex-column justify-content-center align-items-center text-center my-4">
-                    <h1>Twoje zamówienie</h1>
-                </div>
                 <table class="table">
                     <thead>
                         <tr>
@@ -208,7 +207,7 @@
                 </ul>
                 <h4 class="mt-4">Przelew bankowy</h4>
                 <p class="text-muted">Prosimy o wpłatę bezpośrednio na nasze konto bankowe.<span class="text-danger"> Proszę użyć numeru zamówienia jako tytuł płatności.</span> Twoje zamówienie zostanie zrealizowane po zaksięgowaniu wpłaty na naszym koncie.</p>
-                <p>Twoje dane osobowe zostaną wykorzystane do realizacji Twojego zamówienia oraz do innych celów opisanych w zakładce <a href="">polityka prywatności</a></p>
+                <p>Twoje dane osobowe zostaną wykorzystane do realizacji Twojego zamówienia oraz do innych celów opisanych w zakładce <a href="{{route('policy-priv')}}">polityka prywatności</a></p>
             </div>
         </div>
     </div>

@@ -22,7 +22,7 @@
             </x-nav-link>
         </div>
         <div class="space-x-8 -my-px ml-10 flex">
-            <x-nav-link href="">
+            <x-nav-link href="{{ route('dashboard.technic.instagram') }}" :active="Str::startsWith(request()->path(), 'dashboard/technic/instagram')">
                 {{ __('Instagram') }}
             </x-nav-link>
         </div>

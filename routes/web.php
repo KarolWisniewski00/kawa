@@ -11,6 +11,7 @@ use App\Http\Controllers\GrindingAdminController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\InfoAdminController;
 use App\Http\Controllers\InfoController;
+use App\Http\Controllers\InstagramAdminController;
 use App\Http\Controllers\OrderAdminController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PhotoAdminController;
@@ -162,6 +163,14 @@ Route::middleware([
                 Route::get('/', [CompanyAdminController::class, 'index'])->name('dashboard.technic.company');
                 Route::get('/edit/{element}', [CompanyAdminController::class, 'edit'])->name('dashboard.technic.company.edit');
                 Route::put('/update/{element}', [CompanyAdminController::class, 'update'])->name('dashboard.technic.company.update');
+            });
+            Route::prefix('instagram')->group(function () {
+                Route::get('/', [InstagramAdminController::class, 'index'])->name('dashboard.technic.instagram');
+                Route::get('/create', [InstagramAdminController::class, 'create'])->name('dashboard.technic.instagram.create');
+                Route::post('/store', [InstagramAdminController::class, 'store'])->name('dashboard.technic.instagram.store');
+                Route::get('/edit/{instagram}', [InstagramAdminController::class, 'edit'])->name('dashboard.technic.instagram.edit');
+                Route::put('/update/{instagram}', [InstagramAdminController::class, 'update'])->name('dashboard.technic.instagram.update');
+                Route::delete('/delete/{instagram}', [InstagramAdminController::class, 'delete'])->name('dashboard.technic.instagram.delete');
             });
         });
         Route::prefix('user')->group(function () {

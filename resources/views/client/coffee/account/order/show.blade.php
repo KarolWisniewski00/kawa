@@ -21,7 +21,7 @@
                 <div class="my-4">
                     <h3 class="my-4">Dziękujemy, otrzymaliśmy Twoje zamówienie</h3>
                     <p class="text-muted fw-bold">Status: {{$order->status}}</p>
-                    <p class="text-muted fw-bold">Numer zmaówienia: {{$order->numer}}</p>
+                    <p class="text-muted fw-bold">Numer zmaówienia: {{$order->number}}</p>
                     <p class="text-muted">Data: {{$order->created_at}}</p>
                     <p class="text-muted">Łącznie: {{$order->total}} PLN</p>
                     <p class="text-muted">Metoda płatności: Przelew bankowy</p>
@@ -49,13 +49,13 @@
             </div>
             <div class="col-12 col-md-6 my-4">
                 <h3 class="my-4">Nasze dane firmowe</h3>
-                <p class="text-muted">PEŁNA NAZWA FIRMY</p>
-                <p class="text-muted">NIP:123456789</p>
+                <p class="text-muted">{{ $company[0]->content }}</p>
+                <p class="text-muted">NIP:{{ $company[1]->content }}</p>
                 <h3 class="my-4">Nasze dane bankowe</h3>
-                <h6>Nazwa banku</h6>
-                <p class="text-muted fw-bold">Numer konta: 42125525522515252152521</p>
-                <p class="text-muted fw-bold">IBAN: LT12552152512125521521521521</p>
-                <p class="text-muted fw-bold">BIC: REVOLT21</p>
+                <h6>{{ $company[2]->content }}</h6>
+                <p class="text-muted fw-bold">Numer konta: {{ $company[3]->content }}</p>
+                <p class="text-muted fw-bold">IBAN: {{ $company[4]->content }}</p>
+                <p class="text-muted fw-bold">BIC: {{ $company[5]->content }}</p>
                 <p class="text-danger fw-bold">Dowód zakupu będzie wysłany wraz z paczką.</p>
             </div>
             <div class="col-12 my-4" style="overflow:auto;">
