@@ -4,6 +4,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BusketController;
 use App\Http\Controllers\CollaborationController;
+use App\Http\Controllers\CompanyAdminController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CookiesAdminController;
 use App\Http\Controllers\GrindingAdminController;
@@ -156,6 +157,11 @@ Route::middleware([
                 Route::get('/edit/{element}', [InfoAdminController::class, 'edit'])->name('dashboard.technic.info.edit');
                 Route::put('/update/{element}', [InfoAdminController::class, 'update'])->name('dashboard.technic.info.update');
                 Route::delete('/delete/{element}', [InfoAdminController::class, 'delete'])->name('dashboard.technic.info.delete');
+            });
+            Route::prefix('company')->group(function () {
+                Route::get('/', [CompanyAdminController::class, 'index'])->name('dashboard.technic.company');
+                Route::get('/edit/{element}', [CompanyAdminController::class, 'edit'])->name('dashboard.technic.company.edit');
+                Route::put('/update/{element}', [CompanyAdminController::class, 'update'])->name('dashboard.technic.company.update');
             });
         });
         Route::prefix('user')->group(function () {

@@ -23,6 +23,7 @@ class PrivAdminController extends Controller
         $priv = new Priv();
         $priv->type = $request->type;
         $priv->content = $request->content;
+        $priv->order = $request->order;
         $res = $priv->save();
 
         if ($res) {
@@ -40,6 +41,7 @@ class PrivAdminController extends Controller
         $res = $element->update([
             'type' => $request->type,
             'content' => $request->content,
+            'order' => $request->order,
         ]);
 
         if ($res) {

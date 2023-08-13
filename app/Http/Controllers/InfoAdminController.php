@@ -22,6 +22,7 @@ class InfoAdminController extends Controller
         $info = new Info();
         $info->type = $request->type;
         $info->content = $request->content;
+        $info->order = $request->order;
         $res = $info->save();
 
         if ($res) {
@@ -39,6 +40,7 @@ class InfoAdminController extends Controller
         $res = $element->update([
             'type' => $request->type,
             'content' => $request->content,
+            'order' => $request->order,
         ]);
 
         if ($res) {

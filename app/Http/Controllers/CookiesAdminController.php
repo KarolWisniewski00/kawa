@@ -22,6 +22,7 @@ class CookiesAdminController extends Controller
         $cookies = new Cookies();
         $cookies->type = $request->type;
         $cookies->content = $request->content;
+        $cookies->order = $request->order;
         $res = $cookies->save();
 
         if ($res) {
@@ -39,6 +40,7 @@ class CookiesAdminController extends Controller
         $res = $element->update([
             'type' => $request->type,
             'content' => $request->content,
+            'order' => $request->order,
         ]);
 
         if ($res) {

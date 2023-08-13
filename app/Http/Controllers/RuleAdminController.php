@@ -22,6 +22,7 @@ class RuleAdminController extends Controller
         $rule = new Rule();
         $rule->type = $request->type;
         $rule->content = $request->content;
+        $rule->order = $request->order;
         $res = $rule->save();
 
         if ($res) {
@@ -39,6 +40,7 @@ class RuleAdminController extends Controller
         $res = $element->update([
             'type' => $request->type,
             'content' => $request->content,
+            'order' => $request->order,
         ]);
 
         if ($res) {
