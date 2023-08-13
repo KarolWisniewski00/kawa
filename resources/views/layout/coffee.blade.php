@@ -25,26 +25,69 @@
                     </ul>
                     <ul class="nav col-md-3 justify-content-end">
                         <li class="nav-item text-white mx-1 me-5"><a href="" class="text-white" style="text-decoration: none;"><i class="fa-brands fa-instagram"></i></a></li>
-                        <li class="nav-item text-white mx-1 me-5"><a href="" class="text-white" style="text-decoration: none;"><i class="fa-brands fa-facebook"></i></a></li>
-                        <li class="nav-item text-white mx-1"><a href="" class="text-white" style="text-decoration: none;"><i class="fa-solid fa-magnifying-glass"></i></a></li>
+                        <li class="nav-item text-white mx-1"><a href="" class="text-white" style="text-decoration: none;"><i class="fa-brands fa-facebook"></i></a></li>
                     </ul>
                 </div>
             </div>
         </nav>
-        <div class="container">
-            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-2 mb-2 font-custom-1">
-                <ul class="nav col-md-4 justify-content-center order-2 order-md-1">
-                    <li><a href="{{route('index')}}" class="nav-link px-2 link-primary">Home</a></li>
-                    <li><a href="{{route('about')}}" class="nav-link px-2 link-primary">Firma</a></li>
-                    <li><a href="{{route('shop')}}" class="nav-link px-2 link-primary">Sklep</a></li>
+        <div class="container-fluid position-relative" style="padding-left: 6em; padding-right: 6em;">
+            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-2 mb-2">
+                <ul class="nav d-flex d-md-none position-absolute top-0 end-0">
+                    <li>
+                        <button class="nav-link link-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            <i class="fa-solid fa-bars"></i>
+                        </button>
+                    </li>
+                </ul>
+                <div class="collapse order-5" id="collapseExample">
+                    <ul class="nav col-md-12 justify-content-center">
+                        <li><a href="{{route('index')}}" class="nav-link px-2 link-primary font-custom-1">Home</a></li>
+                        <li><a href="{{route('about')}}" class="nav-link px-2 link-primary font-custom-1">Firma</a></li>
+                        <li><a href="{{route('shop')}}" class="nav-link px-2 link-primary font-custom-1">Sklep</a></li>
+                    </ul>
+                    <ul class="nav col-md-12 justify-content-center align-items-center">
+                        <li><a href="{{route('blog')}}" class="nav-link px-2 link-primary font-custom-1">Blog</a></li>
+                        <li><a href="{{route('collaboration')}}" class="nav-link px-2 link-primary font-custom-1">Współpraca</a></li>
+                        <li><a href="{{route('contact')}}" class="nav-link px-2 link-primary font-custom-1">Kontakt</a></li>
+                        <li>
+                            <div class="dropdown text-center nav-link px-2 link-primary">
+                                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="{{asset('image/undraw_drink_coffee_av1x.svg')}}" alt="mdo" width="32" height="32" class="rounded-circle">
+                                </a>
+                                <ul class="dropdown-menu text-small">
+                                    @auth
+                                    <li><a class="dropdown-item" href="{{route('account.user')}}"><i class="fa-solid fa-user me-2"></i>Konto</a></li>
+                                    <li><a class="dropdown-item" href="{{route('account.order')}}"><i class="fa-solid fa-tag me-2"></i>Zamówienia</a></li>
+                                    <li><a class="dropdown-item" href="{{route('account.busket')}}"><i class="fa-solid fa-cart-shopping me-2"></i>Koszyk</a></li>
+                                    <form method="POST" action="{{ route('logout') }}" x-data>@csrf<li><button type="submit" class="dropdown-item"><i class="fa-solid fa-power-off me-2"></i>Wyloguj</button></li>
+                                    </form>
+                                    @can('admin dashboard')
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="{{route('dashboard')}}"><i class="fa-solid fa-toolbox me-2"></i>Panel Admina</a></li>
+                                    @endcan
+                                    @else
+                                    <li><a href="{{route('login')}}" class="dropdown-item"><i class="fa-solid fa-right-to-bracket me-2"></i>Logowanie</a></li>
+                                    <li><a href="{{route('register')}}" class="dropdown-item"><i class="fa-solid fa-check me-2"></i>Rejestracja</a></li>
+                                    @endauth
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <ul class="nav col-md-4 justify-content-start order-2 order-md-1 d-none d-md-flex">
+                    <li><a href="{{route('index')}}" class="nav-link px-2 link-primary font-custom-1">Home</a></li>
+                    <li><a href="{{route('about')}}" class="nav-link px-2 link-primary font-custom-1">Firma</a></li>
+                    <li><a href="{{route('shop')}}" class="nav-link px-2 link-primary font-custom-1">Sklep</a></li>
                 </ul>
                 <a href="{{route('index')}}" class="d-flex align-items-center justify-content-center col-12 col-md-auto order-1 order-md-2">
                     <img id="logo" class="img-fluid" src="{{asset('logo/COFFEESUMMIT-LOGO-przezroczyste-tlo.png')}}" style="height: 6em;">
                 </a>
-                <ul class="nav col-md-4 justify-content-center align-items-center order-3">
-                    <li><a href="{{route('blog')}}" class="nav-link px-2 link-primary">Blog</a></li>
-                    <li><a href="{{route('collaboration')}}" class="nav-link px-2 link-primary">Współpraca</a></li>
-                    <li><a href="{{route('contact')}}" class="nav-link px-2 link-primary">Kontakt</a></li>
+                <ul class="nav col-md-4 justify-content-end align-items-center order-3 d-none d-md-flex">
+                    <li><a href="{{route('blog')}}" class="nav-link px-2 link-primary font-custom-1">Blog</a></li>
+                    <li><a href="{{route('collaboration')}}" class="nav-link px-2 link-primary font-custom-1">Współpraca</a></li>
+                    <li><a href="{{route('contact')}}" class="nav-link px-2 link-primary font-custom-1">Kontakt</a></li>
                     <li>
                         <div class="dropdown text-end nav-link px-2 link-primary">
                             <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -55,9 +98,12 @@
                                 <li><a class="dropdown-item" href="{{route('account.user')}}"><i class="fa-solid fa-user me-2"></i>Konto</a></li>
                                 <li><a class="dropdown-item" href="{{route('account.order')}}"><i class="fa-solid fa-tag me-2"></i>Zamówienia</a></li>
                                 <li><a class="dropdown-item" href="{{route('account.busket')}}"><i class="fa-solid fa-cart-shopping me-2"></i>Koszyk</a></li>
-                                <li><form method="POST" action="{{ route('logout') }}" x-data>@csrf<button type="submit" class="dropdown-item"><i class="fa-solid fa-power-off me-2"></i>Wyloguj</button></form></li>
+                                <form method="POST" action="{{ route('logout') }}" x-data>@csrf<li><button type="submit" class="dropdown-item"><i class="fa-solid fa-power-off me-2"></i>Wyloguj</button></li>
+                                </form>
                                 @can('admin dashboard')
-                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
                                 <li><a class="dropdown-item" href="{{route('dashboard')}}"><i class="fa-solid fa-toolbox me-2"></i>Panel Admina</a></li>
                                 @endcan
                                 @else

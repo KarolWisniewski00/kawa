@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rule;
 use Illuminate\Http\Request;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 
@@ -17,6 +18,7 @@ class RuleController extends Controller
             $trail->parent('index');
             $trail->push('Regulamin', route('rule'));
         });
-        return view('client.coffee.rule.index');
+        $elements = Rule::orderBy('order')->get();
+        return view('client.coffee.rule.index', compact('elements'));
     }
 }

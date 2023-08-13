@@ -2,6 +2,15 @@
 @section('content')
 <!--ORDER-->
 <section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 py-4 mb-4" style="background-image: url('{{ asset('image/Depositphotos_199493482_XL.jpg') }}'); background-size: cover; background-position: center;">
+                <div class="d-flex justify-content-between align-items-center my-3 text-center container">
+                    <h1 class="font-custom text-white">Zamówienia</h1>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-6">
@@ -123,25 +132,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @if ($cartItems->isEmpty())
-                            <tr>
-                                <th colspan="8">
-                                    <div class="d-flex flex-column justify-content-center align-items-center">
-                                        <div class="row">
-                                            <div class="col-12 offset-md-3 col-md-6">
-                                                <div class="d-flex flex-column justify-content-center align-items-center">
-                                                    <img class="img-fluid" alt="" src="{{asset('image/undraw_shopping_app_flsj.svg')}}">
-                                                    <div class="h4 m-0 p-0 my-3">Twój koszyk jest pusty!</div>
-                                                    <a href="{{route('shop')}}" class="btn btn-primary my-3 btn-lg"><i class="fa-solid fa-cart-shopping me-2"></i>Zrób zakupy</a>
-                                                </div>
+                        @if ($cartItems->isEmpty())
+                        <tr>
+                            <th colspan="8">
+                                <div class="d-flex flex-column justify-content-center align-items-center">
+                                    <div class="row">
+                                        <div class="col-12 offset-md-3 col-md-6">
+                                            <div class="d-flex flex-column justify-content-center align-items-center">
+                                                <img class="img-fluid" alt="" src="{{asset('image/undraw_shopping_app_flsj.svg')}}">
+                                                <div class="h4 m-0 p-0 my-3">Twój koszyk jest pusty!</div>
+                                                <a href="{{route('shop')}}" class="btn btn-primary my-3 btn-lg"><i class="fa-solid fa-cart-shopping me-2"></i>Zrób zakupy</a>
                                             </div>
                                         </div>
                                     </div>
-                                </th>
-                            </tr>
-                            @else
-                            @foreach ($cartItems as $item)
-                            <tr>
+                                </div>
+                            </th>
+                        </tr>
+                        @else
+                        @foreach ($cartItems as $item)
+                        <tr>
                             <th>
                                 <div class="d-flex flex-column justify-content-center align-items-center">
                                     <div class="fw-bold">1</div>
@@ -178,9 +187,9 @@
                                     <div class="fw-bold">{{ $item->quantity*$item->price }} PLN</div>
                                 </div>
                             </td>
-                            </tr>
-                            @endforeach
-                            @endif
+                        </tr>
+                        @endforeach
+                        @endif
                     </tbody>
                 </table>
                 <h4>Podsumowanie koszyka</h4>

@@ -1,14 +1,17 @@
 @extends('layout.coffee')
 @section('content')
 <section>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-12 py-4 mb-4" style="background-image: url('{{ asset('image/Depositphotos_199493482_XL.jpg') }}'); background-size: cover; background-position: center;">
-                <div class="d-flex justify-content-between align-items-center my-3 text-center">
+                <div class="d-flex justify-content-between align-items-center my-3 text-center container">
                     <h1 class="font-custom text-white">Koszyk</h1>
-                    {{ Breadcrumbs::render() }}
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
             <div class="col-12">
                 <div class="d-flex flex-column justify-content-center align-items-center text-center my-4">
                     <h1>Koszyk</h1>
@@ -80,68 +83,68 @@
                             @else
                             @foreach ($cartItems as $item)
                             <tr>
-                            <th>
-                                <div class="d-flex flex-column justify-content-center align-items-center">
-                                    <div class="fw-bold">1</div>
-                                </div>
-                            </th>
-                            <td>
-                                <div class="d-flex flex-column justify-content-center align-items-center">
-                                    @foreach($photos as $photo)
-                                    @if($photo->product_id == $item->associatedModel->id)
-                                    @if($photo->order == 1)
-                                    <div style="max-width:50px"><img src="{{ asset('photo/' . $photo->image_path) }}" alt="" class="img-fluid" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;"></div>
-                                    @endif
-                                    @endif
-                                    @endforeach
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d-flex flex-column justify-content-center align-items-center">
-                                    <div class="fw-bold">{{ $item->name }}</div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d-flex flex-column justify-content-center align-items-center">
-                                    <div class="fw-bold">SKU</div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d-flex flex-row justify-content-center align-items-center">
-                                    <div class="fw-bold">{{ $item->price }} PLN</div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d-flex flex-row justify-content-center align-items-center">
-                                    <form method="POST" action="{{route('account.busket.minus', $item->associatedModel)}}">
-                                        @csrf
-                                        <button type="submit" class="btn btn-sm btn-danger me-2" onclick="return confirm('Czy na pewno chcesz usunąć ten produkt?');">
-                                            <i class="fa-solid fa-minus"></i>
-                                        </button>
-                                    </form>
-                                    <div class="fw-bold">{{ $item->quantity }}</div>
-                                    <form method="POST" action="{{route('account.busket.add', $item->associatedModel)}}">
-                                        @csrf
-                                        <button type="submit" class="btn btn-sm btn-success ms-2">
-                                            <i class="fa-solid fa-plus"></i>
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d-flex flex-column justify-content-center align-items-center">
-                                    <div class="fw-bold">{{ $item->quantity*$item->price }} PLN</div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d-flex flex-column justify-content-center align-items-center">
-                                    <form method="POST" action="{{route('account.busket.remove', $item->associatedModel)}}">
-                                        @csrf
-                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Czy na pewno chcesz usunąć ten produkt?');"><i class="fa-solid fa-trash"></i>
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
+                                <th>
+                                    <div class="d-flex flex-column justify-content-center align-items-center">
+                                        <div class="fw-bold">1</div>
+                                    </div>
+                                </th>
+                                <td>
+                                    <div class="d-flex flex-column justify-content-center align-items-center">
+                                        @foreach($photos as $photo)
+                                        @if($photo->product_id == $item->associatedModel->id)
+                                        @if($photo->order == 1)
+                                        <div style="max-width:50px"><img src="{{ asset('photo/' . $photo->image_path) }}" alt="" class="img-fluid" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;"></div>
+                                        @endif
+                                        @endif
+                                        @endforeach
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column justify-content-center align-items-center">
+                                        <div class="fw-bold">{{ $item->name }}</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column justify-content-center align-items-center">
+                                        <div class="fw-bold">SKU</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-row justify-content-center align-items-center">
+                                        <div class="fw-bold">{{ $item->price }} PLN</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-row justify-content-center align-items-center">
+                                        <form method="POST" action="{{route('account.busket.minus', $item->associatedModel)}}">
+                                            @csrf
+                                            <button type="submit" class="btn btn-sm btn-danger me-2" onclick="return confirm('Czy na pewno chcesz usunąć ten produkt?');">
+                                                <i class="fa-solid fa-minus"></i>
+                                            </button>
+                                        </form>
+                                        <div class="fw-bold">{{ $item->quantity }}</div>
+                                        <form method="POST" action="{{route('account.busket.add', $item->associatedModel)}}">
+                                            @csrf
+                                            <button type="submit" class="btn btn-sm btn-success ms-2">
+                                                <i class="fa-solid fa-plus"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column justify-content-center align-items-center">
+                                        <div class="fw-bold">{{ $item->quantity*$item->price }} PLN</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column justify-content-center align-items-center">
+                                        <form method="POST" action="{{route('account.busket.remove', $item->associatedModel)}}">
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Czy na pewno chcesz usunąć ten produkt?');"><i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
                             </tr>
                             @endforeach
                             @endif

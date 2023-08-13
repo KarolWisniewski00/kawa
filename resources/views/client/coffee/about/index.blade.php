@@ -7,7 +7,6 @@
             <div class="col-12 py-4 mb-4" style="background-image: url('{{ asset('image/Depositphotos_199493566_DS.jpg') }}'); background-size: cover; background-position: center;">
                 <div class="d-flex justify-content-between align-items-center my-3 text-center container">
                     <h1 class="font-custom text-white">O nas</h1>
-                    {{ Breadcrumbs::render() }}
                 </div>
             </div>
         </div>

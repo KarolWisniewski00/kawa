@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Priv;
 use Illuminate\Http\Request;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 
@@ -17,6 +18,7 @@ class PolicyPrivController extends Controller
             $trail->parent('index');
             $trail->push('Polityka Prywatności', route('policy-priv'));
         });
-        return view('client.coffee.policy.priv.index');
+        $elements = Priv::orderBy('order')->get();
+        return view('client.coffee.policy.priv.index', compact('elements'));
     }
 }

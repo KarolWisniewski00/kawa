@@ -2,6 +2,15 @@
 @section('content')
 <!--RESUME-->
 <section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 py-4 mb-4" style="background-image: url('{{ asset('image/Depositphotos_199493482_XL.jpg') }}'); background-size: cover; background-position: center;">
+                <div class="d-flex justify-content-between align-items-center my-3 text-center container">
+                    <h1 class="font-custom text-white">Zamówienia</h1>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -9,7 +18,6 @@
                     <h1>Twoje zamówienia</h1>
                 </div>
                 @include('client.coffee.module.nav-acc')
-                <div class="mb-3"><a href="{{route('account.order')}}"><span class="badge rounded-pill bg-primary"><i class="fa-solid fa-chevron-left me-2"></i>Powrót</span></a></div>
                 <div class="my-4">
                     <h3 class="my-4">Dziękujemy, otrzymaliśmy Twoje zamówienie</h3>
                     <p class="text-muted fw-bold">Status: {{$order->status}}</p>

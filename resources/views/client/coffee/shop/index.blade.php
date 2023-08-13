@@ -2,14 +2,17 @@
 @section('content')
 <!--SHOP-->
 <section>
-    <div class="container">
-        <div class="row my-5 pb-5">
+    <div class="container-fluid">
+        <div class="row my-5">
             <div class="col-12 py-4" style="background-image: url('{{ asset('image/Depositphotos_145612235_DS.jpg') }}'); background-size: cover; background-position: center;">
-                <div class="d-flex justify-content-between align-items-center my-3 text-center">
+                <div class="d-flex justify-content-between align-items-center my-3 text-center container">
                     <h1 class="font-custom text-white">Sklep</h1>
-                    {{ Breadcrumbs::render() }}
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row pb-5">
             <div class="col-12">
                 <div class="d-flex justify-content-between align-items-center my-3 text-center">
                     <div class="text-primary">

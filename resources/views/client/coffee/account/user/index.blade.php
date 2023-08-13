@@ -1,14 +1,17 @@
 @extends('layout.coffee')
 @section('content')
 <section>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-12 py-4 mb-4" style="background-image: url('{{ asset('image/Depositphotos_199493482_XL.jpg') }}'); background-size: cover; background-position: center;">
-                <div class="d-flex justify-content-between align-items-center my-3 text-center">
+                <div class="d-flex justify-content-between align-items-center my-3 text-center container">
                     <h1 class="font-custom text-white">Konto</h1>
-                    {{ Breadcrumbs::render() }}
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
             <div class="col-12">
                 <div class="d-flex flex-column justify-content-center align-items-center text-center my-4">
                     <h1>Konto</h1>

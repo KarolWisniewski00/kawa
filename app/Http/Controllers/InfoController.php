@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Info;
 use Illuminate\Http\Request;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 
@@ -17,6 +18,7 @@ class InfoController extends Controller
             $trail->parent('index');
             $trail->push('Informacje wysyłkowe', route('info'));
         });
-        return view('client.coffee.info.index');
+        $elements = Info::orderBy('order')->get();
+        return view('client.coffee.info.index', compact('elements'));
     }
 }

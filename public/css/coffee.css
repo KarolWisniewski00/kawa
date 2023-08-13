@@ -10,8 +10,9 @@
 
 .font-custom-1 {
     font-family: 'Montserrat', sans-serif !important;
-    letter-spacing: 1px!important; 
+    letter-spacing: 9px!important; 
     text-transform: uppercase!important;
+    font-weight: 600!important;
 }
 
 .img-hover {
