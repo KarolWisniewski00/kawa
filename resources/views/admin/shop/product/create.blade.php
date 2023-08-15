@@ -73,7 +73,6 @@
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
                         <div class="mb-6">
-
                             <h3 class="mb-5 text-lg font-medium text-gray-900 dark:text-white">Rozmiar opakowania</h3>
                             <ul class="grid w-full gap-6 md:grid-cols-3">
                                 @foreach($sizes as $size)

@@ -28,7 +28,7 @@ class OrderController extends Controller
             $trail->push('Zamówienia', route('account.order'));
         });
         $user = Auth::user();
-        $orders = Order::where('user_id',$user->id)->paginate(20);
+        $orders = Order::where('user_id',$user->id)->orderBy('created_at', 'desc')->paginate(20);
         return view('client.coffee.account.order.index',compact('orders'));
     }
     public function create()
@@ -56,7 +56,7 @@ class OrderController extends Controller
             'phone' => $request->phone,
             'extra' => $request->extra,
             'user_id' => $user->id,
-            'total' => 1000,
+            'total' => $total+16,
             'status' => 'Oczekujące na płatność',
         ]);
 

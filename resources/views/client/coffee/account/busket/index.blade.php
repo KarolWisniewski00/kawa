@@ -38,7 +38,7 @@
                                 </th>
                                 <th scope="col">
                                     <div class="d-flex flex-column justify-content-center align-items-center">
-                                        <div class="fw-bold">SKU</div>
+                                        <div class="fw-bold">Atrybuty</div>
                                     </div>
                                 </th>
                                 <th scope="col">
@@ -81,6 +81,9 @@
                                 </th>
                             </tr>
                             @else
+                            @php
+                            $counter_price = 16;
+                            @endphp
                             @foreach ($cartItems as $item)
                             <tr>
                                 <th>
@@ -106,7 +109,7 @@
                                 </td>
                                 <td>
                                     <div class="d-flex flex-column justify-content-center align-items-center">
-                                        <div class="fw-bold">SKU</div>
+                                        <div class="fw-bold">@foreach($item->attributes as $attr) {{$attr}} @endforeach</div>
                                     </div>
                                 </td>
                                 <td>
@@ -125,6 +128,13 @@
                                         <div class="fw-bold">{{ $item->quantity }}</div>
                                         <form method="POST" action="{{route('account.busket.add', $item->associatedModel)}}">
                                             @csrf
+                                            <input type="hidden" name="quantity" value="1">
+                                            @foreach($sizes as $size)
+                                            @if($size->name == $item->attributes[0])
+                                            <input type="hidden" name="size" value="{{$size->id}}">
+                                            @endif
+                                            @endforeach
+                                            <input type="hidden" name="grind" value="{{$item->attributes[1]}}">
                                             <button type="submit" class="btn btn-sm btn-success ms-2">
                                                 <i class="fa-solid fa-plus"></i>
                                             </button>
@@ -133,6 +143,9 @@
                                 </td>
                                 <td>
                                     <div class="d-flex flex-column justify-content-center align-items-center">
+                                        @php
+                                        $counter_price += ($item->quantity*$item->price);
+                                        @endphp
                                         <div class="fw-bold">{{ $item->quantity*$item->price }} PLN</div>
                                     </div>
                                 </td>
@@ -161,7 +174,7 @@
                             <li class="list-group-item d-flex justify-content-between align-items-start">
                                 <div class="ms-2 me-auto">
                                     <div class="fw-bold">Łącznie</div>
-                                    200 PLN
+                                    {{$counter_price}} PLN
                                 </div>
                             </li>
                         </ul>

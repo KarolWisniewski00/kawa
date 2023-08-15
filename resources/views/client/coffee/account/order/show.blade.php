@@ -106,7 +106,7 @@
                             <td>
                                 <div class="d-flex flex-column justify-content-center align-items-center">
                                     @foreach($photos as $photo)
-                                    @if($photo->product_id == $o->product_id)
+                                    @if($photo->product->name == $o->name)
                                     @if($photo->order == 1)
                                     <div style="max-width:50px"><img src="{{ asset('photo/' . $photo->image_path) }}" alt="" class="img-fluid" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;"></div>
                                     @endif

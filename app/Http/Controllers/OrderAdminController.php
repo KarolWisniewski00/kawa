@@ -12,7 +12,7 @@ class OrderAdminController extends Controller
 {
     public function index()
     {
-        $orders = Order::paginate(20);
+        $orders = Order::orderBy('created_at', 'desc')->paginate(20);
         return view('dashboard',compact('orders'));
     }
     public function show(Order $order){

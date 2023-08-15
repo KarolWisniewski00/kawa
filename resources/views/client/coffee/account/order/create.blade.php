@@ -89,7 +89,17 @@
                             Oświadczam, że zapoznałem/am się z treścią strony <a href="{{route('rule')}}">regulamin</a>
                         </label>
                     </div>
-                    <input type="hidden" name="total" value="">
+                    @php
+                    $counter_price = 16;
+                    @endphp
+
+                    @foreach ($cartItems as $item)
+                    @php
+                    $counter_price += ($item->quantity*$item->price);
+                    @endphp
+                    @endforeach
+
+                    <input type="hidden" name="total" value="{{$counter_price}}}">
                     <button class="btn btn-primary my-4" type="submit"><i class="fa-solid fa-credit-card me-2"></i>Kupuję i płacę</button>
                     <a href="{{route('account.busket')}}" class="btn btn-danger my-4" type="button"><i class="fa-solid fa-xmark me-2"></i>Anuluj</a>
                 </form>
@@ -201,7 +211,7 @@
                     <li class="list-group-item d-flex justify-content-between align-items-start">
                         <div class="ms-2 me-auto">
                             <div class="fw-bold">Łącznie</div>
-                            16 PLN
+                            {{$counter_price}} PLN
                         </div>
                     </li>
                 </ul>

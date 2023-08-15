@@ -30,7 +30,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <img src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}" alt="studio-photo-main" class="img-fluid">
+                                <img src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}" alt="studio-photo-main" class="img-fluid" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
                             </div>
                         </div>
                     </div>
@@ -38,93 +38,93 @@
             </div>
             <div class="col-12 col-md-6">
                 <div class="d-flex flex-column justify-content-start align-items-start">
-                    <h1>Nazwa</h1>
-                    <p class="text-muted">{{$product->name}}</p>
-                    <div class="d-flex flex-column justify-content-start align-items-start my-2">
-                        <div class="fs-1">
-                            @php
-                            $minPrice = null;
-                            $maxPrice = null;
-                            @endphp
-
-                            @foreach($variants as $variant)
-                            @if($variant->product_id == $product->id && $variant->size_id != null)
-                            @php
-                            // Sprawdź minimalną cenę
-                            if ($minPrice === null || $variant->price < $minPrice) { $minPrice=$variant->price;
-                                }
-
-                                // Sprawdź maksymalną cenę
-                                if ($maxPrice === null || $variant->price > $maxPrice) {
-                                $maxPrice = $variant->price;
-                                }
+                    <form method="POST" action="{{route('account.busket.add', $product)}}">
+                        <h1>{{$product->name}}</h1>
+                        <p class="text-muted">{{$product->description}}</p>
+                        <div class="d-flex flex-column justify-content-start align-items-start my-2">
+                            <div class="fs-1">
+                                @php
+                                $minPrice = null;
+                                $maxPrice = null;
                                 @endphp
-                                @endif
-                                @endforeach
 
-                                @if($minPrice !== null && $maxPrice !== null)
-                                {{$minPrice}} PLN - {{$maxPrice}} PLN
-                                @else
-                                Brak dostępnych cen.
-                                @endif
+                                @foreach($variants as $variant)
+                                @if($variant->product_id == $product->id && $variant->size_id != null)
+                                @php
+                                // Sprawdź minimalną cenę
+                                if ($minPrice === null || $variant->price < $minPrice) { $minPrice=$variant->price;
+                                    }
+
+                                    // Sprawdź maksymalną cenę
+                                    if ($maxPrice === null || $variant->price > $maxPrice) {
+                                    $maxPrice = $variant->price;
+                                    }
+                                    @endphp
+                                    @endif
+                                    @endforeach
+
+                                    @if($minPrice !== null && $maxPrice !== null)
+                                    <span class="price-show">{{$minPrice}} PLN - {{$maxPrice}} PLN</span>
+                                    @else
+                                    Brak dostępnych cen.
+                                    @endif
+                            </div>
                         </div>
-                    </div>
-                    <p class="fw-bold mt-4">Wybierz rozmiar opakowania</p>
-                    <div class="d-flex flex-row justify-content-start align-items-center flex-wrap mb-2">
-                        @foreach($sizes as $size)
-                        @foreach($variants as $variant)
-                        @if($size->id == $variant->size_id)
-                        @if($product->id == $variant->product_id)
-                        <div class="m-2">
-                            <input type="radio" class="btn-check" name="options" id="{{$size->id}}" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="{{$size->id}}">
-                                <div class="flex flex-column justify-content-center align-items-center">
-                                    <div>{{$size->name}}</div>
-                                    <div>{{$variant->price}} PLN</div>
-                                </div>
-                            </label>
+                        <p class="fw-bold mt-4">Wybierz rozmiar opakowania</p>
+                        <div class="d-flex flex-row justify-content-start align-items-center flex-wrap mb-2">
+                            @foreach($sizes as $size)
+                            @foreach($variants as $variant)
+                            @if($size->id == $variant->size_id)
+                            @if($product->id == $variant->product_id)
+                            <div class="m-2">
+                                <input type="radio" class="btn-check" name="size" value="{{$size->id}}" id="size-{{$size->id}}">
+                                <label class="btn btn-outline-primary" for="size-{{$size->id}}">
+                                    <div class="flex flex-column justify-content-center align-items-center">
+                                        <div>{{$size->name}}</div>
+                                        <div>{{$variant->price}} PLN</div>
+                                    </div>
+                                </label>
+                            </div>
+                            @endif
+                            @endif
+                            @endforeach
+                            @endforeach
                         </div>
-                        @endif
-                        @endif
-                        @endforeach
-                        @endforeach
-                    </div>
-                    <p class="fw-bold mt-4">Wybierz rodzaj mielenia</p>
-                    <div class="d-flex flex-row justify-content-start align-items-center flex-wrap mb-2">
-                        @foreach($grindTypes as $grindType)
-                        @foreach($variants as $variant)
-                        @if($grindType->id == $variant->grinding_id)
-                        @if($product->id == $variant->product_id)
-                        <div class="m-2">
-                            <input type="radio" class="btn-check" name="options" id="{{$grindType->id}}" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="{{$grindType->id}}">
-                                <div class="flex flex-column justify-content-center align-items-center">
-                                    <div>{{$grindType->name}}</div>
-                                    <div>{{$grindType->usage_information}}</div>
-                                </div>
-                            </label>
+                        <p class="fw-bold mt-4">Wybierz rodzaj mielenia</p>
+                        <div class="d-flex flex-row justify-content-start align-items-center flex-wrap mb-2">
+                            @foreach($grindTypes as $grindType)
+                            @foreach($variants as $variant)
+                            @if($grindType->id == $variant->grinding_id)
+                            @if($product->id == $variant->product_id)
+                            <div class="m-2">
+                                <input type="radio" class="btn-check" name="grind" value="{{$grindType->name}}" id="grind-{{$grindType->id}}">
+                                <label class="btn btn-outline-primary" for="grind-{{$grindType->id}}">
+                                    <div class="flex flex-column justify-content-center align-items-center">
+                                        <div>{{$grindType->name}}</div>
+                                        <div>{{$grindType->usage_information}}</div>
+                                    </div>
+                                </label>
+                            </div>
+                            @endif
+                            @endif
+                            @endforeach
+                            @endforeach
                         </div>
-                        @endif
-                        @endif
-                        @endforeach
-                        @endforeach
-                    </div>
-                    <p class="fw-bold mt-4">Ilość</p>
-                    <div class="d-flex flex-row justify-content-start align-items-center flex-wrap mb-2">
-                        <label for="customRange1" class="form-label">1</label>
-                        <input type="range" class="form-range" id="customRange1" value="1" min=1 max=10>
-                    </div>
-                    <div class="d-flex flex-row justify-content-between align-items-center mb-4 mt-2">
-                        <form method="POST" action="{{route('account.busket.add', $product)}}">
+                        <p class="fw-bold mt-4">Ilość</p>
+                        <div class="d-flex flex-row justify-content-start align-items-center flex-wrap mb-2">
+                            <label for="quantity" class="form-label">1</label>
+                            <input type="range" class="form-range" id="quantity" name="quantity" value="1" min=1 max=10>
+                        </div>
+                        <div class="d-flex flex-row justify-content-between align-items-center mb-4 mt-2">
                             @csrf
-                            <button type="submit" class="btn btn-lg btn-primary w-100 h-100">
+                            <button type="submit" id="add-to-cart-button" class="btn btn-lg btn-primary w-fit h-100" disabled>
                                 <div class="d-flex justify-content-start align-items-center">
                                     <div><i class="fa-solid fa-cart-shopping me-2"></i></div>
                                     <div>Dodaj do koszyka</div>
                                 </div>
                             </button>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -192,6 +192,19 @@
             var value = $(this).val();
             $(".form-label").text(value);
         });
+    });
+    $(document).ready(function() {
+        // Funkcja sprawdzająca, czy rozmiar i rodzaj mielenia zostały wybrane
+        function checkSelection() {
+            var sizeSelected = $('input[name="size"]:checked').length > 0;
+            var grindSelected = $('input[name="grind"]:checked').length > 0;
+
+            // Włącz przycisk "Dodaj do koszyka" tylko wtedy, gdy oba elementy są wybrane
+            $('#add-to-cart-button').prop('disabled', !(sizeSelected && grindSelected));
+        }
+
+        // Nasłuchuj zmian w wyborze rozmiaru i rodzaju mielenia
+        $('input[name="size"], input[name="grind"]').change(checkSelection);
     });
 </script>
 @endsection

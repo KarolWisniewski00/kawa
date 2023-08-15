@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Grinding;
 use App\Models\Product;
 use App\Models\ProductImage;
+use App\Models\ProductVariant;
+use App\Models\Size;
 use Illuminate\Http\Request;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use Darryldecode\Cart\Cart;
@@ -26,18 +29,24 @@ class BusketController extends Controller
         });
         $photos = ProductImage::get();
         $cartItems = \Cart::session(auth()->id())->getContent();
-        return view('client.coffee.account.busket.index', compact('cartItems','photos'));
+        $sizes = Size::get();
+        return view('client.coffee.account.busket.index', compact('cartItems','photos', 'sizes'));
     }
     public function add(Request $request, Product $product)
     {
+        $size = Size::where('id','=', $request->size)->first();
+        $grind = Grinding::where('name','=', $request->grind)->first();
+        $product_variant = ProductVariant::where('size_id','=', $request->size)->first();
+        
         \Cart::session(auth()->id())->add([
-            'id' => $product->id,
+            'id' => intval(strval($product->id).strval($size->id).strval($grind->id)),
             'name' => $product->name,
-            'price' => 100,
-            'quantity' => 1,
-            'attributes' => [],
+            'price' => intval($product_variant->price),
+            'quantity' => intval($request->quantity),
+            'attributes' => [$size->name, $request->grind],
             'associatedModel' => $product,
         ]);
+        
         return redirect()->route('account.busket')->with('success', 'Produkt został dodany do koszyka.');
     }
 
