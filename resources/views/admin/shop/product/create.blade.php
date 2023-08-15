@@ -78,7 +78,6 @@
                             <ul class="grid w-full gap-6 md:grid-cols-3">
                                 @foreach($sizes as $size)
                                 <li>
-                                    <input {{ in_array($size->id, old('size', [])) ? 'checked' : '' }} name="size[]" type="checkbox" id="size-{{$size->id}}" value="{{$size->id}}" class="hidden peer">
                                     <label for="size-{{$size->id}}" class="h-full inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 hover:text-gray-600 dark:peer-checked:text-gray-300 peer-checked:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                                         <div class="block">
                                             <div class="w-full text-lg font-semibold">{{$size->name}}</div>
@@ -125,7 +124,7 @@
                                 <!-- The first 9 photos will be loaded initially, the rest will be hidden -->
                                 @foreach($photos as $index => $photo)
                                 <li class="{{ $index >= 9 ? 'hidden' : '' }}">
-                                    <input {{ in_array($photo->getFilename(), old('photo', [])) ? 'checked' : '' }} name="photo[]" type="checkbox" id="photo-{{ $photo->getFilename() }}" value="{{ $photo->getFilename() }}" class="hidden peer">
+                                    <input {{ old('photo') == $photo->getFilename() ? 'checked' : '' }} name="photo" type="radio" id="photo-{{ $photo->getFilename() }}" value="{{ $photo->getFilename() }}" class="hidden peer">
                                     <label for="photo-{{ $photo->getFilename() }}" class="h-full inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 hover:text-gray-600 dark:peer-checked:text-gray-300 peer-checked:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                                         <div class="block">
                                             <div class="w-full text-lg font-semibold"><img src="{{ asset('photo/' . $photo->getFilename()) }}" alt=""></div>
@@ -161,7 +160,7 @@
                                     visiblePhotoCount = endIndex;
                                     console.log(hiddenPhotos.length)
                                     // Hide the "Show More" button if all photos are displayed
-                                    if (hiddenPhotos.length - 9 <= 9) {
+                                    if (hiddenPhotos.length - 9 - 9 <= 9) {
                                         $(this).hide();
                                     }
                                 });

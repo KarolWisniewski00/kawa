@@ -91,7 +91,7 @@
                     <li>
                         <div class="dropdown text-end nav-link px-2 link-primary">
                             <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="{{asset('image/undraw_drink_coffee_av1x.svg')}}" alt="mdo" width="32" height="32" class="rounded-circle">
+                                <img src="{{asset('image/coffee-beans.png')}}" alt="mdo" width="32" height="32" class="rounded-circle">
                             </a>
                             <ul class="dropdown-menu text-small">
                                 @auth
