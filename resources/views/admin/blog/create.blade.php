@@ -75,19 +75,41 @@
                                 });
                             });
                         </script>
-                        miejsce na wstep rozwiniecie zakonczenie
+                        <div class="mb-6">
+                            <label for="start" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Wstęp</label>
+                            <textarea id="start" name="start" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Wpisz treść tutaj">{{ old('start') ? old('start') : ''}}</textarea>
+                            @error('start')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-6">
+                            <label for="content" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rozwinięcie</label>
+                            <textarea id="content" name="content" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Wpisz treść tutaj">{{ old('content') ? old('content') : ''}}</textarea>
+                            @error('content')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-6">
+                            <label for="end" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Zakończenie</label>
+                            <textarea id="end" name="end" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Wpisz treść tutaj">{{ old('end') ? old('end') : ''}}</textarea>
+                            @error('end')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
                         <div class="mb-6">
                             <label for="number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kolejność</label>
-                            <input value="{{ old('order') ? old('order') : ''}}" name="order" type="number" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="0" required>
+                            <input value="{{ old('order') ? old('order') : 0}}" name="order" type="number" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="0" required>
                             @error('order')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
                         </div>
-                        <label class="relative inline-flex items-center cursor-pointer">
-                            <input type="checkbox" name="visibility_on_website" value="1" class="sr-only peer" {{ old('visibility_on_website') ? 'checked' : '' }}>
-                            <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                            <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Widoczność na stronie</span>
-                        </label>
+                        <div class="mb-6">
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" name="visibility_on_website" value="1" class="sr-only peer" {{ old('visibility_on_website') ? 'checked' : '' }}>
+                                <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Widoczność na stronie</span>
+                            </label>
+                        </div>
                         @error('visibility_on_website')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
@@ -107,17 +129,19 @@
                             @enderror
                         </div>
                         <div class="mb-6">
-                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Keywards</label>
-                            <input value="{{ old('keywards') ? old('keywards') : ''}}" type="text" name="keywards" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Wysokiej jakości kawa z Brazylii" required>
-                            @error('keywards')
+                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">SEO Keywards</label>
+                            <input value="{{ old('seo_keywards') ? old('seo_keywards') : ''}}" type="text" name="seo_keywards" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Wysokiej jakości kawa z Brazylii" required>
+                            @error('seo_keywards')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
                         </div>
-                        <label class="relative inline-flex items-center cursor-pointer">
-                            <input name="visibility_in_google" type="checkbox" value="1" class="sr-only peer" {{ old('visibility_in_google') ? 'checked' : '' }}>
-                            <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                            <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Widoczność w google</span>
-                        </label>
+                        <div class="mb-6">
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input name="visibility_in_google" type="checkbox" value="1" class="sr-only peer" {{ old('visibility_in_google') ? 'checked' : '' }}>
+                                <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Widoczność w google</span>
+                            </label>
+                        </div>
                         @error('visibility_in_google')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror

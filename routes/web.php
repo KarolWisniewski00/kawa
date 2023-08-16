@@ -51,7 +51,7 @@ Route::prefix('shop')->group(function () {
 
 Route::prefix('blog')->group(function () {
     Route::get('/', [BlogController::class, 'index'])->name('blog');
-    Route::get('{slug}', [BlogController::class, 'show'])->name('blog.show');
+    Route::get('{blog}', [BlogController::class, 'show'])->name('blog.show');
 });
 
 Route::prefix('about')->group(function () {
@@ -105,9 +105,9 @@ Route::middleware([
             Route::get('/', [BlogAdminController::class, 'index'])->name('dashboard.blog');
             Route::get('/create', [BlogAdminController::class, 'create'])->name('dashboard.blog.create');
             Route::post('/store', [BlogAdminController::class, 'store'])->name('dashboard.blog.store');
-            Route::get('/edit/{atricle}', [BlogAdminController::class, 'edit'])->name('dashboard.blog.edit');
-            Route::put('/update/{atricle}', [BlogAdminController::class, 'update'])->name('dashboard.blog.update');
-            Route::delete('/delete/{atricle}', [BlogAdminController::class, 'delete'])->name('dashboard.blog.delete');
+            Route::get('/edit/{blog}', [BlogAdminController::class, 'edit'])->name('dashboard.blog.edit');
+            Route::put('/update/{blog}', [BlogAdminController::class, 'update'])->name('dashboard.blog.update');
+            Route::delete('/delete/{blog}', [BlogAdminController::class, 'delete'])->name('dashboard.blog.delete');
         });
         Route::prefix('shop')->group(function () {
             Route::prefix('product')->group(function () {

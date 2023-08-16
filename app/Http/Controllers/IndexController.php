@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use App\Models\Instagram;
 use App\Models\Product;
 use App\Models\ProductImage;
@@ -16,6 +17,7 @@ class IndexController extends Controller
         $products = Product::orderBy('order')->take(3)->get();
         $variants = ProductVariant::get();
         $photos = ProductImage::get();
-        return view('client.coffee.index',compact('instagrams','products','variants','photos'));
+        $blogs = Blog::orderBy('order')->take(4)->get();
+        return view('client.coffee.index',compact('instagrams','products','variants','photos','blogs'));
     }
 }

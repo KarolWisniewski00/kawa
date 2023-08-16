@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use Illuminate\Http\Request;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 
@@ -16,9 +17,10 @@ class BlogController extends Controller
             $trail->parent('index');
             $trail->push('Blog', route('blog'));
         });
-        return view('client.coffee.blog.index');
+        $blogs = Blog::orderBy('order')->paginate(10);
+        return view('client.coffee.blog.index', compact('blogs'));
     }
-    public function show($slug) {
+    public function show($blog) {
         Breadcrumbs::for('index', function ($trail) {
             $trail->push('Home', route('index'));
         });
@@ -35,8 +37,8 @@ class BlogController extends Controller
             // $trail->push($blog->title, route('blog.show', $slug));
             $trail->push('Blog Post', route('blog.show', $slug));
         });
-    
-        return view('client.coffee.blog.show');
+        $blog = Blog::where('id',$blog)->first();
+        return view('client.coffee.blog.show', compact('blog'));
     }
     
 }

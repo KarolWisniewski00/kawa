@@ -30,13 +30,7 @@
                                         tytuł
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                        Wyświetlenia
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
                                         Data
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Podgląd
                                     </th>
                                     <th scope="col" class="px-6 py-3">
                                         Edycja
@@ -47,31 +41,24 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($blogs as $blog)
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-
-                                        <img src="" alt="" class="img-fluid" height="48px" width="48px" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
-
+                                        <img src="{{ asset('photo/' . $blog->photo) }}" alt="" class="img-fluid" height="48px" width="48px" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
                                     </th>
                                     <td class="px-6 py-4">
-                                        1
+                                        {{$blog->title}}
                                     </td>
                                     <td class="px-6 py-4">
-                                        2
+                                        {{$blog->created_at}}
                                     </td>
                                     <td class="px-6 py-4">
-                                        3
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <button type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-600 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"><i class="fa-solid fa-eye"></i></button>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <a href="" class="text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-indigo-600 dark:hover:bg-indigo-700 focus:outline-none dark:focus:ring-indigo-800">
+                                        <a href="{{ route('dashboard.blog.edit', $blog->id) }}" class="text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-indigo-600 dark:hover:bg-indigo-700 focus:outline-none dark:focus:ring-indigo-800">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
                                     </td>
                                     <td class="px-6 py-4">
-                                        <form action="" method="POST" onsubmit="return confirm('Czy na pewno chcesz usunąć ten produkt?')">
+                                        <form action="{{ route('dashboard.blog.delete', $blog->id) }}" method="POST" onsubmit="return confirm('Czy na pewno chcesz usunąć ten wpis?')">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="text-red-500 hover:text-white border border-red-600 hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
@@ -80,9 +67,11 @@
                                         </form>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                         <div class="px-4 py-2">
+                            {{ $blogs->links() }}
                         </div>
                     </div>
                 </div>
