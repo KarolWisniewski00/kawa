@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::composer('*', function ($view) {
-            $company = Company::get();
+            $company = Company::get()->pluck('content','type');
             $view->with('company', $company);
         });
     }

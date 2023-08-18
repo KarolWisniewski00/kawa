@@ -2,7 +2,7 @@
     <x-slot name="header">
         @include('admin.module.nav-technic')
         <h2 class="font-semibold text-xl text-gray-800 leading-tight mt-8">
-            {{ __('Firma') }}
+            {{ __('Ustawienia') }}
         </h2>
     </x-slot>
 

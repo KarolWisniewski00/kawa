@@ -33,10 +33,10 @@
             <div class="col-12 col-lg-6">
                 <div class="d-flex flex-column justify-content-center align-items-center h-100">
                     <div class="d-flex flex-column justify-content-center align-items-center my-3 text-center">
-                        <h3 class="mt-5 font-custom-2" style="color:#F9CAAC">WSPÓŁPRACA</h3>
-                        <h1 class="font-custom">Oferta dla firm</h1>
+                        <h3 class="mt-5 font-custom-2" style="color:#F9CAAC">{{ $company['collaboration_page'] }}</h3>
+                        <h1 class="font-custom">{{ $company['collaboration_page_long'] }}</h1>
                     </div>
-                    <p class="lead text-center">Najlepsza kawa w Twojej restauracji, kawiarni, cukierni, biurze, hotelu. Jesteśmy sprawdzonym i rzetelnym partnerem biznesu.</p>
+                    <p class="lead text-center">{{ $company['collaboration_page_paragraf'] }}</p>
                 </div>
             </div>
         </div>
@@ -45,9 +45,9 @@
         <div class="row">
             <div class="col-12 col-md-6">
                 <div class="d-flex flex-column justify-content-center align-items-center my-3 text-center h-100">
-                    <h3 class="mt-5 font-custom-2" style="color:#F9CAAC">Dlaczego my?</h3>
-                    <h1 class="font-custom">Najwyższa jakość kawy dla twoich gości</h1>
-                    <p class="w-75 lead">Własna palarnia kawy, najlepszy sprzęt i wyjątkowy zespół, kawa wypalana przez Vice Mistrza Polski Coffee Roasting 2018. Zauważalna różnica jakości, którą gwarantujemy wyróżni twój biznes w oczach gości i pracowników.</p>
+                    <h3 class="mt-5 font-custom-2" style="color:#F9CAAC">{{ $company['why_collaboration_page'] }}</h3>
+                    <h1 class="font-custom">{{ $company['why_collaboration_page_long'] }}</h1>
+                    <p class="w-75 lead">{{ $company['why_collaboration_page_paragraf pod filmikiem'] }}</p>
                 </div>
             </div>
             <div class="col-12 col-md-6">
@@ -59,9 +59,9 @@
         <div class="row">
             <div class="col-12 col-md-6 order-1 order-md-2">
                 <div class="d-flex flex-column justify-content-center align-items-center my-3 text-center h-100">
-                    <h3 class="mt-5 font-custom-2" style="color:#F9CAAC">Dlaczego my?</h3>
-                    <h1 class="font-custom">Najwyższa jakość kawy dla twoich gości</h1>
-                    <p class="w-75 lead">Własna palarnia kawy, najlepszy sprzęt i wyjątkowy zespół, kawa wypalana przez Vice Mistrza Polski Coffee Roasting 2018. Zauważalna różnica jakości, którą gwarantujemy wyróżni twój biznes w oczach gości i pracowników.</p>
+                    <h3 class="mt-5 font-custom-2" style="color:#F9CAAC">{{ $company['over_collaboration_page'] }}</h3>
+                    <h1 class="font-custom">{{ $company['over_collaboration_page_long'] }}</h1>
+                    <p class="w-75 lead">{{ $company['over_collaboration_page_paragraf'] }}</p>
                 </div>
             </div>
             <div class="col-12 col-md-6 order-2 order-md-1">
@@ -74,8 +74,8 @@
             <div class="row p-0 m-0 py-2">
                 <div class="col-12 col-md-6">
                     <div class="d-flex flex-column justify-content-center align-items-center my-3 text-center h-100">
-                        <h4 class="font-custom mb-4">Porozmawiajmy o współpracy</h4>
-                        <label class="lead mb-4">Masz pytania? Chcesz jak najszybciej wystartować? Prześlij nam swoje dane kontaktowe. Odpiszemy / oddzwonimy w ciągu jednego dnia.</label>
+                        <h4 class="font-custom mb-4">{{ $company['contact_collaboration_page'] }}</h4>
+                        <label class="lead mb-4">{{ $company['contact_collaboration_page_long'] }}</label>
                         <div class="row w-100">
                             <div class="col-12 col-md-6">
                                 <div class="form-floating mb-3 w-100">

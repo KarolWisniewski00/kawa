@@ -10,7 +10,7 @@ class BlogAdminController extends Controller
     public function index(){
         $blogs = Blog::orderBy('order')->paginate(20);
 
-        return view('admin.blog.index', compact('blogs','photos'));
+        return view('admin.blog.index', compact('blogs'));
     }
     public function create()
     {

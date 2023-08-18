@@ -21,11 +21,11 @@
                         <li class="nav-item text-white px-1 text-end"> </li>
                     </ul>
                     <ul class="nav col-md-4 justify-content-center">
-                        <li class="nav-item text-white px-1 text-center mx-0 font-custom-1">{{ $company[6]->content }}</li>
+                        <li class="nav-item text-white px-1 text-center mx-0 font-custom-1">{{ $company['info_top_website'] }}</li>
                     </ul>
                     <ul class="nav col-md-3 justify-content-end">
-                        <li class="nav-item text-white mx-1 me-5"><a href="" class="text-white" style="text-decoration: none;"><i class="fa-brands fa-instagram"></i></a></li>
-                        <li class="nav-item text-white mx-1"><a href="" class="text-white" style="text-decoration: none;"><i class="fa-brands fa-facebook"></i></a></li>
+                        <li class="nav-item text-white mx-1 me-5"><a href="{{ $company['ig_link'] }}" class="text-white" style="text-decoration: none;"><i class="fa-brands fa-instagram"></i></a></li>
+                        <li class="nav-item text-white mx-1"><a href="{{ $company['fb_link'] }}" class="text-white" style="text-decoration: none;"><i class="fa-brands fa-facebook"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -41,12 +41,11 @@
                 </ul>
                 <div class="collapse order-5" id="collapseExample">
                     <ul class="nav col-md-12 justify-content-center">
-                        <li><a href="{{route('index')}}" class="nav-link px-2 link-primary font-custom-1">Home</a></li>
-                        <li><a href="{{route('about')}}" class="nav-link px-2 link-primary font-custom-1">Firma</a></li>
+                        <li><a href="{{route('about')}}" class="nav-link px-2 link-primary font-custom-1">O nas</a></li>
+                        <li><a href="{{route('blog')}}" class="nav-link px-2 link-primary font-custom-1">Blog</a></li>
                         <li><a href="{{route('shop')}}" class="nav-link px-2 link-primary font-custom-1">Sklep</a></li>
                     </ul>
                     <ul class="nav col-md-12 justify-content-center align-items-center">
-                        <li><a href="{{route('blog')}}" class="nav-link px-2 link-primary font-custom-1">Blog</a></li>
                         <li><a href="{{route('collaboration')}}" class="nav-link px-2 link-primary font-custom-1">Współpraca</a></li>
                         <li><a href="{{route('contact')}}" class="nav-link px-2 link-primary font-custom-1">Kontakt</a></li>
                         <li>
@@ -77,15 +76,14 @@
                     </ul>
                 </div>
                 <ul class="nav col-md-4 justify-content-start order-2 order-md-1 d-none d-md-flex">
-                    <li><a href="{{route('index')}}" class="nav-link px-2 link-primary font-custom-1">Home</a></li>
-                    <li><a href="{{route('about')}}" class="nav-link px-2 link-primary font-custom-1">Firma</a></li>
+                    <li><a href="{{route('about')}}" class="nav-link px-2 link-primary font-custom-1">O nas</a></li>
+                    <li><a href="{{route('blog')}}" class="nav-link px-2 link-primary font-custom-1">Blog</a></li>
                     <li><a href="{{route('shop')}}" class="nav-link px-2 link-primary font-custom-1">Sklep</a></li>
                 </ul>
                 <a href="{{route('index')}}" class="d-flex align-items-center justify-content-center col-12 col-md-auto order-1 order-md-2">
                     <img id="logo" class="img-fluid" src="{{asset('logo/COFFEESUMMIT-LOGO-przezroczyste-tlo.png')}}" style="height: 6em;">
                 </a>
                 <ul class="nav col-md-4 justify-content-end align-items-center order-3 d-none d-md-flex">
-                    <li><a href="{{route('blog')}}" class="nav-link px-2 link-primary font-custom-1">Blog</a></li>
                     <li><a href="{{route('collaboration')}}" class="nav-link px-2 link-primary font-custom-1">Współpraca</a></li>
                     <li><a href="{{route('contact')}}" class="nav-link px-2 link-primary font-custom-1">Kontakt</a></li>
                     <li>

@@ -2,7 +2,7 @@
     <x-slot name="header">
         @include('admin.module.nav-technic')
         <h2 class="font-semibold text-xl text-gray-800 leading-tight mt-8">
-            {{ __('Firma') }}
+            {{ __('Ustawienia') }}
         </h2>
     </x-slot>
 
@@ -14,7 +14,7 @@
                     <x-application-logo class="block h-12 w-auto" />
                     <div class="flex flex-row justify-between">
                         <h1 class="mt-8 mb-4 text-2xl font-medium text-gray-900">
-                            Firma
+                            Ustawienia
                         </h1>
                     </div>
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -34,9 +34,51 @@
                             </thead>
                             <tbody>
                                 @foreach($elements as $element)
+                                @if($element->type == 'name_company')
+                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                    <td colspan="3" class="px-6 py-4 font-bold text-xl text-center">
+                                        Dane firmy wyświetlające się w zamówieniach
+                                    </td>
+                                </tr>
+                                @endif
+                                @if($element->type == 'info_top_website')
+                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                    <td colspan="3" class="px-6 py-4 font-bold text-xl text-center">
+                                        Dane techniczne
+                                    </td>
+                                </tr>
+                                @endif
+                                @if($element->type == 'adres_contact_page')
+                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                    <td colspan="3" class="px-6 py-4 font-bold text-xl text-center">
+                                        Dane podstrony kontakt
+                                    </td>
+                                </tr>
+                                @endif
+                                @if($element->type == 'hero_h1')
+                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                    <td colspan="3" class="px-6 py-4 font-bold text-xl text-center">
+                                        Dane strony głównej
+                                    </td>
+                                </tr>
+                                @endif
+                                @if($element->type == 'about_company_about_page')
+                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                    <td colspan="3" class="px-6 py-4 font-bold text-xl text-center">
+                                        Dane podstrony o nas (firma)
+                                    </td>
+                                </tr>
+                                @endif
+                                @if($element->type == 'collaboration_page')
+                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                    <td colspan="3" class="px-6 py-4 font-bold text-xl text-center">
+                                        Dane podstrony współpraca
+                                    </td>
+                                </tr>
+                                @endif
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <td class="px-6 py-4">
-                                        {{$element->type}}
+                                        {{$element->pl}}
                                     </td>
                                     <td class="px-6 py-4">
                                         {{$element->content}}

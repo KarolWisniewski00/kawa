@@ -33,10 +33,10 @@
             <div class="col-12 col-lg-6">
                 <div class="d-flex flex-column justify-content-center align-items-center h-100">
                     <div class="d-flex flex-column justify-content-center align-items-center my-3 text-center">
-                        <h3 class="font-custom-2" style="color:#F9CAAC">FIRMA</h3>
-                        <h1 class="font-custom">Szerokie spektrum smaków i esencji</h1>
+                        <h3 class="font-custom-2" style="color:#F9CAAC">{{ $company['about_company_about_page'] }}</h3>
+                        <h1 class="font-custom">{{ $company['about_company_about_page_long'] }}</h1>
                     </div>
-                    <p class="lead text-center">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixin.</p>
+                    <p class="lead text-center">{{ $company['about_company_about_page_paragraf'] }}</p>
                 </div>
             </div>
         </div>
@@ -44,8 +44,8 @@
             <div class="col-12">
                 <div class="d-flex flex-column justify-content-center align-items-center my-3 text-center">
                     <h3 class="mt-5 font-custom-2" style="color:#F9CAAC"><i class="fa-solid fa-mug-hot"></i></h3>
-                    <h1 class="font-custom">Ponieważ kochamy kawę</h1>
-                    <p class="w-75 lead">Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym. Został po raz pierwszy użyty w XV w. przez nieznanego drukarza do wypełnienia tekstem próbnej książki. </p>
+                    <h1 class="font-custom">{{ $company['photo_about_page'] }}</h1>
+                    <p class="w-75 lead">{{ $company['photo_about_page_paragraf'] }}</p>
                 </div>
             </div>
         </div>
@@ -76,8 +76,8 @@
             <div class="col-12">
                 <div class="d-flex flex-column justify-content-center align-items-center my-3 text-center">
                     <h3 class="mt-5 font-custom-2" style="color:#F9CAAC"><i class="fa-solid fa-mug-saucer"></i></h3>
-                    <h1 class="font-custom">Ponieważ kochamy kawę</h1>
-                    <p class="w-75 lead">Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym. Został po raz pierwszy użyty w XV w. przez nieznanego drukarza do wypełnienia tekstem próbnej książki. Pięć wieków później zaczął być używany przemyśle elektronicznym, pozostając praktycznie niezmienionym. Spopularyzował się w latach 60. XX w. wraz z publikacją arkuszy Letrasetu, zawierających fragmenty Lorem Ipsum, a ostatnio z zawierającym różne wersje Lorem Ipsum oprogramowaniem przeznaczonym do realizacji druków na komputerach osobistych, jak Aldus PageMaker</p>
+                    <h1 class="font-custom">{{ $company['under_photo_about_page'] }}</h1>
+                    <p class="w-75 lead">{{ $company['under_photo_about_page_paragraf'] }}</p>
                 </div>
             </div>
         </div>
@@ -85,10 +85,10 @@
             <div class="col-12 col-lg-6">
                 <div class="d-flex flex-column justify-content-center align-items-center h-100">
                     <div class="d-flex flex-column justify-content-center align-items-center my-3 text-center">
-                        <h3 class="font-custom-2" style="color:#F9CAAC">SKLEP</h3>
-                        <h1 class="font-custom">Szerokie spektrum</h1>
+                        <h3 class="font-custom-2" style="color:#F9CAAC">{{ $company['about_company_about_page_end'] }}</h3>
+                        <h1 class="font-custom">{{ $company['about_company_about_page_long_end'] }}</h1>
                     </div>
-                    <p class="lead text-center">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system.</p>
+                    <p class="lead text-center">{{ $company['about_company_about_page_paragraf_end'] }}</p>
                 </div>
             </div>
             <div class="col-12 col-lg-6 p-0 m-0">

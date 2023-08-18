@@ -28,7 +28,7 @@
         </div>
         <div class="space-x-8 -my-px ml-10 flex">
             <x-nav-link  href="{{ route('dashboard.technic.company') }}" :active="Str::startsWith(request()->path(), 'dashboard/technic/company')">
-                {{ __('Firma') }}
+                {{ __('Ustawienia') }}
             </x-nav-link>
         </div>
     </div>
