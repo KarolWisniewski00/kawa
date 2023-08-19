@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-12 py-4 mb-4" style="background-image: url('{{ asset('image/Depositphotos_199493482_XL.jpg') }}'); background-size: cover; background-position: center;">
                 <div class="d-flex justify-content-between align-items-center my-3 text-center container">
-                    <h1 class="font-custom text-white">Zamówienia</h1>
+                    <h1 class="font-custom text-white m-0 p-0">Zamówienia</h1>
                 </div>
             </div>
         </div>
@@ -19,7 +19,7 @@
                 </div>
                 @include('client.coffee.module.nav-acc')
             </div>
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-6 order-2 order-md-1">
                 <form class="form text-center my-4" action="{{route('account.order.store')}}" method="POST">
                     <!--TOKEN-->
                     @csrf
@@ -104,7 +104,7 @@
                     <a href="{{route('account.busket')}}" class="btn btn-danger my-4" type="button"><i class="fa-solid fa-xmark me-2"></i>Anuluj</a>
                 </form>
             </div>
-            <div class="col-12 col-md-6" style="overflow:auto;">
+            <div class="col-12 col-md-6 order-1 order-md-2" style="overflow:auto;">
                 <table class="table">
                     <thead>
                         <tr>

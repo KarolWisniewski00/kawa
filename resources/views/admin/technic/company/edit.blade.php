@@ -23,6 +23,61 @@
                     <form action="{{ route('dashboard.technic.company.update', $element ) }}" method="POST">
                         @method('PUT')
                         @csrf
+                        @if($photos != null)
+                        <!-- Add the "Show More" button below the existing code -->
+                        <div class="mb-6">
+                            <h3 class="mb-5 text-lg font-medium text-gray-900 dark:text-white">Zdjęcie</h3>
+                            <ul class="grid w-full gap-6 md:grid-cols-3" id="photoGrid">
+                                <!-- The first 9 photos will be loaded initially, the rest will be hidden -->
+                                @foreach($photos as $index => $photo)
+                                <li class="{{ $index >= 9 ? 'hidden' : '' }}">
+                                    <input @if(old('photo')==$photo->getFilename())
+                                    checked
+                                    @else
+                                    {{ $element->content == $photo->getFilename() ? 'checked' : '' }}
+                                    @endif name="content" type="radio" id="photo-{{ $photo->getFilename() }}" value="{{ $photo->getFilename() }}" class="hidden peer">
+                                    <label for="photo-{{ $photo->getFilename() }}" class="h-full inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 hover:text-gray-600 dark:peer-checked:text-gray-300 peer-checked:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                                        <div class="block">
+                                            <div class="w-full text-lg font-semibold"><img src="{{ asset('photo/' . $photo->getFilename()) }}" alt=""></div>
+                                        </div>
+                                    </label>
+                                </li>
+                                @endforeach
+                            </ul>
+                            <!-- "Show More" button -->
+                            <button id="showMoreBtn" type="button" class="mt-8 text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-indigo-600 dark:hover:bg-indigo-700 focus:outline-none dark:focus:ring-indigo-800"><i class="fa-solid fa-caret-down mr-2"></i>Pokaż więcej</button>
+                            @error('content')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <script>
+                            $(document).ready(function() {
+                                // Set the initial count of visible photos
+                                let visiblePhotoCount = 9;
+
+                                // Show additional photos when the "Show More" button is clicked
+                                $("#showMoreBtn").on("click", function() {
+                                    // Get all the hidden photos
+                                    const hiddenPhotos = $("#photoGrid li:hidden");
+
+                                    // Calculate the end index for displaying the next 9 photos
+                                    const endIndex = visiblePhotoCount + 9;
+
+                                    // Show the next 9 photos
+                                    hiddenPhotos.slice(visiblePhotoCount, endIndex).removeClass("hidden");
+
+                                    // Update the visiblePhotoCount for the next click
+                                    visiblePhotoCount = endIndex;
+                                    console.log(hiddenPhotos.length)
+                                    // Hide the "Show More" button if all photos are displayed
+                                    if (hiddenPhotos.length - 9 - 9 <= 9) {
+                                        $(this).hide();
+                                    }
+                                });
+                            });
+                        </script>
+                        @else
                         <div class="mb-6">
                             <label for="content" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Treść</label>
                             <input type="text" name="content" id="content" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Wprowadź treść" value="{{ old('content', $element->content) }}" required>
@@ -30,6 +85,7 @@
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
                         </div>
+                        @endif
                         <button type="submit" class="text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 me-2">
                             <i class="fa-solid fa-floppy-disk mr-2"></i>Zapisz
                         </button>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateInstagramRequest;
 use App\Models\Instagram;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -26,7 +27,7 @@ class InstagramAdminController extends Controller
         return view('admin.technic.instagram.create',compact('photos'));
         
     }
-    public function store(Request $request){
+    public function store(CreateInstagramRequest $request){
 
         $instagram = new Instagram();
         $instagram->url = $request->url;
@@ -50,7 +51,7 @@ class InstagramAdminController extends Controller
 
         return view('admin.technic.instagram.edit',compact('instagram','photos'));
     }
-    public function update(Request $request, Instagram $instagram)
+    public function update(CreateInstagramRequest $request, Instagram $instagram)
     {
         $res = $instagram->update([
             'url' => $request->url,

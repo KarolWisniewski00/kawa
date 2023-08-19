@@ -11,13 +11,13 @@
 </style>
 <section class="hero">
     <div class="container-fluid px-0 position-relative video-container overflow-hidden">
-        <video autoplay loop muted class="w-100">
+        <video autoplay loop muted class="v-size">
             <source src="{{asset('video/video_11.mp4')}}">
         </video>
         <div class="position-absolute top-50 start-50 translate-middle">
-            <div class="d-flex flex-column justify-content-center align-items-center text-center">
-                <h1 class="font-custom text-white h2" style="min-width: 80vw;">{{ $company['hero_h1'] }}</h1>
-                <a href="{{ $company['hero_link'] }}" class="btn btn-outline-light">{{ $company['hero_button'] }}</a>
+            <div class="d-flex flex-column justify-content-center align-items-center text-center m-mt-5">
+                <h1 class="font-custom text-white h2" style="min-width: 80vw; text-transform:capitalize!important; font-size: calc(33.6px + 16.4 * ((100vw - 320px) / 880)); font-weight: 500; line-height: 1.1em;">{{ $company['hero_h1'] }}</h1>
+                <a href="{{ $company['hero_link'] }}" class="btn btn-outline-light mt-2">{{ $company['hero_button'] }}</a>
             </div>
         </div>
     </div>
@@ -55,23 +55,22 @@
                             @if($variant->product_id == $product->id && $variant->size_id != null)
                             @php
                             // Sprawdź minimalną cenę
-                            if ($minPrice === null || $variant->price < $minPrice) {
-                                $minPrice=$variant->price;
-                            }
+                            if ($minPrice === null || $variant->price < $minPrice) { $minPrice=$variant->price;
+                                }
 
-                            // Sprawdź maksymalną cenę
-                            if ($maxPrice === null || $variant->price > $maxPrice) {
+                                // Sprawdź maksymalną cenę
+                                if ($maxPrice === null || $variant->price > $maxPrice) {
                                 $maxPrice = $variant->price;
-                            }
-                            @endphp
-                            @endif
-                            @endforeach
+                                }
+                                @endphp
+                                @endif
+                                @endforeach
 
-                            @if($minPrice !== null && $maxPrice !== null)
-                            {{$minPrice}} PLN - {{$maxPrice}} PLN
-                            @else
-                            Brak dostępnych cen.
-                            @endif
+                                @if($minPrice !== null && $maxPrice !== null)
+                                {{$minPrice}} PLN - {{$maxPrice}} PLN
+                                @else
+                                Brak dostępnych cen.
+                                @endif
                         </p>
                     </div>
                 </a>
@@ -98,17 +97,17 @@
             </div>
             <div class="col-12 col-md-4">
                 <a href="{{route('about')}}" class="d-flex flex-column justify-content-center align-items-center">
-                    <img class="img-fluid" alt="" src="{{asset('image/Depositphotos_86094158_DS.jpg')}}">
+                    <img class="img-fluid" alt="" src="{{asset('photo/'.$company['photo_about_home_page_1'])}}" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
                 </a>
             </div>
             <div class="col-12 col-md-4">
                 <a href="{{route('about')}}" class="d-flex flex-column justify-content-center align-items-center">
-                    <img class="img-fluid" alt="" src="{{asset('image/Depositphotos_123317734_DS.jpg')}}">
+                    <img class="img-fluid" alt="" src="{{asset('photo/'.$company['photo_about_home_page_2'])}}" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
                 </a>
             </div>
             <div class="col-12 col-md-4">
                 <a href="{{route('about')}}" class="d-flex flex-column justify-content-center align-items-center">
-                    <img class="img-fluid" alt="" src="{{asset('image/Depositphotos_199823784_DS.jpg')}}">
+                    <img class="img-fluid" alt="" src="{{asset('photo/'.$company['photo_about_home_page_3'])}}" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
                 </a>
             </div>
         </div>
@@ -132,7 +131,7 @@
                     <div class="row">
                         <div class="col-12 col-md-5">
                             <a href="{{route('blog.show','test')}}" class="d-flex flex-column justify-content-center align-items-end">
-                                <img class="img-fluid" alt="" src="{{asset('photo/'.$blog->photo)}}">
+                                <img class="img-fluid" alt="" src="{{asset('photo/'.$blog->photo)}}" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
                             </a>
                         </div>
                         <div class="col-12 col-md-7">
@@ -170,7 +169,7 @@
             @foreach($instagrams as $ig)
             <div class="col-12 col-md-3 mx-auto">
                 <a href="{{$ig->url}}" class="d-flex flex-column justify-content-center align-items-center p-2">
-                    <img class="img-fluid" alt="" src="{{asset('photo/'.$ig->photo)}}">
+                    <img class="img-fluid" alt="" src="{{asset('photo/'.$ig->photo)}}" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
                 </a>
             </div>
             @endforeach

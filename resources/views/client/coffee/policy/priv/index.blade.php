@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-12 py-4 mb-4" style="background-image: url('{{ asset('image/Depositphotos_224319800_xl-2015.jpg') }}'); background-size: cover; background-position: center;">
                 <div class="d-flex justify-content-between align-items-center my-3 text-center container">
-                    <h1 class="font-custom text-white">Polityka Prywatności</h1>
+                    <h1 class="font-custom text-white m-0 p-0">Polityka Prywatności</h1>
                 </div>
             </div>
         </div>

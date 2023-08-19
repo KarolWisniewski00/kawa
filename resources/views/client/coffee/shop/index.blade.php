@@ -6,7 +6,7 @@
         <div class="row my-5">
             <div class="col-12 py-4" style="background-image: url('{{ asset('image/Depositphotos_145612235_DS.jpg') }}'); background-size: cover; background-position: center;">
                 <div class="d-flex justify-content-between align-items-center my-3 text-center container">
-                    <h1 class="font-custom text-white">Sklep</h1>
+                    <h1 class="font-custom text-white m-0 p-0">Sklep</h1>
                 </div>
             </div>
         </div>

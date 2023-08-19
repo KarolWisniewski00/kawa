@@ -139,6 +139,24 @@ return new class extends Migration
         $company->pl = 'Opis sekcji o nas na stronie głównej';
         $company->content = 'Lorem Ipsum jest tekstem stosowanym jako przykładowy wypełniacz w przemyśle poligraficznym. Został po raz pierwszy użyty w XV w. przez nieznanego drukarza do wypełnienia tekstem próbnej książki. Pięć wieków później zaczął być używany przemyśle elektronicznym, pozostając praktycznie niezmienionym. Spopularyzował się w latach 60. XX w';
         $company->save();
+        
+        $company = new Company();
+        $company->type = 'photo_about_home_page_1';
+        $company->pl = 'Pierwsze zdjęcie sekcji o nas na stronie głównej';
+        $company->content = '';
+        $company->save();
+
+        $company = new Company();
+        $company->type = 'photo_about_home_page_2';
+        $company->pl = 'Drugie zdjęcie sekcji o nas na stronie głównej';
+        $company->content = '';
+        $company->save();
+
+        $company = new Company();
+        $company->type = 'photo_about_home_page_3';
+        $company->pl = 'Trzecie zdjęcie sekcji o nas na stronie głównej';
+        $company->content = '';
+        $company->save();
 
         $company = new Company();
         $company->type = 'blog_home_page';
@@ -247,6 +265,36 @@ return new class extends Migration
         $company->save();
 
         $company = new Company();
+        $company->type = 'photo_about_page_1';
+        $company->pl = 'Pierwsze zdjęcie na stronie o nas';
+        $company->content = '';
+        $company->save();
+
+        $company = new Company();
+        $company->type = 'photo_about_page_2';
+        $company->pl = 'Drugie zdjęcie na stronie o nas';
+        $company->content = '';
+        $company->save();
+
+        $company = new Company();
+        $company->type = 'photo_about_page_3';
+        $company->pl = 'Trzecie zdjęcie na stronie o nas';
+        $company->content = '';
+        $company->save();
+
+        $company = new Company();
+        $company->type = 'photo_about_page_4';
+        $company->pl = 'Czwarte zdjęcie na stronie o nas';
+        $company->content = '';
+        $company->save();
+
+        $company = new Company();
+        $company->type = 'photo_about_page_5';
+        $company->pl = 'Piąte zdjęcie na stronie o nas';
+        $company->content = '';
+        $company->save();
+
+        $company = new Company();
         $company->type = 'under_photo_about_page';
         $company->pl = 'Pierwszy napis pod zdjęciami na stronie o nas';
         $company->content = 'Ponieważ kochamy kawę';
@@ -313,6 +361,12 @@ return new class extends Migration
         $company->save();
 
         $company = new Company();
+        $company->type = 'photo_collaboration_page_1';
+        $company->pl = 'Pierwsze zdjęcie na stronie o nas';
+        $company->content = '';
+        $company->save();
+
+        $company = new Company();
         $company->type = 'over_collaboration_page';
         $company->pl = 'Pierwszy napis na stronie współpraca nad formularzem kontaktowym';
         $company->content = 'Dlaczego my';
@@ -331,6 +385,12 @@ return new class extends Migration
         $company->save();
 
         $company = new Company();
+        $company->type = 'photo_collaboration_page_2';
+        $company->pl = 'Drugie zdjęcie na stronie o nas';
+        $company->content = '';
+        $company->save();
+
+        $company = new Company();
         $company->type = 'contact_collaboration_page';
         $company->pl = 'Pierwszy napis formularza kontaktowego na stronie współpraca';
         $company->content = 'Porozmawiajmy o współpracy';
@@ -340,6 +400,12 @@ return new class extends Migration
         $company->type = 'contact_collaboration_page_long';
         $company->pl = 'Drugi napis formularza kontaktowego na stronie współpraca';
         $company->content = 'Masz pytania? Chcesz jak najszybciej wystartować? Prześlij nam swoje dane kontaktowe. Odpiszemy / oddzwonimy w ciągu jednego dnia.';
+        $company->save();
+
+        $company = new Company();
+        $company->type = 'photo_collaboration_page_3';
+        $company->pl = 'Trzecie zdjęcie na stronie o nas';
+        $company->content = '';
         $company->save();
     }
 

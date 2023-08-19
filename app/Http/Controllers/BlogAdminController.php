@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateBlogRequest;
 use App\Models\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -23,7 +24,7 @@ class BlogAdminController extends Controller
 
         return view('admin.blog.create', compact('photos'));
     }
-    public function store(Request $request)
+    public function store(CreateBlogRequest $request)
     {
         $product = Blog::create([
             'title' => $request->title,
@@ -59,7 +60,7 @@ class BlogAdminController extends Controller
         return view('admin.blog.edit', compact('photos', 'blog'));
     }
 
-    public function update(Request $request, Blog $blog)
+    public function update(CreateBlogRequest $request, Blog $blog)
     {
         // Aktualizujemy dane produktu
         $res = $blog->update([

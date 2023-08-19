@@ -13,7 +13,7 @@
 
 <body>
     <!--NAV + HEADER-->
-    <section id="nav" class="fixed-top bg-secondary" style="width: 100vw;">
+    <section id="nav" class="fixed-top bg-secondary bg-trans" style="width: 100vw;">
         <nav class="py-1 bg-primary">
             <div class="container">
                 <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between">
@@ -31,27 +31,27 @@
             </div>
         </nav>
         <div class="container-fluid position-relative" style="padding-left: 6em; padding-right: 6em;">
-            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-2 mb-2">
-                <ul class="nav d-flex d-md-none position-absolute top-0 end-0">
+            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-xl-between py-2 mb-2">
+                <ul class="nav d-flex d-xl-none position-absolute top-0 end-0">
                     <li>
-                        <button class="nav-link link-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <button class="nav-link link-primary link-change" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                             <i class="fa-solid fa-bars"></i>
                         </button>
                     </li>
                 </ul>
                 <div class="collapse order-5" id="collapseExample">
-                    <ul class="nav col-md-12 justify-content-center">
-                        <li><a href="{{route('about')}}" class="nav-link px-2 link-primary font-custom-1">O nas</a></li>
-                        <li><a href="{{route('blog')}}" class="nav-link px-2 link-primary font-custom-1">Blog</a></li>
-                        <li><a href="{{route('shop')}}" class="nav-link px-2 link-primary font-custom-1">Sklep</a></li>
+                    <ul class="nav col-xl-12 justify-content-center bg-secondary">
+                        <li><a href="{{route('about')}}" class="nav-link px-2 link-primary text-black" style="font-family: 'Montserrat', sans-serif !important;">O nas</a></li>
+                        <li><a href="{{route('blog')}}" class="nav-link px-2 link-primary text-black" style="font-family: 'Montserrat', sans-serif !important;">Blog</a></li>
+                        <li><a href="{{route('shop')}}" class="nav-link px-2 link-primary text-black" style="font-family: 'Montserrat', sans-serif !important;">Sklep</a></li>
                     </ul>
-                    <ul class="nav col-md-12 justify-content-center align-items-center">
-                        <li><a href="{{route('collaboration')}}" class="nav-link px-2 link-primary font-custom-1">Współpraca</a></li>
-                        <li><a href="{{route('contact')}}" class="nav-link px-2 link-primary font-custom-1">Kontakt</a></li>
+                    <ul class="nav col-xl-12 justify-content-center align-items-center bg-secondary">
+                        <li><a href="{{route('collaboration')}}" class="nav-link px-2 link-primary text-black" style="font-family: 'Montserrat', sans-serif !important;">Współpraca</a></li>
+                        <li><a href="{{route('contact')}}" class="nav-link px-2 link-primary text-black" style="font-family: 'Montserrat', sans-serif !important;">Kontakt</a></li>
                         <li>
-                            <div class="dropdown text-center nav-link px-2 link-primary">
+                            <div class="dropdown text-center nav-link px-2 link-primary bg-secondary">
                                 <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="{{asset('image/undraw_drink_coffee_av1x.svg')}}" alt="mdo" width="32" height="32" class="rounded-circle">
+                                    <img src="{{asset('image/undraw_drink_coffee_av1x.svg')}}" alt="xlo" width="32" height="32" class="rounded-circle">
                                 </a>
                                 <ul class="dropdown-menu text-small">
                                     @auth
@@ -75,21 +75,21 @@
                         </li>
                     </ul>
                 </div>
-                <ul class="nav col-md-4 justify-content-start order-2 order-md-1 d-none d-md-flex">
+                <ul class="nav col-xl-5 justify-content-start order-2 order-xl-1 d-none d-xl-flex">
                     <li><a href="{{route('about')}}" class="nav-link px-2 link-primary font-custom-1">O nas</a></li>
                     <li><a href="{{route('blog')}}" class="nav-link px-2 link-primary font-custom-1">Blog</a></li>
                     <li><a href="{{route('shop')}}" class="nav-link px-2 link-primary font-custom-1">Sklep</a></li>
                 </ul>
-                <a href="{{route('index')}}" class="d-flex align-items-center justify-content-center col-12 col-md-auto order-1 order-md-2">
-                    <img id="logo" class="img-fluid" src="{{asset('logo/COFFEESUMMIT-LOGO-przezroczyste-tlo.png')}}" style="height: 6em;">
+                <a href="{{route('index')}}" class="d-flex align-items-center justify-content-center col-12 col-xl-auto order-1 order-xl-2">
+                    <img id="logo" class="img-fluid l-size" src="{{asset('logo/COFFEESUMMIT-LOGO-przezroczyste-tlo.png')}}">
                 </a>
-                <ul class="nav col-md-4 justify-content-end align-items-center order-3 d-none d-md-flex">
+                <ul class="nav col-xl-5 justify-content-end align-items-center order-3 d-none d-xl-flex flex-nowrap">
                     <li><a href="{{route('collaboration')}}" class="nav-link px-2 link-primary font-custom-1">Współpraca</a></li>
                     <li><a href="{{route('contact')}}" class="nav-link px-2 link-primary font-custom-1">Kontakt</a></li>
                     <li>
                         <div class="dropdown text-end nav-link px-2 link-primary">
                             <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="{{asset('image/coffee-beans.png')}}" alt="mdo" width="32" height="32" class="rounded-circle">
+                                <img src="{{asset('image/coffee-beans.png')}}" alt="xlo" width="32" height="32" class="rounded-circle">
                             </a>
                             <ul class="dropdown-menu text-small">
                                 @auth

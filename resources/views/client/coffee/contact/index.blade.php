@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-12 py-4 mb-4" style="background-image: url('{{ asset('image/Depositphotos_79160678_DS.jpg') }}'); background-size: cover; background-position: center;">
                 <div class="d-flex justify-content-between align-items-center my-3 text-center container">
-                    <h1 class="font-custom text-white">Kontakt</h1>
+                    <h1 class="font-custom text-white m-0 p-0">Kontakt</h1>
                 </div>
             </div>
         </div>
@@ -55,9 +55,9 @@
                 </div>
             </div>
             <div class="col-12 text-center my-5">
-                <p class="text-primary h3 m-0 p-0 my-2"><i class="fa-solid fa-location-dot me-2"></i>{{ $company[7]->content }}</p>
-                <p class="text-primary h3 m-0 p-0 my-2"><a href="tel:{{ $company[8]->content }}" class="text-decoration-none"><i class="fa-solid fa-phone me-2"></i>{{ $company[8]->content }}</a></p>
-                <p class="text-primary h3 m-0 p-0 my-2"><a href="mailto:{{ $company[9]->content }}" class="text-decoration-none"><i class="fa-solid fa-envelope me-2"></i>{{ $company[9]->content }}</a></p>
+                <p class="text-primary h3 m-0 p-0 my-2"><i class="fa-solid fa-location-dot me-2"></i>{{ $company['adres_contact_page'] }}</p>
+                <p class="text-primary h3 m-0 p-0 my-2"><a href="tel:{{ $company['phone_contact_page'] }}" class="text-decoration-none"><i class="fa-solid fa-phone me-2"></i>{{ $company['phone_contact_page'] }}</a></p>
+                <p class="text-primary h3 m-0 p-0 my-2"><a href="mailto:{{ $company['email_contact_page'] }}" class="text-decoration-none"><i class="fa-solid fa-envelope me-2"></i>{{ $company['email_contact_page'] }}</a></p>
             </div>
         </div>
     </div>

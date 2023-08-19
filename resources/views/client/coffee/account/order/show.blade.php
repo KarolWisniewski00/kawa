@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-12 py-4 mb-4" style="background-image: url('{{ asset('image/Depositphotos_199493482_XL.jpg') }}'); background-size: cover; background-position: center;">
                 <div class="d-flex justify-content-between align-items-center my-3 text-center container">
-                    <h1 class="font-custom text-white">Zamówienia</h1>
+                    <h1 class="font-custom text-white m-0 p-0">Zamówienia</h1>
                 </div>
             </div>
         </div>
@@ -49,13 +49,13 @@
             </div>
             <div class="col-12 col-md-6 my-4">
                 <h3 class="my-4">Nasze dane firmowe</h3>
-                <p class="text-muted">{{ $company[0]->content }}</p>
-                <p class="text-muted">NIP:{{ $company[1]->content }}</p>
+                <p class="text-muted">{{ $company['name_company'] }}</p>
+                <p class="text-muted">NIP:{{ $company['nip'] }}</p>
                 <h3 class="my-4">Nasze dane bankowe</h3>
-                <h6>{{ $company[2]->content }}</h6>
-                <p class="text-muted fw-bold">Numer konta: {{ $company[3]->content }}</p>
-                <p class="text-muted fw-bold">IBAN: {{ $company[4]->content }}</p>
-                <p class="text-muted fw-bold">BIC: {{ $company[5]->content }}</p>
+                <h6>{{ $company['name_bank'] }}</h6>
+                <p class="text-muted fw-bold">Numer konta: {{ $company['number_account_bank'] }}</p>
+                <p class="text-muted fw-bold">IBAN: {{ $company['number_iban'] }}</p>
+                <p class="text-muted fw-bold">BIC: {{ $company['number_bic'] }}</p>
                 <p class="text-danger fw-bold">Dowód zakupu będzie wysłany wraz z paczką.</p>
             </div>
             <div class="col-12 my-4" style="overflow:auto;">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateProductRequest;
 use App\Models\Grinding;
 use App\Models\Product;
 use App\Models\ProductImage;
@@ -35,7 +36,7 @@ class ProductAdminController extends Controller
             'photos' => $photos,
         ]);
     }
-    public function store(Request $request)
+    public function store(CreateProductRequest $request)
     {
         $product = Product::create([
             'name' => $request->name,
@@ -113,7 +114,7 @@ class ProductAdminController extends Controller
         return view('admin.shop.product.edit', compact('product', 'sizes', 'grindTypes', 'photos', 'productSizes', 'productGrinds', 'productPhotos'));
     }
 
-    public function update(Request $request, Product $product)
+    public function update(CreateProductRequest $request, Product $product)
     {
         // Aktualizujemy dane produktu
         $res = $product->update([

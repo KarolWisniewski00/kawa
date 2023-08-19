@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-12 py-4 mb-4" style="background-image: url('{{ asset('image/Depositphotos_199493566_DS.jpg') }}'); background-size: cover; background-position: center;">
                 <div class="d-flex justify-content-between align-items-center my-3 text-center container">
-                    <h1 class="font-custom text-white">O nas</h1>
+                    <h1 class="font-custom text-white m-0 p-0">O nas</h1>
                 </div>
             </div>
         </div>
@@ -52,23 +52,23 @@
         <div class="row m-0" style="background-color:RGBA(249, 202, 172,0.25);">
             <div class="col-lg-4 col-md-12 mb-lg-0 p-0 m-0">
                 <div class="d-flex flex-column justify-content-center align-items-center h-100">
-                    <img src="{{ asset('image/Depositphotos_86094158_DS.jpg') }}" class="w-100 h-100 img-hover" alt="" />
+                    <img src="{{asset('photo/'.$company['photo_about_page_1'])}}" class="w-100 h-100 img-hover" alt=""  onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;"/>
 
-                    <img src="{{ asset('image/Depositphotos_123317734_DS.jpg') }}" class="w-100 h-100 img-hover" alt="" />
+                    <img src="{{asset('photo/'.$company['photo_about_page_2'])}}" class="w-100 h-100 img-hover" alt="" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;" />
                 </div>
             </div>
 
             <div class="col-lg-4 mb-lg-0 p-0 m-0">
                 <div class="d-flex flex-column justify-content-center align-items-center h-100">
-                    <img src="{{ asset('image/Depositphotos_199823784_DS.jpg') }}" class="w-100 h-100 img-hover" alt="" />
+                    <img src="{{asset('photo/'.$company['photo_about_page_3'])}}" class="w-100 h-100 img-hover" alt="" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;" />
 
-                    <img src="{{ asset('image/tumblr_5d5bebe25ba9df290cf9fd5a291bdc3d_a17f76db_1280.jpg') }}" class="w-100 h-100 img-hover" alt="" />
+                    <img src="{{asset('photo/'.$company['photo_about_page_4'])}}" class="w-100 h-100 img-hover" alt="" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;" />
                 </div>
             </div>
 
             <div class="col-lg-4 mb-lg-0 p-0 m-0">
                 <div class="d-flex flex-column justify-content-center align-items-center h-100">
-                    <img src="{{ asset('image/tumblr_5a3db442661468c1334abb97561f158d_2c5ba144_500.jpeg') }}" class="w-100 h-100 img-hover" alt="" />
+                    <img src="{{asset('photo/'.$company['photo_about_page_5'])}}" class="w-100 h-100 img-hover" alt="" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;" />
                 </div>
             </div>
         </div>

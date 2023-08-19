@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateOrderRequest;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\ProductImage;
@@ -38,7 +39,7 @@ class OrderController extends Controller
         $user = Auth::user();
         return view('client.coffee.account.order.create', compact('photos', 'cartItems', 'user'));
     }
-    public function store(Request $request)
+    public function store(CreateOrderRequest $request)
     {
         $user = Auth::user();
         $total = \Cart::session($user->id)->getTotal();
