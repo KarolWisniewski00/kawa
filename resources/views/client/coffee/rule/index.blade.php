@@ -1,4 +1,9 @@
 @extends('layout.coffee')
+@section('SEO')
+<title>Regulamin | Coffee Summit</title>
+<meta property="og:title" content="Regulamin | Coffee Summit" />
+<meta name="twitter:title" content="Regulamin | Coffee Summit" />
+@endsection
 @section('content')
 <!--PRODUCT-->
 <section>

@@ -1,4 +1,10 @@
 @extends('layout.coffee')
+@section('SEO')
+<title>Sklep | Coffee Summit</title>
+<meta property="og:title" content="Sklep | Coffee Summit" />
+<meta name="twitter:title" content="Sklep | Coffee Summit" />
+<meta name="keywords" content="kawa, kawa bezkofeinowa, kawa rozpuszczalna, kawa ziarnista, kawę, sklep kawa, kawa ziarnista 1 kg, kawa zbożowa, kawa na prezent, kawa mielona, kawa latte">
+@endsection
 @section('content')
 <!--SHOP-->
 <section>

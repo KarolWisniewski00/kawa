@@ -2,5 +2,5 @@ przy deploy ustawić livewire w config/livewire.php
 sortowanie w sklepie
 nie działają komunikaty przy dodawaniu do koszyka
 walidacja dla produktów
-oagrnąć wektory
-crud acc user
+
+3 alty index o nas

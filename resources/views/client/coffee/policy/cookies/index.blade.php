@@ -1,4 +1,9 @@
 @extends('layout.coffee')
+@section('SEO')
+<title>Polityka Cookies | Coffee Summit</title>
+<meta property="og:title" content="Polityka Cookies | Coffee Summit" />
+<meta name="twitter:title" content="Polityka Cookies | Coffee Summit" />
+@endsection
 @section('content')
 <!--PRODUCT-->
 <section>

@@ -1,4 +1,9 @@
 @extends('layout.coffee')
+@section('SEO')
+<title>Polityka prywatności | Coffee Summit</title>
+<meta property="og:title" content="Polityka prywatności | Coffee Summit" />
+<meta name="twitter:title" content="Polityka prywatności | Coffee Summit" />
+@endsection
 @section('content')
 <!--PRODUCT-->
 <section>

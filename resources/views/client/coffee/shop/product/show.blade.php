@@ -1,4 +1,9 @@
 @extends('layout.coffee')
+@section('SEO')
+<title>{{$product->name}} | Coffee Summit</title>
+<meta property="og:title" content="{{$product->name}} | Coffee Summit" />
+<meta name="twitter:title" content="{{$product->name}} | Coffee Summit" />
+@endsection
 @section('content')
 <!--PRODUCT-->
 <section>

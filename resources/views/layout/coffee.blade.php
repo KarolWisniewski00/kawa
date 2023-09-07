@@ -3,18 +3,33 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="author" content="Karol Wiśniewski">
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta property="og:locale" content="pl_PL" />
+    <link rel="icon" href="{{asset('logo/COFFEESUMMIT-LOGO-przezroczyste-tlo.png')}}" type="image/png">
+    <link rel="apple-touch-icon" href="{{asset('logo/COFFEESUMMIT-LOGO-przezroczyste-tlo.png')}}">
+    <meta name="base-url" content="https://coffeesummit.pl/">
+    <link rel="canonical" href="https://coffeesummit.pl/">
+    <meta property="og:url" content="https://coffeesummit.pl/">
+    <meta property="og:site_name" content="Coffee Summit" />
+    <meta property="og:type" content="article" />
+    <meta name="twitter:card" content="summary" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Coffee Summit</title>
     <link href="https://bootswatch.com/5/lux/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/e37acf9c2e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ asset('css/coffee.css')}}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!--SEO-->
+    @yield('SEO')
 </head>
 
 <body>
     <!--NAV + HEADER-->
     <section id="nav" class="fixed-top bg-secondary bg-trans" style="width: 100vw;">
-        <nav class="py-1 bg-primary">
+        <header class="py-1 bg-primary">
             <div class="container">
                 <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between">
                     <ul class="nav col-md-3 justify-content-center">
@@ -29,9 +44,9 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </header>
         <div class="container-fluid position-relative" style="padding-left: 6em; padding-right: 6em;">
-            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-xl-between py-2 mb-2">
+            <nav class="d-flex flex-wrap align-items-center justify-content-center justify-content-xl-between py-2 mb-2">
                 <ul class="nav d-flex d-xl-none position-absolute top-0 end-0">
                     <li>
                         <button class="nav-link link-primary link-change" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -51,7 +66,7 @@
                         <li>
                             <div class="dropdown text-center nav-link px-2 link-primary bg-secondary">
                                 <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="{{asset('image/undraw_drink_coffee_av1x.svg')}}" alt="xlo" width="32" height="32" class="rounded-circle">
+                                    <img src="{{asset('image/undraw_drink_coffee_av1x.svg')}}" alt="logo coffee summit" width="32" height="32" class="rounded-circle">
                                 </a>
                                 <ul class="dropdown-menu text-small">
                                     @auth
@@ -89,7 +104,7 @@
                     <li>
                         <div class="dropdown text-end nav-link px-2 link-primary">
                             <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="{{asset('image/coffee-beans.png')}}" alt="xlo" width="32" height="32" class="rounded-circle">
+                                <img src="{{asset('image/coffee-beans.png')}}" alt="logo coffee summit" width="32" height="32" class="rounded-circle">
                             </a>
                             <ul class="dropdown-menu text-small">
                                 @auth
@@ -112,7 +127,7 @@
                         </div>
                     </li>
                 </ul>
-            </header>
+            </nav>
         </div>
     </section>
     <!--ALERT-->
@@ -141,7 +156,7 @@
                     <li class="nav-item mx-0"><span class="nav-link px-2 text-secondary text-center">&copy; 2023 Desinged by Karol Wiśniewski</span></li>
                 </ul>
                 <a href="/" class="d-flex align-items-center justify-content-center col-12 col-md-auto order-1 order-md-2 mx-auto">
-                    <img class="img-fluid" src="{{asset('logo/COFFEESUMMIT-LOGO-BIALE-przezroczyste-tlo.png')}}" style="height: 6em;">
+                    <img class="img-fluid" src="{{asset('logo/COFFEESUMMIT-LOGO-BIALE-przezroczyste-tlo.png')}}" alt="logo coffee summit" style="height: 6em;">
                 </a>
 
                 <ul class="nav col-md-3 justify-content-center order-3 mx-auto">

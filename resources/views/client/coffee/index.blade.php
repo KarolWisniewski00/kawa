@@ -1,4 +1,13 @@
 @extends('layout.coffee')
+@section('SEO')
+<title>Coffee Summit sklep z kawą</title>
+<meta property="og:title" content="Coffee Summit sklep z kawą" />
+<meta name="twitter:title" content="Coffee Summit sklep z kawą" />
+<meta name="description" content="Jeśli jesteś miłośnikiem kawy sprawdź naszą ofertę. Sklep online z kawą i dostawą pod twoje drzwi">
+<meta property="og:description" content="Jeśli jesteś miłośnikiem kawy sprawdź naszą ofertę. Sklep online z kawą i dostawą pod twoje drzwi" />
+<meta name="twitter:description" content="Jeśli jesteś miłośnikiem kawy sprawdź naszą ofertę. Sklep online z kawą i dostawą pod twoje drzwi" />
+<meta name="keywords" content="Coffee Summit, coffee summit, palarnia kawy piła, dobra kawa do ekspresu, najlepsza kawa ziarnista do ekspresu, kawa ziarnista 1kg promocja, kawa mielona do ekspresu, kawa do ekspresu ziarnista">
+@endsection
 @section('content')
 <!--VIDEO-->
 <style>
@@ -11,8 +20,8 @@
 </style>
 <section class="hero">
     <div class="container-fluid px-0 position-relative video-container overflow-hidden">
-        <video autoplay loop muted class="v-size">
-            <source src="{{asset('video/video_11.mp4')}}">
+        <video autoplay loop muted playsinline class="v-size">
+            <source src="{{asset('video/video_11.mp4')}}" type="video/mp4">
         </video>
         <div class="position-absolute top-50 start-50 translate-middle">
             <div class="d-flex flex-column justify-content-center align-items-center text-center m-mt-5">
@@ -30,7 +39,7 @@
             <div class="col-12">
                 <div class="d-flex flex-column justify-content-center align-items-center my-3 text-center">
                     <h3 class="mt-5 font-custom-2" style="color:#F9CAAC">{{ $company['shop_home_page'] }}</h3>
-                    <h1 class="font-custom">{{ $company['shop_home_page_long'] }}</h1>
+                    <h2 class="font-custom h1">{{ $company['shop_home_page_long'] }}</h2>
                 </div>
             </div>
             @foreach($products as $product)
@@ -40,7 +49,7 @@
                         @foreach($photos as $photo)
                         @if($photo->product_id == $product->id)
                         @if($photo->order == 1)
-                        <img src="{{ asset('photo/' . $photo->image_path) }}" alt="" class="img-fluid" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
+                        <img src="{{ asset('photo/' . $photo->image_path) }}" alt="{{$product->name}}" class="img-fluid" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
                         @endif
                         @endif
                         @endforeach
@@ -90,8 +99,8 @@
         <div class="row my-5 pb-5">
             <div class="col-12">
                 <div class="d-flex flex-column justify-content-center align-items-center my-3 text-center">
-                    <h3 class="mt-5 font-custom-2" style="color:#F9CAAC">{{ $company['about_home_page'] }}</h3>
-                    <h1 class="font-custom">{{ $company['about_home_page_long'] }}</h1>
+                    <div class="mt-5 font-custom-2 h3" style="color:#F9CAAC">{{ $company['about_home_page'] }}</div>
+                    <div class="font-custom h1">{{ $company['about_home_page_long'] }}</div>
                     <p class="w-75 lead">{{ $company['about_home_page_paragraf'] }}</p>
                 </div>
             </div>
@@ -121,8 +130,8 @@
         <div class="row my-5 pb-5">
             <div class="col-12">
                 <div class="d-flex flex-column justify-content-center align-items-center my-3 text-center">
-                    <h3 class="mt-5 font-custom-2" style="color:#F9CAAC">{{ $company['blog_home_page'] }}</h3>
-                    <h1 class="font-custom">{{ $company['blog_home_page_long'] }}</h1>
+                    <div class="mt-5 font-custom-2 h3" style="color:#F9CAAC">{{ $company['blog_home_page'] }}</div>
+                    <div class="font-custom h1">{{ $company['blog_home_page_long'] }}</div>
                 </div>
             </div>
             @foreach($blogs as $blog)
@@ -131,13 +140,13 @@
                     <div class="row">
                         <div class="col-12 col-md-5">
                             <a href="{{route('blog.show','test')}}" class="d-flex flex-column justify-content-center align-items-end">
-                                <img class="img-fluid" alt="" src="{{asset('photo/'.$blog->photo)}}" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
+                                <img class="img-fluid" alt="Zdjęcie główne wpisu bloga" src="{{asset('photo/'.$blog->photo)}}" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
                             </a>
                         </div>
                         <div class="col-12 col-md-7">
                             <div class="d-flex flex-column justify-content-center align-items-start">
-                                <h3 class="text-muted mt-5 font-custom-2">{{$blog->created_at}}</h3>
-                                <h1 class="font-custom">{{$blog->title}}</h1>
+                                <div class="text-muted mt-5 font-custom-2 h3">{{$blog->created_at}}</div>
+                                <div class="font-custom h1">{{$blog->title}}</div>
                                 <p class="d-none d-md-flex lead">{{$blog->start}}</p>
                                 <a href="{{route('blog.show',$blog)}}" class="btn btn-primary">
                                     <i class="fa-solid fa-angles-right me-2"></i>Czytaj więcej
@@ -160,8 +169,8 @@
         <div class="row my-5 pb-5">
             <div class="col-12">
                 <div class="d-flex flex-column justify-content-center align-items-center my-3 text-center">
-                    <h3 class="mt-5 font-custom-2" style="color:#F9CAAC">{{ $company['ig_home_page'] }}</h3>
-                    <h1 class="font-custom">{{ $company['ig_home_page_long'] }}</h1>
+                    <div class="mt-5 font-custom-2 h3" style="color:#F9CAAC">{{ $company['ig_home_page'] }}</div>
+                    <div class="font-custom h1">{{ $company['ig_home_page_long'] }}</div>
                 </div>
             </div>
         </div>
@@ -169,7 +178,7 @@
             @foreach($instagrams as $ig)
             <div class="col-12 col-md-3 mx-auto">
                 <a href="{{$ig->url}}" class="d-flex flex-column justify-content-center align-items-center p-2">
-                    <img class="img-fluid" alt="" src="{{asset('photo/'.$ig->photo)}}" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
+                    <img class="img-fluid" alt="Zdjęcie instagrama" src="{{asset('photo/'.$ig->photo)}}" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
                 </a>
             </div>
             @endforeach

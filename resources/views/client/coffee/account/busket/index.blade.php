@@ -1,4 +1,9 @@
 @extends('layout.coffee')
+@section('SEO')
+<title>Podsumowanie koszyka | Coffee Summit</title>
+<meta property="og:title" content="Podsumowanie koszyka | Coffee Summit" />
+<meta name="twitter:title" content="Podsumowanie koszyka | Coffee Summit" />
+@endsection
 @section('content')
 @php
 $counter_price = 16;

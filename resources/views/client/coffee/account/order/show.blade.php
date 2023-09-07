@@ -1,4 +1,9 @@
 @extends('layout.coffee')
+@section('SEO')
+<title>Podsumowanie zamówienia | Coffee Summit</title>
+<meta property="og:title" content="Podsumowanie zamówienia | Coffee Summit" />
+<meta name="twitter:title" content="Podsumowanie zamówienia | Coffee Summit" />
+@endsection
 @section('content')
 <!--RESUME-->
 <section>

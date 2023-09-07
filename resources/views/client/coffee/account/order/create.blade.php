@@ -1,4 +1,9 @@
 @extends('layout.coffee')
+@section('SEO')
+<title>Kasa | Coffee Summit</title>
+<meta property="og:title" content="Kasa | Coffee Summit" />
+<meta name="twitter:title" content="Kasa | Coffee Summit" />
+@endsection
 @section('content')
 <!--ORDER-->
 <section>
