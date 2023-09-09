@@ -197,6 +197,9 @@ Route::middleware([
     Route::prefix('account')->group(function () {
         Route::prefix('user')->group(function () {
             Route::get('/', [UserController::class, 'index'])->name('account.user');
+            Route::get('/edit/{element}', [UserController::class, 'edit'])->name('account.user.edit');
+            Route::put('/update/{element}', [UserController::class, 'update'])->name('account.user.update');
+            Route::delete('/delete', [UserController::class, 'delete'])->name('account.user.delete');
         });
         Route::prefix('order')->group(function () {
             Route::get('/', [OrderController::class, 'index'])->name('account.order');

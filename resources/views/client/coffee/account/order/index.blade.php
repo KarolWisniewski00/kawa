@@ -22,6 +22,7 @@
                     <h1>Zamówienia</h1>
                 </div>
                 @include('client.coffee.module.nav-acc')
+                @include('client.coffee.module.alert')
                 <div class="col-12" style="overflow:auto;">
                     <table class="table">
                         <thead>

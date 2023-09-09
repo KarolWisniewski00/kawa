@@ -23,6 +23,7 @@
                     <h1>Twoje zamówienia</h1>
                 </div>
                 @include('client.coffee.module.nav-acc')
+                @include('client.coffee.module.alert')
                 <div class="my-4">
                     <h3 class="my-4">Dziękujemy, otrzymaliśmy Twoje zamówienie</h3>
                     <p class="text-muted fw-bold">Status: {{$order->status}}</p>

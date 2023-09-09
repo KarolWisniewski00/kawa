@@ -25,6 +25,7 @@ $counter_price = 16;
                     <h1>Koszyk</h1>
                 </div>
                 @include('client.coffee.module.nav-acc')
+                @include('client.coffee.module.alert')
                 <div class="col-12 mb-4" style="overflow:auto;">
                     <table class="table">
                         <thead>

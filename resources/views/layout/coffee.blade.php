@@ -103,7 +103,7 @@
                     <li class="mx-2">
                         <div class="dropdown text-end nav-link px-0 link-primary">
                             <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="{{asset('image/coffee-beans.png')}}" alt="logo coffee summit" width="32" height="32" class="rounded-circle">
+                                <img src="{{asset('image/coffee-beans.png')}}" alt="logo coffee summit" width="32" height="32" class="rounded-circle d-inline">
                             </a>
                             <ul class="dropdown-menu text-small">
                                 @auth
@@ -129,20 +129,6 @@
             </nav>
         </div>
     </section>
-    <!--ALERT-->
-    <div class="container">
-        @if(Session::has('success'))
-        <div>
-            <div class="alert alert-success">{{Session::get('success')}}</div>
-        </div>
-        @endif
-
-        @if(Session::has('fail'))
-        <div>
-            <div class="alert alert-danger">{{Session::get('fail')}}</div>
-        </div>
-        @endif
-    </div>
     <!--END ALERT-->
     <div id="content">
         @yield('content')

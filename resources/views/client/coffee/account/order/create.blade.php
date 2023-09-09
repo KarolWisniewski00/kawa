@@ -23,6 +23,7 @@
                     <h1>Kasa</h1>
                 </div>
                 @include('client.coffee.module.nav-acc')
+                @include('client.coffee.module.alert')
             </div>
             <div class="col-12 col-md-6 order-2 order-md-1">
                 <form class="form text-center my-4" action="{{route('account.order.store')}}" method="POST">
