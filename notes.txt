@@ -4,3 +4,6 @@ nie działają komunikaty przy dodawaniu do koszyka
 walidacja dla produktów
 
 3 alty index o nas
+DB_DATABASE=baza23185_wfxunmvm
+DB_USERNAME=admin23185_wfxunmvm
+DB_PASSWORD=q1C)o2N*o8

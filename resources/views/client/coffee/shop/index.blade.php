@@ -22,62 +22,64 @@
             <div class="col-12">
                 <div class="d-flex justify-content-between align-items-center my-3 text-center">
                     <div class="text-primary">
-                        Wszystkie produkty <span>7</span>
+                        Wszystkie produkty <span>{{ count($products) }}</span>
                     </div>
                     <div class="dropdown">
                         <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Sortowanie
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Od cen najniższych</a></li>
-                            <li><a class="dropdown-item" href="#">Od cen najwyższych</a></li>
+                            <li><button id="sort-lowest-price" class="dropdown-item" href="#">Od cen najniższych</button></li>
+                            <li><button id="sort-highest-price" class="dropdown-item" href="#">Od cen najwyższych</button></li>
                         </ul>
                     </div>
                 </div>
             </div>
-            @foreach($products as $product)
-            <div class="col-12 col-md-4">
-                <a href="{{route('shop.product.show', $product->id)}}" class="d-flex flex-column justify-content-center align-items-center text-decoration-none">
-                    <div class="d-flex flex-column justify-content-center align-items-center">
-                        @foreach($photos as $photo)
-                        @if($photo->product_id == $product->id)
-                        @if($photo->order == 1)
-                        <img src="{{ asset('photo/' . $photo->image_path) }}" alt="" class="img-fluid" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
-                        @endif
-                        @endif
-                        @endforeach
-                        <h4 class="font-custom mt-2">{{$product->name}}</h4>
-                        <p>
-                            @php
-                            $minPrice = null;
-                            $maxPrice = null;
-                            @endphp
-
-                            @foreach($variants as $variant)
-                            @if($variant->product_id == $product->id && $variant->size_id != null)
-                            @php
-                            // Sprawdź minimalną cenę
-                            if ($minPrice === null || $variant->price < $minPrice) { $minPrice=$variant->price;
-                                }
-
-                                // Sprawdź maksymalną cenę
-                                if ($maxPrice === null || $variant->price > $maxPrice) {
-                                $maxPrice = $variant->price;
-                                }
+            <div id="sort-container" class="row">
+                @foreach($products as $product)
+                <div class="col-12 col-md-4">
+                    <a href="{{route('shop.product.show', $product->id)}}" class="d-flex flex-column justify-content-center align-items-center text-decoration-none">
+                        <div class="d-flex flex-column justify-content-center align-items-center">
+                            @foreach($photos as $photo)
+                            @if($photo->product_id == $product->id)
+                            @if($photo->order == 1)
+                            <img src="{{ asset('photo/' . $photo->image_path) }}" alt="" class="img-fluid" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
+                            @endif
+                            @endif
+                            @endforeach
+                            <h4 class="font-custom mt-2">{{$product->name}}</h4>
+                            <p>
+                                @php
+                                $minPrice = null;
+                                $maxPrice = null;
                                 @endphp
-                                @endif
-                                @endforeach
 
-                                @if($minPrice !== null && $maxPrice !== null)
-                                {{$minPrice}} PLN - {{$maxPrice}} PLN
-                                @else
-                                Brak dostępnych cen.
-                                @endif
-                        </p>
-                    </div>
-                </a>
+                                @foreach($variants as $variant)
+                                @if($variant->product_id == $product->id && $variant->size_id != null)
+                                @php
+                                // Sprawdź minimalną cenę
+                                if ($minPrice === null || $variant->price < $minPrice) { $minPrice=$variant->price;
+                                    }
+
+                                    // Sprawdź maksymalną cenę
+                                    if ($maxPrice === null || $variant->price > $maxPrice) {
+                                    $maxPrice = $variant->price;
+                                    }
+                                    @endphp
+                                    @endif
+                                    @endforeach
+
+                                    @if($minPrice !== null && $maxPrice !== null)
+                                    {{$minPrice}} PLN - {{$maxPrice}} PLN
+                                    @else
+                                    Brak dostępnych cen.
+                                    @endif
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                @endforeach
             </div>
-            @endforeach
             <div class="col-12 my-2">
                 <div class="px-4 py-2">
                     {{ $products->links() }}
@@ -86,4 +88,32 @@
         </div>
     </div>
 </section>
+@endsection
+@section('js')
+<script>
+    $(document).ready(function() {
+        // Funkcja do sortowania od najniższej ceny
+        $("#sort-lowest-price").click(function() {
+            var products = $(".col-12.col-md-4");
+            products.sort(function(a, b) {
+                var priceA = parseFloat($(a).find("p").text().split(" - ")[0]);
+                var priceB = parseFloat($(b).find("p").text().split(" - ")[0]);
+                return priceA - priceB;
+            });
+            $("#sort-container").html(products);
+        });
+
+        // Funkcja do sortowania od najwyższej ceny
+        $("#sort-highest-price").click(function() {
+            var products = $(".col-12.col-md-4");
+            products.sort(function(a, b) {
+                var priceA = parseFloat($(a).find("p").text().split(" - ")[1]);
+                var priceB = parseFloat($(b).find("p").text().split(" - ")[1]);
+                return priceB - priceA;
+            });
+            $("#sort-container").html(products);
+        });
+    });
+</script>
+
 @endsection
