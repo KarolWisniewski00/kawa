@@ -15,26 +15,26 @@
                         <h1 class="mt-8 mb-4 text-2xl font-medium text-gray-900">
                             Tworzenie wpisu
                         </h1>
-                        <a href="{{route('dashboard.blog')}}" type="button" class="mt-8 mb-4 text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-indigo-600 dark:hover:bg-indigo-700 focus:outline-none dark:focus:ring-indigo-800"><i class="fa-solid fa-chevron-left me-2"></i>Powrót</span></a>
+                        <a href="{{route('dashboard.blog')}}" type="button" class="mt-8 mb-4 text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"><i class="fa-solid fa-chevron-left me-2"></i>Powrót</span></a>
                     </div>
                     <form action="{{route('dashboard.blog.store')}}" method="POST">
                         @csrf
                         <div class="mb-6">
-                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tytuł</label>
-                            <input value="{{ old('title') ? old('title') : ''}}" name="title" type="text" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Brazil Santos" required>
+                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Tytuł</label>
+                            <input value="{{ old('title') ? old('title') : ''}}" name="title" type="text" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="Brazil Santos" required>
                             @error('title')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
                         </div>
                         <!-- Add the "Show More" button below the existing code -->
                         <div class="mb-6">
-                            <h3 class="mb-5 text-lg font-medium text-gray-900 dark:text-white">Zdjęcie główne</h3>
+                            <h3 class="mb-5 text-lg font-medium text-gray-900">Zdjęcie główne</h3>
                             <ul class="grid w-full gap-6 md:grid-cols-3" id="photoGrid">
                                 <!-- The first 9 photos will be loaded initially, the rest will be hidden -->
                                 @foreach($photos as $index => $photo)
                                 <li class="{{ $index >= 9 ? 'hidden' : '' }}">
                                     <input {{ old('photo') == $photo->getFilename() ? 'checked' : '' }} name="photo" type="radio" id="photo-{{ $photo->getFilename() }}" value="{{ $photo->getFilename() }}" class="hidden peer">
-                                    <label for="photo-{{ $photo->getFilename() }}" class="h-full inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 hover:text-gray-600 dark:peer-checked:text-gray-300 peer-checked:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                                    <label for="photo-{{ $photo->getFilename() }}" class="h-full inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer  peer-checked:border-blue-600 hover:text-gray-600 peer-checked:text-gray-600 hover:bg-gray-50">
                                         <div class="block">
                                             <div class="w-full text-lg font-semibold"><img src="{{ asset('photo/' . $photo->getFilename()) }}" alt=""></div>
                                         </div>
@@ -43,7 +43,7 @@
                                 @endforeach
                             </ul>
                             <!-- "Show More" button -->
-                            <button id="showMoreBtn" type="button" class="mt-8 text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-indigo-600 dark:hover:bg-indigo-700 focus:outline-none dark:focus:ring-indigo-800"><i class="fa-solid fa-caret-down mr-2"></i>Pokaż więcej</button>
+                            <button id="showMoreBtn" type="button" class="mt-8 text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"><i class="fa-solid fa-caret-down mr-2"></i>Pokaż więcej</button>
                             @error('photo')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
@@ -76,29 +76,29 @@
                             });
                         </script>
                         <div class="mb-6">
-                            <label for="start" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Wstęp</label>
-                            <textarea id="start" name="start" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Wpisz treść tutaj">{{ old('start') ? old('start') : ''}}</textarea>
+                            <label for="start" class="block mb-2 text-sm font-medium text-gray-900 ">Wstęp</label>
+                            <textarea id="start" name="start" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Wpisz treść tutaj">{{ old('start') ? old('start') : ''}}</textarea>
                             @error('start')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
                         </div>
                         <div class="mb-6">
-                            <label for="content" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rozwinięcie</label>
-                            <textarea id="content" name="content" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Wpisz treść tutaj">{{ old('content') ? old('content') : ''}}</textarea>
+                            <label for="content" class="block mb-2 text-sm font-medium text-gray-900 ">Rozwinięcie</label>
+                            <textarea id="content" name="content" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Wpisz treść tutaj">{{ old('content') ? old('content') : ''}}</textarea>
                             @error('content')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
                         </div>
                         <div class="mb-6">
-                            <label for="end" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Zakończenie</label>
-                            <textarea id="end" name="end" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Wpisz treść tutaj">{{ old('end') ? old('end') : ''}}</textarea>
+                            <label for="end" class="block mb-2 text-sm font-medium text-gray-900 ">Zakończenie</label>
+                            <textarea id="end" name="end" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Wpisz treść tutaj">{{ old('end') ? old('end') : ''}}</textarea>
                             @error('end')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
                         </div>
                         <div class="mb-6">
-                            <label for="number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kolejność</label>
-                            <input value="{{ old('order') ? old('order') : 0}}" name="order" type="number" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="0" required>
+                            <label for="number" class="block mb-2 text-sm font-medium text-gray-900 ">Kolejność</label>
+                            <input value="{{ old('order') ? old('order') : 0}}" name="order" type="number" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="0" required>
                             @error('order')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
@@ -106,31 +106,31 @@
                         <div class="mb-6">
                             <label class="relative inline-flex items-center cursor-pointer">
                                 <input type="checkbox" name="visibility_on_website" value="1" class="sr-only peer" {{ old('visibility_on_website') ? 'checked' : '' }}>
-                                <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                                <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Widoczność na stronie</span>
+                                <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                <span class="ml-3 text-sm font-medium text-gray-900">Widoczność na stronie</span>
                             </label>
                         </div>
                         @error('visibility_on_website')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
                         <div class="mb-6">
-                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">SEO Tytuł</label>
-                            <input value="{{ old('seo_title') ? old('seo_title') : ''}}" type="text" name="seo_title" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Brazil Santos" required>
+                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900 ">SEO Tytuł</label>
+                            <input value="{{ old('seo_title') ? old('seo_title') : ''}}" type="text" name="seo_title" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="Brazil Santos" required>
                             @error('seo_title')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
                         </div>
 
                         <div class="mb-6">
-                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">SEO Opis</label>
-                            <input value="{{ old('seo_description') ? old('seo_description') : ''}}" type="text" name="seo_description" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Wysokiej jakości kawa z Brazylii" required>
+                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900 ">SEO Opis</label>
+                            <input value="{{ old('seo_description') ? old('seo_description') : ''}}" type="text" name="seo_description" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="Wysokiej jakości kawa z Brazylii" required>
                             @error('seo_description')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
                         </div>
                         <div class="mb-6">
-                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">SEO Keywards</label>
-                            <input value="{{ old('seo_keywards') ? old('seo_keywards') : ''}}" type="text" name="seo_keywards" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Wysokiej jakości kawa z Brazylii" required>
+                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900 ">SEO Keywards</label>
+                            <input value="{{ old('seo_keywards') ? old('seo_keywards') : ''}}" type="text" name="seo_keywards" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="Wysokiej jakości kawa z Brazylii" required>
                             @error('seo_keywards')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
@@ -138,16 +138,16 @@
                         <div class="mb-6">
                             <label class="relative inline-flex items-center cursor-pointer">
                                 <input name="visibility_in_google" type="checkbox" value="1" class="sr-only peer" {{ old('visibility_in_google') ? 'checked' : '' }}>
-                                <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                                <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Widoczność w google</span>
+                                <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                <span class="ml-3 text-sm font-medium text-gray-900">Widoczność w google</span>
                             </label>
                         </div>
                         @error('visibility_in_google')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
 
-                        <button type="submit" class="text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 me-2"><i class="fa-solid fa-floppy-disk mr-2"></i>Zapisz</button>
-                        <a href="{{route('dashboard.blog')}}" class="text-red-500 hover:text-white border border-red-600 hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"><i class="fa-solid fa-x mr-2"></i>Anuluj</a>
+                        <button type="submit" class="text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2"><i class="fa-solid fa-floppy-disk mr-2"></i>Zapisz</button>
+                        <a href="{{route('dashboard.blog')}}" class="text-red-500 hover:text-white border border-red-600 hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"><i class="fa-solid fa-x mr-2"></i>Anuluj</a>
                     </form>
                 </div>
             </div>

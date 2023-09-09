@@ -28,14 +28,14 @@
 
                             <div class="flex flex-col xl:flex-row h-fit">
                                 <div class="mx-auto pt-1 xl:py-2">
-                                    <a href="{{$i->url}}" class="m-2 flex py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-600 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"><i class="fa-solid fa-eye"></i></a>
+                                    <a href="{{$i->url}}" class="m-2 flex py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-600 focus:z-10 focus:ring-4 focus:ring-gray-200"><i class="fa-solid fa-eye"></i></a>
                                 </div>
                                 <div class="mx-auto pt-1 xl:py-2">
-                                    <a href="{{route('dashboard.technic.instagram.edit', $i->id)}}" class="flex m-2 text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-indigo-600 dark:hover:bg-indigo-700 focus:outline-none dark:focus:ring-indigo-800"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href="{{route('dashboard.technic.instagram.edit', $i->id)}}" class="flex m-2 text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none"><i class="fa-solid fa-pen-to-square"></i></a>
                                 </div>
                                 <div class="mx-auto pt-1 xl:py-2">
                                     <form action="{{ route('dashboard.technic.instagram.delete', $i->id) }}" method="POST">
-                                        <button type="submit" onclick="return confirm('Czy na pewno chcesz usunąć to zdjęcie?');" class="m-2 text-red-500 hover:text-white border border-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"><i class="fa-solid fa-trash"></i></button>
+                                        <button type="submit" onclick="return confirm('Czy na pewno chcesz usunąć to zdjęcie?');" class="m-2 text-red-500 hover:text-white border border-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"><i class="fa-solid fa-trash"></i></button>
                                         @method('delete')
                                         @csrf
                                     </form>

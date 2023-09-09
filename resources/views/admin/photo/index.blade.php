@@ -15,14 +15,14 @@
                     <h1 class="mt-8 mb-4 text-2xl font-medium text-gray-900">
                         Zdjęcia
                     </h1>
-                    <form enctype="multipart/form-data" method="POST" action="{{ route('dashboard.photo.upload') }}" id="my-form" class="dropzone flex flex-row flex-wrap items-center h-auto justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                    <form enctype="multipart/form-data" method="POST" action="{{ route('dashboard.photo.upload') }}" id="my-form" class="dropzone flex flex-row flex-wrap items-center h-auto justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
                         @csrf
                         <div class="dz-message flex flex-col flex-wrap items-center justify-center pt-5 pb-6" data-dz-message>
-                            <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                            <svg class="w-8 h-8 mb-4 text-gray-500 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
                             </svg>
-                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Kliknij aby dodać</span> lub przeciągnij i upuść</p>
-                            <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG lub GIF</p>
+                            <p class="mb-2 text-sm text-gray-500 "><span class="font-semibold">Kliknij aby dodać</span> lub przeciągnij i upuść</p>
+                            <p class="text-xs text-gray-500 ">SVG, PNG, JPG lub GIF</p>
                         </div>
                     </form>
                     @if($photoFiles->isEmpty())
@@ -34,8 +34,8 @@
                         Wszystkie zdjęcia
                     </h1>
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 table-auto overflow-auto">
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <table class="w-full text-sm text-left text-gray-500  table-auto overflow-auto">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                                 <tr>
                                     <th scope="col" class="px-6 py-3">
                                         Zdjęcie
@@ -64,8 +64,8 @@
                             </thead>
                             <tbody>
                                 @foreach ($photoFiles as $photoFile)
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                <tr class="bg-white border-b hover:bg-gray-50">
+                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                         <img src="{{ asset('photo/' . $photoFile->getFilename()) }}" alt="" class="img-fluid" height="48px" width="48px" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
                                     </th>
                                     <td class="px-6 py-4">
@@ -78,16 +78,11 @@
                                         {{ date('d.m.Y', $photoFile->getMTime()) }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        <button type="button" onclick="showModal(`{{ asset('photo/' . $photoFile->getFilename()) }}`)" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-600 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"><i class="fa-solid fa-eye"></i></button>
+                                        <button type="button" onclick="showModal(`{{ asset('photo/' . $photoFile->getFilename()) }}`)" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-600 focus:z-10 focus:ring-4 focus:ring-gray-200"><i class="fa-solid fa-eye"></i></button>
                                     </td>
-                                    <!--
-                                    <td class="px-6 py-4">
-                                        <button type="button" class="text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-indigo-600 dark:hover:bg-indigo-700 focus:outline-none dark:focus:ring-indigo-800"><i class="fa-solid fa-pen-to-square"></i></button>
-                                    </td>
-                                    -->
                                     <td class="px-6 py-4">
                                         <form action="{{ route('dashboard.photo.delete', ['slug' => basename($photoFile)]) }}" method="POST">
-                                            <button type="submit" onclick="return confirm('Czy na pewno chcesz usunąć to zdjęcie?');" class="text-red-500 hover:text-white border border-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"><i class="fa-solid fa-trash"></i></button>
+                                            <button type="submit" onclick="return confirm('Czy na pewno chcesz usunąć to zdjęcie?');" class="text-red-500 hover:text-white border border-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"><i class="fa-solid fa-trash"></i></button>
                                             @method('delete')
                                             @csrf
                                         </form>

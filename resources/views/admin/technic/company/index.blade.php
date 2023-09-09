@@ -18,8 +18,8 @@
                         </h1>
                     </div>
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 table-fixed">
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <table class="w-full text-sm text-left text-gray-500">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                                 <tr>
                                     <th scope="col" class="px-6 py-3">
                                         Typ
@@ -35,48 +35,48 @@
                             <tbody>
                                 @foreach($elements as $element)
                                 @if($element->type == 'name_company')
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <tr class="bg-white border-b hover:bg-gray-50">
                                     <td colspan="3" class="px-6 py-4 font-bold text-xl text-center">
                                         Dane firmy wyświetlające się w zamówieniach
                                     </td>
                                 </tr>
                                 @endif
                                 @if($element->type == 'info_top_website')
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <tr class="bg-white border-b hover:bg-gray-50">
                                     <td colspan="3" class="px-6 py-4 font-bold text-xl text-center">
                                         Dane techniczne
                                     </td>
                                 </tr>
                                 @endif
                                 @if($element->type == 'adres_contact_page')
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <tr class="bg-white border-b  hover:bg-gray-50 ">
                                     <td colspan="3" class="px-6 py-4 font-bold text-xl text-center">
                                         Dane podstrony kontakt
                                     </td>
                                 </tr>
                                 @endif
                                 @if($element->type == 'hero_h1')
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <tr class="bg-white border-b  hover:bg-gray-50 ">
                                     <td colspan="3" class="px-6 py-4 font-bold text-xl text-center">
                                         Dane strony głównej
                                     </td>
                                 </tr>
                                 @endif
                                 @if($element->type == 'about_company_about_page')
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <tr class="bg-white border-b  hover:bg-gray-50 ">
                                     <td colspan="3" class="px-6 py-4 font-bold text-xl text-center">
                                         Dane podstrony o nas (firma)
                                     </td>
                                 </tr>
                                 @endif
                                 @if($element->type == 'collaboration_page')
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <tr class="bg-white border-b  hover:bg-gray-50 ">
                                     <td colspan="3" class="px-6 py-4 font-bold text-xl text-center">
                                         Dane podstrony współpraca
                                     </td>
                                 </tr>
                                 @endif
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <tr class="bg-white border-b  hover:bg-gray-50 ">
                                     <td class="px-6 py-4">
                                         {{$element->pl}}
                                     </td>
@@ -84,7 +84,7 @@
                                         {{$element->content}}
                                     </td>
                                     <td class="px-6 py-4">
-                                        <a href="{{ route('dashboard.technic.company.edit', $element->id) }}" class="text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-indigo-600 dark:hover:bg-indigo-700 focus:outline-none dark:focus:ring-indigo-800">
+                                        <a href="{{ route('dashboard.technic.company.edit', $element->id) }}" class="text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
                                     </td>
