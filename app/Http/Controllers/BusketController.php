@@ -36,7 +36,7 @@ class BusketController extends Controller
     {
         $size = Size::where('id','=', $request->size)->first();
         $grind = Grinding::where('name','=', $request->grind)->first();
-        $product_variant = ProductVariant::where('size_id','=', $request->size)->first();
+        $product_variant = ProductVariant::where('size_id','=', $request->size)->where('product_id', $product->id)->first();
         
         \Cart::session(auth()->id())->add([
             'id' => intval(strval($product->id).strval($size->id).strval($grind->id)),
@@ -53,17 +53,19 @@ class BusketController extends Controller
     public function minus(Request $request, Product $product)
     {
         $cart = \Cart::session(auth()->id());
-    
-        $currentQuantity = $cart->get($product->id)->quantity;
+        $size = Size::where('id','=', $request->size)->first();
+        $grind = Grinding::where('name','=', $request->grind)->first();
+
+        $currentQuantity = $cart->get(intval(strval($product->id).strval($size->id).strval($grind->id)))->quantity;
     
         if ($currentQuantity === 1) {
             // Usuń produkt z koszyka, jeśli ilość wynosi 1
-            $cart->remove($product->id);
+            $cart->remove(intval(strval($product->id).strval($size->id).strval($grind->id)));
             return redirect()->route('account.busket')->with('success', 'Produkt został usunięty z koszyka.');
         }
     
         // Zmniejsz ilość produktu o 1
-        $cart->update($product->id, [
+        $cart->update(intval(strval($product->id).strval($size->id).strval($grind->id)), [
             'quantity' => -1,
         ]);
     
@@ -71,7 +73,10 @@ class BusketController extends Controller
     }
     public function remove(Request $request, Product $product)
     {
-        \Cart::session(auth()->id())->remove($product->id);
+        $size = Size::where('id','=', $request->size)->first();
+        $grind = Grinding::where('name','=', $request->grind)->first();
+
+        \Cart::session(auth()->id())->remove(intval(strval($product->id).strval($size->id).strval($grind->id)));
 
         return redirect()->route('account.busket')->with('success', 'Produkt został usunięty z koszyka.');
     }

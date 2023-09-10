@@ -63,6 +63,18 @@ return new class extends Migration
         $company->save();
 
         $company = new Company();
+        $company->type = 'free_ship';
+        $company->pl = 'Kwota od której będzie darmowa wysyłka';
+        $company->content = '100';
+        $company->save();
+
+        $company = new Company();
+        $company->type = 'price_ship';
+        $company->pl = 'Kwota przesyłki';
+        $company->content = '16';
+        $company->save();
+
+        $company = new Company();
         $company->type = 'ig_link';
         $company->pl = 'Link do instagrama';
         $company->content = '';

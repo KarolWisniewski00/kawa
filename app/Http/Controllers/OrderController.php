@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateOrderRequest;
+use App\Models\Company;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\ProductImage;
@@ -43,7 +44,12 @@ class OrderController extends Controller
     {
         $user = Auth::user();
         $total = \Cart::session($user->id)->getTotal();
+        $company = Company::get()->pluck('content','type');
 
+        if($total >= $company['free_ship']){}
+        else{
+            $total = $total + $company['price_ship'];
+        }
         $order = Order::create([
             'number' => Str::uuid(),
             'name' => $request->name,
@@ -57,7 +63,7 @@ class OrderController extends Controller
             'phone' => $request->phone,
             'extra' => $request->extra,
             'user_id' => $user->id,
-            'total' => $total+16,
+            'total' => $total,
             'status' => 'Oczekujące na płatność',
         ]);
 

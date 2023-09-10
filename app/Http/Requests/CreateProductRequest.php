@@ -13,7 +13,7 @@ class CreateProductRequest extends FormRequest
             'description' => 'required|string',
             'order' => 'required|integer',
             'price.*' => 'nullable|numeric|min:0',
-            'grind.*' => 'nullable|exists:grinds,id',
+            'grinding.*' => 'nullable|exists:grinds,id',
             'visibility_on_website' => 'nullable|boolean',
             'seo_title' => 'nullable|string|max:255',
             'seo_description' => 'nullable|string|max:255',

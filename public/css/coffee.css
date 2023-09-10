@@ -39,6 +39,9 @@
 .m-mt-5{
     margin-top: 5em;
 }
+.ws{
+    white-space: wrap!important;
+}
 @media only screen and (min-width: 576px) {
     .v-size {
         width: 150%;
@@ -68,5 +71,8 @@
     }
     .l-size{
         height: 6em;
+    }
+    .ws{
+        white-space: nowrap!important;
     }
 }

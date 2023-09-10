@@ -1,8 +1,15 @@
 @extends('layout.coffee')
 @section('SEO')
-<title>{{$product->name}} | Coffee Summit</title>
-<meta property="og:title" content="{{$product->name}} | Coffee Summit" />
-<meta name="twitter:title" content="{{$product->name}} | Coffee Summit" />
+<title>{{$product->seo_title}} | Coffee Summit</title>
+@if( $product->visibility_in_google == true )
+<meta property="og:title" content="{{$product->seo_title}} | Coffee Summit" />
+<meta name="twitter:title" content="{{$product->seo_title}} | Coffee Summit" />
+<meta name="description" content="{{$product->seo_description}}">
+<meta property="og:description" content="{{$product->seo_description}}" />
+<meta name="twitter:description" content="{{$product->seo_description}}" />
+@else
+<meta name="robots" content="noindex, nofollow">
+@endif
 @endsection
 @section('content')
 <!--PRODUCT-->
@@ -35,7 +42,13 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <img src="{{asset('image/tumblr_owdamrsE8J1rqafmyo1_500.jpeg')}}" alt="studio-photo-main" class="img-fluid" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
+                                @foreach($photos as $photo)
+                                @if($photo->product_id == $product->id)
+                                @if($photo->order == 1)
+                                <img src="{{ asset('photo/' . $photo->image_path) }}" alt="studio-photo-main" class="img-fluid" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
+                                @endif
+                                @endif
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -210,6 +223,20 @@
 
         // Nasłuchuj zmian w wyborze rozmiaru i rodzaju mielenia
         $('input[name="size"], input[name="grind"]').change(checkSelection);
+    });
+    $(document).ready(function() {
+        // Znajdź elementy suwaka i etykiety
+        var $slider = $('#quantity');
+        var $label = $('label[for="quantity"]');
+
+        // Obsługa zdarzenia input (zmiany wartości suwaka)
+        $slider.on('input', function() {
+            // Pobierz wartość suwaka
+            var value = $(this).val();
+
+            // Aktualizuj tekst etykiety
+            $label.text(value);
+        });
     });
 </script>
 @endsection

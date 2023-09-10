@@ -78,6 +78,15 @@
                             });
                         </script>
                         @else
+                        @if($element->type == 'free_ship')
+                        <div class="mb-6">
+                            <label for="content" class="block mb-2 text-sm font-medium text-gray-900">Kwota</label>
+                            <input type="number" step="0.01" name="content" id="content" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Wprowadź kwotę" value="{{ old('content', $element->content) }}" required>
+                            @error('content')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        @else
                         <div class="mb-6">
                             <label for="content" class="block mb-2 text-sm font-medium text-gray-900">Treść</label>
                             <input type="text" name="content" id="content" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Wprowadź treść" value="{{ old('content', $element->content) }}" required>
@@ -85,6 +94,7 @@
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
                         </div>
+                        @endif
                         @endif
                         <button type="submit" class="text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2">
                             <i class="fa-solid fa-floppy-disk mr-2"></i>Zapisz

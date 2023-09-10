@@ -29,8 +29,8 @@
                 </style>
                 <section>
                     <div class="container-fluid px-0 position-relative video-container overflow-hidden">
-                        <video autoplay loop muted class="w-100 d-block mx-lg-auto img-fluid">
-                            <source src="{{asset('video/video_8.mp4')}}">
+                        <video autoplay loop muted playsinline class="w-100 d-block mx-lg-auto img-fluid">
+                            <source src="{{asset('video/video_8.mp4')}}" type="video/mp4">
                         </video>
                     </div>
                 </section>
@@ -99,8 +99,8 @@
             <div class="col-12 col-lg-6 p-0 m-0">
                 <section>
                     <div class="container-fluid px-0 position-relative video-container overflow-hidden">
-                        <video autoplay loop muted class="w-100 d-block mx-lg-auto img-fluid">
-                            <source src="{{asset('video/video_4.mp4')}}">
+                        <video autoplay loop muted playsinline class="w-100 d-block mx-lg-auto img-fluid">
+                            <source src="{{asset('video/video_4.mp4')}}"  type="video/mp4">
                         </video>
                     </div>
                 </section>

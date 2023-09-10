@@ -6,7 +6,7 @@
 @endsection
 @section('content')
 @php
-$counter_price = 16;
+$counter_price = intval($company['price_ship']);
 @endphp
 <section>
     <div class="container-fluid">
@@ -62,7 +62,7 @@ $counter_price = 16;
                                 </th>
                                 <th scope="col">
                                     <div class="d-flex flex-column justify-content-center align-items-center">
-                                        <div class="fw-bold">Łącznie</div>
+                                        <div class="fw-bold">Podsumowanie rekordu</div>
                                     </div>
                                 </th>
                                 <th scope="col">
@@ -90,11 +90,17 @@ $counter_price = 16;
                                 </th>
                             </tr>
                             @else
+                            @php
+                            $k = 1;
+                            @endphp
                             @foreach ($cartItems as $item)
                             <tr>
                                 <th>
                                     <div class="d-flex flex-column justify-content-center align-items-center">
-                                        <div class="fw-bold">1</div>
+                                        <div class="fw-bold">{{$k}}</div>
+                                        @php
+                                        $k += 1;
+                                        @endphp
                                     </div>
                                 </th>
                                 <td>
@@ -127,6 +133,12 @@ $counter_price = 16;
                                     <div class="d-flex flex-row justify-content-center align-items-center">
                                         <form method="POST" action="{{route('account.busket.minus', $item->associatedModel)}}">
                                             @csrf
+                                            @foreach($sizes as $size)
+                                            @if($size->name == $item->attributes[0])
+                                            <input type="hidden" name="size" value="{{$size->id}}">
+                                            @endif
+                                            @endforeach
+                                            <input type="hidden" name="grind" value="{{$item->attributes[1]}}">
                                             <button type="submit" class="btn btn-sm btn-danger me-2" onclick="return confirm('Czy na pewno chcesz usunąć ten produkt?');">
                                                 <i class="fa-solid fa-minus"></i>
                                             </button>
@@ -159,6 +171,12 @@ $counter_price = 16;
                                     <div class="d-flex flex-column justify-content-center align-items-center">
                                         <form method="POST" action="{{route('account.busket.remove', $item->associatedModel)}}">
                                             @csrf
+                                            @foreach($sizes as $size)
+                                            @if($size->name == $item->attributes[0])
+                                            <input type="hidden" name="size" value="{{$size->id}}">
+                                            @endif
+                                            @endforeach
+                                            <input type="hidden" name="grind" value="{{$item->attributes[1]}}">
                                             <button type="submit" class="btn btn-danger" onclick="return confirm('Czy na pewno chcesz usunąć ten produkt?');"><i class="fa-solid fa-trash"></i>
                                             </button>
                                         </form>
@@ -174,7 +192,14 @@ $counter_price = 16;
                         <ul class="list-group ">
                             <li class="list-group-item d-flex justify-content-between align-items-start">
                                 <div class="ms-2 me-auto">
-                                    <div class="fw-bold">Wysyłka PDP + 16 PLN</div>
+                                    @if($counter_price >= $company['free_ship'])
+                                    @php
+                                    $counter_price = $counter_price - $company['price_ship']
+                                    @endphp
+                                    <div class="fw-bold">Wysyłka PDP darmowa</div>
+                                    @else
+                                    <div class="fw-bold">Wysyłka PDP + {{ $company['price_ship'] }} PLN</div>
+                                    @endif
                                 </div>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-start">

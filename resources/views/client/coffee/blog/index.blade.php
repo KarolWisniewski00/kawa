@@ -14,6 +14,7 @@
     <div class="container">
         <div class="row pb-5">
             @foreach($blogs as $blog)
+            @if($blog->visibility_on_website)
             <div class="col-6 col-md-12">
                 <div class="d-flex flex-column justify-content-center align-items-center my-2">
                     <div class="row">
@@ -35,6 +36,7 @@
                     </div>
                 </div>
             </div>
+            @endif
             @endforeach
             <div class="col-12 my-2">
                 {{ $blogs->links() }}

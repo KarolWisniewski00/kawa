@@ -1,4 +1,16 @@
 @extends('layout.coffee')
+@section('SEO')
+<title>{{$blog->seo_title}} | Coffee Summit</title>
+@if( $blog->visibility_in_google == true )
+<meta property="og:title" content="{{$blog->seo_title}} | Coffee Summit" />
+<meta name="twitter:title" content="{{$blog->seo_title}} | Coffee Summit" />
+<meta name="description" content="{{$blog->seo_description}}">
+<meta property="og:description" content="{{$blog->seo_description}}" />
+<meta name="twitter:description" content="{{$blog->seo_description}}" />
+@else
+<meta name="robots" content="noindex, nofollow">
+@endif
+@endsection
 @section('content')
 <div class="container-fluid">
     <div class="row">

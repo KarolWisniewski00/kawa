@@ -96,7 +96,7 @@
                         </label>
                     </div>
                     @php
-                    $counter_price = 16;
+                    $counter_price = intval($company['price_ship']);
                     @endphp
 
                     @foreach ($cartItems as $item)
@@ -112,7 +112,7 @@
             </div>
             <div class="col-12 col-md-6 order-1 order-md-2" style="overflow:auto;">
                 <table class="table">
-                    <thead>
+                    <thead class="text-center">
                         <tr>
                             <th scope="col">
                                 <div class="d-flex flex-column justify-content-center align-items-center">
@@ -141,7 +141,7 @@
                             </th>
                             <th scope="col">
                                 <div class="d-flex flex-column justify-content-center align-items-center">
-                                    <div class="fw-bold">Łącznie</div>
+                                    <div class="fw-bold">Podsumowanie rekordu</div>
                                 </div>
                             </th>
                         </tr>
@@ -164,11 +164,17 @@
                             </th>
                         </tr>
                         @else
+                        @php
+                        $k = 1;
+                        @endphp
                         @foreach ($cartItems as $item)
                         <tr>
                             <th>
                                 <div class="d-flex flex-column justify-content-center align-items-center">
-                                    <div class="fw-bold">1</div>
+                                    <div class="fw-bold">{{$k}}</div>
+                                    @php
+                                    $k += 1;
+                                    @endphp
                                 </div>
                             </th>
                             <td>
@@ -211,7 +217,14 @@
                 <ul class="list-group ">
                     <li class="list-group-item d-flex justify-content-between align-items-start">
                         <div class="ms-2 me-auto">
-                            <div class="fw-bold">Wysyłka PDP + 16 PLN</div>
+                            @if($counter_price >= $company['free_ship'])
+                            @php
+                            $counter_price = $counter_price - $company['price_ship']
+                            @endphp
+                            <div class="fw-bold">Wysyłka PDP darmowa</div>
+                            @else
+                            <div class="fw-bold">Wysyłka PDP + {{ $company['price_ship'] }} PLN</div>
+                            @endif
                         </div>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-start">

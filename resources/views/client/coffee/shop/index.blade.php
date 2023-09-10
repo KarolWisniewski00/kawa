@@ -22,7 +22,17 @@
             <div class="col-12">
                 <div class="d-flex justify-content-between align-items-center my-3 text-center">
                     <div class="text-primary">
-                        Wszystkie produkty <span>{{ count($products) }}</span>
+                        @php
+                        $count = 0;
+                        @endphp
+                        @foreach($products as $product)
+                        @if($product->visibility_on_website == true)
+                        @php
+                        $count += 1;
+                        @endphp
+                        @endif
+                        @endforeach
+                        Wszystkie produkty <span>{{ $count }}</span>
                     </div>
                     <div class="dropdown">
                         <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -37,16 +47,19 @@
             </div>
             <div id="sort-container" class="row">
                 @foreach($products as $product)
+                @if($product->visibility_on_website == true)
                 <div class="col-12 col-md-4">
-                    <a href="{{route('shop.product.show', $product->id)}}" class="d-flex flex-column justify-content-center align-items-center text-decoration-none">
-                        <div class="d-flex flex-column justify-content-center align-items-center">
-                            @foreach($photos as $photo)
-                            @if($photo->product_id == $product->id)
-                            @if($photo->order == 1)
+                    <a href="{{route('shop.product.show', $product->id)}}" class="h-100 d-flex flex-column justify-content-center align-items-center text-decoration-none">
+                        @foreach($photos as $photo)
+                        @if($photo->product_id == $product->id)
+                        @if($photo->order == 1)
+                        <div class="d-flex flex-column justify-content-center align-items-center h-100">
                             <img src="{{ asset('photo/' . $photo->image_path) }}" alt="" class="img-fluid" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
-                            @endif
-                            @endif
-                            @endforeach
+                        </div>
+                        @endif
+                        @endif
+                        @endforeach
+                        <div class="d-flex flex-column justify-content-center align-items-center">
                             <h4 class="font-custom mt-2">{{$product->name}}</h4>
                             <p>
                                 @php
@@ -78,6 +91,7 @@
                         </div>
                     </a>
                 </div>
+                @endif
                 @endforeach
             </div>
             <div class="col-12 my-2">

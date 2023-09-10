@@ -35,7 +35,7 @@
                         <li class="nav-item text-white px-1 text-end"> </li>
                     </ul>
                     <ul class="nav col-md-4 justify-content-center">
-                        <li class="nav-item text-white px-1 text-center mx-0 font-custom-1" style="white-space: nowrap;">{{ $company['info_top_website'] }}</li>
+                        <li class="nav-item text-white px-1 text-center mx-0 font-custom-1 ws">{{ $company['info_top_website'] }}</li>
                     </ul>
                     <ul class="nav col-md-3 justify-content-end">
                         <li class="nav-item text-white mx-1 me-5"><a href="{{ $company['ig_link'] }}" class="text-white" style="text-decoration: none;"><i class="fa-brands fa-instagram"></i></a></li>
@@ -110,7 +110,7 @@
                                 <li><a class="dropdown-item" href="{{route('account.user')}}"><i class="fa-solid fa-user me-2"></i>Konto</a></li>
                                 <li><a class="dropdown-item" href="{{route('account.order')}}"><i class="fa-solid fa-tag me-2"></i>Zamówienia</a></li>
                                 <li><a class="dropdown-item" href="{{route('account.busket')}}"><i class="fa-solid fa-cart-shopping me-2"></i>Koszyk</a></li>
-                                <form method="POST" action="{{ route('logout') }}" x-data>@csrf<li><button type="submit" class="dropdown-item"><i class="fa-solid fa-power-off me-2"></i>Wyloguj</button></li>
+                                <form method="POST" action="{{ route('logout') }}" x-data>@csrf<li><button type="submit" class="dropdown-item" onclick="return confirm('Czy na pewno chcesz się wylogować?');"><i class="fa-solid fa-power-off me-2"></i>Wyloguj</button></li>
                                 </form>
                                 @can('admin dashboard')
                                 <li>

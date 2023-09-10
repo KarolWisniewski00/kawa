@@ -4,7 +4,8 @@
             <li class="nav-item m-0 p-0"><a href="{{route('account.user')}}" class="nav-link link-dark px-2"><i class="fa-solid fa-user me-2"></i>Konto</a></li>
             <li class="nav-item m-0 p-0"><a href="{{route('account.order')}}" class="nav-link link-dark px-2"><i class="fa-solid fa-tag me-2"></i>Zamówienia</a></li>
             <li class="nav-item m-0 p-0"><a href="{{route('account.busket')}}" class="nav-link link-dark px-2"><i class="fa-solid fa-cart-shopping me-2"></i>Koszyk</a></li>
-            <li class="nav-item m-0 p-0"><a href="{{ route('logout') }}" class="nav-link link-dark px-2" onclick="return confirm('Czy na pewno chcesz się wylogować?');"><i class="fa-solid fa-right-from-bracket me-2"></i>Wyloguj</a></li>
+            <form method="POST" action="{{ route('logout') }}" x-data>@csrf<li><button type="submit" class="nav-link link-dark px-2" onclick="return confirm('Czy na pewno chcesz się wylogować?');"><i class="fa-solid fa-power-off me-2"></i>Wyloguj</button></li>
+            </form>
         </ul>
     </div>
 </nav>
