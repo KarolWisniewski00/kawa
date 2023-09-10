@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SendEmailRequest;
+use App\Mail\ContactMail;
 use Illuminate\Http\Request;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -18,5 +21,22 @@ class ContactController extends Controller
             $trail->push('Kontakt', route('contact'));
         });
         return view('client.coffee.contact.index');
+    }
+
+    public function store(SendEmailRequest $request)
+    {
+        // Dane z formularza
+        $name = $request->name;
+        $surname = $request->surname;
+        $email = $request->email;
+        $message = $request->message;
+        $phone = $request->phone;
+
+        // Wyślij e-mail
+        $email = new ContactMail($name,$surname, $email, $message, $phone);
+        Mail::to('karol.wisniewski2901@gmail.com')->send($email->build());
+
+        // Powrót po wysłaniu
+        return back()->with('success', 'Wiadomość została wysłana pomyślnie.');
     }
 }

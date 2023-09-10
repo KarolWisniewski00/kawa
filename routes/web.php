@@ -60,6 +60,7 @@ Route::prefix('about')->group(function () {
 
 Route::prefix('contact')->group(function () {
     Route::get('/', [ContactController::class, 'index'])->name('contact');
+    Route::post('/store', [ContactController::class, 'store'])->name('contact.store');
 });
 
 Route::prefix('policy-cookies')->group(function () {
@@ -79,6 +80,33 @@ Route::prefix('info')->group(function () {
 });
 Route::prefix('rule')->group(function () {
     Route::get('/', [RuleController::class, 'index'])->name('rule');
+});
+//LOGGED IN
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::prefix('account')->group(function () {
+        Route::prefix('user')->group(function () {
+            Route::get('/', [UserController::class, 'index'])->name('account.user');
+            Route::get('/edit/{element}', [UserController::class, 'edit'])->name('account.user.edit');
+            Route::put('/update/{element}', [UserController::class, 'update'])->name('account.user.update');
+            Route::delete('/delete', [UserController::class, 'delete'])->name('account.user.delete');
+        });
+        Route::prefix('order')->group(function () {
+            Route::get('/', [OrderController::class, 'index'])->name('account.order');
+            Route::get('/show/{slug}', [OrderController::class, 'show'])->name('account.order.show');
+            Route::get('/create', [OrderController::class, 'create'])->name('account.order.create');
+            Route::post('/store', [OrderController::class, 'store'])->name('account.order.store');
+        });
+        Route::prefix('busket')->group(function () {
+            Route::get('/', [BusketController::class, 'index'])->name('account.busket');
+            Route::post('/add/{product}', [BusketController::class, 'add'])->name('account.busket.add');
+            Route::post('/minus/{product}', [BusketController::class, 'minus'])->name('account.busket.minus');
+            Route::post('/remove/{product}', [BusketController::class, 'remove'])->name('account.busket.remove');
+        });
+    });
 });
 
 //ADMIN
@@ -185,33 +213,6 @@ Route::middleware([
         Route::prefix('user')->group(function () {
             Route::get('/', [UserAdminController::class, 'index'])->name('dashboard.user');
             Route::delete('/delete/{user}', [UserAdminController::class, 'delete'])->name('dashboard.user.delete');
-        });
-    });
-});
-//LOGGED IN
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::prefix('account')->group(function () {
-        Route::prefix('user')->group(function () {
-            Route::get('/', [UserController::class, 'index'])->name('account.user');
-            Route::get('/edit/{element}', [UserController::class, 'edit'])->name('account.user.edit');
-            Route::put('/update/{element}', [UserController::class, 'update'])->name('account.user.update');
-            Route::delete('/delete', [UserController::class, 'delete'])->name('account.user.delete');
-        });
-        Route::prefix('order')->group(function () {
-            Route::get('/', [OrderController::class, 'index'])->name('account.order');
-            Route::get('/show/{slug}', [OrderController::class, 'show'])->name('account.order.show');
-            Route::get('/create', [OrderController::class, 'create'])->name('account.order.create');
-            Route::post('/store', [OrderController::class, 'store'])->name('account.order.store');
-        });
-        Route::prefix('busket')->group(function () {
-            Route::get('/', [BusketController::class, 'index'])->name('account.busket');
-            Route::post('/add/{product}', [BusketController::class, 'add'])->name('account.busket.add');
-            Route::post('/minus/{product}', [BusketController::class, 'minus'])->name('account.busket.minus');
-            Route::post('/remove/{product}', [BusketController::class, 'remove'])->name('account.busket.remove');
         });
     });
 });

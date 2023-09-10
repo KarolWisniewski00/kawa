@@ -1,7 +1,4 @@
 przy deploy ustawić livewire w config/livewire.php
-sortowanie w sklepie
-nie działają komunikaty przy dodawaniu do koszyka
-walidacja dla produktów
 
 3 alty index o nas
 DB_DATABASE=baza23185_wfxunmvm

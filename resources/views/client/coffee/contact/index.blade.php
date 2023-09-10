@@ -7,6 +7,7 @@
 @section('content')
 <!--PRODUCT-->
 <section>
+    @include('client.coffee.module.alert')
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 py-4 mb-4" style="background-image: url('{{ asset('image/Depositphotos_79160678_DS.jpg') }}'); background-size: cover; background-position: center;">
@@ -19,44 +20,58 @@
     <div class="container px-0 my-5">
         <div class="row p-0 m-0 py-2">
             <div class="col-12 col-md-6">
-                <div class="d-flex flex-column justify-content-center align-items-center my-3 text-center h-100">
-                    <h4 class="font-custom mb-4">Kontakt</h4>
-                    <label class="lead mb-4">Masz pytania?</label>
+                <form action="{{ route('contact.store') }}" method="POST" class="d-flex flex-column justify-content-center align-items-center my-3 text-center h-100">
+                    @csrf
+                    <h4 class="font-custom mb-4">{{ $company['contact_collaboration_page'] }}</h4>
+                    <label class="lead mb-4">{{ $company['contact_collaboration_page_long'] }}</label>
                     <div class="row w-100">
                         <div class="col-12 col-md-6">
-                            <div class="form-floating mb-3 w-100">
-                                <input type="text" class="form-control w-100" id="floatingInput">
-                                <label for="floatingInput">Imię</label>
+                            <div class="form-floating mb-3 w-100 @error('name') has-danger @enderror">
+                                <input type="text" class="form-control w-100 @error('name') is-invalid @enderror" name="name" id="name">
+                                <label for="name">Imię</label>
+                                @error('name')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
-                            <div class="form-floating mb-3 w-100">
-                                <input type="text" class="form-control w-100" id="floatingInput1">
-                                <label for="floatingInput1">Nazwisko</label>
+                            <div class="form-floating mb-3 w-100 @error('surname') has-danger @enderror">
+                                <input type="text" class="form-control w-100 @error('surname') is-invalid @enderror" name="surname" id="surname">
+                                <label for="surname">Nazwisko</label>
+                                @error('surname')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                     </div>
-                    <div class="form-floating mb-3 w-100 has-success">
-                        <input type="email" class="form-control is-valid" id="floatingInput2">
-                        <label for="floatingInput2">Email</label>
-                        <div class="valid-feedback">Poprawnie przyjęte dane.</div>
+                    <div class="form-floating mb-3 w-100 @error('email') has-danger @enderror">
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email">
+                        <label for="email">Email</label>
+                        @error('email')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
-                    <div class="form-floating mb-3 w-100 has-danger">
-                        <input type="text" class="form-control is-invalid" id="floatingInput3">
-                        <label for="floatingInput3">Numer telefonu</label>
-                        <div class="invalid-feedback">Niepoprawne dane.</div>
+                    <div class="form-floating mb-3 w-100 @error('phone') has-danger @enderror">
+                        <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone">
+                        <label for="phone">Numer telefonu</label>
+                        @error('phone')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
-                    <div class="form-group mb-3 w-100">
-                        <label for="exampleTextarea" class="form-label">Wiadomość</label>
-                        <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                    <div class="form-group mb-3 w-100 @error('message') has-danger @enderror">
+                        <label for="message" class="form-label">Wiadomość</label>
+                        <textarea class="form-control @error('message') is-invalid @enderror" id="message" name="message" rows="3"></textarea>
+                        @error('message')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                     <button class="btn btn-primary mb-3 w-100" type="submit">Wyślij</button>
-                </div>
+                </form>
             </div>
             <div class="col-12 col-md-6">
                 <div class="d-flex flex-column justify-content-center align-items-center my-3 h-100">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d156389.2073860372!2d20.896391502572982!3d52.23282319946841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecc669a869f01%3A0x72f0be2a88ead3fc!2sWarszawa!5e0!3m2!1spl!2spl!4v1689416360707!5m2!1spl!2spl" class="w-100" style="border:0; aspect-ratio:1/1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d156389.2073860372!2d20.896391502572982!3d52.23282319946841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecc669a869f01%3A0x72f0be2a88ead3fc!2sWarszawa!5e0!3m2!1spl!2spl!4v1689416360707!5m2!1spl!2spl" class="w-100" style="border:0; aspect-ratio:1/1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
             <div class="col-12 text-center my-5">
