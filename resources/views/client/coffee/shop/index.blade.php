@@ -60,7 +60,7 @@
                         @endif
                         @endforeach
                         <div class="d-flex flex-column justify-content-center align-items-center">
-                            <h4 class="font-custom mt-2">{{$product->name}}</h4>
+                            <h4 class="font-custom mt-2 text-center">{{$product->name}}</h4>
                             <p>
                                 @php
                                 $minPrice = null;
