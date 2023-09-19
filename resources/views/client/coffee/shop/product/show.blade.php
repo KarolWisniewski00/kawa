@@ -156,16 +156,19 @@
             </div>
             @foreach($products as $p)
             <div class="col-12 col-md-4">
-                <a href="{{route('shop.product.show', $p->id)}}" class="d-flex flex-column justify-content-center align-items-center text-decoration-none">
-                    <div class="d-flex flex-column justify-content-center align-items-center">
-                        @foreach($photos as $photo)
-                        @if($photo->product_id == $p->id)
-                        @if($photo->order == 1)
+                <a href="{{route('shop.product.show', $p->id)}}" class="h-100 d-flex flex-column justify-content-center align-items-center text-decoration-none">
+
+                    @foreach($photos as $photo)
+                    @if($photo->product_id == $p->id)
+                    @if($photo->order == 1)
+                    <div class="d-flex flex-column justify-content-center align-items-center h-100">
                         <img src="{{ asset('photo/' . $photo->image_path) }}" alt="" class="img-fluid" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
-                        @endif
-                        @endif
-                        @endforeach
-                        <h4 class="font-custom mt-2">{{$p->name}}</h4>
+                    </div>
+                    @endif
+                    @endif
+                    @endforeach
+                    <div class="d-flex flex-column justify-content-center align-items-center">
+                        <h4 class="font-custom mt-2 text-center">{{$p->name}}</h4>
                         <p>
                             @php
                             $minPrice = null;
@@ -194,6 +197,7 @@
                                 @endif
                         </p>
                     </div>
+
                 </a>
             </div>
             @endforeach

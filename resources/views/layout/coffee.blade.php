@@ -89,18 +89,18 @@
                         </li>
                     </ul>
                 </div>
-                <ul class="nav col-xl-5 justify-content-start order-2 order-xl-1 d-none d-xl-flex">
-                    <li class="mx-2"><a href="{{route('about')}}" class="nav-link px-0 link-primary font-custom-1">Onas</a></li>
-                    <li class="mx-2"><a href="{{route('blog')}}" class="nav-link px-0 link-primary font-custom-1">Blog</a></li>
-                    <li class="mx-2"><a href="{{route('shop')}}" class="nav-link px-0 link-primary font-custom-1">Sklep</a></li>
+                <ul class="nav col-xl-5 justify-content-center order-2 order-xl-1 d-none d-xl-flex">
+                    <li class="mx-3"><a href="{{route('about')}}" class="nav-link px-0 link-primary font-custom-1">O nas</a></li>
+                    <li class="mx-3"><a href="{{route('blog')}}" class="nav-link px-0 link-primary font-custom-1">Blog</a></li>
+                    <li class="mx-3"><a href="{{route('shop')}}" class="nav-link px-0 link-primary font-custom-1">Sklep</a></li>
                 </ul>
                 <a href="{{route('index')}}" class="d-flex align-items-center justify-content-center col-12 col-xl-auto order-1 order-xl-2">
                     <img id="logo" class="img-fluid l-size" src="{{asset('logo/COFFEESUMMIT-LOGO-przezroczyste-tlo.png')}}">
                 </a>
-                <ul class="nav col-xl-5 justify-content-end align-items-center order-3 d-none d-xl-flex flex-nowrap">
-                    <li class="mx-2"><a href="{{route('collaboration')}}" class="nav-link px-0 link-primary font-custom-1">Współpraca</a></li>
-                    <li class="mx-2"><a href="{{route('contact')}}" class="nav-link px-0 link-primary font-custom-1">Kontakt</a></li>
-                    <li class="mx-2">
+                <ul class="nav col-xl-5 justify-content-center align-items-center order-3 d-none d-xl-flex flex-nowrap">
+                    <li class="mx-3"><a href="{{route('collaboration')}}" class="nav-link px-0 link-primary font-custom-1">Współpraca</a></li>
+                    <li class="mx-3"><a href="{{route('contact')}}" class="nav-link px-0 link-primary font-custom-1">Kontakt</a></li>
+                    <li class="mx-3">
                         <div class="dropdown text-end nav-link px-0 link-primary">
                             <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src="{{asset('image/coffee-beans.png')}}" alt="logo coffee summit" width="32" height="32" class="rounded-circle d-inline">

@@ -81,7 +81,7 @@
                         @if($element->type == 'free_ship')
                         <div class="mb-6">
                             <label for="content" class="block mb-2 text-sm font-medium text-gray-900">Kwota</label>
-                            <input type="number" step="0.01" name="content" id="content" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Wprowadź kwotę" value="{{ old('content', $element->content) }}" required>
+                            <input type="number" step="0.01" name="content" id="content" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Wprowadź kwotę" value="{{ old('content', $element->content) }}">
                             @error('content')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
@@ -89,7 +89,7 @@
                         @else
                         <div class="mb-6">
                             <label for="content" class="block mb-2 text-sm font-medium text-gray-900">Treść</label>
-                            <input type="text" name="content" id="content" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Wprowadź treść" value="{{ old('content', $element->content) }}" required>
+                            <input type="text" name="content" id="content" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Wprowadź treść" value="{{ old('content', $element->content) }}">
                             @error('content')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror

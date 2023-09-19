@@ -25,7 +25,7 @@
         </video>
         <div class="position-absolute top-50 start-50 translate-middle">
             <div class="d-flex flex-column justify-content-center align-items-center text-center m-mt-5">
-                <h1 class="font-custom text-white h2" style="min-width: 80vw; text-transform:capitalize!important; font-size: calc(33.6px + 16.4 * ((100vw - 320px) / 880)); font-weight: 500; line-height: 1.1em;">{{ $company['hero_h1'] }}</h1>
+                <h1 class="font-custom text-white h2" style="min-width: 80vw; text-transform:none!important; font-size: calc(33.6px + 16.4 * ((100vw - 320px) / 880)); font-weight: 500; line-height: 1.1em;">{{ $company['hero_h1'] }}</h1>
                 <a href="{{ $company['hero_link'] }}" class="btn btn-outline-light mt-2">{{ $company['hero_button'] }}</a>
             </div>
         </div>
