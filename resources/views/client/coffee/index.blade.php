@@ -20,7 +20,7 @@
 </style>
 <section class="hero">
     <div class="container-fluid px-0 position-relative video-container overflow-hidden">
-        <video autoplay loop muted playsinline class="v-size">
+        <video autoplay loop muted playsinline class="v-size" id="vid">
             <source src="{{asset('video/video_11.mp4')}}" type="video/mp4">
         </video>
         <div class="position-absolute top-50 start-50 translate-middle">
@@ -234,4 +234,11 @@
     </div>
 </section>
 <!--INFO-->
+@endsection
+@section('js')
+<script>
+    $(document).ready(function() {
+        $('#vid').get(0).play();
+    });
+</script>
 @endsection

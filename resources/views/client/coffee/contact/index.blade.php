@@ -71,7 +71,7 @@
             </div>
             <div class="col-12 col-md-6">
                 <div class="d-flex flex-column justify-content-center align-items-center my-3 h-100">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d156389.2073860372!2d20.896391502572982!3d52.23282319946841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecc669a869f01%3A0x72f0be2a88ead3fc!2sWarszawa!5e0!3m2!1spl!2spl!4v1689416360707!5m2!1spl!2spl" class="w-100" style="border:0; aspect-ratio:1/1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22766.27267953126!2d16.717247742978092!3d53.14592516507979!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4703e5d9fad63455%3A0x5f07006f0c2a56ec!2sWarsztatowa%208%2C%2064-920%20Pi%C5%82a!5e0!3m2!1spl!2spl!4v1695311454663!5m2!1spl!2spl" class="w-100" style="border:0; aspect-ratio:1/1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
             <div class="col-12 text-center my-5">

@@ -218,6 +218,27 @@
                 checkIfOnElement();
             });
         });
+
+        function skopiujNumerKonta() {
+            // Znajdź element z numerem konta
+            var numerKonta = document.getElementById("numer-konta");
+
+            // Tworzenie tymczasowego elementu input
+            var input = document.createElement("input");
+            input.setAttribute("type", "text");
+            input.setAttribute("value", numerKonta.textContent);
+            document.body.appendChild(input);
+
+            // Zaznacz i skopiuj tekst z input
+            input.select();
+            document.execCommand("copy");
+
+            // Usunięcie tymczasowego elementu input
+            document.body.removeChild(input);
+
+            // Wyświetlenie komunikatu
+            alert("Numer konta bankowego został skopiowany: " + numerKonta.textContent);
+        }
     </script>
     @yield('js')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>

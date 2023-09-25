@@ -21,6 +21,9 @@ class CompanyAdminController extends Controller
             $element->type == 'photo_about_home_page_1' ||
             $element->type == 'photo_about_home_page_2' ||
             $element->type == 'photo_about_home_page_3' ||
+            $element->type == 'photo_collaboration_page_1' ||
+            $element->type == 'photo_collaboration_page_2' ||
+            $element->type == 'photo_collaboration_page_3' ||
             $element->type == 'photo_about_page_1' ||
             $element->type == 'photo_about_page_2' ||
             $element->type == 'photo_about_page_3' ||

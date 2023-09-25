@@ -51,7 +51,7 @@ class OrderController extends Controller
             $total = $total + $company['price_ship'];
         }
         $order = Order::create([
-            'number' => Str::uuid(),
+            'number' => Str::random(4),
             'name' => $request->name,
             'email' => $request->email,
             'company' => $request->company ? $request->company : null,

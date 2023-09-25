@@ -237,8 +237,15 @@
                 <h4 class="mt-4">Przelew bankowy</h4>
                 <p class="text-muted">Prosimy o wpłatę bezpośrednio na nasze konto bankowe.<span class="text-danger"> Proszę użyć numeru zamówienia jako tytuł płatności.</span> Twoje zamówienie zostanie zrealizowane po zaksięgowaniu wpłaty na naszym koncie.</p>
                 <p>Twoje dane osobowe zostaną wykorzystane do realizacji Twojego zamówienia oraz do innych celów opisanych w zakładce <a href="{{route('policy-priv')}}">polityka prywatności</a></p>
+                <h4 class="mt-4">Dane do przelewu</h4>
+                <div class="d-flex justify-content-between align-items-center text-center my-2">
+                    <div class="text-muted">Numer konta: <span id="numer-konta">{{ $company['number_account_bank'] }}</span></div>
+                    <button class="btn btn-primary" type="button" onclick="skopiujNumerKonta()"><i class="fa-solid fa-copy me-2"></i>Kopiuj</button>
+                </div>
+                <p class="text-danger fw-bold">Tytuł przelewu to numer zamówienia który zostanie wygenerowany po złożeniu zamówienia!</p>
             </div>
         </div>
+    </div>
     </div>
 </section>
 <!--END ORDER-->

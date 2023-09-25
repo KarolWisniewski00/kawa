@@ -54,15 +54,16 @@
                 </div>
             </div>
         </div>
+        <!--
         <div class="row p-0 m-0 py-2">
             <div class="col-12">
                 <div class="d-flex flex-column justify-content-center align-items-center my-3 text-center">
-                    <!--<h3 class="mt-5 font-custom-2" style="color:#F9CAAC"><i class="fa-solid fa-mug-saucer"></i></h3>-->
+                    <h3 class="mt-5 font-custom-2" style="color:#F9CAAC"><i class="fa-solid fa-mug-saucer"></i></h3>
                     <h1 class="font-custom">{{ $company['under_photo_about_page'] }}</h1>
                     <p class="w-75 lead">{{ $company['under_photo_about_page_paragraf'] }}</p>
                 </div>
             </div>
-        </div>
+        </div>-->
         <div class="row m-0" style="background-color:RGBA(249, 202, 172,0.25);">
             <div class="col-lg-4 col-md-12 mb-lg-0 p-0 m-0">
                 <div class="d-flex flex-column justify-content-center align-items-center h-100">

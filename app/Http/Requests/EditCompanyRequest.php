@@ -9,7 +9,7 @@ class EditCompanyRequest extends FormRequest
     public function rules()
     {
         return [
-            'content' => 'nullable|string|max:255',
+            'content' => 'nullable|string|max:1500',
         ];
     }
 
