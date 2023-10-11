@@ -11,7 +11,7 @@ class CreateBlogRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'photo' => 'required|string|max:255',
-            'start' => 'required||string|max:4294967295',
+            'start' => 'required|string|max:4294967295',
             'content' => 'required|string|max:4294967295',
             'end' => 'required|string|max:4294967295',
             'order' => 'required|integer',

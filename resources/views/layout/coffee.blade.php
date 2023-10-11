@@ -48,12 +48,12 @@
             <nav class="d-flex flex-wrap align-items-center justify-content-center justify-content-xl-between py-2 mb-2">
                 <ul class="nav d-flex d-xl-none position-absolute top-0 end-0">
                     <li>
-                        <button class="nav-link link-primary link-change" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <button id="btn-sidebar" class="nav-link link-primary link-change" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                             <i class="fa-solid fa-bars"></i>
                         </button>
                     </li>
                 </ul>
-                <div class="collapse order-5" id="collapseExample">
+                <!--<div class="collapse order-5" id="collapseExample">
                     <ul class="nav col-xl-12 justify-content-center bg-secondary">
                         <li><a href="{{route('about')}}" class="nav-link px-2 link-primary text-black" style="font-family: 'Montserrat', sans-serif !important;">O nas</a></li>
                         <li><a href="{{route('blog')}}" class="nav-link px-2 link-primary text-black" style="font-family: 'Montserrat', sans-serif !important;">Blog</a></li>
@@ -88,7 +88,7 @@
                             </div>
                         </li>
                     </ul>
-                </div>
+                </div>-->
                 <ul class="nav col-xl-5 justify-content-center order-2 order-xl-1 d-none d-xl-flex">
                     <li class="mx-3"><a href="{{route('about')}}" class="nav-link px-0 link-primary font-custom-1">O nas</a></li>
                     <li class="mx-3"><a href="{{route('blog')}}" class="nav-link px-0 link-primary font-custom-1">Blog</a></li>
@@ -129,6 +129,80 @@
             </nav>
         </div>
     </section>
+    <div id="container-sidebar" class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px; position:fixed; right:-280px; height:100vh; z-index:10; transition: right 0.2s ease-in-out;;">
+        <ul class="nav nav-pills flex-column mb-auto pt-2" id="sidebar">
+            <li class="nav-item">
+                <a href="{{route('about')}}" class="nav-link">
+                    O nas
+                </a>
+            </li>
+            <li>
+                <a href="{{route('blog')}}" class="nav-link link-dark">
+                    Blog
+                </a>
+            </li>
+            <li>
+                <a href="{{route('shop')}}" class="nav-link link-dark">
+                    Sklep
+                </a>
+            </li>
+            <li>
+                <a href="{{route('collaboration')}}" class="nav-link link-dark">
+                    Współpraca
+                </a>
+            </li>
+            <li>
+                <a href="{{route('contact')}}" class="nav-link link-dark">
+                    Kontakt
+                </a>
+            </li>
+            @auth
+            <hr>
+            <li>
+                <a href="{{route('account.user')}}" class="nav-link link-dark">
+                    <i class="fa-solid fa-user me-2"></i>Konto
+                </a>
+            </li>
+            <li>
+                <a href="{{route('account.order')}}" class="nav-link link-dark">
+                    <i class="fa-solid fa-tag me-2"></i>Zamówienia
+                </a>
+            </li>
+            <li>
+                <a href="{{route('account.busket')}}" class="nav-link link-dark">
+                    <i class="fa-solid fa-cart-shopping me-2"></i>Koszyk
+                </a>
+            </li>
+            <form method="POST" action="{{ route('logout') }}" x-data>
+                @csrf
+                <li>
+                    <button type="submit" class="dropdown-item" onclick="return confirm('Czy na pewno chcesz się wylogować?');" class="nav-link link-dark">
+                        <i class="fa-solid fa-power-off me-2"></i>Wyloguj
+                    </button>
+                </li>
+            </form>
+            @can('admin dashboard')
+            <li>
+                <a href="{{route('dashboard')}}" class="nav-link link-dark">
+                    <i class="fa-solid fa-toolbox me-2"></i>Panel Admina</a>
+                </a>
+            </li>
+            @endcan
+            @else
+            <hr>
+            <li>
+                <a href="{{route('login')}}" class="nav-link link-dark">
+                    <i class="fa-solid fa-right-to-bracket me-2"></i>Logowanie
+                </a>
+            </li>
+            <li>
+                <a href="{{route('register')}}" class="nav-link link-dark">
+                    <i class="fa-solid fa-check me-2"></i>Rejestracja
+                </a>
+            </li>
+            @endauth
+        </ul>
+    </div>
     <!--END ALERT-->
     <div id="content">
         @yield('content')
@@ -157,6 +231,7 @@
     <input type="hidden" name="black" id="black" value="{{asset('logo/COFFEESUMMIT-LOGO-przezroczyste-tlo.png')}}">
     <!--END FOOTER-->
     <script>
+        var sidebar = false;
         // Funkcja do sprawdzania na scrollu
         function checkIfOnElement() {
             try {
@@ -199,6 +274,14 @@
                 link.removeClass("link-secondary");
                 $("#logo").attr("src", $("#black").val());
             }
+            if (sidebar != false) {
+                var link = $("#nav .link-secondary");
+                navBar.addClass("bg-secondary");
+                navBar.removeClass("bg-transparent");
+                link.addClass("link-primary");
+                link.removeClass("link-secondary");
+                $("#logo").attr("src", $("#black").val());
+            }
         }
 
         function navBarMarginToContant() {
@@ -209,12 +292,27 @@
 
         // Po załadowaniu strony i na scrollu
         $(document).ready(function() {
+            //SIDEBAR
+            var navHeight = $("#nav").height();
+            $("#sidebar").css("margin-top", navHeight);
+            console.log($("#nav").height())
+
             var r = checkIfOnElement();
             if (r == 1) {
                 navBarMarginToContant()
             };
             // Nasłuchuj zdarzenia scroll i sprawdzaj na każdym przewinięciu
             $(window).scroll(function() {
+                checkIfOnElement();
+            });
+            $('#btn-sidebar').click(function() {
+                if (sidebar == false) {
+                    $('#container-sidebar').css('right', '0px');
+                    sidebar = true;
+                } else {
+                    $('#container-sidebar').css('right', '-280px');
+                    sidebar = false;
+                }
                 checkIfOnElement();
             });
         });

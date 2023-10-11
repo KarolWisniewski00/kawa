@@ -28,8 +28,8 @@
                             @enderror
                         </div>
                         <div class="mb-6">
-                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900 ">Opis</label>
-                            <input value="{{ old('description') ? old('description') : ''}}" id="description" name="description" type="text" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="Wysokiej jakości kawa z Brazylii" required>
+                            <label for="description" class="block mb-2 text-sm font-medium text-gray-900 ">Opis</label>
+                            <textarea id="description" name="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Wpisz treść tutaj">{{ old('description') ? old('description') : ''}}</textarea>
                             @error('description')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror

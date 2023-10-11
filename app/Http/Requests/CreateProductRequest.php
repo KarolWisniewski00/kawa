@@ -10,7 +10,7 @@ class CreateProductRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'description' => 'required|string',
+            'description' => 'required|string|max:4294967295',
             'order' => 'required|integer',
             'price.*' => 'nullable|numeric|min:0',
             'grinding.*' => 'nullable|exists:grinds,id',

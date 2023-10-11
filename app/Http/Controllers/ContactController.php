@@ -34,7 +34,7 @@ class ContactController extends Controller
 
         // Wyślij e-mail
         $email = new ContactMail($name,$surname, $email, $message, $phone);
-        Mail::to('karol.wisniewski2901@gmail.com')->send($email->build());
+        Mail::to('kontakt@coffeesummit.pl')->send($email->build());
 
         // Powrót po wysłaniu
         return back()->with('success', 'Wiadomość została wysłana pomyślnie.');

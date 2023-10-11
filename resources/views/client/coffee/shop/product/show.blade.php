@@ -58,7 +58,6 @@
                 <div class="d-flex flex-column justify-content-start align-items-start">
                     <form method="POST" action="{{route('account.busket.add', $product)}}">
                         <h1>{{$product->name}}</h1>
-                        <p class="text-muted">{{$product->description}}</p>
                         <div class="d-flex flex-column justify-content-start align-items-start my-2">
                             <div class="fs-1">
                                 @php
@@ -144,6 +143,12 @@
                         </div>
                     </form>
                 </div>
+            </div>
+            <div class="col-12 text-center my-4">
+                <div class="text-center my-4">
+                    <h1>Opis produktu</h1>
+                </div>
+                <p class="text-muted">{{$product->description}}</p>
             </div>
         </div>
         <!--END PRODUCT-->
