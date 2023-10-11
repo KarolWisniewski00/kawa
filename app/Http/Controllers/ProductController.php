@@ -32,7 +32,7 @@ class ProductController extends Controller
         });
         return view('client.coffee.shop.product.show', [
             'product' => Product::where('id', $slug)->first(),
-            'products' => Product::take(4)->get(),
+            'products' => Product::take(3)->get(),
             'variants' => ProductVariant::get(),
             'photos' => ProductImage::get(),
             'sizes' => Size::get(),

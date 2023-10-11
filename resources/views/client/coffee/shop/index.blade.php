@@ -49,7 +49,7 @@
                 @foreach($products as $product)
                 @if($product->visibility_on_website == true)
                 <div class="col-12 col-md-4">
-                    <a href="{{route('shop.product.show', $product->id)}}" class="h-100 d-flex flex-column justify-content-center align-items-center text-decoration-none">
+                    <a href="{{route('shop.product.show', $product->id)}}" class="h-100 d-flex flex-column justify-content-start align-items-center text-decoration-none">
                         @foreach($photos as $photo)
                         @if($photo->product_id == $product->id)
                         @if($photo->order == 1)
@@ -60,7 +60,7 @@
                         @endif
                         @endforeach
                         <div class="d-flex flex-column justify-content-center align-items-center">
-                            <h4 class="font-custom mt-2 text-center">{{$product->name}}</h4>
+                            <h4 class="font-custom mt-2 text-center" style="word-break: break-all;">{{$product->name}}</h4>
                             <p>
                                 @php
                                 $minPrice = null;

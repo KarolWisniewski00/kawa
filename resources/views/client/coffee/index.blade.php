@@ -45,7 +45,7 @@
             @foreach($products as $product)
             @if($product->visibility_on_website == true)
             <div class="col-12 col-md-4">
-                <a href="{{route('shop.product.show', $product->id)}}" class="h-100 d-flex flex-column justify-content-center align-items-center text-decoration-none">
+                <a href="{{route('shop.product.show', $product->id)}}" class="h-100 d-flex flex-column justify-content-start align-items-center text-decoration-none">
                     @foreach($photos as $photo)
                     @if($photo->product_id == $product->id)
                     @if($photo->order == 1)
@@ -56,7 +56,7 @@
                     @endif
                     @endforeach
                     <div class="d-flex flex-column justify-content-center align-items-center">
-                        <h4 class="font-custom mt-2 text-center">{{$product->name}}</h4>
+                        <h4 class="font-custom mt-2 text-center"style="word-break: break-all;">{{$product->name}}</h4>
                         <p>
                             @php
                             $minPrice = null;
@@ -202,32 +202,32 @@
 <section>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12 col-md-3 p-5" style="background-color: #F1FAC5;">
+            <div class="col-12 col-md-3 p-5" style="background-color: #B79F72;">
                 <div class="d-flex flex-column justify-content-center align-items-center p-5">
                     <div class="text-primary text-center h1"><i class="fa-solid fa-box"></i></div>
                     <div class="text-primary text-center font-custom h4 my-2">{{ $company['yellow_home_page'] }}</div>
                     <p class="text-primary text-center m-0 p-0 my-2">{{ $company['yellow_home_page_long'] }}</p>
                 </div>
             </div>
-            <div class="col-12 col-md-3 p-5" style="background-color: #F9CAAC;">
+            <div class="col-12 col-md-3 p-5" style="background-color: #CDAB9E;">
                 <div class="d-flex flex-column justify-content-center align-items-center p-5">
                     <div class="text-primary text-center h1"><i class="fa-solid fa-heart"></i></div>
                     <div class="text-primary text-center font-custom h4 my-2">{{ $company['red_home_page'] }}</div>
                     <p class="text-primary text-center m-0 p-0 my-2">{{ $company['red_home_page_long'] }}</p>
                 </div>
             </div>
-            <div class="col-12 col-md-3 p-5" style="background-color: #93F7FA;">
+            <div class="col-12 col-md-3 p-5" style="background-color: #B4AB98;">
                 <div class="d-flex flex-column justify-content-center align-items-center p-5">
                     <div class="text-primary text-center h1"><i class="fa-solid fa-leaf"></i></div>
                     <div class="text-primary text-center font-custom h4 my-2">{{ $company['blue_home_page'] }}</div>
                     <p class="text-primary text-center m-0 p-0 my-2">{{ $company['blue_home_page_long'] }}</p>
                 </div>
             </div>
-            <div class="col-12 col-md-3 p-5" style="background-color: #D8A0FA;">
+            <div class="col-12 col-md-3 p-5" style="background-color: #2D6EA2;">
                 <div class="d-flex flex-column justify-content-center align-items-center p-5">
-                    <div class="text-primary text-center h1"><i class="fa-solid fa-handshake-angle"></i></div>
-                    <div class="text-primary text-center font-custom h4 my-2">{{ $company['violet_home_page'] }}</div>
-                    <p class="text-primary text-center m-0 p-0 my-2">{{ $company['violet_home_page_long'] }}</p>
+                    <div class="text-primary text-center h1 text-white"><i class="fa-solid fa-handshake-angle"></i></div>
+                    <div class="text-primary text-center font-custom h4 my-2 text-white">{{ $company['violet_home_page'] }}</div>
+                    <p class="text-primary text-center m-0 p-0 my-2 text-white">{{ $company['violet_home_page_long'] }}</p>
                 </div>
             </div>
         </div>
@@ -236,5 +236,11 @@
 <!--INFO-->
 @endsection
 @section('js')
-
+<script>
+    $(document).ready(function() {
+        //SIDEBAR
+        var navHeight = $("#nav").height();
+        $("#sidebar").css("margin-top", navHeight);
+    });
+</script>
 @endsection

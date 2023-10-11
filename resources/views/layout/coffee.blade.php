@@ -129,7 +129,7 @@
             </nav>
         </div>
     </section>
-    <div id="container-sidebar" class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px; position:fixed; right:-280px; height:100vh; z-index:10; transition: right 0.2s ease-in-out;;">
+    <div id="container-sidebar" class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 240px; position:fixed; left:-240px; height:100vh; z-index:10; transition: left 0.2s ease-in-out;;">
         <ul class="nav nav-pills flex-column mb-auto pt-2" id="sidebar">
             <li class="nav-item">
                 <a href="{{route('about')}}" class="nav-link">
@@ -293,9 +293,6 @@
         // Po załadowaniu strony i na scrollu
         $(document).ready(function() {
             //SIDEBAR
-            var navHeight = $("#nav").height();
-            $("#sidebar").css("margin-top", navHeight);
-            console.log($("#nav").height())
 
             var r = checkIfOnElement();
             if (r == 1) {
@@ -307,10 +304,10 @@
             });
             $('#btn-sidebar').click(function() {
                 if (sidebar == false) {
-                    $('#container-sidebar').css('right', '0px');
+                    $('#container-sidebar').css('left', '0px');
                     sidebar = true;
                 } else {
-                    $('#container-sidebar').css('right', '-280px');
+                    $('#container-sidebar').css('left', '-220px');
                     sidebar = false;
                 }
                 checkIfOnElement();
