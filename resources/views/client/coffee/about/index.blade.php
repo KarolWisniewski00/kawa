@@ -29,7 +29,7 @@
                 </style>
                 <section>
                     <div class="container-fluid px-0 position-relative video-container overflow-hidden">
-                        <video autoplay loop muted playsinline src="{{asset('video/video_8.mp4')}}" type="video/mp4" class="w-100 d-block mx-lg-auto img-fluid">
+                        <video autoplay="autoplay" loop="loop" muted="muted" preload="auto" playsinline  class="w-100 d-block mx-lg-auto img-fluid">
                             <source src="{{asset('video/video_8.mp4')}}" type="video/mp4">
                         </video>
                     </div>
