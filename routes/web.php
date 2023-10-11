@@ -13,6 +13,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\InfoAdminController;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\InstagramAdminController;
+use App\Http\Controllers\NewBusketController;
 use App\Http\Controllers\OrderAdminController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PhotoAdminController;
@@ -44,6 +45,16 @@ Route::get('/', [IndexController::class, 'index'])->name('index');
 
 Route::prefix('shop')->group(function () {
     Route::get('/', [ShopController::class, 'index'])->name('shop');
+    Route::prefix('cart')->group(function () {
+        Route::get('/', [NewBusketController::class, 'index'])->name('shop.cart.busket');
+        Route::get('get', [NewBusketController::class, 'get'])->name('shop.cart.get');
+        Route::post('add/{product}', [NewBusketController::class, 'add'])->name('shop.cart.add');
+        Route::post('minus/{product}', [NewBusketController::class, 'minus'])->name('shop.cart.minus');
+        Route::post('remove/{product}', [NewBusketController::class, 'remove'])->name('shop.cart.remove');
+        Route::get('/create', [OrderController::class, 'create'])->name('account.order.create');
+        Route::post('/store', [OrderController::class, 'store'])->name('account.order.store');
+        Route::get('/show/{slug}', [OrderController::class, 'show'])->name('account.order.show');
+    });
     Route::prefix('product')->group(function () {
         Route::get('{slug}', [ProductController::class, 'show'])->name('shop.product.show');
     });
@@ -96,16 +107,15 @@ Route::middleware([
         });
         Route::prefix('order')->group(function () {
             Route::get('/', [OrderController::class, 'index'])->name('account.order');
-            Route::get('/show/{slug}', [OrderController::class, 'show'])->name('account.order.show');
-            Route::get('/create', [OrderController::class, 'create'])->name('account.order.create');
-            Route::post('/store', [OrderController::class, 'store'])->name('account.order.store');
         });
+        /*
         Route::prefix('busket')->group(function () {
             Route::get('/', [BusketController::class, 'index'])->name('account.busket');
             Route::post('/add/{product}', [BusketController::class, 'add'])->name('account.busket.add');
             Route::post('/minus/{product}', [BusketController::class, 'minus'])->name('account.busket.minus');
             Route::post('/remove/{product}', [BusketController::class, 'remove'])->name('account.busket.remove');
         });
+        */
     });
 });
 

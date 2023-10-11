@@ -25,6 +25,9 @@
     </div>
     <div class="container">
         <div class="row">
+            <div class="col-12">
+            @include('client.coffee.module.alert')
+            </div>
             <div class="col-12 col-md-6">
                 <button type="button" class="p-0 m-0 mb-3 border-0 d-flex align-items-center justify-content-center bg-transparent overflow-hidden" id="button-studio-photo-main" data-bs-toggle="modal" data-bs-target="#studio-photo-main">
                     @foreach($photos as $photo)
@@ -56,7 +59,7 @@
             </div>
             <div class="col-12 col-md-6">
                 <div class="d-flex flex-column justify-content-start align-items-start">
-                    <form method="POST" action="{{route('account.busket.add', $product)}}">
+                    <form method="POST" action="{{route('shop.cart.add', $product)}}">
                         <h1>{{$product->name}}</h1>
                         <div class="d-flex flex-column justify-content-start align-items-start my-2">
                             <div class="fs-1">
@@ -248,4 +251,14 @@
         });
     });
 </script>
+@if(Session::has('show-busket'))
+<script>
+    $(document).ready(function() {
+        $('#shopping-cart-container').html('');
+        $('#shopping-cart-window').show();
+        addProducts();
+        window = true;
+    });
+</script>
+@endif
 @endsection

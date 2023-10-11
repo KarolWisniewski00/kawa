@@ -53,42 +53,6 @@
                         </button>
                     </li>
                 </ul>
-                <!--<div class="collapse order-5" id="collapseExample">
-                    <ul class="nav col-xl-12 justify-content-center bg-secondary">
-                        <li><a href="{{route('about')}}" class="nav-link px-2 link-primary text-black" style="font-family: 'Montserrat', sans-serif !important;">O nas</a></li>
-                        <li><a href="{{route('blog')}}" class="nav-link px-2 link-primary text-black" style="font-family: 'Montserrat', sans-serif !important;">Blog</a></li>
-                        <li><a href="{{route('shop')}}" class="nav-link px-2 link-primary text-black" style="font-family: 'Montserrat', sans-serif !important;">Sklep</a></li>
-                    </ul>
-                    <ul class="nav col-xl-12 justify-content-center align-items-center bg-secondary">
-                        <li><a href="{{route('collaboration')}}" class="nav-link px-2 link-primary text-black" style="font-family: 'Montserrat', sans-serif !important;">Współpraca</a></li>
-                        <li><a href="{{route('contact')}}" class="nav-link px-2 link-primary text-black" style="font-family: 'Montserrat', sans-serif !important;">Kontakt</a></li>
-                        <li>
-                            <div class="dropdown text-center nav-link px-2 link-primary bg-secondary">
-                                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="{{asset('image/undraw_drink_coffee_av1x.svg')}}" alt="logo coffee summit" width="32" height="32" class="rounded-circle">
-                                </a>
-                                <ul class="dropdown-menu text-small">
-                                    @auth
-                                    <li><a class="dropdown-item" href="{{route('account.user')}}"><i class="fa-solid fa-user me-2"></i>Konto</a></li>
-                                    <li><a class="dropdown-item" href="{{route('account.order')}}"><i class="fa-solid fa-tag me-2"></i>Zamówienia</a></li>
-                                    <li><a class="dropdown-item" href="{{route('account.busket')}}"><i class="fa-solid fa-cart-shopping me-2"></i>Koszyk</a></li>
-                                    <form method="POST" action="{{ route('logout') }}" x-data>@csrf<li><button type="submit" class="dropdown-item"><i class="fa-solid fa-power-off me-2"></i>Wyloguj</button></li>
-                                    </form>
-                                    @can('admin dashboard')
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="{{route('dashboard')}}"><i class="fa-solid fa-toolbox me-2"></i>Panel Admina</a></li>
-                                    @endcan
-                                    @else
-                                    <li><a href="{{route('login')}}" class="dropdown-item"><i class="fa-solid fa-right-to-bracket me-2"></i>Logowanie</a></li>
-                                    <li><a href="{{route('register')}}" class="dropdown-item"><i class="fa-solid fa-check me-2"></i>Rejestracja</a></li>
-                                    @endauth
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </div>-->
                 <ul class="nav col-xl-5 justify-content-center order-2 order-xl-1 d-none d-xl-flex">
                     <li class="mx-3"><a href="{{route('about')}}" class="nav-link px-0 link-primary font-custom-1">O nas</a></li>
                     <li class="mx-3"><a href="{{route('blog')}}" class="nav-link px-0 link-primary font-custom-1">Blog</a></li>
@@ -109,7 +73,6 @@
                                 @auth
                                 <li><a class="dropdown-item" href="{{route('account.user')}}"><i class="fa-solid fa-user me-2"></i>Konto</a></li>
                                 <li><a class="dropdown-item" href="{{route('account.order')}}"><i class="fa-solid fa-tag me-2"></i>Zamówienia</a></li>
-                                <li><a class="dropdown-item" href="{{route('account.busket')}}"><i class="fa-solid fa-cart-shopping me-2"></i>Koszyk</a></li>
                                 <form method="POST" action="{{ route('logout') }}" x-data>@csrf<li><button type="submit" class="dropdown-item" onclick="return confirm('Czy na pewno chcesz się wylogować?');"><i class="fa-solid fa-power-off me-2"></i>Wyloguj</button></li>
                                 </form>
                                 @can('admin dashboard')
@@ -129,7 +92,7 @@
             </nav>
         </div>
     </section>
-    <div id="container-sidebar" class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 240px; position:fixed; left:-240px; height:100vh; z-index:10; transition: left 0.2s ease-in-out;;">
+    <div id="container-sidebar" class="shadow d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 240px; position:fixed; left:-240px; height:100vh; z-index:10; transition: left 0.2s ease-in-out;;">
         <ul class="nav nav-pills flex-column mb-auto pt-2" id="sidebar">
             <li class="nav-item">
                 <a href="{{route('about')}}" class="nav-link">
@@ -169,18 +132,15 @@
                 </a>
             </li>
             <li>
-                <a href="{{route('account.busket')}}" class="nav-link link-dark">
-                    <i class="fa-solid fa-cart-shopping me-2"></i>Koszyk
-                </a>
-            </li>
-            <form method="POST" action="{{ route('logout') }}" x-data>
-                @csrf
-                <li>
-                    <button type="submit" class="dropdown-item" onclick="return confirm('Czy na pewno chcesz się wylogować?');" class="nav-link link-dark">
+                <form method="POST" action="{{ route('logout') }}" x-data>
+                    @csrf
+
+                    <button type="submit" class="nav-link link-dark" onclick="return confirm('Czy na pewno chcesz się wylogować?');" class="nav-link link-dark">
                         <i class="fa-solid fa-power-off me-2"></i>Wyloguj
                     </button>
-                </li>
-            </form>
+
+                </form>
+            </li>
             @can('admin dashboard')
             <li>
                 <a href="{{route('dashboard')}}" class="nav-link link-dark">
@@ -200,10 +160,93 @@
                     <i class="fa-solid fa-check me-2"></i>Rejestracja
                 </a>
             </li>
+            <li>
+                <a href="{{route('shop.cart.busket')}}" class="nav-link link-dark">
+                    <i class="fa-solid fa-cart-shopping me-2"></i>Koszyk
+                </a>
+            </li>
             @endauth
         </ul>
     </div>
-    <!--END ALERT-->
+    <!--Busket-->
+    <div style="position:fixed; right: 1em; bottom:1em; z-index:10;">
+        <div class="position-relative" id="shopping-cart-window" style="display: none;">
+            <div class="position-absolute bottom-0 end-0 bg-white rounded p-4 mb-4 shadow" style="width: 50vh; max-height:75vh;">
+                <div class="d-flex flex-column justify-content-center align-items-center text-center">
+                    <h5><i class="fa-solid fa-cart-shopping me-2"></i>Koszyk</h5>
+                    <div id="shopping-cart-container" style="height: 32vh; overflow-y:auto" class="">
+
+                    </div>
+                    <div class="d-flex flex-column justify-content-center align-items-center w-100" id="shopping-cart-buttons">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="button" id="shopping-cart" class="btn btn-primary rounded-circle d-flex justify-content-center align-items-center p-4 m-0 shadow"><i class="fa-solid fa-basket-shopping"></i></button>
+    </div>
+    <script>
+        function addProduct(product) {
+            $('#shopping-cart-container').append(`
+            <div class="d-flex flex-row justify-content-center align-items-center my-2 h-fit">
+                <div class="d-flex flex-column justify-content-center align-items-center m-1">
+                    <div style="max-width:50px"><img src="{{ asset('photo') }}/${product.name}" alt="" class="img-fluid" onerror="this.onerror=null; this.src='{{ asset('image/undraw_photos_re_pvh3.svg') }}'"></div>
+                </div>
+                <div class="d-flex flex-column justify-content-center align-items-center m-1">
+                    <div class="fw-bold">${product.name}</div>
+                    <div class="text-muted">${product.attributes}</div>
+                </div>
+                <div class="text-muted m-1">${product.price} PLN</div>
+            </div>
+            `);
+        }
+
+        function addProducts() {
+            $.ajax({
+                type: 'GET',
+                url: '{{route("shop.cart.get")}}',
+                success: function(data) {
+                    if (Object.keys(data).length > 0) {
+                        for (const key in data) {
+                            const product = data[key];
+                            addProduct(product);
+                            $('#shopping-cart-buttons').html(`
+                            <a href="{{route('shop.cart.busket')}}" class="btn btn-primary fs-6 w-100 m-1">Zobacz pełne podsumowanie</a>
+                            <a href="{{route('account.order.create')}}" class="btn btn-success fs-6 w-100 m-1">Przejdź do płatności</a>
+                            `);
+                        }
+                    } else {
+                        $('#shopping-cart-container').append(`
+                        <div class="d-flex flex-column justify-content-center align-items-center">
+                            <img style="max-height:10vh;" class="img-fluid" alt="" src="{{asset('image/undraw_shopping_app_flsj.svg')}}">
+                            <div class="h4 m-0 p-0 my-3">Twój koszyk jest pusty!</div>
+                        </div>
+                        `);
+                        $('#shopping-cart-buttons').html(`
+                        <a href="{{route('shop')}}" class="btn btn-primary fs-6 w-100 m-1"><i class="fa-solid fa-cart-shopping me-2"></i>Zrób zakupy</a>
+                        `);
+                    }
+                },
+                error: function() {
+                    console.log('Wystąpił błąd podczas pobierania koszyka.');
+                }
+            });
+        }
+        $(document).ready(function() {
+            var window = false;
+            $('#shopping-cart').click(function() {
+                if (window == false) {
+                    $('#shopping-cart-container').html('');
+                    $('#shopping-cart-window').show();
+                    addProducts();
+                    window = true;
+                } else {
+                    $('#shopping-cart-window').hide();
+                    window = false;
+                }
+            });
+        });
+    </script>
     <div id="content">
         @yield('content')
     </div>
@@ -292,8 +335,6 @@
 
         // Po załadowaniu strony i na scrollu
         $(document).ready(function() {
-            //SIDEBAR
-
             var r = checkIfOnElement();
             if (r == 1) {
                 navBarMarginToContant()
@@ -306,6 +347,8 @@
                 if (sidebar == false) {
                     $('#container-sidebar').css('left', '0px');
                     sidebar = true;
+                    $('#shopping-cart-window').hide();
+                    window = false;
                 } else {
                     $('#container-sidebar').css('left', '-220px');
                     sidebar = false;

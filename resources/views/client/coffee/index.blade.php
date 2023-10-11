@@ -226,8 +226,8 @@
             <div class="col-12 col-md-3 p-5" style="background-color: #2D6EA2;">
                 <div class="d-flex flex-column justify-content-center align-items-center p-5">
                     <div class="text-primary text-center h1 text-white"><i class="fa-solid fa-handshake-angle"></i></div>
-                    <div class="text-primary text-center font-custom h4 my-2 text-white">{{ $company['violet_home_page'] }}</div>
-                    <p class="text-primary text-center m-0 p-0 my-2 text-white">{{ $company['violet_home_page_long'] }}</p>
+                    <div class="text-primary text-center font-custom h4 my-2">{{ $company['violet_home_page'] }}</div>
+                    <p class="text-primary text-center m-0 p-0 my-2">{{ $company['violet_home_page_long'] }}</p>
                 </div>
             </div>
         </div>

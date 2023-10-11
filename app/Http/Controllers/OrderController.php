@@ -16,6 +16,7 @@ use Darryldecode\Cart\CartCollection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Throwable;
 
 class OrderController extends Controller
 {
@@ -36,14 +37,25 @@ class OrderController extends Controller
     public function create()
     {
         $photos = ProductImage::get();
-        $cartItems = \Cart::session(auth()->id())->getContent();
+        try {
+            $cartItems = \Cart::session(auth()->id())->getContent();
+        } catch (Throwable $e) {
+            $cartItems = \Cart::session('cart')->getContent();
+        }
         $user = Auth::user();
         return view('client.coffee.account.order.create', compact('photos', 'cartItems', 'user'));
     }
     public function store(CreateOrderRequest $request)
     {
         $user = Auth::user();
-        $total = \Cart::session($user->id)->getTotal();
+        try {
+            $total = \Cart::session($user->id)->getTotal();
+            $usrid = $user->id;
+        } catch (Throwable $e) {
+            $total = \Cart::session('cart')->getTotal();
+            $usrid = null;
+        }
+
         $company = Company::get()->pluck('content','type');
 
         if($total >= $company['free_ship']){}
@@ -62,12 +74,12 @@ class OrderController extends Controller
             'city' => $request->city,
             'phone' => $request->phone,
             'extra' => $request->extra,
-            'user_id' => $user->id,
+            'user_id' => $usrid,
             'total' => $total,
             'status' => 'Oczekujące na płatność',
         ]);
 
-        $cartContent = \Cart::session($user->id)->getContent();
+        $cartContent = \Cart::session('cart')->getContent();
         foreach ($cartContent as $item) {
             OrderItem::create([
                 'order_id' => $order->id,
@@ -78,9 +90,9 @@ class OrderController extends Controller
             ]);
         }
 
-        \Cart::session($user->id)->clear();
+        \Cart::session('cart')->clear();
 
-        return redirect()->route('account.order')->with('success', 'Zamówienie zostało złożone.');
+        return redirect()->route('account.order.show',$order->id)->with('success', 'Dziękujemy, zamówienie zostało złożone.');
     }
     public function show($slug){
         $user = Auth::user();

@@ -22,21 +22,20 @@
                 <div class="d-flex flex-column justify-content-center align-items-center text-center my-4">
                     <h1>Kasa</h1>
                 </div>
-                @include('client.coffee.module.nav-acc')
                 @include('client.coffee.module.alert')
             </div>
-            <div class="col-12 col-md-6 order-2 order-md-1">
+            <div class="col-12 col-md-6 order-1 order-md-1">
                 <form class="form text-center my-4" action="{{route('account.order.store')}}" method="POST">
                     <!--TOKEN-->
                     @csrf
                     <div class="form-floating my-3">
-                        <input type="text" class="form-control" id="name" value="{{ old('name') ? old('name') : $user->name}}" name="name" required>
+                        <input type="text" class="form-control" id="name" value="{{ old('name') ? old('name') : ''}}" name="name" required>
                         <label for="name">Imię i nazwisko</label>
                         <span class="text-danger">@error('name') {{$message}} @enderror</span>
                     </div>
 
                     <div class="form-floating my-3">
-                        <input type="email" class="form-control" id="email" value="{{ old('email') ? old('email') : $user->email}}" name="email" required>
+                        <input type="email" class="form-control" id="email" value="{{ old('email') ? old('email') : ''}}" name="email" required>
                         <label for="email">Email</label>
                         <span class="text-danger">@error('email') {{$message}} @enderror</span>
                     </div>
@@ -106,11 +105,11 @@
                     @endforeach
 
                     <input type="hidden" name="total" value="{{$counter_price}}}">
-                    <button class="btn btn-primary my-4" type="submit"><i class="fa-solid fa-credit-card me-2"></i>Kupuję i płacę</button>
-                    <a href="{{route('account.busket')}}" class="btn btn-danger my-4" type="button"><i class="fa-solid fa-xmark me-2"></i>Anuluj</a>
+                    <button class="btn btn-success my-4" type="submit"><i class="fa-solid fa-credit-card me-2"></i>Kupuję i płacę</button>
+                    <a href="{{ url()->previous() }}" class="btn btn-danger my-4" type="button"><i class="fa-solid fa-xmark me-2"></i>Anuluj</a>
                 </form>
             </div>
-            <div class="col-12 col-md-6 order-1 order-md-2" style="overflow:auto;">
+            <div class="col-12 col-md-6 order-2 order-md-2" style="overflow:auto;">
                 <table class="table">
                     <thead class="text-center">
                         <tr>

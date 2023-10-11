@@ -22,7 +22,6 @@
                 <div class="d-flex flex-column justify-content-center align-items-center text-center my-4">
                     <h1>Twoje zamówienia</h1>
                 </div>
-                @include('client.coffee.module.nav-acc')
                 @include('client.coffee.module.alert')
                 <div class="my-4">
                     <h3 class="my-4">Dziękujemy, otrzymaliśmy Twoje zamówienie</h3>
@@ -173,9 +172,6 @@
                         </li>
                     </ul>
                 </div>
-            </div>
-            <div class="d-flex justify-content-start align-items-center my-4">
-                <a href="{{route('account.order')}}" class="btn btn-primary"><i class="fa-solid fa-chevron-left me-2"></i>Pwrót</a>
             </div>
         </div>
     </div>
