@@ -183,7 +183,7 @@ $counter_price = intval($company['price_ship']);
                         <ul class="list-group ">
                             <li class="list-group-item d-flex justify-content-between align-items-start">
                                 <div class="ms-2 me-auto">
-                                    @if($counter_price >= $company['free_ship'])
+                                    @if($counter_price >= $company['free_ship'] + intval($company['price_ship']))
                                     @php
                                     $counter_price = $counter_price - $company['price_ship']
                                     @endphp

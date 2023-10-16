@@ -14,8 +14,10 @@ use Darryldecode\Cart\CartCondition;
 use Darryldecode\Cart\CartItem;
 use Darryldecode\Cart\CartCollection;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use App\Mail\OrderMail;
 use Throwable;
 
 class OrderController extends Controller
@@ -37,25 +39,26 @@ class OrderController extends Controller
     public function create()
     {
         $photos = ProductImage::get();
-        try {
-            $cartItems = \Cart::session(auth()->id())->getContent();
-        } catch (Throwable $e) {
-            $cartItems = \Cart::session('cart')->getContent();
-        }
+        $cartItems = \Cart::session('cart')->getContent();
+
         $user = Auth::user();
         return view('client.coffee.account.order.create', compact('photos', 'cartItems', 'user'));
     }
     public function store(CreateOrderRequest $request)
     {
-        $user = Auth::user();
+        $cartContent = \Cart::session('cart')->getContent();
+
+        if ($cartContent->isEmpty()) {
+            return redirect()->back()->with('fail', 'Nie można złożyć zamówienia gdy koszyk jest pusty.');
+        }
         try {
-            $total = \Cart::session($user->id)->getTotal();
+            $user = Auth::user();
             $usrid = $user->id;
         } catch (Throwable $e) {
-            $total = \Cart::session('cart')->getTotal();
             $usrid = null;
         }
 
+        $total = \Cart::session('cart')->getTotal();
         $company = Company::get()->pluck('content','type');
 
         if($total >= $company['free_ship']){}
@@ -79,7 +82,6 @@ class OrderController extends Controller
             'status' => 'Oczekujące na płatność',
         ]);
 
-        $cartContent = \Cart::session('cart')->getContent();
         foreach ($cartContent as $item) {
             OrderItem::create([
                 'order_id' => $order->id,
@@ -87,10 +89,17 @@ class OrderController extends Controller
                 'name' => $item->name,
                 'price' => $item->price,
                 'quantity' => $item->quantity,
+                'attributes_name' => $item->attributes[0],
+                'attributes_grind' => $item->attributes[1],
             ]);
         }
 
+
         \Cart::session('cart')->clear();
+
+        // Wyślij e-mail
+        $email = new OrderMail($order);
+        Mail::to($request->email)->send($email->build());
 
         return redirect()->route('account.order.show',$order->id)->with('success', 'Dziękujemy, zamówienie zostało złożone.');
     }

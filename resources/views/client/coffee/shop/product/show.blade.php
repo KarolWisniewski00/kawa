@@ -28,7 +28,7 @@
             <div class="col-12">
             @include('client.coffee.module.alert')
             </div>
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-lg-6">
                 <button type="button" class="p-0 m-0 mb-3 border-0 d-flex align-items-center justify-content-center bg-transparent overflow-hidden" id="button-studio-photo-main" data-bs-toggle="modal" data-bs-target="#studio-photo-main">
                     @foreach($photos as $photo)
                     @if($photo->product_id == $product->id)
@@ -57,7 +57,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-lg-6">
                 <div class="d-flex flex-column justify-content-start align-items-start">
                     <form method="POST" action="{{route('shop.cart.add', $product)}}">
                         <h1>{{$product->name}}</h1>
@@ -156,7 +156,7 @@
         </div>
         <!--END PRODUCT-->
         <!--PRODUCTS GRID-->
-        <div class="row">
+        <div class="row my-5">
             <div class="col-12">
                 <div class="text-center my-4">
                     <h1>Podobne produkty</h1>
@@ -169,14 +169,14 @@
                     @foreach($photos as $photo)
                     @if($photo->product_id == $p->id)
                     @if($photo->order == 1)
-                    <div class="d-flex flex-column justify-content-center align-items-center h-100">
+                    <div class="d-flex flex-column justify-content-center align-items-center h-75">
                         <img src="{{ asset('photo/' . $photo->image_path) }}" alt="" class="img-fluid" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
                     </div>
                     @endif
                     @endif
                     @endforeach
-                    <div class="d-flex flex-column justify-content-center align-items-center">
-                        <h4 class="font-custom mt-2 text-center" style="word-break: break-all;">{{$p->name}}</h4>
+                    <div class="d-flex flex-column justify-content-center align-items-center h-25">
+                        <h4 class="font-custom mt-2 text-center">{{$p->name}}</h4>
                         <p>
                             @php
                             $minPrice = null;

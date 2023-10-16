@@ -106,7 +106,7 @@
 
                     <input type="hidden" name="total" value="{{$counter_price}}}">
                     <button class="btn btn-success my-4" type="submit"><i class="fa-solid fa-credit-card me-2"></i>Kupuję i płacę</button>
-                    <a href="{{ url()->previous() }}" class="btn btn-danger my-4" type="button"><i class="fa-solid fa-xmark me-2"></i>Anuluj</a>
+                    <a href="{{ url()->previous() }}" class="btn btn-danger my-4"><i class="fa-solid fa-xmark me-2"></i>Anuluj</a>
                 </form>
             </div>
             <div class="col-12 col-md-6 order-2 order-md-2" style="overflow:auto;">
@@ -126,6 +126,11 @@
                             <th scope="col">
                                 <div class="d-flex flex-column justify-content-center align-items-center">
                                     <div class="fw-bold">Nazwa</div>
+                                </div>
+                            </th>
+                            <th scope="col">
+                                <div class="d-flex flex-column justify-content-center align-items-center">
+                                    <div class="fw-bold">Atrybuty</div>
                                 </div>
                             </th>
                             <th scope="col">
@@ -190,6 +195,11 @@
                             <td>
                                 <div class="d-flex flex-column justify-content-center align-items-center">
                                     <div class="fw-bold">{{ $item->name }}</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column justify-content-center align-items-center">
+                                    <div class="fw-bold">@foreach($item->attributes as $attr) {{$attr}} @endforeach</div>
                                 </div>
                             </td>
                             <td>

@@ -49,7 +49,7 @@ class PrivAdminController extends Controller
                 ->with('success', 'Treść została zaktualizowana.');
         } else {
             return redirect()->route('dashboard.technic.priv.edit', $element->id)
-                ->with('Fail', 'Wystąpił błąd podczas aktualizowania treści.');
+                ->with('fail', 'Wystąpił błąd podczas aktualizowania treści.');
         }
     }
     public function delete(Priv $element)

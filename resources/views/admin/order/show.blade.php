@@ -70,7 +70,7 @@
                             <dd class="text-lg font-semibold">{{$order->adres}}</dd>
                         </div>
                         <div class="flex flex-col pt-3">
-                            <dt class="mb-1 text-gray-500 md:text-lg">Ciąg dalsy adresu</dt>
+                            <dt class="mb-1 text-gray-500 md:text-lg">Ciąg dalszy adresu</dt>
                             <dd class="text-lg font-semibold">{{$order->adres_extra}}</dd>
                         </div>
                         <div class="flex flex-col pt-3">
@@ -104,6 +104,12 @@
                                         Nazwa
                                     </th>
                                     <th scope="col" class="px-6 py-3">
+                                        Atrybut 1
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Atrybut 2
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
                                         Cena
                                     </th>
                                     <th scope="col" class="px-6 py-3">
@@ -118,16 +124,16 @@
                                 @foreach($orders as $o)
                                 <tr class="bg-white border-b hover:bg-gray-50">
                                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                        @foreach($photos as $photo)
-                                        @if($photo->product_id == $o->product_id)
-                                        @if($photo->order == 1)
-                                        <img src="{{ asset('photo/' . $photo->image_path) }}" alt="" class="img-fluid" height="48px" width="48px" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
-                                        @endif
-                                        @endif
-                                        @endforeach
+                                        <img src="{{ asset('photo/' . $photo_good) }}" alt="" class="img-fluid" height="48px" width="48px" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
                                     </th>
                                     <td class="px-6 py-4">
                                         {{$o->name}}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{$o->attributes_name}}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{$o->attributes_grind}}
                                     </td>
                                     <td class="px-6 py-4">
                                         {{$o->price}}

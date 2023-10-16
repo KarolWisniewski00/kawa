@@ -165,7 +165,7 @@ class ProductAdminController extends Controller
                 ->with('success', 'Produkt został zaktualizowany.');
         } else {
             return redirect()->route('dashboard.shop.product.edit', $product->id)
-                ->with('Fail', 'Wystąpił błąd podczas aktualizowania produktu.');
+                ->with('fail', 'Wystąpił błąd podczas aktualizowania produktu.');
         }
     }
 

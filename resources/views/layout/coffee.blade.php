@@ -92,7 +92,7 @@
             </nav>
         </div>
     </section>
-    <div id="container-sidebar" class="shadow d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 240px; position:fixed; left:-240px; height:100vh; z-index:10; transition: left 0.2s ease-in-out;;">
+    <div id="container-sidebar" class="shadow d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 240px; position:fixed; left:-250px; height:100vh; z-index:10; transition: left 0.2s ease-in-out;">
         <ul class="nav nav-pills flex-column mb-auto pt-2" id="sidebar">
             <li class="nav-item">
                 <a href="{{route('about')}}" class="nav-link">
@@ -168,10 +168,12 @@
             @endauth
         </ul>
     </div>
+    <input type="hidden" value='@json($photos)' id="photos">
     <!--Busket-->
+
     <div style="position:fixed; right: 1em; bottom:1em; z-index:10;">
         <div class="position-relative" id="shopping-cart-window" style="display: none;">
-            <div class="position-absolute bottom-0 end-0 bg-white rounded p-4 mb-4 shadow" style="width: 50vh; max-height:75vh;">
+            <div class="position-absolute bottom-0 end-0 bg-white rounded p-4 mb-4 shadow" style="min-width: 20em; max-height:75vh;">
                 <div class="d-flex flex-column justify-content-center align-items-center text-center">
                     <h5><i class="fa-solid fa-cart-shopping me-2"></i>Koszyk</h5>
                     <div id="shopping-cart-container" style="height: 32vh; overflow-y:auto" class="">
@@ -187,10 +189,25 @@
     </div>
     <script>
         function addProduct(product) {
+            var photos = $('#photos').val()
+            var src = null;
+            photos = $.parseJSON(photos);
+
+            for (const key in photos) {
+                const photo = photos[key];
+                console.log(product.id);
+                if (product.id.toString().startsWith(photo.product_id.toString())) {
+                    if (photo.order == 1) {
+                        src = photo.image_path;
+                    }
+                }
+            }
+
+            console.log(src);
             $('#shopping-cart-container').append(`
             <div class="d-flex flex-row justify-content-center align-items-center my-2 h-fit">
                 <div class="d-flex flex-column justify-content-center align-items-center m-1">
-                    <div style="max-width:50px"><img src="{{ asset('photo') }}/${product.name}" alt="" class="img-fluid" onerror="this.onerror=null; this.src='{{ asset('image/undraw_photos_re_pvh3.svg') }}'"></div>
+                    <div style="max-width:50px"><img src="{{ asset('photo') }}/${src}" alt="" class="img-fluid" onerror="this.onerror=null; this.src='{{ asset('image/undraw_photos_re_pvh3.svg') }}'"></div>
                 </div>
                 <div class="d-flex flex-column justify-content-center align-items-center m-1">
                     <div class="fw-bold">${product.name}</div>
@@ -350,7 +367,7 @@
                     $('#shopping-cart-window').hide();
                     window = false;
                 } else {
-                    $('#container-sidebar').css('left', '-220px');
+                    $('#container-sidebar').css('left', '-250px');
                     sidebar = false;
                 }
                 checkIfOnElement();

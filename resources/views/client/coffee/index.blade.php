@@ -49,14 +49,14 @@
                     @foreach($photos as $photo)
                     @if($photo->product_id == $product->id)
                     @if($photo->order == 1)
-                    <div class="d-flex flex-column justify-content-center align-items-center h-100">
+                    <div class="d-flex flex-column justify-content-center align-items-center h-75">
                         <img src="{{ asset('photo/' . $photo->image_path) }}" alt="{{$product->name}}" class="img-fluid" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
                     </div>
                     @endif
                     @endif
                     @endforeach
-                    <div class="d-flex flex-column justify-content-center align-items-center">
-                        <h4 class="font-custom mt-2 text-center"style="word-break: break-all;">{{$product->name}}</h4>
+                    <div class="d-flex flex-column justify-content-center align-items-center h-25">
+                        <h4 class="font-custom mt-2 text-center">{{$product->name}}</h4>
                         <p>
                             @php
                             $minPrice = null;
@@ -225,7 +225,7 @@
             </div>
             <div class="col-12 col-md-3 p-5" style="background-color: #2D6EA2;">
                 <div class="d-flex flex-column justify-content-center align-items-center p-5">
-                    <div class="text-primary text-center h1 text-white"><i class="fa-solid fa-handshake-angle"></i></div>
+                    <div class="text-primary text-center h1"><i class="fa-solid fa-handshake-angle"></i></div>
                     <div class="text-primary text-center font-custom h4 my-2">{{ $company['violet_home_page'] }}</div>
                     <p class="text-primary text-center m-0 p-0 my-2">{{ $company['violet_home_page_long'] }}</p>
                 </div>

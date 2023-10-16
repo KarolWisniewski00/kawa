@@ -48,7 +48,7 @@ class RuleAdminController extends Controller
                 ->with('success', 'Treść została zaktualizowana.');
         } else {
             return redirect()->route('dashboard.technic.rule.edit', $element->id)
-                ->with('Fail', 'Wystąpił błąd podczas aktualizowania treści.');
+                ->with('fail', 'Wystąpił błąd podczas aktualizowania treści.');
         }
     }
     public function delete(Rule $element)

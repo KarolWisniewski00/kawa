@@ -64,7 +64,7 @@ class InstagramAdminController extends Controller
                 ->with('success', 'Zdjęcie z instagrama zostało zaktualizowane.');
         } else {
             return redirect()->route('dashboard.technic.instagram.edit', $instagram->id)
-                ->with('Fail', 'Wystąpił błąd podczas aktualizowania zdjęcia z instagrama.');
+                ->with('fail', 'Wystąpił błąd podczas aktualizowania zdjęcia z instagrama.');
         }
     }
     public function delete(Instagram $instagram)

@@ -82,7 +82,7 @@ class BlogAdminController extends Controller
                 ->with('success', 'Wpis został zaktualizowany.');
         } else {
             return redirect()->route('dashboard.blog.edit', $blog->id)
-                ->with('Fail', 'Wystąpił błąd podczas aktualizowania wpisu.');
+                ->with('fail', 'Wystąpił błąd podczas aktualizowania wpisu.');
         }
     }
 

@@ -45,54 +45,56 @@
                     </div>
                 </div>
             </div>
-            <div id="sort-container" class="row">
-                @foreach($products as $product)
-                @if($product->visibility_on_website == true)
-                <div class="col-12 col-md-4">
-                    <a href="{{route('shop.product.show', $product->id)}}" class="h-100 d-flex flex-column justify-content-start align-items-center text-decoration-none">
-                        @foreach($photos as $photo)
-                        @if($photo->product_id == $product->id)
-                        @if($photo->order == 1)
-                        <div class="d-flex flex-column justify-content-center align-items-center h-100">
-                            <img src="{{ asset('photo/' . $photo->image_path) }}" alt="" class="img-fluid" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
-                        </div>
-                        @endif
-                        @endif
-                        @endforeach
-                        <div class="d-flex flex-column justify-content-center align-items-center">
-                            <h4 class="font-custom mt-2 text-center" style="word-break: break-all;">{{$product->name}}</h4>
-                            <p>
-                                @php
-                                $minPrice = null;
-                                $maxPrice = null;
-                                @endphp
-
-                                @foreach($variants as $variant)
-                                @if($variant->product_id == $product->id && $variant->size_id != null)
-                                @php
-                                // Sprawdź minimalną cenę
-                                if ($minPrice === null || $variant->price < $minPrice) { $minPrice=$variant->price;
-                                    }
-
-                                    // Sprawdź maksymalną cenę
-                                    if ($maxPrice === null || $variant->price > $maxPrice) {
-                                    $maxPrice = $variant->price;
-                                    }
+            <div class="col-12">
+                <div id="sort-container" class="row">
+                    @foreach($products as $product)
+                    @if($product->visibility_on_website == true)
+                    <div class="col-12 col-md-4">
+                        <a href="{{route('shop.product.show', $product->id)}}" class="h-100 d-flex flex-column justify-content-between align-items-center text-decoration-none">
+                            @foreach($photos as $photo)
+                            @if($photo->product_id == $product->id)
+                            @if($photo->order == 1)
+                            <div class="d-flex flex-column justify-content-center align-items-center h-75">
+                                <img src="{{ asset('photo/' . $photo->image_path) }}" alt="" class="img-fluid" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
+                            </div>
+                            @endif
+                            @endif
+                            @endforeach
+                            <div class="d-flex flex-column justify-content-center align-items-center h-25">
+                                <h4 class="font-custom mt-2 text-center">{{$product->name}}</h4>
+                                <p>
+                                    @php
+                                    $minPrice = null;
+                                    $maxPrice = null;
                                     @endphp
-                                    @endif
-                                    @endforeach
 
-                                    @if($minPrice !== null && $maxPrice !== null)
-                                    {{$minPrice}} PLN - {{$maxPrice}} PLN
-                                    @else
-                                    Brak dostępnych cen.
-                                    @endif
-                            </p>
-                        </div>
-                    </a>
+                                    @foreach($variants as $variant)
+                                    @if($variant->product_id == $product->id && $variant->size_id != null)
+                                    @php
+                                    // Sprawdź minimalną cenę
+                                    if ($minPrice === null || $variant->price < $minPrice) { $minPrice=$variant->price;
+                                        }
+
+                                        // Sprawdź maksymalną cenę
+                                        if ($maxPrice === null || $variant->price > $maxPrice) {
+                                        $maxPrice = $variant->price;
+                                        }
+                                        @endphp
+                                        @endif
+                                        @endforeach
+
+                                        @if($minPrice !== null && $maxPrice !== null)
+                                        {{$minPrice}} PLN - {{$maxPrice}} PLN
+                                        @else
+                                        Brak dostępnych cen.
+                                        @endif
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                    @endif
+                    @endforeach
                 </div>
-                @endif
-                @endforeach
             </div>
             <div class="col-12 my-2">
                 <div class="px-4 py-2">

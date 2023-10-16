@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Product;
 use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,8 +20,18 @@ class OrderAdminController extends Controller
         $user = Auth::user();
         $orders = OrderItem::where('order_id', $order->id)->get();
         $photos = ProductImage::get();
+        foreach ($orders as $o) {
+            foreach($photos as $photo){
+                $p = Product::where('name',$o->name)->first();
+                if($photo->product_id == $p->id){
+                    if($photo->order == 1){
+                        $photo_good = $photo->image_path;
+                    }
+                }
+            }
+        }
         $order = Order::where('id',$order->id)->first();
-        return view('admin.order.show', compact('order','orders','photos'));
+        return view('admin.order.show', compact('order','orders','photos','photo_good'));
     }
     public function status($id, $slug)
     {
@@ -39,6 +50,12 @@ class OrderAdminController extends Controller
                 break;
             case 5:
                 $res = Order::where('id', '=', $id)->update(['status' => 'Opłacone']);
+                break;
+            case 6:
+                $res = Order::where('id', '=', $id)->update(['status' => 'Anulowano']);
+                if ($res) {
+                    return redirect()->route('dashboard')->with('success', 'Status został pomyślnie zapisany.');
+                }
                 break;
         }
         if ($res) {

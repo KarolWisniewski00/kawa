@@ -58,7 +58,10 @@
                 <p class="text-muted">NIP:{{ $company['nip'] }}</p>
                 <h3 class="my-4">Nasze dane bankowe</h3>
                 <h6>{{ $company['name_bank'] }}</h6>
-                <p class="text-muted fw-bold">Numer konta: {{ $company['number_account_bank'] }}</p>
+                <div class="d-flex justify-content-between align-items-center text-center my-2">
+                    <div class="text-muted fw-bold">Numer konta: <span id="numer-konta">{{ $company['number_account_bank'] }}</span></div>
+                    <button class="btn btn-primary" type="button" onclick="skopiujNumerKonta()"><i class="fa-solid fa-copy me-2"></i>Kopiuj</button>
+                </div>
                 <p class="text-muted fw-bold">IBAN: {{ $company['number_iban'] }}</p>
                 <p class="text-muted fw-bold">BIC: {{ $company['number_bic'] }}</p>
                 <p class="text-danger fw-bold">Dowód zakupu będzie wysłany wraz z paczką.</p>
@@ -81,6 +84,16 @@
                             <th scope="col">
                                 <div class="d-flex flex-column justify-content-center align-items-center">
                                     <div class="fw-bold">Nazwa</div>
+                                </div>
+                            </th>
+                            <th scope="col">
+                                <div class="d-flex flex-column justify-content-center align-items-center">
+                                    <div class="fw-bold">Atrybut 1</div>
+                                </div>
+                            </th>
+                            <th scope="col">
+                                <div class="d-flex flex-column justify-content-center align-items-center">
+                                    <div class="fw-bold">Atrybut 2</div>
                                 </div>
                             </th>
                             <th scope="col">
@@ -122,6 +135,16 @@
                             <td>
                                 <div class="d-flex flex-column justify-content-center align-items-center">
                                     <div class="fw-bold">{{$o->name}}</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column justify-content-center align-items-center">
+                                    <div class="fw-bold">{{$o->attributes_name}}</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex flex-column justify-content-center align-items-center">
+                                    <div class="fw-bold">{{$o->attributes_grind}}</div>
                                 </div>
                             </td>
                             <td>
