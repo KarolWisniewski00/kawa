@@ -36,12 +36,45 @@
                                 @foreach($elements as $element)
                                 @if($element->type == 'name_company')
                                 <tr class="bg-white border-b hover:bg-gray-50">
-                                    <td colspan="3" class="px-6 py-4 font-bold text-xl text-center">
-                                        Dane firmy wyświetlające się w zamówieniach
+                                    <td colspan="2" class="px-6 py-4 font-bold text-xl text-center">
+                                        Dane firmy wyświetlające się w zamówieniach - Przelew
+                                    </td>
+                                    <td class="px-6 py-4 font-bold text-xl text-center">
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            @foreach($elements as $e)
+                                            @if($e->type == 'order_bank_transfer')
+                                            @if($e->content == '1')
+                                            <input type="checkbox" value="" class="sr-only peer" checked>
+                                            @else
+                                            <input type="checkbox" value="" class="sr-only peer">
+                                            @endif
+                                            @endif
+                                            @endforeach
+                                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                        </label>
                                     </td>
                                 </tr>
                                 @endif
                                 @if($element->type == 'info_top_website')
+                                <tr class="bg-white border-b hover:bg-gray-50">
+                                    <td colspan="2" class="px-6 py-4 font-bold text-xl text-center">
+                                        Dane firmy wyświetlające się w zamówieniach - Bramka płatnicza
+                                    </td>
+                                    <td class="px-6 py-4 font-bold text-xl">
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            @foreach($elements as $e)
+                                            @if($e->type == 'order_bank_transfer_24')
+                                            @if($e->content == '1')
+                                            <input type="checkbox" value="" class="sr-only peer" checked>
+                                            @else
+                                            <input type="checkbox" value="" class="sr-only peer">
+                                            @endif
+                                            @endif
+                                            @endforeach
+                                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                        </label>
+                                    </td>
+                                </tr>
                                 <tr class="bg-white border-b hover:bg-gray-50">
                                     <td colspan="3" class="px-6 py-4 font-bold text-xl text-center">
                                         Dane techniczne

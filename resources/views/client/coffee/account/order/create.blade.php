@@ -243,15 +243,53 @@
                         </div>
                     </li>
                 </ul>
-                <h4 class="mt-4">Przelew bankowy</h4>
-                <p class="text-muted">Prosimy o wpłatę bezpośrednio na nasze konto bankowe.<span class="text-danger"> Proszę użyć numeru zamówienia jako tytuł płatności.</span> Twoje zamówienie zostanie zrealizowane po zaksięgowaniu wpłaty na naszym koncie.</p>
-                <p>Twoje dane osobowe zostaną wykorzystane do realizacji Twojego zamówienia oraz do innych celów opisanych w zakładce <a href="{{route('policy-priv')}}">polityka prywatności</a></p>
-                <h4 class="mt-4">Dane do przelewu</h4>
-                <div class="d-flex justify-content-between align-items-center text-center my-2">
-                    <div class="text-muted">Numer konta: <span id="numer-konta">{{ $company['number_account_bank'] }}</span></div>
-                    <button class="btn btn-primary" type="button" onclick="skopiujNumerKonta()"><i class="fa-solid fa-copy me-2"></i>Kopiuj</button>
+
+                <div class="flex flex-column my-5">
+                    <div class="form-check my-2">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="bank_transfer">
+                        <label class="form-check-label" for="bank_transfer">
+                            Płatność przelewem
+                        </label>
+                    </div>
+                    <div class="form-check my-2">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="bank_transfer_24" checked>
+                        <label class="form-check-label" for="bank_transfer_24">
+                            <div class="flex flex-row">
+                                <span>Płatność on-line</span>
+                                <img class="img-fluid ms-2" alt="logo-przelewy24" src="{{asset('image/p24.png')}}">
+                            </div>
+                        </label>
+                    </div>
                 </div>
-                <p class="text-danger fw-bold">Tytuł przelewu to numer zamówienia który zostanie wygenerowany po złożeniu zamówienia!</p>
+                <div id="bank-transfer-info" class="flex flex-column">
+                    <h4 class="mt-4">Przelew bankowy</h4>
+                    <p class="text-muted">Prosimy o wpłatę bezpośrednio na nasze konto bankowe.<span class="text-danger"> Proszę użyć numeru zamówienia jako tytuł płatności.</span> Twoje zamówienie zostanie zrealizowane po zaksięgowaniu wpłaty na naszym koncie.</p>
+                    <p>Twoje dane osobowe zostaną wykorzystane do realizacji Twojego zamówienia oraz do innych celów opisanych w zakładce <a href="{{route('policy-priv')}}">polityka prywatności</a></p>
+                    <h4 class="mt-4">Dane do przelewu</h4>
+                    <div class="d-flex justify-content-between align-items-center text-center my-2">
+                        <div class="text-muted">Numer konta: <span id="numer-konta">{{ $company['number_account_bank'] }}</span></div>
+                        <button class="btn btn-primary" type="button" onclick="skopiujNumerKonta()"><i class="fa-solid fa-copy me-2"></i>Kopiuj</button>
+                    </div>
+                    <p class="text-danger fw-bold">Tytuł przelewu to numer zamówienia który zostanie wygenerowany po złożeniu zamówienia!</p>
+                </div>
+                <script>
+                    $(document).ready(function() {
+                        // Ukryj początkowo div z id "bank-transfer-info"
+                        $("#bank-transfer-info").hide();
+
+                        // Obsłuż zdarzenie zmiany na radio input
+                        $("input[type='radio']").on("change", function() {
+                            // Sprawdź, czy wybrano "Płatność przelewem" (o ID "flexRadioDefault1")
+                            if ($("#bank_transfer_24").is(":checked")) {
+                                // Jeśli tak, ukryj div "bank-transfer-info"
+                                $("#bank-transfer-info").hide();
+                            } else {
+                                // W przeciwnym razie (wybrano "Płatność on-line" lub inne), pokaż div "bank-transfer-info"
+                                $("#bank-transfer-info").show();
+                            }
+                        });
+                    });
+                </script>
             </div>
         </div>
     </div>
