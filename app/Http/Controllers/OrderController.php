@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\PaymentStatus;
 use App\Http\Requests\CreateOrderRequest;
 use App\Models\Company;
 use App\Models\Order;
@@ -18,10 +19,22 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use App\Mail\OrderMail;
+use App\Models\Payment;
+use Devpark\Transfers24\Exceptions\RequestException;
+use Devpark\Transfers24\Exceptions\RequestExecutionException;
+use Devpark\Transfers24\Requests\Transfers24;
+use Illuminate\Support\Facades\Log;
 use Throwable;
 
 class OrderController extends Controller
 {
+    private Transfers24 $transfers24;
+
+    public function __construct(Transfers24 $transfers24)
+    {
+        $this->transfers24 = $transfers24;
+    }
+
     public function index()
     {
         Breadcrumbs::for('index', function ($trail) {
@@ -33,8 +46,8 @@ class OrderController extends Controller
             $trail->push('Zamówienia', route('account.order'));
         });
         $user = Auth::user();
-        $orders = Order::where('user_id',$user->id)->orderBy('created_at', 'desc')->paginate(20);
-        return view('client.coffee.account.order.index',compact('orders'));
+        $orders = Order::where('user_id', $user->id)->orderBy('created_at', 'desc')->paginate(20);
+        return view('client.coffee.account.order.index', compact('orders'));
     }
     public function create()
     {
@@ -42,10 +55,14 @@ class OrderController extends Controller
         $cartItems = \Cart::session('cart')->getContent();
 
         $user = Auth::user();
-        return view('client.coffee.account.order.create', compact('photos', 'cartItems', 'user'));
+        $elements = Company::get();
+        return view('client.coffee.account.order.create', compact('photos', 'cartItems', 'user', 'elements'));
     }
     public function store(CreateOrderRequest $request)
     {
+        if ($request->type_transfer == 'false' && $request->type_transfer_24 == 'false') {
+            return redirect()->back()->with('fail', 'Administrator nie ustawił formy płatności. Przepraszamy za utrudnienia.');
+        }
         $cartContent = \Cart::session('cart')->getContent();
 
         if ($cartContent->isEmpty()) {
@@ -59,10 +76,10 @@ class OrderController extends Controller
         }
 
         $total = \Cart::session('cart')->getTotal();
-        $company = Company::get()->pluck('content','type');
+        $company = Company::get()->pluck('content', 'type');
 
-        if($total >= $company['free_ship']){}
-        else{
+        if ($total >= $company['free_ship']) {
+        } else {
             $total = $total + $company['price_ship'];
         }
         $order = Order::create([
@@ -94,20 +111,54 @@ class OrderController extends Controller
             ]);
         }
 
+        if ($request->type_transfer_24 == 'true') {
+            return $this->paymentTransaction($order);
+        } elseif ($request->type_transfer_24 == 'true') {
+            \Cart::session('cart')->clear();
 
-        \Cart::session('cart')->clear();
+            // Wyślij e-mail
+            $email = new OrderMail($order);
+            Mail::to($request->email)->send($email->build());
 
-        // Wyślij e-mail
-        $email = new OrderMail($order);
-        Mail::to($request->email)->send($email->build());
-
-        return redirect()->route('account.order.show',$order->id)->with('success', 'Dziękujemy, zamówienie zostało złożone.');
+            return redirect()->route('account.order.show', $order->id)->with('success', 'Dziękujemy, zamówienie zostało złożone.');
+        }
     }
-    public function show($slug){
+    public function show($slug)
+    {
         $user = Auth::user();
-        $order = Order::where('id',$slug)->first();
+        $order = Order::where('id', $slug)->first();
         $orders = OrderItem::where('order_id', $slug)->get();
         $photos = ProductImage::get();
-        return view('client.coffee.account.order.show', compact('order','orders','photos'));
+        return view('client.coffee.account.order.show', compact('order', 'orders', 'photos'));
+    }
+    private function paymentTransaction(Order $order)
+    {
+        $payment = new Payment();
+        $payment->order_id = $order->id;
+        $this->transfers24->setEmail($order->email)->setAmount($order->total);
+        try {
+            $response = $this->transfers24->init();
+            if ($response->isSuccess()) {
+                $payment->status = PaymentStatus::IN_PROGRESS;
+                $payment->session_id = $response->getSessionId();
+                $payment->save();
+                $order->update([
+                    'status' => 'Weryfikacja płatności'
+                ]);
+                \Cart::session('cart')->clear();
+                $email = new OrderMail($order);
+                Mail::to($order->email)->send($email->build());
+                return redirect($this->transfers24->execute($response->getToken(), false));
+            } else {
+                $payment->status = PaymentStatus::FAIL;
+                $payment->error_code = $response->getErrorCode();
+                $payment->error_description = json_encode($response->getErrorDescription());
+                $payment->save();
+                return back()->with('fail', 'Ups. Coś poszło nie tak.');
+            }
+        } catch (RequestException | RequestExecutionException $error) {
+            Log::error('Błąd transakcji', ['error' => $error]);
+            return back()->with('fail', 'Ups. Coś poszło nie tak.');
+        }
     }
 }

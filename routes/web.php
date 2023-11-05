@@ -16,6 +16,7 @@ use App\Http\Controllers\InstagramAdminController;
 use App\Http\Controllers\NewBusketController;
 use App\Http\Controllers\OrderAdminController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PhotoAdminController;
 use App\Http\Controllers\PolicyCookiesController;
 use App\Http\Controllers\PolicyPrivController;
@@ -59,6 +60,8 @@ Route::prefix('shop')->group(function () {
         Route::get('{slug}', [ProductController::class, 'show'])->name('shop.product.show');
     });
 });
+
+Route::post('/payment/status', [PaymentController::class, 'status'])->name('payment.status');
 
 Route::prefix('blog')->group(function () {
     Route::get('/', [BlogController::class, 'index'])->name('blog');

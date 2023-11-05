@@ -104,7 +104,22 @@
                     @endphp
                     @endforeach
 
-                    <input type="hidden" name="total" value="{{$counter_price}}}">
+                    <input type="hidden" name="total" value="{{$counter_price}}">
+                    @foreach($elements as $e)
+                    @if($e->type == 'order_bank_transfer')
+                    @if($e->content == '1')
+                    <input type="hidden" name="type_transfer"  id="type_transfer" value="true">
+                    @else
+                    <input type="hidden" name="type_transfer"  id="type_transfer" value="false">
+                    @endif
+                    @elseif($e->type == 'order_bank_transfer_24')
+                    @if($e->content == '1')
+                    <input type="hidden" name="type_transfer_24" id="type_transfer_24"  value="true">
+                    @else
+                    <input type="hidden" name="type_transfer_24" id="type_transfer_24"  value="false">
+                    @endif
+                    @endif
+                    @endforeach
                     <button class="btn btn-success my-4" type="submit"><i class="fa-solid fa-credit-card me-2"></i>Kupuję i płacę</button>
                     <a href="{{ url()->previous() }}" class="btn btn-danger my-4"><i class="fa-solid fa-xmark me-2"></i>Anuluj</a>
                 </form>
@@ -243,16 +258,21 @@
                         </div>
                     </li>
                 </ul>
-
                 <div class="flex flex-column my-5">
+                    @foreach($elements as $e)
+                    @if($e->type == 'order_bank_transfer')
+                    @if($e->content == '1')
                     <div class="form-check my-2">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="bank_transfer">
+                        <input class="form-check-input" type="radio" name="bank_transfer" value="bank_transfer" id="bank_transfer" checked>
                         <label class="form-check-label" for="bank_transfer">
                             Płatność przelewem
                         </label>
                     </div>
+                    @endif
+                    @elseif($e->type == 'order_bank_transfer_24')
+                    @if($e->content == '1')
                     <div class="form-check my-2">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="bank_transfer_24" checked>
+                        <input class="form-check-input" type="radio" name="bank_transfer" value="bank_transfer_24" id="bank_transfer_24" checked>
                         <label class="form-check-label" for="bank_transfer_24">
                             <div class="flex flex-row">
                                 <span>Płatność on-line</span>
@@ -260,7 +280,14 @@
                             </div>
                         </label>
                     </div>
+                    @endif
+                    @endif
+                    @endforeach
                 </div>
+            
+                @foreach($elements as $e)
+                @if($e->type == 'order_bank_transfer')
+                @if($e->content == '1')
                 <div id="bank-transfer-info" class="flex flex-column">
                     <h4 class="mt-4">Przelew bankowy</h4>
                     <p class="text-muted">Prosimy o wpłatę bezpośrednio na nasze konto bankowe.<span class="text-danger"> Proszę użyć numeru zamówienia jako tytuł płatności.</span> Twoje zamówienie zostanie zrealizowane po zaksięgowaniu wpłaty na naszym koncie.</p>
@@ -272,20 +299,35 @@
                     </div>
                     <p class="text-danger fw-bold">Tytuł przelewu to numer zamówienia który zostanie wygenerowany po złożeniu zamówienia!</p>
                 </div>
+                @endif
+                @endif
+                @endforeach
+
                 <script>
                     $(document).ready(function() {
                         // Ukryj początkowo div z id "bank-transfer-info"
+                        @foreach($elements as $e)
+                        @if($e->type == 'order_bank_transfer_24')
+                        @if($e->content == '1')
                         $("#bank-transfer-info").hide();
-
+                        $('#type_transfer').val('false');
+                        $('#type_transfer_24').val('true');
+                        @endif
+                        @endif
+                        @endforeach
                         // Obsłuż zdarzenie zmiany na radio input
                         $("input[type='radio']").on("change", function() {
                             // Sprawdź, czy wybrano "Płatność przelewem" (o ID "flexRadioDefault1")
                             if ($("#bank_transfer_24").is(":checked")) {
                                 // Jeśli tak, ukryj div "bank-transfer-info"
                                 $("#bank-transfer-info").hide();
+                                $('#type_transfer').val('false');
+                                $('#type_transfer_24').val('true');
                             } else {
                                 // W przeciwnym razie (wybrano "Płatność on-line" lub inne), pokaż div "bank-transfer-info"
                                 $("#bank-transfer-info").show();
+                                $('#type_transfer').val('true');
+                                $('#type_transfer_24').val('false');
                             }
                         });
                     });

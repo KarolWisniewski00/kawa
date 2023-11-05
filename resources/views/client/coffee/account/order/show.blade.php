@@ -29,7 +29,11 @@
                     <p class="text-muted fw-bold">Numer zmaówienia: {{$order->number}}</p>
                     <p class="text-muted">Data: {{$order->created_at}}</p>
                     <p class="text-muted">Łącznie: {{$order->total}} PLN</p>
-                    <p class="text-muted">Metoda płatności: Przelew bankowy</p>
+                    @if ($order->payment)
+                    <dd class="text-lg font-semibold">Metoda płatności: Płatność online</dd>
+                    @else
+                    <dd class="text-lg font-semibold">Metoda płatności: Przelew bankowy</dd>
+                    @endif
                 </div>
             </div>
             <div class="col-12 col-md-6 my-4">
@@ -52,6 +56,8 @@
                 <p class="text-muted">Uwagi dotyczące zamówienia: {{$order->extra}}</p>
                 @endif
             </div>
+            @if ($order->payment)
+            @else
             <div class="col-12 col-md-6 my-4">
                 <h3 class="my-4">Nasze dane firmowe</h3>
                 <p class="text-muted">{{ $company['name_company'] }}</p>
@@ -66,6 +72,7 @@
                 <p class="text-muted fw-bold">BIC: {{ $company['number_bic'] }}</p>
                 <p class="text-danger fw-bold">Dowód zakupu będzie wysłany wraz z paczką.</p>
             </div>
+            @endif
             <div class="col-12 my-4" style="overflow:auto;">
                 <h3 class="my-4">Szczegóły zamówienia</h3>
                 <table class="table">

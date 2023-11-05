@@ -19,6 +19,8 @@ class CreateOrderRequest extends FormRequest
             'city' => 'required|string|max:255',
             'phone' => 'required|string|max:255',
             'extra' => 'nullable|string',
+            'type_transfer' => 'required',
+            'type_transfer_24' => 'required',
         ];
     }
 

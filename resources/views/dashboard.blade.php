@@ -39,6 +39,9 @@
                                         Status
                                     </th>
                                     <th scope="col" class="px-6 py-3">
+                                        Status płatności
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
                                         Kwota
                                     </th>
                                     <th scope="col" class="px-6 py-3">
@@ -52,39 +55,47 @@
                             <tbody>
                                 @foreach($orders as $key => $order)
                                 <tr class="
-                                @if($order->status == "Anulowano")
-                                bg-rose-100
-                                @elseif($order->status == "Zrealizowane")
-                                bg-emerald-100
-                                @elseif($order->status == "W trakcie realizacji")
-                                bg-lime-100
-                                @elseif($order->status == "Oczekujące na płatność")
-                                bg-amber-100
-                                @endif
-                                ">
+                                    @if($order->status == "Anulowano")
+                                    bg-rose-100
+                                    @elseif($order->status == "Zrealizowane")
+                                    bg-emerald-100
+                                    @elseif($order->status == "W trakcie realizacji")
+                                    bg-lime-100
+                                    @elseif($order->status == "Weryfikacja płatności")
+                                    bg-lime-100
+                                    @elseif($order->status == "Oczekujące na płatność")
+                                    bg-amber-100
+                                    @endif
+                                    ">
                                     <td class="px-6 py-4">
-                                    {{$order->number}}
+                                        {{$order->number}}
                                     </td>
                                     <td class="px-6 py-4">
-                                    {{$order->name}}
+                                        {{$order->name}}
                                     </td>
                                     <td class="px-6 py-4">
-                                    {{$order->company}}
-                                    {{$order->nip}}
+                                        {{$order->company}}
+                                        {{$order->nip}}
                                     </td>
                                     <td class="px-6 py-4">
-                                    {{$order->adres}}
-                                    {{$order->adres_extra}}
+                                        {{$order->adres}}
+                                        {{$order->adres_extra}}
                                     </td>
                                     <td class="px-6 py-4">
-                                    {{$order->city}}
-                                    {{$order->post}}
+                                        {{$order->city}}
+                                        {{$order->post}}
                                     </td>
                                     <td class="px-6 py-4">
-                                    {{$order->status}}
+                                        {{$order->status}}
                                     </td>
                                     <td class="px-6 py-4">
-                                    {{$order->total}}
+                                        @if ($order->payment)
+                                        {{$order->payment->status}}
+                                        @else
+                                        @endif
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{$order->total}}
                                     </td>
                                     <td class="px-6 py-4">
                                         <a href="{{route('dashboard.order.show', $order)}}" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-600 focus:z-10 focus:ring-4 focus:ring-gray-200"><i class="fa-solid fa-eye"></i></a>

@@ -36,7 +36,11 @@
                         </div>
                         <div class="flex flex-col pt-3">
                             <dt class="mb-1 text-gray-500 md:text-lg">Metoda płatności</dt>
+                            @if ($order->payment)
+                            <dd class="text-lg font-semibold">Płatność online</dd>
+                            @else
                             <dd class="text-lg font-semibold">Przelew bankowy</dd>
+                            @endif
                         </div>
                     </dl>
                     <div class="flex flex-row justify-between">
