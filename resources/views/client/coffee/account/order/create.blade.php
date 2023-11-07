@@ -269,7 +269,8 @@
                         </label>
                     </div>
                     @endif
-                    @elseif($e->type == 'order_bank_transfer_24')
+                    @endif
+                    @if($e->type == 'order_bank_transfer_24')
                     @if($e->content == '1')
                     <div class="form-check my-2">
                         <input class="form-check-input" type="radio" name="bank_transfer" value="bank_transfer_24" id="bank_transfer_24" checked>

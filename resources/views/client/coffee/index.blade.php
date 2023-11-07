@@ -143,7 +143,7 @@
                 <div class="d-flex flex-column justify-content-center align-items-center my-2">
                     <div class="row">
                         <div class="col-12 col-md-5">
-                            <a href="{{route('blog.show','test')}}" class="d-flex flex-column justify-content-center align-items-end">
+                            <a href="{{route('blog.show',$blog)}}" class="d-flex flex-column justify-content-center align-items-end">
                                 <img class="img-fluid" alt="Zdjęcie główne wpisu bloga" src="{{asset('photo/'.$blog->photo)}}" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
                             </a>
                         </div>

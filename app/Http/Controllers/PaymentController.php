@@ -15,22 +15,25 @@ class PaymentController extends Controller
     {
         $this->transfers24 = $transfers24;
     }
-    public function status(Request $request): void
+    public function status(Request $request)
     {
-        $response = $this->transfers24->receive($request);
-        $payment = Payment::where('session_id', $response->getSessionId())->firstOrFail();
+        $payment = app()->make(\App\Payment::class);
+        $registration_request = app()->make(\Devpark\Transfers24\Requests\Transfers24::class);
 
-        if (!is_null($payment)) {
-            if ($response->isSuccess()) {
-                $payment->update([
-                    'status' => PaymentStatus::SUCCESS,
-                ]);
-            } else {
-                $payment->status = PaymentStatus::FAIL;
-                $payment->error_code = $response->getErrorCode();
-                $payment->error_description = $response->getErrorDescription();
-            }
-            $payment->save();
+        $register_payment = $registration_request->setEmail('test@example.com')->setAmount(100)->init();
+
+        if ($register_payment->isSuccess()) {
+            $payment = Payment::where('session_id', $register_payment->getSessionId())->firstOrFail();
+            $payment->update([
+                'status' => PaymentStatus::SUCCESS,
+            ]);
+            return $registration_request->execute($register_payment->getToken(), true);
+        } else {
+            $payment = Payment::where('session_id', $register_payment->getSessionId())->firstOrFail();
+            $payment->status = PaymentStatus::FAIL;
+            $payment->error_code = $register_payment->getErrorCode();
+            $payment->error_description = $register_payment->getErrorDescription();
+            return $registration_request->execute($register_payment->getToken(), true);
         }
     }
 }
