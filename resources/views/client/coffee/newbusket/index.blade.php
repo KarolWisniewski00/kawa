@@ -187,9 +187,9 @@ $counter_price = intval($company['price_ship']);
                                     @php
                                     $counter_price = $counter_price - $company['price_ship']
                                     @endphp
-                                    <div class="fw-bold">Wysyłka PDP darmowa</div>
+                                    <div class="fw-bold">Wysyłka InPost darmowa</div>
                                     @else
-                                    <div class="fw-bold">Wysyłka PDP + {{ $company['price_ship'] }} PLN</div>
+                                    <div class="fw-bold">Wysyłka InPost + {{ $company['price_ship'] }} PLN</div>
                                     @endif
                                 </div>
                             </li>

@@ -178,9 +178,9 @@
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                             <div class="ms-2 me-auto">
                                 @if($order->total >= $company['free_ship'])
-                                <div class="fw-bold">Wysyłka PDP darmowa</div>
+                                <div class="fw-bold">Wysyłka InPost darmowa</div>
                                 @else
-                                <div class="fw-bold">Wysyłka PDP + {{ $company['price_ship'] }} PLN</div>
+                                <div class="fw-bold">Wysyłka InPost + {{ $company['price_ship'] }} PLN</div>
                                 @endif
                             </div>
                         </li>
