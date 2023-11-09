@@ -18,6 +18,10 @@ class CreateProductRequest extends FormRequest
             'seo_title' => 'nullable|string|max:255',
             'seo_description' => 'nullable|string|max:255',
             'visibility_in_google' => 'nullable|boolean',
+            'coffee' => 'nullable',
+            'tool' => 'nullable',
+            'lemon' => 'nullable',
+            'height' => 'nullable|integer',
             'photo' => 'required|string|max:255',
         ];
     }

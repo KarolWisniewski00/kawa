@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Potwierdzenie zamówienia</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.7/dist/tailwind.min.css" rel="stylesheet">
-</head>
-
-<body class="bg-gray-100 p-4">
     <div class="max-w-md mx-auto bg-white p-8 rounded shadow-md">
         <h1 class="text-2xl font-semibold mb-4">Potwierdzenie zamówienia</h1>
 

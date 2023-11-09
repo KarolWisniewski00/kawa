@@ -26,7 +26,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-            @include('client.coffee.module.alert')
+                @include('client.coffee.module.alert')
             </div>
             <div class="col-12 col-lg-6">
                 <button type="button" class="p-0 m-0 mb-3 border-0 d-flex align-items-center justify-content-center bg-transparent overflow-hidden" id="button-studio-photo-main" data-bs-toggle="modal" data-bs-target="#studio-photo-main">
@@ -152,6 +152,54 @@
                     <h1>Opis produktu</h1>
                 </div>
                 <p class="text-muted">{{$product->description}}</p>
+            </div>
+            <div class="col-12 text-center my-4">
+                <div class="d-flex flex-xl-row flex-column justyfi-content-center align-items-center gap-4 mt-5">
+                @if($product->height)
+                <div class="d-flex flex-column justyfi-content-end align-items-center gap-2">
+                        <div class="d-flex flex-row justyfi-content-center align-items-center gap-2">
+                            <img alt="" class="h-auto w-100"  src="{{asset('image/montain.svg')}}">
+                        </div>
+                        <p class="h5 my-3">Wysokość uprawy {{$product->height}} m n.p.m.</p>
+                        </div>
+                        @endif
+                    <div class="d-flex flex-column justyfi-content-end align-items-center gap-2">
+                        <div class="d-flex flex-row justyfi-content-center align-items-center gap-2">
+                        @for($i = 0; $i <= 3; $i++)
+                            @if($product->coffee-1 <= $i)
+                            <img alt="" class="h-auto" style="width: 70px;" src="{{asset('image/coffee_bean_empty.svg')}}">
+                            @else
+                            <img alt="" class="h-auto" style="width: 70px;" src="{{asset('image/coffee_bean_fill.svg')}}">
+                            @endif
+                        @endfor
+                        </div>
+                        <p class="h5 my-3">Stopień wypalenia</p>
+                        </div>
+                    <div class="d-flex flex-column justyfi-content-end align-items-center gap-2">
+                        <div class="d-flex flex-row justyfi-content-center align-items-center gap-2">
+                        @for($i = 0; $i <= 3; $i++)
+                            @if($product->tool-1 <= $i)
+                            <img alt="" class="h-auto" style="width: 70px;" src="{{asset('image/tool_bean_empty.svg')}}">
+                            @else
+                            <img alt="" class="h-auto" style="width: 70px;" src="{{asset('image/tool_bean_fill.svg')}}">
+                            @endif
+                        @endfor
+                        </div>
+                        <p class="h5 my-3">Intensywność smaku</p>
+                    </div>
+                    <div class="d-flex flex-column justyfi-content-end align-items-center gap-2">
+                        <div class="d-flex flex-row justyfi-content-center align-items-center gap-2">
+                        @for($i = 0; $i <= 3; $i++)
+                            @if($product->lemon-1 <= $i)
+                            <img alt="" class="h-auto" style="width: 70px;" src="{{asset('image/lemon_bean_empty.svg')}}">
+                            @else
+                            <img alt="" class="h-auto" style="width: 70px;" src="{{asset('image/lemon_bean_fill.svg')}}">
+                            @endif
+                        @endfor
+                        </div>
+                        <p class="h5 my-3">kwasowość</p>
+                    </div>
+                </div>
             </div>
         </div>
         <!--END PRODUCT-->

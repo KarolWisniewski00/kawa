@@ -116,6 +116,138 @@
                             @enderror
                         </div>
 
+                        <div class="flex flex-col items-center mb-6">
+                            <h3 class="mb-5 text-lg font-medium text-gray-900 ">Dodatkowe informacje</h3>
+                            <div class="mb-6">
+                                <label for="text" class="block mb-2 text-sm font-medium text-gray-900 ">Wysokość m n.p.m.</label>
+                                <input value="{{ old('height') ? old('height') : 0}}" type="number" name="height" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="Wysokość upraw" required>
+                                @error('height')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <h5 class="mb-5 text-lg font-medium text-gray-900 ">Stopień wypalenia</h5>
+
+                            <ul class="grid w-full gap-6 grid-cols-4 my-2">
+                                <li>
+                                    <input @if(old('coffee') == 1) checked @endif name="coffee" type="radio" id="coffee-1" value="1" class="hidden peer">
+                                    <label for="coffee-1" class="h-full inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 hover:text-gray-600 peer-checked:text-gray-600 hover:bg-gray-50">
+                                        <div class="block mx-auto">
+
+                                            <img alt="" class="h-auto" style="width: 70px;" src="{{asset('image/coffee_bean_empty.svg')}}">
+
+                                        </div>
+                                    </label>
+                                </li>
+                                <li>
+                                    <input  @if(old('coffee') == 2) checked @endif name="coffee" type="radio" id="coffee-2" value="2" class="hidden peer">
+                                    <label for="coffee-2" class="h-full inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 hover:text-gray-600 peer-checked:text-gray-600 hover:bg-gray-50">
+                                        <div class="block mx-auto">
+                                            <img alt="" class="h-auto" style="width: 70px;" src="{{asset('image/coffee_bean_empty.svg')}}">
+                                        </div>
+                                    </label>
+                                </li>
+                                <li>
+                                    <input  @if(old('coffee') == 3) checked @endif name="coffee" type="radio" id="coffee-3" value="3" class="hidden peer">
+                                    <label for="coffee-3" class="h-full inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 hover:text-gray-600 peer-checked:text-gray-600 hover:bg-gray-50">
+                                        <div class="block mx-auto">
+                                            <img alt="" class="h-auto" style="width: 70px;" src="{{asset('image/coffee_bean_empty.svg')}}">
+                                        </div>
+                                    </label>
+                                </li>
+                                <li>
+                                    <input  @if(old('coffee') == 4) checked @endif name="coffee" type="radio" id="coffee-4" value="4" class="hidden peer">
+                                    <label for="coffee-4" class="h-full inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 hover:text-gray-600 peer-checked:text-gray-600 hover:bg-gray-50">
+                                        <div class="block mx-auto">
+                                            <img alt="" class="h-auto" style="width: 70px;" src="{{asset('image/coffee_bean_empty.svg')}}">
+                                        </div>
+                                    </label>
+                                </li>
+                            </ul>
+                            @error('coffee')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                            <h5 class="mb-5 text-lg font-medium text-gray-900 ">Intensywność smaku</h5>
+                            <ul class="grid w-full gap-6 grid-cols-4 my-2">
+                                <li>
+                                    <input @if(old('tool') == 1) checked @endif name="tool" type="radio" id="tool-1" value="1" class="hidden peer">
+                                    <label for="tool-1" class="h-full inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 hover:text-gray-600 peer-checked:text-gray-600 hover:bg-gray-50">
+                                        <div class="block mx-auto">
+
+                                            <img alt="" class="h-auto" style="width: 70px;" src="{{asset('image/tool_bean_empty.svg')}}">
+
+                                        </div>
+                                    </label>
+                                </li>
+                                <li>
+                                    <input  @if(old('tool') == 2) checked @endif name="tool" type="radio" id="tool-2" value="2" class="hidden peer">
+                                    <label for="tool-2" class="h-full inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 hover:text-gray-600 peer-checked:text-gray-600 hover:bg-gray-50">
+                                        <div class="block mx-auto">
+                                            <img alt="" class="h-auto" style="width: 70px;" src="{{asset('image/tool_bean_empty.svg')}}">
+                                        </div>
+                                    </label>
+                                </li>
+                                <li>
+                                    <input  @if(old('tool') == 3) checked @endif name="tool" type="radio" id="tool-3" value="3" class="hidden peer">
+                                    <label for="tool-3" class="h-full inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 hover:text-gray-600 peer-checked:text-gray-600 hover:bg-gray-50">
+                                        <div class="block mx-auto">
+                                            <img alt="" class="h-auto" style="width: 70px;" src="{{asset('image/tool_bean_empty.svg')}}">
+                                        </div>
+                                    </label>
+                                </li>
+                                <li>
+                                    <input  @if(old('tool') == 4) checked @endif name="tool" type="radio" id="tool-4" value="4" class="hidden peer">
+                                    <label for="tool-4" class="h-full inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 hover:text-gray-600 peer-checked:text-gray-600 hover:bg-gray-50">
+                                        <div class="block mx-auto">
+                                            <img alt="" class="h-auto" style="width: 70px;" src="{{asset('image/tool_bean_empty.svg')}}">
+                                        </div>
+                                    </label>
+                                </li>
+                            </ul>
+                            @error('tool')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                            <h5 class="mb-5 text-lg font-medium text-gray-900 ">Kwasowość</h5>
+                            <ul class="grid w-full gap-6 grid-cols-4 my-2">
+                                <li>
+                                    <input @if(old('lemon') == 1) checked @endif name="lemon" type="radio" id="lemon-1" value="1" class="hidden peer">
+                                    <label for="lemon-1" class="h-full inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 hover:text-gray-600 peer-checked:text-gray-600 hover:bg-gray-50">
+                                        <div class="block mx-auto">
+
+                                            <img alt="" class="h-auto" style="width: 70px;" src="{{asset('image/lemon_bean_empty.svg')}}">
+
+                                        </div>
+                                    </label>
+                                </li>
+                                <li>
+                                    <input @if(old('lemon') == 2) checked @endif name="lemon" type="radio" id="lemon-2" value="2" class="hidden peer">
+                                    <label for="lemon-2" class="h-full inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 hover:text-gray-600 peer-checked:text-gray-600 hover:bg-gray-50">
+                                        <div class="block mx-auto">
+                                            <img alt="" class="h-auto" style="width: 70px;" src="{{asset('image/lemon_bean_empty.svg')}}">
+                                        </div>
+                                    </label>
+                                </li>
+                                <li>
+                                    <input @if(old('lemon') == 3) checked @endif name="lemon" type="radio" id="lemon-3" value="3" class="hidden peer">
+                                    <label for="lemon-3" class="h-full inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 hover:text-gray-600 peer-checked:text-gray-600 hover:bg-gray-50">
+                                        <div class="block mx-auto">
+                                            <img alt="" class="h-auto" style="width: 70px;" src="{{asset('image/lemon_bean_empty.svg')}}">
+                                        </div>
+                                    </label>
+                                </li>
+                                <li>
+                                    <input @if(old('lemon') == 4) checked @endif name="lemon" type="radio" id="lemon-4" value="4" class="hidden peer">
+                                    <label for="lemon-4" class="h-full inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 hover:text-gray-600 peer-checked:text-gray-600 hover:bg-gray-50">
+                                        <div class="block mx-auto">
+                                            <img alt="" class="h-auto" style="width: 70px;" src="{{asset('image/lemon_bean_empty.svg')}}">
+                                        </div>
+                                    </label>
+                                </li>
+                            </ul>
+                            @error('tool')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+
                         <!-- Add the "Show More" button below the existing code -->
                         <div class="mb-6">
                             <h3 class="mb-5 text-lg font-medium text-gray-900 ">Zdjęcie</h3>

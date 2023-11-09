@@ -104,7 +104,7 @@
                                         {{$order->created_at}}
                                     </td>
                                     <td class="px-2 py-1">
-                                        {{$order->updated_}}
+                                        {{$order->updated_at}}
                                     </td>
                                     <td class="px-2 py-1">
                                         {{$order->total}}

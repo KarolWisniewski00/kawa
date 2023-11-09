@@ -31,7 +31,7 @@
                 <section>
                     <div class="container-fluid px-0 position-relative video-container overflow-hidden">
                         <video autoplay="autoplay" loop="loop" muted="muted" preload="auto" playsinline class="w-100 d-block mx-lg-auto img-fluid">
-                            <source src="{{asset('video/video_9.mp4')}}" type="video/mp4">
+                            <source src="{{asset('video/video_8.mp4')}}" type="video/mp4">
                         </video>
                     </div>
                 </section>

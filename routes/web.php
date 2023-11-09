@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AjaxAdminController;
 use App\Http\Controllers\BlogAdminController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BusketController;
@@ -130,6 +131,9 @@ Route::middleware([
     'admin',
 ])->group(function () {
     Route::prefix('dashboard')->group(function () {
+        Route::prefix('/ajax')->group(function () {
+            Route::get('/payment', [AjaxAdminController::class, 'payment'])->name('ajax.payment');
+        });
         Route::prefix('/')->group(function () {
             Route::get('/', [OrderAdminController::class, 'index'])->name('dashboard');
             Route::get('/show/{order}', [OrderAdminController::class, 'show'])->name('dashboard.order.show');

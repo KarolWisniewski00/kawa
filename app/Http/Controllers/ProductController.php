@@ -30,8 +30,10 @@ class ProductController extends Controller
             // $trail->push($product->name, route('shop.product.show', $productId));
             $trail->push('Product', route('shop.product.show', $productId));
         });
+        $product = Product::where('id', $slug)->first();
+        $product->update(['view' => intval($product->view) + 1]);
         return view('client.coffee.shop.product.show', [
-            'product' => Product::where('id', $slug)->first(),
+            'product' => $product,
             'products' => Product::take(3)->get(),
             'variants' => ProductVariant::get(),
             'photos' => ProductImage::get(),

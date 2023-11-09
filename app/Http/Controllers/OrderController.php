@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use App\Mail\OrderMail;
 use App\Models\Payment;
+use App\Models\Product;
 use Devpark\Transfers24\Exceptions\RequestException;
 use Devpark\Transfers24\Exceptions\RequestExecutionException;
 use Devpark\Transfers24\Requests\Transfers24;
@@ -100,7 +101,7 @@ class OrderController extends Controller
         ]);
 
         foreach ($cartContent as $item) {
-            OrderItem::create([
+            $o = OrderItem::create([
                 'order_id' => $order->id,
                 'product_id' => $item->id,
                 'name' => $item->name,
@@ -109,17 +110,18 @@ class OrderController extends Controller
                 'attributes_name' => $item->attributes[0],
                 'attributes_grind' => $item->attributes[1],
             ]);
+            $product = Product::where('name', $item->name)->firstOrFail();
+            $product->update(['sell' => intval($product->sell) + $item->quantity]);
         }
 
         if ($request->type_transfer_24 == 'true') {
             return $this->paymentTransaction($order);
-        } elseif ($request->type_transfer_24 == 'true') {
+        } elseif ($request->type_transfer == 'true') {
             \Cart::session('cart')->clear();
 
             // Wyślij e-mail
             $email = new OrderMail($order);
             Mail::to($request->email)->send($email->build());
-
             return redirect()->route('account.order.show', $order->id)->with('success', 'Dziękujemy, zamówienie zostało złożone.');
         }
     }
@@ -145,9 +147,9 @@ class OrderController extends Controller
                 $order->update([
                     'status' => 'Weryfikacja płatności'
                 ]);
+
                 \Cart::session('cart')->clear();
-                $email = new OrderMail($order);
-                Mail::to($order->email)->send($email->build());
+                
                 return redirect($this->transfers24->execute($response->getToken(), false));
             } else {
                 $payment->status = PaymentStatus::FAIL;

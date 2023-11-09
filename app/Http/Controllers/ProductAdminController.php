@@ -49,6 +49,10 @@ class ProductAdminController extends Controller
             'seo_title' => $request->seo_title,
             'seo_description' => $request->seo_description,
             'visibility_in_google' => isset($request->visibility_in_google)  ? 1 : 0,
+            'coffee' => $request->coffee != null ? $request->coffee : 0,
+            'tool' =>  $request->tool != null ? $request->tool : 0,
+            'lemon' =>  $request->lemon != null ? $request->lemon : 0,
+            'height' =>  $request->height != null ? $request->height : 0,
         ]);
         if ($product) {
             // Save product variants
@@ -125,6 +129,10 @@ class ProductAdminController extends Controller
             'seo_title' => $request->seo_title,
             'seo_description' => $request->seo_description,
             'visibility_in_google' => isset($request->visibility_in_google)  ? 1 : 0,
+            'coffee' => $request->coffee != null ? $request->coffee : 0,
+            'tool' =>  $request->tool != null ? $request->tool : 0,
+            'lemon' =>  $request->lemon != null ? $request->lemon : 0,
+            'height' =>  $request->height != null ? $request->height : 0,
         ]);
         // Usuwamy wszystkie stare warianty produktu i zapisujemy nowe dane
         $prices = $request->price;

@@ -3,9 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Enums\PaymentStatus;
+use App\Mail\OrderMail;
+use App\Models\Order;
 use App\Models\Payment;
 use Devpark\Transfers24\Requests\Transfers24;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Darryldecode\Cart\Cart;
+use Darryldecode\Cart\CartCondition;
+use Darryldecode\Cart\CartItem;
+use Darryldecode\Cart\CartCollection;
 
 class PaymentController extends Controller
 {
@@ -17,23 +24,21 @@ class PaymentController extends Controller
     }
     public function status(Request $request)
     {
-        $payment = app()->make(\App\Payment::class);
-        $registration_request = app()->make(\Devpark\Transfers24\Requests\Transfers24::class);
+        $respone = $this->transfers24->receive($request);
+        $payment = Payment::where('session_id', $respone->getSessionId())->firstOrFail();
 
-        $register_payment = $registration_request->setEmail('test@example.com')->setAmount(100)->init();
-
-        if ($register_payment->isSuccess()) {
-            $payment = Payment::where('session_id', $register_payment->getSessionId())->firstOrFail();
-            $payment->update([
-                'status' => PaymentStatus::SUCCESS,
-            ]);
-            return $registration_request->execute($register_payment->getToken(), true);
+        if ($respone->isSuccess()) {
+            $payment->status = PaymentStatus::SUCCESS;
+            $payment->save();
+            Order::where('id', '=', $payment->order_id)->update(['status' => 'W trakcie realizacji']);
+            $order = Order::where('id', '=', $payment->order_id)->first();
+            $email = new OrderMail($order);
+            Mail::to($order->email)->send($email->build());
         } else {
-            $payment = Payment::where('session_id', $register_payment->getSessionId())->firstOrFail();
             $payment->status = PaymentStatus::FAIL;
-            $payment->error_code = $register_payment->getErrorCode();
-            $payment->error_description = $register_payment->getErrorDescription();
-            return $registration_request->execute($register_payment->getToken(), true);
+            $payment->error_code = $respone->getErrorCode();
+            $payment->error_description = $respone->getErrorDescription();
+            $payment->save();
         }
     }
 }

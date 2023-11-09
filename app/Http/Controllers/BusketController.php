@@ -37,7 +37,7 @@ class BusketController extends Controller
         $size = Size::where('id','=', $request->size)->first();
         $grind = Grinding::where('name','=', $request->grind)->first();
         $product_variant = ProductVariant::where('size_id','=', $request->size)->where('product_id', $product->id)->first();
-        
+        $product->update(['busket' => intval($product->busket) + 1]);
         \Cart::session(auth()->id())->add([
             'id' => intval(strval($product->id).strval($size->id).strval($grind->id)),
             'name' => $product->name,
