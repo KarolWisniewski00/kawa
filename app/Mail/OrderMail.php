@@ -51,18 +51,19 @@ class OrderMail extends Mailable
 
         $orders = OrderItem::where('order_id', $order->id)->get();
         $photos = ProductImage::get();
+        $photos_good = [];
         foreach ($orders as $o) {
             foreach($photos as $photo){
                 $p = Product::where('name',$o->name)->first();
                 if($photo->product_id == $p->id){
                     if($photo->order == 1){
-                        $photo_good = $photo->image_path;
+                        array_push($photos_good,$photo->image_path);
                     }
                 }
             }
         }
         return $this->subject('Potwierdzenie zamównienia')
                     ->from(env('MAIL_USERNAME'),env('MAIL_FROM_NAME'))
-                    ->view('emails.order', compact('order','photo_good','orders'));
+                    ->view('emails.order', compact('order','photos_good','orders'));
     }
 }

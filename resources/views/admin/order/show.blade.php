@@ -13,84 +13,95 @@
                     <x-application-logo class="block h-12 w-auto" />
                     <div class="flex flex-row justify-between">
                         <h1 class="mt-8 mb-4 text-2xl font-medium text-gray-900">
-                            Zamówienie
+                            Podgląd zamówienia
                         </h1>
                         <a href="{{route('dashboard')}}" type="button" class="mt-8 mb-4 text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"><i class="fa-solid fa-chevron-left me-2"></i>Powrót</span></a>
                     </div>
-                    <dl class="max-w-md text-gray-900 divide-y divide-gray-200">
-                        <div class="flex flex-col pb-3">
-                            <dt class="mb-1 text-gray-500 md:text-lg">Status</dt>
-                            <dd class="text-lg font-semibold">{{$order->status}}</dd>
+                    <div class="grid grid-cols-2">
+                        <div>
+                            <div class="flex flex-row justify-between">
+                                <h1 class="mt-8 mb-4 text-2xl font-medium text-gray-900">
+                                    Zamówienie
+                                </h1>
+                            </div>
+                            <dl class="max-w-md text-gray-900 divide-y divide-gray-200">
+                                <div class="flex flex-col pb-3">
+                                    <dt class="mb-1 text-gray-500 md:text-lg">Status</dt>
+                                    <dd class="text-lg font-semibold">{{$order->status}}</dd>
+                                </div>
+                                <div class="flex flex-col py-3">
+                                    <dt class="mb-1 text-gray-500 md:text-lg">Numer Zamówienia</dt>
+                                    <dd class="text-lg font-semibold">{{$order->number}}</dd>
+                                </div>
+                                <div class="flex flex-col pt-3">
+                                    <dt class="mb-1 text-gray-500 md:text-lg">Data</dt>
+                                    <dd class="text-lg font-semibold">{{$order->created_at}}</dd>
+                                </div>
+                                <div class="flex flex-col pt-3">
+                                    <dt class="mb-1 text-gray-500 md:text-lg">Łącznie</dt>
+                                    <dd class="text-lg font-semibold">{{$order->total}} PLN</dd>
+                                </div>
+                                <div class="flex flex-col pt-3">
+                                    <dt class="mb-1 text-gray-500 md:text-lg">Metoda płatności</dt>
+                                    @if ($order->payment)
+                                    <dd class="text-lg font-semibold">Płatność online</dd>
+                                    @else
+                                    <dd class="text-lg font-semibold">Przelew bankowy</dd>
+                                    @endif
+                                </div>
+                            </dl>
+                            <div class="grid grid-cols-1 md:grid-cols-2 pr-8">
+                                <a href="{{route('dashboard.order.status', ['id'=>$order->id, 'slug'=>'0'])}}" type="button" class="mt-8 mb-4 text-white bg-amber-500 hover:bg-amber-600 focus:ring-4 focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"><i class="fa-solid fa-clock mr-2"></i>Oczekujące na płatność</a>
+                                <a href="{{route('dashboard.order.status', ['id'=>$order->id, 'slug'=>'1'])}}" type="button" class="mt-8 mb-4 text-white bg-lime-500 hover:bg-lime-600 focus:ring-4 focus:ring-lime-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"><i class="fa-solid fa-business-time mr-2"></i>W trakcie realizacji</a>
+                                <a href="{{route('dashboard.order.status', ['id'=>$order->id, 'slug'=>'2'])}}" type="button" class="mt-8 mb-4 text-white bg-emerald-500 hover:bg-emerald-600 focus:ring-4 focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"><i class="fa-solid fa-check mr-2"></i>Zrealizowane</a>
+                                <a href="{{route('dashboard.order.status', ['id'=>$order->id, 'slug'=>'3'])}}" type="button" class="mt-8 mb-4 text-white bg-rose-500 hover:bg-rose-600 focus:ring-4 focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"><i class="fa-solid fa-x mr-2"></i>Anulowano</a>
+                            </div>
                         </div>
-                        <div class="flex flex-col py-3">
-                            <dt class="mb-1 text-gray-500 md:text-lg">Numer Zamówienia</dt>
-                            <dd class="text-lg font-semibold">{{$order->number}}</dd>
+                        <div>
+                            <div class="flex flex-row justify-between">
+                                <h1 class="mt-8 mb-4 text-2xl font-medium text-gray-900">
+                                    Dane klienta
+                                </h1>
+                            </div>
+                            <dl class="max-w-md text-gray-900 divide-y divide-gray-200">
+                                <div class="flex flex-col pb-3">
+                                    <dt class="mb-1 text-gray-500 md:text-lg">Imię i nazwisko</dt>
+                                    <dd class="text-lg font-semibold">{{$order->name}}</dd>
+                                </div>
+                                <div class="flex flex-col py-3">
+                                    <dt class="mb-1 text-gray-500 md:text-lg">Email</dt>
+                                    <dd class="text-lg font-semibold">{{$order->email}}</dd>
+                                </div>
+                                <div class="flex flex-col pt-3">
+                                    <dt class="mb-1 text-gray-500 md:text-lg">Numer telefonu</dt>
+                                    <dd class="text-lg font-semibold">{{$order->phone}}</dd>
+                                </div>
+                                <div class="flex flex-col pt-3">
+                                    <dt class="mb-1 text-gray-500 md:text-lg">Nazwa firmy</dt>
+                                    <dd class="text-lg font-semibold">{{$order->company}}</dd>
+                                </div>
+                                <div class="flex flex-col pt-3">
+                                    <dt class="mb-1 text-gray-500 md:text-lg">NIP</dt>
+                                    <dd class="text-lg font-semibold">{{$order->nip}}</dd>
+                                </div>
+                                <div class="flex flex-col pt-3">
+                                    <dt class="mb-1 text-gray-500 md:text-lg">Adres</dt>
+                                    <dd class="text-lg font-semibold">{{$order->adres}}</dd>
+                                </div>
+                                <div class="flex flex-col pt-3">
+                                    <dt class="mb-1 text-gray-500 md:text-lg">Ciąg dalszy adresu</dt>
+                                    <dd class="text-lg font-semibold">{{$order->adres_extra}}</dd>
+                                </div>
+                                <div class="flex flex-col pt-3">
+                                    <dt class="mb-1 text-gray-500 md:text-lg">Miasto</dt>
+                                    <dd class="text-lg font-semibold">{{$order->city}}</dd>
+                                </div>
+                                <div class="flex flex-col pt-3">
+                                    <dt class="mb-1 text-gray-500 md:text-lg">Uwagi dotyczące zamówienia</dt>
+                                    <dd class="text-lg font-semibold">{{$order->extra}}</dd>
+                                </div>
+                            </dl>
                         </div>
-                        <div class="flex flex-col pt-3">
-                            <dt class="mb-1 text-gray-500 md:text-lg">Data</dt>
-                            <dd class="text-lg font-semibold">{{$order->created_at}}</dd>
-                        </div>
-                        <div class="flex flex-col pt-3">
-                            <dt class="mb-1 text-gray-500 md:text-lg">Łącznie</dt>
-                            <dd class="text-lg font-semibold">{{$order->total}} PLN</dd>
-                        </div>
-                        <div class="flex flex-col pt-3">
-                            <dt class="mb-1 text-gray-500 md:text-lg">Metoda płatności</dt>
-                            @if ($order->payment)
-                            <dd class="text-lg font-semibold">Płatność online</dd>
-                            @else
-                            <dd class="text-lg font-semibold">Przelew bankowy</dd>
-                            @endif
-                        </div>
-                    </dl>
-                    <div class="flex flex-row justify-between">
-                        <h1 class="mt-8 mb-4 text-2xl font-medium text-gray-900">
-                            Dane klienta
-                        </h1>
-                    </div>
-                    <dl class="max-w-md text-gray-900 divide-y divide-gray-200">
-                        <div class="flex flex-col pb-3">
-                            <dt class="mb-1 text-gray-500 md:text-lg">Imię i nazwisko</dt>
-                            <dd class="text-lg font-semibold">{{$order->name}}</dd>
-                        </div>
-                        <div class="flex flex-col py-3">
-                            <dt class="mb-1 text-gray-500 md:text-lg">Email</dt>
-                            <dd class="text-lg font-semibold">{{$order->email}}</dd>
-                        </div>
-                        <div class="flex flex-col pt-3">
-                            <dt class="mb-1 text-gray-500 md:text-lg">Numer telefonu</dt>
-                            <dd class="text-lg font-semibold">{{$order->phone}}</dd>
-                        </div>
-                        <div class="flex flex-col pt-3">
-                            <dt class="mb-1 text-gray-500 md:text-lg">Nazwa firmy</dt>
-                            <dd class="text-lg font-semibold">{{$order->company}}</dd>
-                        </div>
-                        <div class="flex flex-col pt-3">
-                            <dt class="mb-1 text-gray-500 md:text-lg">NIP</dt>
-                            <dd class="text-lg font-semibold">{{$order->nip}}</dd>
-                        </div>
-                        <div class="flex flex-col pt-3">
-                            <dt class="mb-1 text-gray-500 md:text-lg">Adres</dt>
-                            <dd class="text-lg font-semibold">{{$order->adres}}</dd>
-                        </div>
-                        <div class="flex flex-col pt-3">
-                            <dt class="mb-1 text-gray-500 md:text-lg">Ciąg dalszy adresu</dt>
-                            <dd class="text-lg font-semibold">{{$order->adres_extra}}</dd>
-                        </div>
-                        <div class="flex flex-col pt-3">
-                            <dt class="mb-1 text-gray-500 md:text-lg">Miasto</dt>
-                            <dd class="text-lg font-semibold">{{$order->city}}</dd>
-                        </div>
-                        <div class="flex flex-col pt-3">
-                            <dt class="mb-1 text-gray-500 md:text-lg">Uwagi dotyczące zamówienia</dt>
-                            <dd class="text-lg font-semibold">{{$order->extra}}</dd>
-                        </div>
-                    </dl>
-                    <div class="flex flex row">
-                        <a href="{{route('dashboard.order.status', ['id'=>$order->id, 'slug'=>'0'])}}" type="button" class="mt-8 mb-4 text-white bg-amber-500 hover:bg-amber-600 focus:ring-4 focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"><i class="fa-solid fa-clock mr-2"></i>Oczekujące na płatność</a>
-                        <a href="{{route('dashboard.order.status', ['id'=>$order->id, 'slug'=>'1'])}}" type="button" class="mt-8 mb-4 text-white bg-lime-500 hover:bg-lime-600 focus:ring-4 focus:ring-lime-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"><i class="fa-solid fa-business-time mr-2"></i>W trakcie realizacji</a>
-                        <a href="{{route('dashboard.order.status', ['id'=>$order->id, 'slug'=>'2'])}}" type="button" class="mt-8 mb-4 text-white bg-emerald-500 hover:bg-emerald-600 focus:ring-4 focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"><i class="fa-solid fa-check mr-2"></i>Zrealizowane</a>
-                        <a href="{{route('dashboard.order.status', ['id'=>$order->id, 'slug'=>'3'])}}" type="button" class="mt-8 mb-4 text-white bg-rose-500 hover:bg-rose-600 focus:ring-4 focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"><i class="fa-solid fa-x mr-2"></i>Anulowano</a>
                     </div>
                     <div class="flex flex-row justify-between">
                         <h1 class="mt-8 mb-4 text-2xl font-medium text-gray-900">
@@ -152,6 +163,23 @@
                                 @endforeach
                             </tbody>
                         </table>
+                    </div>
+                    <div class="grid grid-cols-1 mt-8">
+
+                        <ol class="relative border-s border-gray-200 dark:border-gray-700">
+                            @if($order_logs)
+                            @foreach($order_logs as $log)
+                            <li class="mb-10 ms-4">
+                                <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+                                <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{{$log->created_at}}</time>
+                                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{{$log->name}}</h3>
+                                <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">{{$log->description}}</p>
+                            </li>
+                            @endforeach
+                            @endif
+                        </ol>
+
+
                     </div>
                 </div>
             </div>

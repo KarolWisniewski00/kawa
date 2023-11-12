@@ -9,6 +9,7 @@ use App\Http\Controllers\CollaborationController;
 use App\Http\Controllers\CompanyAdminController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CookiesAdminController;
+use App\Http\Controllers\GoogleLoginController;
 use App\Http\Controllers\GrindingAdminController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\InfoAdminController;
@@ -56,11 +57,15 @@ Route::prefix('shop')->group(function () {
         Route::get('/create', [OrderController::class, 'create'])->name('account.order.create');
         Route::post('/store', [OrderController::class, 'store'])->name('account.order.store');
         Route::get('/show/{slug}', [OrderController::class, 'show'])->name('account.order.show');
+        Route::get('/status/{id}/{slug}', [OrderController::class, 'status'])->name('account.order.status');
     });
     Route::prefix('product')->group(function () {
         Route::get('{slug}', [ProductController::class, 'show'])->name('shop.product.show');
     });
 });
+
+Route::get('/login/google', [GoogleLoginController::class, 'redirectToGoogle'])->name('login.google');
+Route::get('/login/google/callback', [GoogleLoginController::class, 'handleGoogleCallback']);
 
 Route::post('/payment/status', [PaymentController::class, 'status'])->name('payment.status');
 
@@ -217,6 +222,9 @@ Route::middleware([
                 Route::get('/', [CompanyAdminController::class, 'index'])->name('dashboard.technic.company');
                 Route::get('/edit/{element}', [CompanyAdminController::class, 'edit'])->name('dashboard.technic.company.edit');
                 Route::put('/update/{element}', [CompanyAdminController::class, 'update'])->name('dashboard.technic.company.update');
+            });
+            Route::prefix('version')->group(function () {
+                Route::get('/', function () {return view('admin.technic.version.index');})->name('dashboard.technic.version');
             });
             Route::prefix('instagram')->group(function () {
                 Route::get('/', [InstagramAdminController::class, 'index'])->name('dashboard.technic.instagram');

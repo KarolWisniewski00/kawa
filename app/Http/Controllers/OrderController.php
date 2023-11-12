@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\OrderLog as EnumsOrderLog;
 use App\Enums\PaymentStatus;
 use App\Http\Requests\CreateOrderRequest;
 use App\Models\Company;
@@ -19,6 +20,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use App\Mail\OrderMail;
+use App\Models\OrderLog;
 use App\Models\Payment;
 use App\Models\Product;
 use Devpark\Transfers24\Exceptions\RequestException;
@@ -113,7 +115,12 @@ class OrderController extends Controller
             $product = Product::where('name', $item->name)->firstOrFail();
             $product->update(['sell' => intval($product->sell) + $item->quantity]);
         }
-
+        OrderLog::create([
+            'name' => 'Klient',
+            'description' => 'Utworzenie zamówienia',
+            'type' => EnumsOrderLog::CLIENT,
+            'order_id' => $order->id,
+        ]);
         if ($request->type_transfer_24 == 'true') {
             return $this->paymentTransaction($order);
         } elseif ($request->type_transfer == 'true') {
@@ -122,6 +129,10 @@ class OrderController extends Controller
             // Wyślij e-mail
             $email = new OrderMail($order);
             Mail::to($request->email)->send($email->build());
+            Mail::to('admin@coffeesummit.pl')->send($email->build());
+            Mail::to('sklep@coffeesummit.pl')->send($email->build());
+            Mail::to('kontakt@coffeesummit.pl')->send($email->build());
+            Mail::to('radek.karminski@coffeesummit.pl')->send($email->build());
             return redirect()->route('account.order.show', $order->id)->with('success', 'Dziękujemy, zamówienie zostało złożone.');
         }
     }
@@ -149,18 +160,55 @@ class OrderController extends Controller
                 ]);
 
                 \Cart::session('cart')->clear();
-                
+                OrderLog::create([
+                    'name' => 'Przelewy24',
+                    'description' => 'Przeniesienie do zewnętrznego systemu płatności Przelewy24. Zmiana statusu na Weryfikacja płatności',
+                    'type' => EnumsOrderLog::SYSTEM,
+                    'order_id' => $order->id,
+                ]);
                 return redirect($this->transfers24->execute($response->getToken(), false));
             } else {
                 $payment->status = PaymentStatus::FAIL;
                 $payment->error_code = $response->getErrorCode();
                 $payment->error_description = json_encode($response->getErrorDescription());
                 $payment->save();
+                OrderLog::create([
+                    'name' => '[Błąd] Przelewy24',
+                    'description' => 'Operacja przeniesienia użytkownika do zewnętrznego systemu płatności się nie powiodła',
+                    'type' => EnumsOrderLog::SYSTEM,
+                    'order_id' => $order->id,
+                ]);
                 return back()->with('fail', 'Ups. Coś poszło nie tak.');
             }
         } catch (RequestException | RequestExecutionException $error) {
             Log::error('Błąd transakcji', ['error' => $error]);
+            OrderLog::create([
+                'name' => '[Błąd krytyczny] Przelewy24',
+                'description' => 'Operacja przeniesienia użytkownika do zewnętrznego systemu płatności się nie powiodła',
+                'type' => EnumsOrderLog::SYSTEM,
+                'order_id' => $order->id,
+            ]);
             return back()->with('fail', 'Ups. Coś poszło nie tak.');
+        }
+    }
+    public function status($id, $slug)
+    {
+        $user = Auth::user();
+        switch ($slug) {
+            case 0:
+                $res = Order::where('id', '=', $id)->update(['status' => 'Anulowano']);
+                OrderLog::create([
+                    'name' => 'Klient',
+                    'description' => 'Zmiana statusu na Anulowano',
+                    'type' => EnumsOrderLog::CLIENT,
+                    'order_id' => $id,
+                ]);
+                break;
+        }
+        if ($res) {
+            return redirect()->route('account.order.show', $id)->with('success', 'Status został pomyślnie zapisany.');
+        } else {
+            return redirect()->route('account.order.show', $id)->with('fail', 'Status nie został zapisany.');
         }
     }
 }

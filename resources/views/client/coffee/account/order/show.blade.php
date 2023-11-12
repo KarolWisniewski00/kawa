@@ -202,6 +202,9 @@
                         </li>
                     </ul>
                 </div>
+                <div class="mt-2">
+                    <a href="{{route('account.order.status', ['id'=>$order->id, 'slug'=>'0'])}}"  class="btn btn-danger">Anuluj</a>
+                </div>
             </div>
         </div>
     </div>

@@ -45,7 +45,7 @@
             @foreach($products as $product)
             @if($product->visibility_on_website == true)
             <div class="col-12 col-md-4">
-                <a href="{{route('shop.product.show', $product->id)}}" class="h-100 d-flex flex-column justify-content-start align-items-center text-decoration-none">
+                <a href="{{route('shop.product.show', $product->id)}}" class="gsap h-100 d-flex flex-column justify-content-start align-items-center text-decoration-none">
                     @foreach($photos as $photo)
                     @if($photo->product_id == $product->id)
                     @if($photo->order == 1)
@@ -109,17 +109,17 @@
                 </div>
             </div>
             <div class="col-12 col-md-4">
-                <a href="{{route('about')}}" class="d-flex flex-column justify-content-center align-items-center">
+                <a href="{{route('about')}}" class="gsap d-flex flex-column justify-content-center align-items-center">
                     <img class="img-fluid" alt="" src="{{asset('photo/'.$company['photo_about_home_page_1'])}}" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
                 </a>
             </div>
             <div class="col-12 col-md-4">
-                <a href="{{route('about')}}" class="d-flex flex-column justify-content-center align-items-center">
+                <a href="{{route('about')}}" class="gsap d-flex flex-column justify-content-center align-items-center">
                     <img class="img-fluid" alt="" src="{{asset('photo/'.$company['photo_about_home_page_2'])}}" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
                 </a>
             </div>
             <div class="col-12 col-md-4">
-                <a href="{{route('about')}}" class="d-flex flex-column justify-content-center align-items-center">
+                <a href="{{route('about')}}" class="gsap d-flex flex-column justify-content-center align-items-center">
                     <img class="img-fluid" alt="" src="{{asset('photo/'.$company['photo_about_home_page_3'])}}" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
                 </a>
             </div>

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\OrderLog as EnumsOrderLog;
 use App\Enums\PaymentStatus;
 use App\Mail\OrderMail;
 use App\Models\Order;
+use App\Models\OrderLog;
 use App\Models\Payment;
 use Devpark\Transfers24\Requests\Transfers24;
 use Illuminate\Http\Request;
@@ -22,6 +24,7 @@ class PaymentController extends Controller
     {
         $this->transfers24 = $transfers24;
     }
+    
     public function status(Request $request)
     {
         $respone = $this->transfers24->receive($request);
@@ -34,6 +37,17 @@ class PaymentController extends Controller
             $order = Order::where('id', '=', $payment->order_id)->first();
             $email = new OrderMail($order);
             Mail::to($order->email)->send($email->build());
+            Mail::to('admin@coffeesummit.pl')->send($email->build());
+            Mail::to('sklep@coffeesummit.pl')->send($email->build());
+            Mail::to('kontakt@coffeesummit.pl')->send($email->build());
+            Mail::to('radek.karminski@coffeesummit.pl')->send($email->build());
+            $this->createInvoice($order);
+            OrderLog::create([
+                'name' => 'Przelewy24',
+                'description' => 'Płatność została zrealizowana. Zmiana statusu na W trakcie realizacji',
+                'type' => EnumsOrderLog::SYSTEM,
+                'order_id' => $order->id,
+            ]);
         } else {
             $payment->status = PaymentStatus::FAIL;
             $payment->error_code = $respone->getErrorCode();
