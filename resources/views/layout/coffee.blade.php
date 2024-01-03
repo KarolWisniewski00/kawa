@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pl">
+<html lang="pl" data-bs-theme="auto">
 
 <head>
     <meta charset="utf-8">
@@ -27,7 +27,7 @@
 
 <body>
     <!--NAV + HEADER-->
-    <section id="nav" class="fixed-top bg-secondary bg-trans" style="width: 100vw;">
+    <section id="nav" class="fixed-top bg-secondary bg-trans" style="width: 100vw; z-index:10">
         <header class="py-1 bg-primary">
             <div class="container">
                 <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between">
@@ -92,7 +92,7 @@
             </nav>
         </div>
     </section>
-    <div id="container-sidebar" class="shadow d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 240px; position:fixed; left:-250px; height:100vh; z-index:10; transition: left 0.2s ease-in-out;">
+    <div id="container-sidebar" class="shadow d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 240px; position:fixed; left:-250px; height:100vh; z-index:9; transition: left 0.2s ease-in-out;">
         <ul class="nav nav-pills flex-column mb-auto pt-2" id="sidebar">
             <li class="nav-item">
                 <a href="{{route('about')}}" class="nav-link">
@@ -171,10 +171,11 @@
     <input type="hidden" value='@json($photos)' id="photos">
     <!--Busket-->
 
-    <div style="position:fixed; right: 1em; bottom:1em; z-index:10;">
+    <div style="position:fixed; right: 1em; bottom:1em; z-index:100;">
         <div class="position-relative" id="shopping-cart-window" style="display: none;">
-            <div class="position-absolute bottom-0 end-0 bg-white rounded p-4 mb-4 shadow" style="min-width: 20em; max-height:75vh;">
-                <div class="d-flex flex-column justify-content-center align-items-center text-center">
+            <div class="position-absolute bottom-0 end-0 bg-white rounded p-4 mb-4 shadow" style="min-width: 21.5em; max-height:75vh;">
+                <div class="d-flex flex-column justify-content-center align-items-center text-center position-relative">
+                    <button type="button" class="btn-close position-absolute top-0 end-0" onclick="$('#shopping-cart-window').hide();" aria-label="Close"></button>
                     <h5><i class="fa-solid fa-cart-shopping me-2"></i>Koszyk</h5>
                     <div id="shopping-cart-container" style="height: 32vh; overflow-y:auto" class="">
 
@@ -228,8 +229,9 @@
                             const product = data[key];
                             addProduct(product);
                             $('#shopping-cart-buttons').html(`
-                            <a href="{{route('shop.cart.busket')}}" class="btn btn-primary fs-6 w-100 m-1">Zobacz pełne podsumowanie</a>
-                            <a href="{{route('account.order.create')}}" class="btn btn-success fs-6 w-100 m-1">Przejdź do płatności</a>
+                            <a href="{{route('shop.cart.busket')}}" class="btn-sm btn btn-primary fs-6 w-100 m-1">Zobacz pełne podsumowanie</a>
+                            <a href="{{route('account.order.create')}}" class="btn-sm btn btn-success fs-6 w-100 m-1">Przejdź do płatności</a>
+                            <button type="button" onclick="$('#shopping-cart-window').hide();" class="btn-sm btn btn-outline-success fs-6 w-100 m-1">Kontynuuj zakupy</a>
                             `);
                         }
                     } else {
@@ -252,7 +254,7 @@
         $(document).ready(function() {
             var window = false;
             $('#shopping-cart').click(function() {
-                if (window == false) {
+                if ($('#shopping-cart-window').is(':hidden')) {
                     $('#shopping-cart-container').html('');
                     $('#shopping-cart-window').show();
                     addProducts();
@@ -272,7 +274,7 @@
         <div class="container">
             <footer class="d-flex flex-wrap justify-content-between align-items-center py-5">
                 <ul class="nav col-md-3 justify-content-center order-2 order-md-1 mx-auto my-2">
-                    <li class="nav-item mx-0"><span class="nav-link px-2 text-secondary text-center">&copy; 2023 Desinged by Karol Wiśniewski</span></li>
+                    <li class="nav-item mx-0"><span class="nav-link px-2 text-secondary text-center">&copy; {{ date('Y') }} Desinged by Karol Wiśniewski</span></li>
                 </ul>
                 <a href="/" class="d-flex align-items-center justify-content-center col-12 col-md-auto order-1 order-md-2 mx-auto">
                     <img class="img-fluid" src="{{asset('logo/COFFEESUMMIT-LOGO-BIALE-przezroczyste-tlo.png')}}" alt="logo coffee summit" style="height: 6em;">

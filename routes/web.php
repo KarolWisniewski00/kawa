@@ -45,6 +45,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
+Route::get('/dark', [IndexController::class, 'dark'])->name('dark');
 
 Route::prefix('shop')->group(function () {
     Route::get('/', [ShopController::class, 'index'])->name('shop');
@@ -145,6 +146,7 @@ Route::middleware([
             Route::put('/update/{order}', [OrderAdminController::class, 'update'])->name('dashboard.order.update');
             Route::delete('/delete/{order}', [OrderAdminController::class, 'delete'])->name('dashboard.order.delete');
             Route::get('/status/{id}/{slug}', [OrderAdminController::class, 'status'])->name('dashboard.order.status');
+            Route::get('/email/{order}', [OrderAdminController::class, 'email'])->name('dashboard.order.email');
         });
         Route::prefix('photo')->group(function () {
             Route::get('/', [PhotoAdminController::class, 'index'])->name('dashboard.photo');

@@ -24,4 +24,13 @@ class IndexController extends Controller
         $blogs = Blog::orderBy('order')->take(4)->get();
         return view('client.coffee.index', compact('instagrams', 'products', 'variants', 'photos', 'blogs'));
     }
+    public function dark()
+    {
+        $instagrams = Instagram::orderBy('order')->get();
+        $products = Product::orderBy('order')->take(3)->get();
+        $variants = ProductVariant::get();
+        $photos = ProductImage::get();
+        $blogs = Blog::orderBy('order')->take(4)->get();
+        return view('client.coffee.dark', compact('instagrams', 'products', 'variants', 'photos', 'blogs'));
+    }
 }

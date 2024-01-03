@@ -51,29 +51,43 @@
                         <label for="nip">NIP (opcjonalnie)</label>
                         <span class="text-danger">@error('company') {{$message}} @enderror</span>
                     </div>
+                    <div class="d-flex flex-column justify-content-center align-items-center text-center my-3 px-3 border border-2">
+                        <div class="form-floating my-3 w-100">
+                            <input type="text" class="form-control" id="post" value="{{ old('post') ? old('post') : ''}}" name="post" required>
+                            <label for="post">Kod pocztowy</label>
+                            <span class="text-danger">@error('post') {{$message}} @enderror</span>
+                        </div>
 
-                    <div class="form-floating my-3">
-                        <input type="text" class="form-control" id="post" value="{{ old('post') ? old('post') : ''}}" name="post" required>
-                        <label for="post">Kod pocztowy</label>
-                        <span class="text-danger">@error('post') {{$message}} @enderror</span>
-                    </div>
+                        <div class="form-floating my-3 w-100">
+                            <input type="text" class="form-control" id="street" value="{{ old('street') ? old('street') : ''}}" name="street" required>
+                            <label for="street">Ulica</label>
+                            <span class="text-danger">@error('street') {{$message}} @enderror</span>
+                        </div>
 
-                    <div class="form-floating my-3">
-                        <input type="text" class="form-control" id="street" value="{{ old('street') ? old('street') : ''}}" name="street" required>
-                        <label for="street">Ulica</label>
-                        <span class="text-danger">@error('street') {{$message}} @enderror</span>
-                    </div>
+                        <div class="form-floating my-3 w-100">
+                            <input type="text" class="form-control" id="street_extra" value="{{ old('street_extra') ? old('street_extra') : ''}}" name="street_extra">
+                            <label for="street_extra">Ciąg dalszy adresu (opcjonalne)</label>
+                            <span class="text-danger">@error('street_extra') {{$message}} @enderror</span>
+                        </div>
 
-                    <div class="form-floating my-3">
-                        <input type="text" class="form-control" id="street_extra" value="{{ old('street_extra') ? old('street_extra') : ''}}" name="street_extra">
-                        <label for="street_extra">Ciąg dalszy adresu (opcjonalne)</label>
-                        <span class="text-danger">@error('street_extra') {{$message}} @enderror</span>
-                    </div>
-
-                    <div class="form-floating my-3">
-                        <input type="text" class="form-control" id="city" value="{{ old('city') ? old('city') : ''}}" name="city" required>
-                        <label for="city">Miasto</label>
-                        <span class="text-danger">@error('city') {{$message}} @enderror</span>
+                        <div class="form-floating my-3 w-100">
+                            <input type="text" class="form-control" id="city" value="{{ old('city') ? old('city') : ''}}" name="city" required>
+                            <label for="city">Miasto</label>
+                            <span class="text-danger">@error('city') {{$message}} @enderror</span>
+                        </div>
+                        <h6 class="align-self-start">Czy ten adres to?</h6>
+                        <div class="form-check my-2 align-self-start">
+                            <input class="form-check-input" type="radio" name="adres_type" value="carrier" id="adres_carrier" checked>
+                            <label class="form-check-label" for="adres_carrier">
+                                Kurier
+                            </label>
+                        </div>
+                        <div class="form-check my-2 align-self-start">
+                            <input class="form-check-input" type="radio" name="adres_type" value="parcel_locker" id="adres_parcel_locker">
+                            <label class="form-check-label" for="adres_parcel_locker">
+                                Paczkomat
+                            </label>
+                        </div>
                     </div>
 
                     <div class="form-floating my-3">

@@ -95,16 +95,6 @@
                             </th>
                             <th scope="col">
                                 <div class="d-flex flex-column justify-content-center align-items-center">
-                                    <div class="fw-bold">Atrybut 1</div>
-                                </div>
-                            </th>
-                            <th scope="col">
-                                <div class="d-flex flex-column justify-content-center align-items-center">
-                                    <div class="fw-bold">Atrybut 2</div>
-                                </div>
-                            </th>
-                            <th scope="col">
-                                <div class="d-flex flex-column justify-content-center align-items-center">
                                     <div class="fw-bold">Cena</div>
                                 </div>
                             </th>
@@ -142,16 +132,8 @@
                             <td>
                                 <div class="d-flex flex-column justify-content-center align-items-center">
                                     <div class="fw-bold">{{$o->name}}</div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d-flex flex-column justify-content-center align-items-center">
-                                    <div class="fw-bold">{{$o->attributes_name}}</div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d-flex flex-column justify-content-center align-items-center">
-                                    <div class="fw-bold">{{$o->attributes_grind}}</div>
+                                    <div>{{$o->attributes_name}}</div>
+                                    <div>{{$o->attributes_grind}}</div>
                                 </div>
                             </td>
                             <td>

@@ -102,4 +102,11 @@ class OrderAdminController extends Controller
             return redirect()->route('dashboard.order.show', $id)->with('fail', 'Status nie został zapisany.');
         }
     }
+    public function email(Order $order)
+    {
+        $user = Auth::user();
+
+        $response = $this->createInvoice($order);
+        return $this->logAndReturnResponseFromCreateInvoice($response,$user,$order);
+    }
 }

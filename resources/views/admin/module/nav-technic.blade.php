@@ -33,7 +33,7 @@
         </div>
         <div class="space-x-8 -my-px ml-10 flex h-full my-auto">
             <x-nav-link href="{{ route('dashboard.technic.version') }}" :active="Str::startsWith(request()->path(), 'dashboard/technic/version')">
-                {{ __('Werscje') }}
+                {{ __('Wersje') }}
             </x-nav-link>
         </div>
     </div>

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\OrderLog as EnumsOrderLog;
 use App\Models\Company;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\OrderLog;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
@@ -58,7 +60,7 @@ class Controller extends BaseController
                 'seller_phone' => $company_phone->content,
                 'seller_email' => $company_email->content,
                 'seller_www' => 'www.coffeesummit.pl',
-                'buyer_name' => $order->name,
+                'buyer_name' => $order->nip != null ? $order->company : $order->name,
                 'buyer_post_code' => $order->post,
                 'buyer_city' => $order->city,
                 'buyer_street' => $order->adres,
@@ -70,17 +72,53 @@ class Controller extends BaseController
             ],
         ]);
         $response_json = $response->json();
-        $response_email = Http::withHeaders([
-            'Accept' => 'application/json',
-            'Content-Type' => 'application/json',
-        ])->post('https://coffeesummit.fakturownia.pl/invoices/' . $response_json['id'] . '/send_by_email.json', [
-            'api_token' => $apiToken,
-            'email_to' => strval($order->email) . ',' . strval($company_email->content),
-        ]);
-        dd($response_email);
+        try {
+            $response_email = Http::withHeaders([
+                'Accept' => 'application/json',
+                'Content-Type' => 'application/json',
+            ])->post('https://coffeesummit.fakturownia.pl/invoices/' . $response_json['id'] . '/send_by_email.json', [
+                'api_token' => $apiToken,
+                'email_to' => strval($order->email) . ',' . strval($company_email->content),
+            ]);
+        } catch (\Throwable $th) {
+            return $response_json;
+        }
 
         // Możesz obsłużyć odpowiedź od API tutaj, na przykład zwrócić ją jako odpowiedź HTTP lub przetworzyć dane odpowiedzi.
 
         return $response_json; // Zwróć odpowiedź jako JSON w odpowiedzi HTTP.
+    }
+    public function logAndReturnResponseFromCreateInvoice($response, $user, Order $order, $ret = true)
+    {
+        if ($response['code'] == 'error') {
+            try {
+                OrderLog::create([
+                    'name' => $user->name,
+                    'description' => 'Odpowiedź fakturownia:' . $response['message']['department'],
+                    'type' => EnumsOrderLog::ADMIN,
+                    'order_id' => $order->id,
+                ]);
+            } catch (\Throwable $th) {
+                OrderLog::create([
+                    'name' => $user->name,
+                    'description' => 'Error nie wysłano faktury',
+                    'type' => EnumsOrderLog::ADMIN,
+                    'order_id' => $order->id,
+                ]);
+            }
+            if ($ret != false) {
+                return redirect()->route('dashboard.order.show', $order->id)->with('fail', 'Faktura nie została wysłana.');
+            }
+        } else {
+            OrderLog::create([
+                'name' => $user->name,
+                'description' => 'Wysłano fakturę',
+                'type' => EnumsOrderLog::ADMIN,
+                'order_id' => $order->id,
+            ]);
+            if ($ret != false) {
+                return redirect()->route('dashboard.order.show', $order->id)->with('success', 'Faktura została pomyślnie wysłana.');
+            }
+        }
     }
 }

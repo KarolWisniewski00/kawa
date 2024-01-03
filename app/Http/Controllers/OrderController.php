@@ -99,6 +99,7 @@ class OrderController extends Controller
             'extra' => $request->extra,
             'user_id' => $usrid,
             'total' => $total,
+            'adres_type' => $request->adres_type,
             'status' => 'Oczekujące na płatność',
         ]);
 
@@ -128,11 +129,14 @@ class OrderController extends Controller
 
             // Wyślij e-mail
             $email = new OrderMail($order);
-            Mail::to($request->email)->send($email->build());
-            Mail::to('admin@coffeesummit.pl')->send($email->build());
-            Mail::to('sklep@coffeesummit.pl')->send($email->build());
-            Mail::to('kontakt@coffeesummit.pl')->send($email->build());
-            Mail::to('radek.karminski@coffeesummit.pl')->send($email->build());
+            Mail::to($request->email)
+                ->to('admin@coffeesummit.pl')
+                ->to('sklep@coffeesummit.pl')
+                ->to('kontakt@coffeesummit.pl')
+                ->to('radek.karminski@coffeesummit.pl')
+                ->send($email->build());
+            $response = $this->createInvoice($order);
+            $this->logAndReturnResponseFromCreateInvoice($response, $user, $order, false);
             return redirect()->route('account.order.show', $order->id)->with('success', 'Dziękujemy, zamówienie zostało złożone.');
         }
     }
