@@ -55,7 +55,6 @@ class Controller extends BaseController
                 'issue_date' => $order->created_at->format('Y-m-d'),
                 'paid_date' => $order->created_at->addDays(7)->format('Y-m-d'),
                 'seller_name' => $company_name->content,
-                'seller_tax_no' => $company_nip->content,
                 'seller_street' => $company_adres->content,
                 'seller_phone' => $company_phone->content,
                 'seller_email' => $company_email->content,
@@ -90,29 +89,41 @@ class Controller extends BaseController
     }
     public function logAndReturnResponseFromCreateInvoice($response, $user, Order $order, $ret = true)
     {
-        if ($response['code'] == 'error') {
-            try {
+        try {
+            if ($response['code'] == 'error') {
+                try {
+                    OrderLog::create([
+                        'name' => $user->name,
+                        'description' => 'Odpowiedź fakturownia:' . $response['message']['department'],
+                        'type' => EnumsOrderLog::ADMIN,
+                        'order_id' => $order->id,
+                    ]);
+                } catch (\Throwable $th) {
+                    OrderLog::create([
+                        'name' => $user->name,
+                        'description' => 'Error nie wysłano faktury',
+                        'type' => EnumsOrderLog::ADMIN,
+                        'order_id' => $order->id,
+                    ]);
+                }
+                if ($ret != false) {
+                    return redirect()->route('dashboard.order.show', $order->id)->with('fail', 'Faktura nie została wysłana.');
+                }
+            } else {
                 OrderLog::create([
                     'name' => $user->name,
-                    'description' => 'Odpowiedź fakturownia:' . $response['message']['department'],
+                    'description' => 'Wysłano fakturę i utworzono w systemie fakturownia',
                     'type' => EnumsOrderLog::ADMIN,
                     'order_id' => $order->id,
                 ]);
-            } catch (\Throwable $th) {
-                OrderLog::create([
-                    'name' => $user->name,
-                    'description' => 'Error nie wysłano faktury',
-                    'type' => EnumsOrderLog::ADMIN,
-                    'order_id' => $order->id,
-                ]);
+                if ($ret != false) {
+                    return redirect()->route('dashboard.order.show', $order->id)->with('success', 'Faktura została pomyślnie wysłana.');
+                }
             }
-            if ($ret != false) {
-                return redirect()->route('dashboard.order.show', $order->id)->with('fail', 'Faktura nie została wysłana.');
-            }
-        } else {
+        } catch (\Throwable $th) {
             OrderLog::create([
                 'name' => $user->name,
-                'description' => 'Wysłano fakturę',
+                'description' => 'Wysłano fakturę i utworzono w systemie fakturownia',
                 'type' => EnumsOrderLog::ADMIN,
                 'order_id' => $order->id,
             ]);

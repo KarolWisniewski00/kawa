@@ -219,7 +219,7 @@
                     @foreach($photos as $photo)
                     @if($photo->product_id == $p->id)
                     @if($photo->order == 1)
-                    <div class="d-flex flex-column justify-content-center align-items-center h-75">
+                    <div class="d-flex flex-column justify-content-center align-items-center h-75 overflow-hidden">
                         <img src="{{ asset('photo/' . $photo->image_path) }}" alt="" class="img-fluid" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
                     </div>
                     @endif

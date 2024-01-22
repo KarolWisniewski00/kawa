@@ -100,6 +100,10 @@
                                     <dd class="text-lg font-semibold">{{$order->city}}</dd>
                                 </div>
                                 <div class="flex flex-col pt-3">
+                                    <dt class="mb-1 text-gray-500 md:text-lg">Kod pocztowy</dt>
+                                    <dd class="text-lg font-semibold">{{$order->post}}</dd>
+                                </div>
+                                <div class="flex flex-col pt-3">
                                     <dt class="mb-1 text-gray-500 md:text-lg">Uwagi dotyczące zamówienia</dt>
                                     <dd class="text-lg font-semibold">{{$order->extra}}</dd>
                                 </div>

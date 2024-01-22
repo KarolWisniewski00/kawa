@@ -39,6 +39,14 @@
                             <p class="text-base font-normal text-gray-500 dark:text-gray-400">8. Poprawa wysyłania zdublikowanych maili potwierdzających zamówienie</p>
                             <p class="text-base font-normal text-gray-500 dark:text-gray-400">9. Dodano podgląd trybu jasno-ciemno <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="{{route('dark')}}">zobacz</a>. Zastosowano tryb automatyczny który pobiera tryb systemowy użytkownika. Nie wszystkie kolory działają względem oczekiwań.</p>
                         </li>
+                        <li class="mb-10 ms-4">
+                            <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+                            <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Styczeń 2024 V 1.0.3</time>
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Aktualizacja</h3>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">1. Naprawa fakturowania</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">2. Naprawa pokazywania zdjęć produktów</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">3. Dodanie kodu pocztowego w szczegółach zamówienia</p>
+                        </li>
                     </ol>
                 </div>
             </div>
