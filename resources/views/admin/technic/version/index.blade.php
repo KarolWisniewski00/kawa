@@ -55,7 +55,7 @@
                             <p class="text-base font-normal text-gray-500 dark:text-gray-400">2. Naprawa pokazywania zdjęć produktów - w podsumowaniu produktu w panelu administratora</p>
                             <p class="text-base font-normal text-gray-500 dark:text-gray-400">3. Naprawa notatek klienta w zamówieniach - brakowało kolumny w bazie danych naprawa wymagała resetu wszystkich poprzednich typów zamówienia kurier, paczkomat, dostawa osobista</p>
                             <p class="text-base font-normal text-gray-500 dark:text-gray-400">4. Dodanie do faktur napisu "OPŁACONO" w momencie pomyślnej płatności - termin płatności na tydź do przodu musi być</p>
-                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">4. Dodanie przycisku "Jestem z Piły i chcę dostawę osobistą przez Coffee Summit - Bezpłatna przesyłka, rabat zostanie naliczony w następnym kroku" w momencie tworzenia zamówienia</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">5. Dodanie przycisku "Jestem z Piły i chcę dostawę osobistą przez Coffee Summit - Bezpłatna przesyłka, rabat zostanie naliczony w następnym kroku" w momencie tworzenia zamówienia</p>
 
                         </li>
                     </ol>
