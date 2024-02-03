@@ -78,14 +78,20 @@
                         <h6 class="align-self-start">Czy ten adres to?</h6>
                         <div class="form-check my-2 align-self-start">
                             <input class="form-check-input" type="radio" name="adres_type" value="carrier" id="adres_carrier" checked>
-                            <label class="form-check-label" for="adres_carrier">
+                            <label class="form-check-label text-start" for="adres_carrier">
                                 Kurier
                             </label>
                         </div>
                         <div class="form-check my-2 align-self-start">
                             <input class="form-check-input" type="radio" name="adres_type" value="parcel_locker" id="adres_parcel_locker">
-                            <label class="form-check-label" for="adres_parcel_locker">
+                            <label class="form-check-label text-start" for="adres_parcel_locker">
                                 Paczkomat
+                            </label>
+                        </div>
+                        <div class="form-check my-2 align-self-start">
+                            <input class="form-check-input" type="radio" name="adres_type" value="adres_person" id="adres_person">
+                            <label class="form-check-label text-start" for="adres_person">
+                                Jestem z Piły i chcę dostawę osobistą przez Coffee Summit - <span class="text-success">Bezpłatna przesyłka</span>, rabat zostanie naliczony w następnym kroku
                             </label>
                         </div>
                     </div>

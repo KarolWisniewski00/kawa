@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Http;
 class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
-    public function createInvoice(Order $order)
+    public function createInvoice(Order $order, $status = null)
     {
         $apiToken = '6oQip8emYz6GpixnQZeb';
         $order_items = OrderItem::where('order_id', $order->id)->get();
@@ -30,7 +30,7 @@ class Controller extends BaseController
 
         $counter_price = 0;
         foreach ($order_items as $key => $value) {
-            array_push($positions, ['name' => $value->name . " " . $value->attributes_name . " " . $value->attributes_grind, 'tax' => 23, 'total_price_gross' => $value->price, 'quantity' => $value->quantity]);
+            array_push($positions, ['name' => $value->name . " " . $value->attributes_name . " " . $value->attributes_grind, 'tax' => 23, 'total_price_gross' => floatval(floatval($value->price) * floatval($value->quantity)), 'quantity' => $value->quantity]);
             $counter_price += ($value->price * $value->quantity);
         }
         if ($company_free->content != null && $company_free->content != 0) {
@@ -68,6 +68,7 @@ class Controller extends BaseController
                 'buyer_tax_no' => $order->nip != null ? $order->nip : '',
                 'positions' => $positions,
                 "payment_type" => $order_payment,
+                "status" => $status
             ],
         ]);
         $response_json = $response->json();

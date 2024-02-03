@@ -47,6 +47,17 @@
                             <p class="text-base font-normal text-gray-500 dark:text-gray-400">2. Naprawa pokazywania zdjęć produktów</p>
                             <p class="text-base font-normal text-gray-500 dark:text-gray-400">3. Dodanie kodu pocztowego w szczegółach zamówienia</p>
                         </li>
+                        <li class="mb-10 ms-4">
+                            <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+                            <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Luty 2024 V 1.0.4</time>
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Aktualizacja</h3>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">1. Naprawa fakturowania - Naprawa liczenia fakturownia nie przeliczała liości produktów z ceną, należało najpierw wymnożyć a poźniej wysłać dane</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">2. Naprawa pokazywania zdjęć produktów - w podsumowaniu produktu w panelu administratora</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">3. Naprawa notatek klienta w zamówieniach - brakowało kolumny w bazie danych naprawa wymagała resetu wszystkich poprzednich typów zamówienia kurier, paczkomat, dostawa osobista</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">4. Dodanie do faktur napisu "OPŁACONO" w momencie pomyślnej płatności - termin płatności na tydź do przodu musi być</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">4. Dodanie przycisku "Jestem z Piły i chcę dostawę osobistą przez Coffee Summit - Bezpłatna przesyłka, rabat zostanie naliczony w następnym kroku" w momencie tworzenia zamówienia</p>
+
+                        </li>
                     </ol>
                 </div>
             </div>

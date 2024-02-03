@@ -41,7 +41,7 @@ class PaymentController extends Controller
             Mail::to('sklep@coffeesummit.pl')->send($email->build());
             Mail::to('kontakt@coffeesummit.pl')->send($email->build());
             Mail::to('radek.karminski@coffeesummit.pl')->send($email->build());
-            $this->createInvoice($order);
+            $this->createInvoice($order, 'paid');
             OrderLog::create([
                 'name' => 'Przelewy24',
                 'description' => 'Płatność została zrealizowana. Zmiana statusu na W trakcie realizacji',

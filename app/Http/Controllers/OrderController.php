@@ -80,10 +80,12 @@ class OrderController extends Controller
 
         $total = \Cart::session('cart')->getTotal();
         $company = Company::get()->pluck('content', 'type');
-
-        if ($total >= $company['free_ship']) {
+        if ($request->adres_type >= 'adres_person') {
         } else {
-            $total = $total + $company['price_ship'];
+            if ($total >= $company['free_ship']) {
+            } else {
+                $total = $total + $company['price_ship'];
+            }
         }
         $order = Order::create([
             'number' => Str::random(4),

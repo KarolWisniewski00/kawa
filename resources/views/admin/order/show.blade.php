@@ -109,7 +109,13 @@
                                 </div>
                                 <div class="flex flex-col pt-3">
                                     <dt class="mb-1 text-gray-500 md:text-lg">Typ adresu</dt>
-                                    <dd class="text-lg font-semibold">{{$order->adres_type == 'carrier' ? 'Kurier' : 'Paczkomat'}}</dd>
+                                    @if($order->adres_type == 'carrier')
+                                    <dd class="text-lg font-semibold">Kurier</dd>
+                                    @elseif($order->adres_type == 'adres_person')
+                                    <dd class="text-lg font-semibold">Dostawa osobista</dd>
+                                    @else
+                                    <dd class="text-lg font-semibold">Paczkomat</dd>
+                                    @endif
                                 </div>
                             </dl>
                         </div>
@@ -150,7 +156,21 @@
                                 @foreach($orders as $o)
                                 <tr class="bg-white border-b hover:bg-gray-50">
                                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                        <img src="{{ asset('photo/' . $photo_good) }}" alt="" class="img-fluid" height="48px" width="48px" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
+                                        @foreach($photos as $p)
+                                        @php
+                                        $liczbaString = (string)$o->product_id;
+                                        $drugaLiczbaString = (string)$p->product_id;
+
+                                        if (substr($liczbaString, 0, strlen($drugaLiczbaString)) == $drugaLiczbaString) {
+                                            $img = $p->image_path;
+                                        } else {
+                                            $img = 'error';
+                                        }
+                                        @endphp
+                                        @if($img != 'error')
+                                        <img src="{{ asset('photo/' . $img) }}" alt="" class="img-fluid" height="48px" width="48px" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
+                                        @endif
+                                        @endforeach
                                     </th>
                                     <td class="px-6 py-4">
                                         {{$o->name}}
