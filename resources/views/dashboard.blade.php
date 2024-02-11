@@ -4,13 +4,81 @@
             {{ __('Zamówienia') }}
         </h2>
     </x-slot>
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 lg:p-8 bg-white border-b border-gray-200">
                     @include('admin.module.alerts')
                     <x-application-logo class="block h-12 w-auto" />
+                    <div class="flex flex-row justify-between">
+                        <h1 class="mt-8 mb-4 text-2xl font-medium text-gray-900">
+                            Zamówienia ostatni tydzień
+                        </h1>
+                    </div>
+                    <canvas id="myChart" width="400" class="w-full" height="200"></canvas>
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                    <input type="hidden" name="ordersJS" id="ordersJS" value='@json($ordersJS)'>
+                    <script>
+                        $(document).ready(function() {
+                            // Pobierz dane zamówień z ukrytego pola
+                            var str = $('#ordersJS').val()
+                            var orders = JSON.parse(str);
+
+                            // Oblicz datę, która jest 7 dni wcześniejsza od dzisiejszej daty
+                            var sevenDaysAgo = new Date();
+                            sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 6); // 6 dni temu (zakładając, że dzisiaj jest ostatni dzień)
+
+                            // Stwórz tablicę dat od obliczonej daty do dzisiejszej daty
+                            var labels = [];
+                            for (var i = sevenDaysAgo; i <= new Date(); i.setDate(i.getDate() + 1)) {
+                                var date = new Date(i);
+                                var formattedDate = date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear();
+                                labels.push(formattedDate);
+                            }
+
+                            var datasetData = [];
+
+                            // Iteruj przez etykiety (daty)
+                            labels.forEach(function(label) {
+                                // Zlicz ilość zamówień utworzonych w danym dniu
+                                var ordersCount = 0;
+                                orders.forEach(function(order) {
+                                    var orderDate = new Date(order.created_at.split(' ')[0]);
+                                    var formattedOrderDate = orderDate.getDate() + '-' + (orderDate.getMonth() + 1) + '-' + orderDate.getFullYear();
+                                    if (formattedOrderDate === label) {
+                                        ordersCount++;
+                                    }
+                                });
+                                // Dodaj ilość zamówień do danych dla wykresu
+                                datasetData.push(ordersCount);
+                            });
+
+                            // Utwórz wykres
+                            var ctx = document.getElementById('myChart').getContext('2d');
+                            var myChart = new Chart(ctx, {
+                                type: 'bar',
+                                data: {
+                                    labels: labels,
+                                    datasets: [{
+                                        label: 'Liczba zamówień',
+                                        data: datasetData,
+                                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                        borderColor: 'rgba(54, 162, 235, 1)',
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                beginAtZero: true
+                                            }
+                                        }]
+                                    }
+                                }
+                            });
+                        });
+                    </script>
                     <div class="flex flex-row justify-between">
                         <h1 class="mt-8 mb-4 text-2xl font-medium text-gray-900">
                             Wszystkie zamówienia

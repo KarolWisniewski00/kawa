@@ -27,6 +27,7 @@ use Devpark\Transfers24\Exceptions\RequestException;
 use Devpark\Transfers24\Exceptions\RequestExecutionException;
 use Devpark\Transfers24\Requests\Transfers24;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 use Throwable;
 
 class OrderController extends Controller
@@ -80,11 +81,19 @@ class OrderController extends Controller
 
         $total = \Cart::session('cart')->getTotal();
         $company = Company::get()->pluck('content', 'type');
-        if ($request->adres_type >= 'adres_person') {
-        } else {
-            if ($total >= $company['free_ship']) {
+        if ($request->adres_type == 'adres_person') {
+            if ($request->post == '64-920') {
+                Session::put('transfer', false);
             } else {
                 $total = $total + $company['price_ship'];
+                Session::put('transfer', true);
+            }
+        } else {
+            if ($total >= $company['free_ship']) {
+                Session::put('transfer', false);
+            } else {
+                $total = $total + $company['price_ship'];
+                Session::put('transfer', true);
             }
         }
         $order = Order::create([
@@ -137,7 +146,7 @@ class OrderController extends Controller
                 ->to('kontakt@coffeesummit.pl')
                 ->to('radek.karminski@coffeesummit.pl')
                 ->send($email->build());
-            $response = $this->createInvoice($order);
+            $response = $this->createInvoice($order, null);
             $this->logAndReturnResponseFromCreateInvoice($response, $user, $order, false);
             return redirect()->route('account.order.show', $order->id)->with('success', 'Dziękujemy, zamówienie zostało złożone.');
         }

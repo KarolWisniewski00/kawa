@@ -15,15 +15,30 @@
                     <ol class="relative border-s border-gray-200 dark:border-gray-700">
                         <li class="mb-10 ms-4">
                             <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
-                            <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Wrzesień 2023 V 1.0.0</time>
-                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Stworzenie Projektu</h3>
-                            <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Początek witryny w google</p>
+                            <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">11 Luty 2024 V 1.0.5</time>
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Aktualizacja</h3>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">1. Zmiana kolejności historii aktualizacji, najnowsze u góry</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">2. Naprawa naliczania przesyłki - nie naliczało za przesyłkę tylko na stronie, poprawiono że i w bramce płatniczej i w fakturowni</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">3. W formularzu zamówienia należy podać pod pocztowy i zaznaczyć opcję "Jestem z Piły[...]" - inaczej koszt przesyłki będzie naliczony</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">4. Dodanie wykresu zamówień - inicjatywa administratora - bezpłatne</p>
                         </li>
                         <li class="mb-10 ms-4">
                             <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
-                            <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Listopad 2023 V 1.0.1</time>
+                            <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Luty 2024 V 1.0.4</time>
                             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Aktualizacja</h3>
-                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">Dodanie bramki płatniczej, historii zmian zamówienia, fakturowania, poprawy wyglądu maili, widok kontroli wersji, dodanie satatusu przelewy24, dodanie kolorystyki w podsumowaniu zamówień, dodanie wyświetlania daty utworzenia i edycji zamówienia, dodanie możliwości anulowania zamówienia ze strony klienta dodanie kwasowości stopnia wypalenia wysokości upraw i intensywnosci smaku do produktów, logowanie przez google, pokazywanie produktów na scrolla</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">1. Naprawa fakturowania - Naprawa liczenia fakturownia nie przeliczała liości produktów z ceną, należało najpierw wymnożyć a poźniej wysłać dane</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">2. Naprawa pokazywania zdjęć produktów - w podsumowaniu produktu w panelu administratora</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">3. Naprawa notatek klienta w zamówieniach - brakowało kolumny w bazie danych naprawa wymagała resetu wszystkich poprzednich typów zamówienia kurier, paczkomat, dostawa osobista</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">4. Dodanie do faktur napisu "OPŁACONO" w momencie pomyślnej płatności - termin płatności na tydź do przodu musi być</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">5. Dodanie przycisku "Jestem z Piły i chcę dostawę osobistą przez Coffee Summit - Bezpłatna przesyłka, rabat zostanie naliczony w następnym kroku" w momencie tworzenia zamówienia</p>
+                        </li>
+                        <li class="mb-10 ms-4">
+                            <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+                            <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Styczeń 2024 V 1.0.3</time>
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Aktualizacja</h3>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">1. Naprawa fakturowania</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">2. Naprawa pokazywania zdjęć produktów</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">3. Dodanie kodu pocztowego w szczegółach zamówienia</p>
                         </li>
                         <li class="mb-10 ms-4">
                             <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
@@ -41,22 +56,15 @@
                         </li>
                         <li class="mb-10 ms-4">
                             <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
-                            <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Styczeń 2024 V 1.0.3</time>
+                            <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Listopad 2023 V 1.0.1</time>
                             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Aktualizacja</h3>
-                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">1. Naprawa fakturowania</p>
-                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">2. Naprawa pokazywania zdjęć produktów</p>
-                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">3. Dodanie kodu pocztowego w szczegółach zamówienia</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">Dodanie bramki płatniczej, historii zmian zamówienia, fakturowania, poprawy wyglądu maili, widok kontroli wersji, dodanie satatusu przelewy24, dodanie kolorystyki w podsumowaniu zamówień, dodanie wyświetlania daty utworzenia i edycji zamówienia, dodanie możliwości anulowania zamówienia ze strony klienta dodanie kwasowości stopnia wypalenia wysokości upraw i intensywnosci smaku do produktów, logowanie przez google, pokazywanie produktów na scrolla</p>
                         </li>
                         <li class="mb-10 ms-4">
                             <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
-                            <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Luty 2024 V 1.0.4</time>
-                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Aktualizacja</h3>
-                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">1. Naprawa fakturowania - Naprawa liczenia fakturownia nie przeliczała liości produktów z ceną, należało najpierw wymnożyć a poźniej wysłać dane</p>
-                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">2. Naprawa pokazywania zdjęć produktów - w podsumowaniu produktu w panelu administratora</p>
-                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">3. Naprawa notatek klienta w zamówieniach - brakowało kolumny w bazie danych naprawa wymagała resetu wszystkich poprzednich typów zamówienia kurier, paczkomat, dostawa osobista</p>
-                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">4. Dodanie do faktur napisu "OPŁACONO" w momencie pomyślnej płatności - termin płatności na tydź do przodu musi być</p>
-                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">5. Dodanie przycisku "Jestem z Piły i chcę dostawę osobistą przez Coffee Summit - Bezpłatna przesyłka, rabat zostanie naliczony w następnym kroku" w momencie tworzenia zamówienia</p>
-
+                            <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Wrzesień 2023 V 1.0.0</time>
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Stworzenie Projektu</h3>
+                            <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Początek witryny</p>
                         </li>
                     </ol>
                 </div>

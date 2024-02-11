@@ -10,7 +10,9 @@ use App\Models\OrderLog;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Session;
 
 class Controller extends BaseController
 {
@@ -33,9 +35,13 @@ class Controller extends BaseController
             array_push($positions, ['name' => $value->name . " " . $value->attributes_name . " " . $value->attributes_grind, 'tax' => 23, 'total_price_gross' => floatval(floatval($value->price) * floatval($value->quantity)), 'quantity' => $value->quantity]);
             $counter_price += ($value->price * $value->quantity);
         }
-        if ($company_free->content != null && $company_free->content != 0) {
-            if ($counter_price < $company_free->content) {
-                array_push($positions, ['name' => 'Przesyłka InPost', 'tax' => 23, 'total_price_gross' => intval($company->content), 'quantity' => 1]);
+        if (Session::has('transfer')) {
+            if(Session::get('transfer') == true){
+                if ($company_free->content != null && $company_free->content != 0) {
+                    if ($counter_price < $company_free->content) {
+                        array_push($positions, ['name' => 'Przesyłka InPost', 'tax' => 23, 'total_price_gross' => intval($company->content), 'quantity' => 1]);
+                    }
+                }
             }
         }
         if ($order->payment) {
@@ -91,17 +97,22 @@ class Controller extends BaseController
     public function logAndReturnResponseFromCreateInvoice($response, $user, Order $order, $ret = true)
     {
         try {
+            $name = $user->name;
+        } catch (\Throwable $th) {
+            $name = 'UNKNOW';
+        }
+        try {
             if ($response['code'] == 'error') {
                 try {
                     OrderLog::create([
-                        'name' => $user->name,
+                        'name' => $name,
                         'description' => 'Odpowiedź fakturownia:' . $response['message']['department'],
                         'type' => EnumsOrderLog::ADMIN,
                         'order_id' => $order->id,
                     ]);
                 } catch (\Throwable $th) {
                     OrderLog::create([
-                        'name' => $user->name,
+                        'name' => $name,
                         'description' => 'Error nie wysłano faktury',
                         'type' => EnumsOrderLog::ADMIN,
                         'order_id' => $order->id,
@@ -112,7 +123,7 @@ class Controller extends BaseController
                 }
             } else {
                 OrderLog::create([
-                    'name' => $user->name,
+                    'name' => $name,
                     'description' => 'Wysłano fakturę i utworzono w systemie fakturownia',
                     'type' => EnumsOrderLog::ADMIN,
                     'order_id' => $order->id,
@@ -123,7 +134,7 @@ class Controller extends BaseController
             }
         } catch (\Throwable $th) {
             OrderLog::create([
-                'name' => $user->name,
+                'name' => $name,
                 'description' => 'Wysłano fakturę i utworzono w systemie fakturownia',
                 'type' => EnumsOrderLog::ADMIN,
                 'order_id' => $order->id,

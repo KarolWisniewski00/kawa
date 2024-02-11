@@ -8,6 +8,7 @@ use App\Models\OrderItem;
 use App\Models\OrderLog;
 use App\Models\Product;
 use App\Models\ProductImage;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +17,9 @@ class OrderAdminController extends Controller
     public function index()
     {
         $orders = Order::orderBy('created_at', 'desc')->paginate(20);
-        return view('dashboard', compact('orders'));
+        $sevenDaysAgo = Carbon::now()->subDays(7);
+        $ordersJS = Order::where('created_at', '>=', $sevenDaysAgo)->get();
+        return view('dashboard', compact('orders', 'ordersJS'));
     }
     public function show(Order $order)
     {
@@ -107,6 +110,6 @@ class OrderAdminController extends Controller
         $user = Auth::user();
 
         $response = $this->createInvoice($order);
-        return $this->logAndReturnResponseFromCreateInvoice($response,$user,$order);
+        return $this->logAndReturnResponseFromCreateInvoice($response, $user, $order);
     }
 }
