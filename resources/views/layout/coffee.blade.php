@@ -428,8 +428,32 @@
                     });
                 });
             };
+            function bt(string) {
+                const elements = document.querySelectorAll(string);
+                var count = 0;
+                elements.forEach(element => {
+                    gsap.fromTo(element.children, {
+                        opacity: 0,
+                        y: 100,
+                        scale: 0.8
+                    }, {
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                        duration: 1,
+                        ease: "power4.out",
+                        scrollTrigger: {
+                            trigger: element,
+                            start: 'top 75%',
+                            end: 'top 65%',
+                        },
+                        delay: 0.2 * (count += 1)
+                    });
+                });
+            };
 
             st('body .gsap');
+            bt('body .gsap-2');
         });
     </script>
     @yield('js')

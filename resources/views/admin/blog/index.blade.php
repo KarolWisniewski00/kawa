@@ -18,6 +18,9 @@
                         <a href="{{route('dashboard.blog.create')}}" class="inline-flex items-center justify-center w-10 h-10 mr-2 text-green-100 transition-colors duration-150 bg-green-500 rounded-full focus:shadow-outline hover:bg-green-600">
                             <i class="fa-solid fa-plus"></i>
                         </a>
+                        <a href="{{route('dashboard.blog.create.second')}}" class="inline-flex items-center justify-center w-10 h-10 mr-2 text-emerald-100 transition-colors duration-150 bg-emerald-500 rounded-full focus:shadow-outline hover:bg-emerald-600">
+                            <i class="fa-solid fa-plus"></i>
+                        </a>
                     </div>
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                         <table class="w-full text-sm text-left text-gray-500">
@@ -52,11 +55,19 @@
                                     <td class="px-6 py-4">
                                         {{$blog->created_at}}
                                     </td>
+                                    @if($blog->type == null)
                                     <td class="px-6 py-4">
                                         <a href="{{ route('dashboard.blog.edit', $blog->id) }}" class="text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
                                     </td>
+                                    @else
+                                    <td class="px-6 py-4">
+                                        <a href="{{ route('dashboard.blog.edit.second', $blog->id) }}" class="text-white bg-violet-500 hover:bg-violet-600 focus:ring-4 focus:ring-violet-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                    </td>
+                                    @endif
                                     <td class="px-6 py-4">
                                         <form action="{{ route('dashboard.blog.delete', $blog->id) }}" method="POST" onsubmit="return confirm('Czy na pewno chcesz usunąć ten wpis?')">
                                             @csrf

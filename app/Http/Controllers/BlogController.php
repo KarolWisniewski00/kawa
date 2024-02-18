@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Product;
+use App\Models\ProductVariant;
 use Illuminate\Http\Request;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 
@@ -38,7 +40,9 @@ class BlogController extends Controller
             $trail->push('Blog Post', route('blog.show', $slug));
         });
         $blog = Blog::where('id',$blog)->first();
-        return view('client.coffee.blog.show', compact('blog'));
+        $products = Product::take(3)->get();
+        $variants = ProductVariant::get();
+        return view('client.coffee.blog.show', compact('blog', 'products', 'variants'));
     }
     
 }

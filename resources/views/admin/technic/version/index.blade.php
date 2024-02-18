@@ -15,6 +15,28 @@
                     <ol class="relative border-s border-gray-200 dark:border-gray-700">
                         <li class="mb-10 ms-4">
                             <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+                            <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">18 Luty 2024 V 1.1.1</time>
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Aktualizacja</h3>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">1. Dodanie artukułu - Dlaczego kawa jest zdrowa?</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">2. Dodanie drugiego szablonu wpisu na bloga</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">3. Kilka dni temu zgłoszenie stron produktów ręcznie do Google</p>
+                        </li>
+                        <li class="mb-10 ms-4">
+                            <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+                            <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">14 Luty 2024 V 1.1.0</time>
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Aktualizacja</h3>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">Zmiana pokazywania produktu na krokowy</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">1. Dodany komunikat w momencie skompletowania wyboru kawy</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">2. Dodane automatyczne przesunięcie ekranu do miejsca w którym jeszcze brakuje uzupełnienia, jeśli wszystko ok to prowadzi do przycisku "Dodaj do koszyka"</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">3. Dodanie słów kluczoywch "Kawa kraftowa " przed nazwą produktu</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">4. zmiana kolejności wyświetlania stopni wypalenia, wysokości upraw itp.. na komputerze wyświetla sie w dziurze która powstała przez zmianę na system krokowy</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">5. Po wyborze użytkownika zmiana koloru kropki krokowej (statusu) na udany</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">6. Po wyborze użytkownika rozmiaru opakowania czyli ceny - zakres cen na górze dynamicznie się zmienia według odpowiednie kwoty</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">7. usunięcie tymczasowego ustawienia wybranego rodzaju mielenia  - ziarnista</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">8. Dodanie animacji przycisków</p>
+                        </li>
+                        <li class="mb-10 ms-4">
+                            <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
                             <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">11 Luty 2024 V 1.0.5</time>
                             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Aktualizacja</h3>
                             <p class="text-base font-normal text-gray-500 dark:text-gray-400">1. Zmiana kolejności historii aktualizacji, najnowsze u góry</p>

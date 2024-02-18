@@ -156,9 +156,13 @@ Route::middleware([
         Route::prefix('blog')->group(function () {
             Route::get('/', [BlogAdminController::class, 'index'])->name('dashboard.blog');
             Route::get('/create', [BlogAdminController::class, 'create'])->name('dashboard.blog.create');
+            Route::get('/create-second', [BlogAdminController::class, 'createSecond'])->name('dashboard.blog.create.second');
             Route::post('/store', [BlogAdminController::class, 'store'])->name('dashboard.blog.store');
+            Route::post('/store-second', [BlogAdminController::class, 'storeSecond'])->name('dashboard.blog.store.second');
             Route::get('/edit/{blog}', [BlogAdminController::class, 'edit'])->name('dashboard.blog.edit');
+            Route::get('/edit-second/{blog}', [BlogAdminController::class, 'editSecond'])->name('dashboard.blog.edit.second');
             Route::put('/update/{blog}', [BlogAdminController::class, 'update'])->name('dashboard.blog.update');
+            Route::put('/update-second/{blog}', [BlogAdminController::class, 'updateSecond'])->name('dashboard.blog.update.second');
             Route::delete('/delete/{blog}', [BlogAdminController::class, 'delete'])->name('dashboard.blog.delete');
         });
         Route::prefix('shop')->group(function () {
