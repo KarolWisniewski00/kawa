@@ -160,7 +160,6 @@ class BlogAdminController extends Controller
             'content_text_8' => $request->content_text_8,
             'start' => $request->start,
             'content' => '',
-            'type' => 'SECOND',
             'end' => $request->end,
             'order' => $request->order,
             'visibility_on_website' => isset($request->visibility_on_website)  ? 1 : 0,

@@ -15,6 +15,23 @@
                     <ol class="relative border-s border-gray-200 dark:border-gray-700">
                         <li class="mb-10 ms-4">
                             <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+                            <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">6 kwiecień 2024 V 1.1.3</time>
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Aktualizacja</h3>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">1. Naprawa fakturowni - tworzenie faktur przestało działać z uwagi na zmiany w samym systemie fakturownia. Zostały ustawione domyślne dane do generowania faktury - dane sprzedawcy. Błąd usunięty za pomocą usunięcia 4 linijek w requesie do API nazwa, adres, strona www, kontakt telefoniczny</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">2. Usunięcie kolumny "w koszyku" w liście produktów w panelu admina</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">3. Poprawiony przycisk dodawania w artykule</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">3. Dodany nowy artykuł</p>
+                        </li>
+                        <li class="mb-10 ms-4">
+                            <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+                            <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">28 Luty 2024 V 1.1.2</time>
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Aktualizacja</h3>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">1. Dodanie artukułu - Ile kawy mozna zrobić z 1kg</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">2. Przebudowa zamawiania na system krokowy z uwzględnieniem innych dnych faktury i innej osoby odbierającej</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">3. Poprawa wyglądu tak aby wszystkie produkty miały system krokowy</p>
+                        </li>
+                        <li class="mb-10 ms-4">
+                            <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
                             <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">18 Luty 2024 V 1.1.1</time>
                             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Aktualizacja</h3>
                             <p class="text-base font-normal text-gray-500 dark:text-gray-400">1. Dodanie artukułu - Dlaczego kawa jest zdrowa?</p>

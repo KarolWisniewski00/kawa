@@ -62,7 +62,7 @@ class OrderController extends Controller
         $elements = Company::get();
         return view('client.coffee.account.order.create', compact('photos', 'cartItems', 'user', 'elements'));
     }
-    public function store(CreateOrderRequest $request)
+    public function store(Request $request)
     {
         if ($request->type_transfer == 'false' && $request->type_transfer_24 == 'false') {
             return redirect()->back()->with('fail', 'Administrator nie ustawił formy płatności. Przepraszamy za utrudnienia.');
@@ -100,8 +100,15 @@ class OrderController extends Controller
             'number' => Str::random(4),
             'name' => $request->name,
             'email' => $request->email,
+            'name_recive' => $request->name_recive,
+            'email_recive' => $request->email_recive,
+            'phone_recive' => $request->phone_recive,
             'company' => $request->company ? $request->company : null,
             'nip' => $request->nip,
+            'post_invoice' => $request->post_invoice,
+            'adres_invoice' => $request->street_invoice,
+            'adres_extra_invoice' => $request->street_extra_invoice,
+            'city_invoice' => $request->city_invoice,
             'post' => $request->post,
             'adres' => $request->street,
             'adres_extra' => $request->street_extra,

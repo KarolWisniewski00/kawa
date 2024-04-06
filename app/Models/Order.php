@@ -11,6 +11,7 @@ class Order extends Model
     protected $fillable = [
         'number', 'name', 'email', 'company', 'nip', 'post', 'adres', 'adres_extra',
         'city', 'phone', 'status', 'total', 'user_id', 'adres_type', 'extra',
+        'post_invoice', 'adres_invoice', 'adres_extra_invoice', 'city_invoice', 'name_recive', 'email_recive', 'phone_recive',
     ];
     public function user()
     {

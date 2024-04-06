@@ -175,7 +175,6 @@
                 </button>
                 <div class="col-12 text-center my-4 d-none d-lg-block">
                     <div class="d-flex flex-xl-row flex-column justify-content-center align-items-center gap-4 mt-5 h-100 flex-wrap">
-                        @if($product->id != 11)
                         @if($product->height)
                         <div class="d-flex flex-column justify-content-end align-items-center gap-2 h-100">
                             <div class="d-flex flex-row justify-content-center align-items-center gap-2 p-4">
@@ -184,6 +183,7 @@
                             <p class="h5 my-3">Wysokość uprawy {{$product->height}} m n.p.m.</p>
                         </div>
                         @endif
+                        @if($product->coffee != 0)
                         <div class="d-flex flex-column justify-content-end align-items-center gap-2 h-100">
                             <div class="d-flex flex-row justify-content-center align-items-center gap-2 p-4">
                                 @for($i = 0; $i <= 3; $i++) @if($product->coffee <= $i) <img alt="" class="h-auto" style="width: 50px;" src="{{asset('image/coffee_bean_empty.svg')}}">
@@ -194,6 +194,8 @@
                             </div>
                             <p class="h5 my-3">Stopień wypalenia</p>
                         </div>
+                        @endif
+                        @if($product->tool != 0)
                         <div class="d-flex flex-column justify-content-end align-items-center gap-2 h-100">
                             <div class="d-flex flex-row justify-content-center align-items-center gap-2 p-4">
                                 @for($i = 0; $i <= 3; $i++) @if($product->tool <= $i) <img alt="" class="h-auto" style="width: 50px;" src="{{asset('image/tool_bean_empty.svg')}}">
@@ -204,6 +206,8 @@
                             </div>
                             <p class="h5 my-3">Intensywność smaku</p>
                         </div>
+                        @endif
+                        @if($product->lemon != 0)
                         <div class="d-flex flex-column justify-content-end align-items-center gap-2 h-100">
                             <div class="d-flex flex-row justify-content-center align-items-center gap-2 p-4">
                                 @for($i = 0; $i <= 3; $i++) @if($product->lemon <= $i) <img alt="" class="h-auto" style="width: 50px;" src="{{asset('image/lemon_bean_empty.svg')}}">
@@ -214,8 +218,8 @@
                             </div>
                             <p class="h5 my-3">kwasowość</p>
                         </div>
+                        @endif
                     </div>
-                    @endif
                 </div>
                 <div class="modal fade" id="studio-photo-main" tabindex="-1" aria-labelledby="studio-photo-main-label" aria-hidden="true">
                     <div class="modal-dialog">
@@ -367,7 +371,8 @@
                                             <div class="col-12">
                                                 <div class="single-timeline-content d-flex wow fadeInLeft my-4" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInLeft;">
                                                     <div class="timeline-text">
-                                                        <p class="fw-bold mt-4">Wybierz ilość opakowań kawy</p>
+                                                        <p class="fw-bold mt-4">Wybierz ilość opakowań kawy.</p>
+                                                        <p class="fw-bold mt-4">Jeśli chcesz większą ilość i lepszą cenę przejdź do <a href="{{route('collaboration')}}" class="text-info">Współpraca</a></p>
                                                         <div class="d-flex flex-row justify-content-start align-items-center flex-wrap mb-2">
                                                             <label for="quantity" class="form-label">1</label>
                                                             <input type="range" class="form-range" id="quantity" name="quantity" value="1" min=1 max=35>

@@ -32,7 +32,7 @@ class ProductController extends Controller
         });
         $product = Product::where('id', $slug)->first();
         $product->update(['view' => intval($product->view) + 1]);
-        if ($product->id == 7 || $product->id == 12 || $product->id == 13 || $product->id == 14) {
+        //if ($product->id == 7 || $product->id == 12 || $product->id == 13 || $product->id == 14) {
             return view('client.coffee.shop.product.show-steps', [
                 'product' => $product,
                 'products' => Product::take(3)->get(),
@@ -41,15 +41,15 @@ class ProductController extends Controller
                 'sizes' => Size::get(),
                 'grindTypes' => Grinding::get(),
             ]);
-        } else {
-            return view('client.coffee.shop.product.show', [
-                'product' => $product,
-                'products' => Product::take(3)->get(),
-                'variants' => ProductVariant::get(),
-                'photos' => ProductImage::get(),
-                'sizes' => Size::get(),
-                'grindTypes' => Grinding::get(),
-            ]);
-        }
+        //} else {
+        //    return view('client.coffee.shop.product.show', [
+        //        'product' => $product,
+        //        'products' => Product::take(3)->get(),
+        //        'variants' => ProductVariant::get(),
+        //        'photos' => ProductImage::get(),
+        //        'sizes' => Size::get(),
+        //        'grindTypes' => Grinding::get(),
+        //    ]);
+        //}
     }
 }
