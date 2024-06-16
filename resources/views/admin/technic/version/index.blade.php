@@ -15,6 +15,15 @@
                     <ol class="relative border-s border-gray-200 dark:border-gray-700">
                         <li class="mb-10 ms-4">
                             <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+                            <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">16 czerwiec 2024 V 1.2.0</time>
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Aktualizacja - Usługa integracja z InPost API</h3>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">1. Zmiana systemu krokowego adres dostawy - Wybranie paczkomatu przez : Paczkomat API Wersja v4 Old oraz Wybranie kuriara i dostawy osobistej przez : Formularz</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">2. Poprawa wyglądu podglądu zamówienia w panelu admina - prawidłowe wyśrodkowanie</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">3. Przywrócenie wykresów ilości zamówień w panelu admina w widoku wszystkich zamówień</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">4. Usunięcie "rabat zostanie naliczony w następnym kroku" w kroku 5</p>
+                        </li>
+                        <li class="mb-10 ms-4">
+                            <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
                             <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">11 czerwiec 2024 V 1.1.4</time>
                             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Aktualizacja</h3>
                             <p class="text-base font-normal text-gray-500 dark:text-gray-400">1. Naprawa systemu krokowego: zmiana z opcjonalnie na wymagany dla numeru telefonu</p>

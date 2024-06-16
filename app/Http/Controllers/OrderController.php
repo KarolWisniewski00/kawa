@@ -119,6 +119,7 @@ class OrderController extends Controller
             'total' => $total,
             'adres_type' => $request->adres_type,
             'status' => 'Oczekujące na płatność',
+            'point' => $request->point,
         ]);
 
         foreach ($cartContent as $item) {

@@ -51,14 +51,14 @@
                                 </div>
                             </dl>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 pr-8">
-                            <a href="{{route('dashboard.order.status', ['id'=>$order->id, 'slug'=>'0'])}}" class="mt-8 mb-4 text-white bg-amber-500 hover:bg-amber-600 focus:ring-4 focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"><i class="fa-solid fa-clock mr-2"></i>Oczekujące na płatność</a>
-                            <a href="{{route('dashboard.order.status', ['id'=>$order->id, 'slug'=>'1'])}}" class="mt-8 mb-4 text-white bg-lime-500 hover:bg-lime-600 focus:ring-4 focus:ring-lime-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"><i class="fa-solid fa-business-time mr-2"></i>W trakcie realizacji</a>
-                            <a href="{{route('dashboard.order.status', ['id'=>$order->id, 'slug'=>'2'])}}" class="mt-8 mb-4 text-white bg-emerald-500 hover:bg-emerald-600 focus:ring-4 focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"><i class="fa-solid fa-check mr-2"></i>Zrealizowane</a>
-                            <a href="{{route('dashboard.order.status', ['id'=>$order->id, 'slug'=>'3'])}}" class="mt-8 mb-4 text-white bg-rose-500 hover:bg-rose-600 focus:ring-4 focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"><i class="fa-solid fa-x mr-2"></i>Anulowano</a>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <a href="{{route('dashboard.order.status', ['id'=>$order->id, 'slug'=>'0'])}}" class="mt-8 mb-4 text-white bg-amber-500 hover:bg-amber-600 focus:ring-4 focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-clock mr-2"></i>Oczekujące na płatność</a>
+                            <a href="{{route('dashboard.order.status', ['id'=>$order->id, 'slug'=>'1'])}}" class="mt-8 mb-4 text-white bg-lime-500 hover:bg-lime-600 focus:ring-4 focus:ring-lime-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-business-time mr-2"></i>W trakcie realizacji</a>
+                            <a href="{{route('dashboard.order.status', ['id'=>$order->id, 'slug'=>'2'])}}" class="mt-8 mb-4 text-white bg-emerald-500 hover:bg-emerald-600 focus:ring-4 focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-check mr-2"></i>Zrealizowane</a>
+                            <a href="{{route('dashboard.order.status', ['id'=>$order->id, 'slug'=>'3'])}}" class="mt-8 mb-4 text-white bg-rose-500 hover:bg-rose-600 focus:ring-4 focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-x mr-2"></i>Anulowano</a>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 pr-8">
-                            <a href="{{route('dashboard.order.email', $order)}}" class="mt-8 mb-4 text-white bg-violet-500 hover:bg-violet-600 focus:ring-4 focus:ring-violet-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"><i class="fa-solid fa-file mr-2"></i>Utwórz fakturę</a>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <a href="{{route('dashboard.order.email', $order)}}" class="mt-8 mb-4 text-white bg-violet-500 hover:bg-violet-600 focus:ring-4 focus:ring-violet-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-file mr-2"></i>Utwórz fakturę</a>
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-5">
@@ -120,6 +120,10 @@
                                         @else
                                         <dd class="text-lg font-semibold">Paczkomat</dd>
                                         @endif
+                                    </div>
+                                    <div class="flex flex-col pt-3">
+                                        <dt class="mb-1 text-gray-500 md:text-lg">Numer paczkomatu</dt>
+                                        <dd class="text-lg font-semibold">{{$order->point}}</dd>
                                     </div>
                                 </dl>
                             </div>

@@ -22,6 +22,7 @@ class CreateOrderRequest extends FormRequest
             'type_transfer' => 'required',
             'type_transfer_24' => 'required',
             'adres_type' => 'required',
+            'point' => 'nullable',
         ];
     }
 

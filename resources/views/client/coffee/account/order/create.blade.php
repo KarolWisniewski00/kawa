@@ -3,6 +3,88 @@
 <title>Kasa | Coffee Summit</title>
 <meta property="og:title" content="Kasa | Coffee Summit" />
 <meta name="twitter:title" content="Kasa | Coffee Summit" />
+<meta http-equiv="x-ua-compatible" content="IE=11" />
+<script>
+    function isEmpty(val) {
+        if (val !== '') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function chceckStepFourth(email, name, phone) {
+        if (email == true && name == true && phone == true) {
+            $('#step-4').addClass('bg-success-c');
+            return true;
+        } else {
+            $('#step-4').removeClass('bg-success-c');
+            return false;
+        }
+    }
+
+    function chceckStepFifth(post, street, city) {
+        if (post == true && street == true && city == true) {
+            $('#step-5').addClass('bg-success-c');
+            return true;
+        } else {
+            $('#step-5').removeClass('bg-success-c');
+            return false;
+        }
+    }
+
+    function chceckSteps(fourth, fifth, sixth, seventh) {
+        if (fourth == true && fifth == true && sixth == true && seventh == true) {
+            $('#step-last').addClass('bg-success-c');
+            Toastify({
+                text: "Możesz wykonać ostatni krok!",
+                duration: 5000,
+                close: true,
+                gravity: "top",
+                position: "center",
+                backgroundColor: "#4bbf73",
+            }).showToast();
+            $('html').animate({
+                scrollTop: $('#step-last').offset().top - 130
+            });
+        } else {
+            $('#step-last').removeClass('bg-success-c');
+        }
+    }
+</script>
+<script src="https://geowidget.easypack24.net/js/sdk-for-javascript.js"></script>
+<script type="text/javascript">
+    var fifth = false;
+    var city = false;
+    var street = false;
+    var post = false;
+    window.easyPackAsyncInit = function() {
+        easyPack.init({
+            defaultLocale: 'pl',
+            mapType: 'osm',
+            searchType: 'osm',
+            points: {
+                types: ['parcel_locker'],
+                functions: ['parcel_collect']
+            },
+            map: {
+                initialTypes: ['parcel_locker']
+            }
+        });
+        var map = easyPack.mapWidget('easypack-map', function(point) {
+            $('#selectedPoint').val(point.name).addClass('show');
+            $('#city').val(point.address_details.city);
+            $('#street').val(point.address.line1);
+            $('#street_extra').val(point.location_description);
+            $('#post').val(point.address_details.post_code);
+            city = true;
+            street = true;
+            post = true;
+            fifth = chceckStepFifth(true, true, true);
+        });
+    };
+</script>
+<link rel="stylesheet" href="https://geowidget.easypack24.net/css/easypack.css" />
 @endsection
 @section('content')
 <style>
@@ -215,21 +297,28 @@
                                             <h2 class="fw-bold mt-4">Jaki jest adres dostawy?</h2>
                                             <div class="d-flex flex-row justify-content-start align-items-center flex-wrap mb-2">
                                                 <div class="form-check my-3 align-self-start w-100">
-                                                    <input class="form-check-input" type="radio" name="adres_type" value="carrier" id="adres_carrier" checked>
+                                                    <input class="form-check-input" type="radio" name="adres_type" value="carrier" id="adres_carrier">
                                                     <label class="form-check-label text-start" for="adres_carrier">
                                                         Chcę zamówić kuriera
                                                     </label>
                                                 </div>
                                                 <div class="form-check my-3 align-self-start w-100">
-                                                    <input class="form-check-input" type="radio" name="adres_type" value="parcel_locker" id="adres_parcel_locker">
-                                                    <label class="form-check-label text-start" for="adres_parcel_locker">
-                                                        Chcę zamówić do paczkomatu
+                                                    <input class="form-check-input" type="radio" name="adres_type" value="parcel_locker" id="adres_parcel_locker" checked>
+                                                    <label class="form-check-label text-start w-100" for="adres_parcel_locker">
+                                                            <span class="">Chcę zamówić do paczkomatu</span>
+                                                            <img class="img-fluid ms-2" style="height: 1.35em;" alt="inpost-logo.svg" src="{{asset('image/inpost-logo.svg')}}">
                                                     </label>
+                                                </div>
+                                                <div id="easypack-map"></div>
+                                                <div class="form-floating my-3 w-100" id="point-input-container">
+                                                    <input type="text" class="form-control" id="selectedPoint" placeholder="Numer paczkomatu" name="point" >
+                                                    <label for="point">Numer paczkomatu</label>
+                                                    <span class="text-danger">@error('point') {{$message}} @enderror</span>
                                                 </div>
                                                 <div class="form-check my-3 align-self-start w-100">
                                                     <input class="form-check-input" type="radio" name="adres_type" value="adres_person" id="adres_person">
                                                     <label class="form-check-label text-start" for="adres_person">
-                                                        Jestem z Piły i chcę dostawę osobistą przez Coffee Summit - <span class="text-success">Bezpłatna przesyłka</span>, rabat zostanie naliczony w następnym kroku
+                                                        Jestem z Piły i chcę dostawę osobistą przez Coffee Summit - <span class="text-success">Bezpłatna przesyłka</span>
                                                     </label>
                                                 </div>
                                                 <div class="form-floating my-3 w-100">
@@ -614,52 +703,6 @@
 <input type="hidden" id="price-ship" value="{{ $company['price_ship'] }}">
 <input type="hidden" id="price-printed" value="{{$counter_price}}">
 <script>
-    function isEmpty(val) {
-        if (val !== '') {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    function chceckStepFourth(email, name, phone) {
-        if (email == true && name == true && phone == true) {
-            $('#step-4').addClass('bg-success-c');
-            return true;
-        } else {
-            $('#step-4').removeClass('bg-success-c');
-            return false;
-        }
-    }
-
-    function chceckStepFifth(post, street, city) {
-        if (post == true && street == true && city == true) {
-            $('#step-5').addClass('bg-success-c');
-            return true;
-        } else {
-            $('#step-5').removeClass('bg-success-c');
-            return false;
-        }
-    }
-
-    function chceckSteps(fourth, fifth, sixth, seventh) {
-        if (fourth == true && fifth == true && sixth == true && seventh == true) {
-            $('#step-last').addClass('bg-success-c');
-            Toastify({
-                text: "Możesz wykonać ostatni krok!",
-                duration: 5000,
-                close: true,
-                gravity: "top",
-                position: "center",
-                backgroundColor: "#4bbf73",
-            }).showToast();
-            $('html').animate({
-                scrollTop: $('#step-last').offset().top - 130
-            });
-        } else {
-            $('#step-last').removeClass('bg-success-c');
-        }
-    }
     $(document).ready(function() {
         $('#person-order-pickup').addClass('d-none');
         $("#person_order_pickup").on("change", function() {
@@ -677,16 +720,21 @@
                 $("#invoice-step").addClass('d-none');
             }
         });
+        $("input[name='adres_type']").on("change", function() {
+            if ($(this).val() === 'parcel_locker') {
+                $('#point-input-container').removeClass('d-none');
+                $('#easypack-map').removeClass('d-none');
+            } else {
+                $('#point-input-container').addClass('d-none');
+                $('#easypack-map').addClass('d-none');
+            }
+        });
     });
     $(document).ready(function() {
         var fourth = false;
         var name = false;
         var phone = false;
         var email = false;
-        var fifth = false;
-        var city = false;
-        var street = false;
-        var post = false;
         var sixth = true;
         $('#step-6').addClass('bg-success-c');
         var seventh = false;
