@@ -159,7 +159,10 @@
                     <ul class="list-group ">
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                             <div class="ms-2 me-auto">
-                                @if($order->total >= $company['free_ship'])
+                                @php
+                                $tot = $order->total - $company['price_ship'];
+                                @endphp
+                                @if($tot >= $company['free_ship'])
                                 <div class="fw-bold">Wysyłka InPost darmowa</div>
                                 @else
                                 <div class="fw-bold">Wysyłka InPost + {{ $company['price_ship'] }} PLN</div>

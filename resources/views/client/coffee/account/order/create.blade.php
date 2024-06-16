@@ -152,7 +152,7 @@
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container" style="overflow: hidden;">
         <div class="row g-5">
             <div class="col-12">
                 <div class="d-flex flex-column justify-content-center align-items-center text-center my-4">
@@ -193,8 +193,8 @@
                                                 </div>
 
                                                 <div class="form-floating my-3 w-100">
-                                                    <input type="text" class="form-control" id="phone" value="{{ old('phone') ? old('phone') : ''}}" placeholder="Wpisz opcjonalnie numer telefonu" name="phone">
-                                                    <label for="phone">Numer telefonu (opcjonalne)</label>
+                                                    <input type="text" class="form-control" id="phone" value="{{ old('phone') ? old('phone') : ''}}" placeholder="Wpisz opcjonalnie numer telefonu" name="phone" required>
+                                                    <label for="phone">Numer telefonu</label>
                                                     <span class="text-danger">@error('phone') {{$message}} @enderror</span>
                                                 </div>
                                             </div>
@@ -246,7 +246,7 @@
 
                                                 <div class="form-floating my-3 w-100">
                                                     <input type="text" class="form-control" id="street_extra" value="{{ old('street_extra') ? old('street_extra') : ''}}" placeholder="Wpisz uwagi dotyczące adresu" name="street_extra">
-                                                    <label for="street_extra">Ciąg dalszy adresu (opcjonalne)</label>
+                                                    <label for="street_extra">Ciąg dalszy adresu</label>
                                                     <span class="text-danger">@error('street_extra') {{$message}} @enderror</span>
                                                 </div>
 
@@ -316,7 +316,7 @@
                                                     <span class="text-danger">@error('company') {{$message}} @enderror</span>
                                                 </div>
                                                 <div class="form-floating my-3 w-100">
-                                                    <input type="text" class="form-control" id="city-invoice" value="{{ old('city-invoice') ? old('city-invoice') : ''}}" name="city_invoice" >
+                                                    <input type="text" class="form-control" id="city-invoice" value="{{ old('city-invoice') ? old('city-invoice') : ''}}" name="city_invoice">
                                                     <label for="city-invoice">Miasto</label>
                                                     <span class="text-danger">@error('city-invoice') {{$message}} @enderror</span>
                                                 </div>
@@ -329,7 +329,7 @@
 
                                                 <div class="form-floating my-3 w-100">
                                                     <input type="text" class="form-control" id="street_extra-invoice" value="{{ old('street_extra-invoice') ? old('street_extra-invoice') : ''}}" name="street_extra_invoice">
-                                                    <label for="street_extra-invoice">Ciąg dalszy adresu (opcjonalne)</label>
+                                                    <label for="street_extra-invoice">Ciąg dalszy adresu</label>
                                                     <span class="text-danger">@error('street_extra-invoice') {{$message}} @enderror</span>
                                                 </div>
 
@@ -356,7 +356,7 @@
                                             <h2 class="fw-bold mt-4">Regulamin i uwagi do zamówienia</h2>
                                             <div class="form-floating my-3">
                                                 <textarea class="form-control" id="extra" value="{{ old('extra') ? old('extra') : ''}}" placeholder="Wpisz uwagi do zamówienia np. numer paczkomatu" name="extra"></textarea>
-                                                <label for="extra">Uwagi dotyczące zamówienia (opcjonalne)</label>
+                                                <label for="extra">Notatka</label>
                                                 <span class="text-danger">@error('extra') {{$message}} @enderror</span>
                                             </div>
 
@@ -578,8 +578,8 @@
                         $(document).ready(function() {
                             // Ukryj początkowo div z id "bank-transfer-info"
                             @foreach($elements as $e)
-                            @if($e->type == 'order_bank_transfer_24')
-                            @if($e->content == '1')
+                            @if($e-> type == 'order_bank_transfer_24')
+                            @if($e-> content == '1')
                             $("#bank-transfer-info").hide();
                             $('#type_transfer').val('false');
                             $('#type_transfer_24').val('true');
@@ -622,8 +622,8 @@
         }
     }
 
-    function chceckStepFourth(email, name) {
-        if (email == true && name == true) {
+    function chceckStepFourth(email, name, phone) {
+        if (email == true && name == true && phone == true) {
             $('#step-4').addClass('bg-success-c');
             return true;
         } else {
@@ -681,6 +681,7 @@
     $(document).ready(function() {
         var fourth = false;
         var name = false;
+        var phone = false;
         var email = false;
         var fifth = false;
         var city = false;
@@ -694,14 +695,21 @@
         $('#name').on('input', function() {
             var nameValue = $(this).val();
             name = isEmpty(nameValue);
-            fourth = chceckStepFourth(email, name);
+            fourth = chceckStepFourth(email, name, phone);
             chceckSteps(fourth, fifth, sixth, seventh);
         });
         //email
         $('#email').on('input', function() {
             var emailValue = $(this).val();
             email = isEmpty(emailValue);
-            fourth = chceckStepFourth(email, name);
+            fourth = chceckStepFourth(email, name, phone);
+            chceckSteps(fourth, fifth, sixth, seventh);
+        });
+        //phone
+        $('#phone').on('input', function() {
+            var phoneValue = $(this).val();
+            phone = isEmpty(phoneValue);
+            fourth = chceckStepFourth(email, name, phone);
             chceckSteps(fourth, fifth, sixth, seventh);
         });
         //5

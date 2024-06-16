@@ -36,15 +36,13 @@ class Controller extends BaseController
             array_push($positions, ['name' => $value->name . " " . $value->attributes_name . " " . $value->attributes_grind, 'tax' => 23, 'total_price_gross' => floatval(floatval($value->price) * floatval($value->quantity)), 'quantity' => $value->quantity]);
             $counter_price += ($value->price * $value->quantity);
         }
-        if (Session::has('transfer')) {
-            if (Session::get('transfer') == true) {
-                if ($company_free->content != null && $company_free->content != 0) {
-                    if ($counter_price < $company_free->content) {
-                        array_push($positions, ['name' => 'Przesyłka InPost', 'tax' => 23, 'total_price_gross' => intval($company->content), 'quantity' => 1]);
-                    }
-                }
+       $tot = $order->total - $company->content;
+        if($tot == $counter_price){
+            if ($counter_price < $company_free->content) {
+                array_push($positions, ['name' => 'Przesyłka InPost', 'tax' => 23, 'total_price_gross' => intval($company->content), 'quantity' => 1]);
             }
         }
+
         if ($order->payment) {
             $order_payment = 'on-line';
         } else {

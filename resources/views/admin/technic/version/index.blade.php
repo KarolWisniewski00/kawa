@@ -15,12 +15,21 @@
                     <ol class="relative border-s border-gray-200 dark:border-gray-700">
                         <li class="mb-10 ms-4">
                             <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+                            <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">11 czerwiec 2024 V 1.1.4</time>
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Aktualizacja</h3>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">1. Naprawa systemu krokowego: zmiana z opcjonalnie na wymagany dla numeru telefonu</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">2. Naprawa naliczania przesyłki w tworzeniu faktury: z potrójnego warunku działającego na zmiennych sesyjnych zmiana na podwójny warunke sprawdzający czy kwota po odjęciu kosztów przesyłki jest taka sama jak suma przedmiotów i czy kwota jest niższa od stu</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">3. Naprawa wyświetlania naliczania przesyłki w podsumowaniu zamówienia po stronie klienta: podobnie jak wyżej ale tym razem dodanie instrukcji warunkówych z powodu braku</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">4. Naprawa wyświetlania widoku tworzenia zamówienia</p>
+                        </li>
+                        <li class="mb-10 ms-4">
+                            <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
                             <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">6 kwiecień 2024 V 1.1.3</time>
                             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Aktualizacja</h3>
                             <p class="text-base font-normal text-gray-500 dark:text-gray-400">1. Naprawa fakturowni - tworzenie faktur przestało działać z uwagi na zmiany w samym systemie fakturownia. Zostały ustawione domyślne dane do generowania faktury - dane sprzedawcy. Błąd usunięty za pomocą usunięcia 4 linijek w requesie do API nazwa, adres, strona www, kontakt telefoniczny</p>
                             <p class="text-base font-normal text-gray-500 dark:text-gray-400">2. Usunięcie kolumny "w koszyku" w liście produktów w panelu admina</p>
                             <p class="text-base font-normal text-gray-500 dark:text-gray-400">3. Poprawiony przycisk dodawania w artykule</p>
-                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">3. Dodany nowy artykuł</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">4. Dodany nowy artykuł</p>
                         </li>
                         <li class="mb-10 ms-4">
                             <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
