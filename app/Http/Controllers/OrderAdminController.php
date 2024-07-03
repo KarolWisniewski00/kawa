@@ -18,8 +18,39 @@ class OrderAdminController extends Controller
     {
         $orders = Order::orderBy('created_at', 'desc')->paginate(20);
         $sevenDaysAgo = Carbon::now()->subDays(7);
-        $ordersJS = Order::where('created_at', '>=', $sevenDaysAgo)->get();
-        return view('dashboard', compact('orders', 'ordersJS'));
+        $today = Carbon::now()->startOfDay();
+        $startOfMonth = Carbon::now()->startOfMonth();
+
+        // Pobranie zamówień z ostatniego tygodnia, których status to "W trakcie realizacji"
+        $ordersSevenDaysAgo = Order::where('created_at', '>=', $sevenDaysAgo)
+            ->where('status', 'W trakcie realizacji')
+            ->get();
+
+        // Obliczenie sumy kwot tych zamówień
+        $totalSevenDaysAgo = $ordersSevenDaysAgo->sum('total');
+
+        // Pobranie zamówień z dzisiaj, których status to "W trakcie realizacji"
+        $ordersToday = Order::where('created_at', '>=', $today)
+            ->where('status', 'W trakcie realizacji')
+            ->get();
+
+        // Obliczenie sumy kwot tych zamówień
+        $totalToday = $ordersToday->sum('total');
+
+        // Pobranie zamówień z bieżącego miesiąca, których status to "W trakcie realizacji"
+        $ordersThisMonth = Order::where('created_at', '>=', $startOfMonth)
+            ->where('status', 'W trakcie realizacji')
+            ->get();
+
+        // Obliczenie sumy kwot tych zamówień
+        $totalThisMonth = $ordersThisMonth->sum('total');
+
+        // Pobranie zamówień z ostatniego tygodnia do JavaScript
+        $ordersJS = Order::where('created_at', '>=', $sevenDaysAgo)
+            ->where('status', 'W trakcie realizacji')
+            ->get();
+
+        return view('dashboard', compact('orders', 'ordersJS', 'totalSevenDaysAgo', 'totalToday', 'totalThisMonth'));
     }
     public function show(Order $order)
     {

@@ -30,6 +30,9 @@
                     <x-nav-link href="{{ route('dashboard.user') }}" :active="request()->routeIs('dashboard.user')">
                         {{ __('Użytkownicy') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('dashboard.inpost') }}" :active="request()->routeIs('dashboard.user')">
+                        {{ __('InPost') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -170,6 +173,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link href="{{ route('dashboard.user') }}" :active="request()->routeIs('dashboard.user')">
                 {{ __('Użytkownicy') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('dashboard.inpost') }}" :active="request()->routeIs('dashboard.user')">
+                {{ __('InPost') }}
             </x-responsive-nav-link>
         </div>
 

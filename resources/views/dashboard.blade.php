@@ -10,6 +10,33 @@
                 <div class="p-6 lg:p-8 bg-white border-b border-gray-200">
                     @include('admin.module.alerts')
                     <x-application-logo class="block h-12 w-auto" />
+                    <section class="bg-white">
+                        <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+                            <div class="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
+                                <!-- Pricing Card -->
+                                <div class="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow  xl:p-8  w-full">
+                                    <div class="flex justify-center items-baseline my-8">
+                                        <span class="mr-2 text-5xl font-extrabold">{{ $totalToday }} zł</span>
+                                        <span class="text-gray-500 ">/Dzisiaj</span>
+                                    </div>
+                                </div>
+                                <!-- Pricing Card -->
+                                <div class="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow  xl:p-8  w-full">
+                                    <div class="flex justify-center items-baseline my-8">
+                                        <span class="mr-2 text-5xl font-extrabold">{{$totalSevenDaysAgo}} zł</span>
+                                        <span class="text-gray-500 ">/Ostatnie 7 dni</span>
+                                    </div>
+                                </div>
+                                <!-- Pricing Card -->
+                                <div class="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow xl:p-8  w-full">
+                                    <div class="flex justify-center items-baseline my-8">
+                                        <span class="mr-2 text-5xl font-extrabold">{{ $totalThisMonth }} zł</span>
+                                        <span class="text-gray-500 ">/W tym miesiącu</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                     <div class="flex flex-row justify-between">
                         <h1 class="mt-8 mb-4 text-2xl font-medium text-gray-900">
                             Zamówienia ostatni tydzień

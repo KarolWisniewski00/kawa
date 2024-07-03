@@ -14,6 +14,7 @@ use App\Http\Controllers\GrindingAdminController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\InfoAdminController;
 use App\Http\Controllers\InfoController;
+use App\Http\Controllers\InpostAdminController;
 use App\Http\Controllers\InstagramAdminController;
 use App\Http\Controllers\NewBusketController;
 use App\Http\Controllers\OrderAdminController;
@@ -164,6 +165,9 @@ Route::middleware([
             Route::put('/update/{blog}', [BlogAdminController::class, 'update'])->name('dashboard.blog.update');
             Route::put('/update-second/{blog}', [BlogAdminController::class, 'updateSecond'])->name('dashboard.blog.update.second');
             Route::delete('/delete/{blog}', [BlogAdminController::class, 'delete'])->name('dashboard.blog.delete');
+        });
+        Route::prefix('inpost')->group(function () {
+            Route::get('/', [InpostAdminController::class, 'index'])->name('dashboard.inpost');
         });
         Route::prefix('shop')->group(function () {
             Route::prefix('product')->group(function () {

@@ -15,6 +15,16 @@
                     <ol class="relative border-s border-gray-200 dark:border-gray-700">
                         <li class="mb-10 ms-4">
                             <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+                            <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">3 lipiec 2024 V 1.2.1</time>
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Aktualizacja - Usługa integracja z InPost API</h3>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">1. Redesing podglądu zamówienia w panelu administratora</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">2. Dodanie zakładki InPost - podgląd</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">3. Dodanie menagera tagów google</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">4. Przygotowanie podglądu zamówienia do integracji z inpost</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">5. Dodanie podglądu cen sprzedaży w panelu admina</p>
+                        </li>
+                        <li class="mb-10 ms-4">
+                            <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
                             <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">16 czerwiec 2024 V 1.2.0</time>
                             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Aktualizacja - Usługa integracja z InPost API</h3>
                             <p class="text-base font-normal text-gray-500 dark:text-gray-400">1. Zmiana systemu krokowego adres dostawy - Wybranie paczkomatu przez : Paczkomat API Wersja v4 Old oraz Wybranie kuriara i dostawy osobistej przez : Formularz</p>
@@ -67,7 +77,7 @@
                             <p class="text-base font-normal text-gray-500 dark:text-gray-400">4. zmiana kolejności wyświetlania stopni wypalenia, wysokości upraw itp.. na komputerze wyświetla sie w dziurze która powstała przez zmianę na system krokowy</p>
                             <p class="text-base font-normal text-gray-500 dark:text-gray-400">5. Po wyborze użytkownika zmiana koloru kropki krokowej (statusu) na udany</p>
                             <p class="text-base font-normal text-gray-500 dark:text-gray-400">6. Po wyborze użytkownika rozmiaru opakowania czyli ceny - zakres cen na górze dynamicznie się zmienia według odpowiednie kwoty</p>
-                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">7. usunięcie tymczasowego ustawienia wybranego rodzaju mielenia  - ziarnista</p>
+                            <p class="text-base font-normal text-gray-500 dark:text-gray-400">7. usunięcie tymczasowego ustawienia wybranego rodzaju mielenia - ziarnista</p>
                             <p class="text-base font-normal text-gray-500 dark:text-gray-400">8. Dodanie animacji przycisków</p>
                         </li>
                         <li class="mb-10 ms-4">

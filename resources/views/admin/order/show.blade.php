@@ -51,15 +51,6 @@
                                 </div>
                             </dl>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                            <a href="{{route('dashboard.order.status', ['id'=>$order->id, 'slug'=>'0'])}}" class="mt-8 mb-4 text-white bg-amber-500 hover:bg-amber-600 focus:ring-4 focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-clock mr-2"></i>Oczekujące na płatność</a>
-                            <a href="{{route('dashboard.order.status', ['id'=>$order->id, 'slug'=>'1'])}}" class="mt-8 mb-4 text-white bg-lime-500 hover:bg-lime-600 focus:ring-4 focus:ring-lime-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-business-time mr-2"></i>W trakcie realizacji</a>
-                            <a href="{{route('dashboard.order.status', ['id'=>$order->id, 'slug'=>'2'])}}" class="mt-8 mb-4 text-white bg-emerald-500 hover:bg-emerald-600 focus:ring-4 focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-check mr-2"></i>Zrealizowane</a>
-                            <a href="{{route('dashboard.order.status', ['id'=>$order->id, 'slug'=>'3'])}}" class="mt-8 mb-4 text-white bg-rose-500 hover:bg-rose-600 focus:ring-4 focus:ring-rose-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-x mr-2"></i>Anulowano</a>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                            <a href="{{route('dashboard.order.email', $order)}}" class="mt-8 mb-4 text-white bg-violet-500 hover:bg-violet-600 focus:ring-4 focus:ring-violet-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-file mr-2"></i>Utwórz fakturę</a>
-                        </div>
                     </div>
                     <div class="grid grid-cols-2 gap-5">
                         <div>
@@ -259,6 +250,44 @@
                                 @endforeach
                             </tbody>
                         </table>
+                    </div>
+                    <div class="my-5 py-5">
+                        <div class="flex flex-row justify-between">
+                            <h1 class="mt-8 mb-4 text-2xl font-medium text-gray-900">
+                                Zmiana statusu
+                            </h1>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <a href="{{route('dashboard.order.status', ['id'=>$order->id, 'slug'=>'0'])}}" class="text-xl mt-8 mb-4 text-white bg-amber-500 hover:bg-amber-600 focus:ring-4 focus:ring-amber-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-clock mr-2"></i>Oczekujące na płatność</a>
+                            <a href="{{route('dashboard.order.status', ['id'=>$order->id, 'slug'=>'1'])}}" class="text-xl mt-8 mb-4 text-white bg-lime-500 hover:bg-lime-600 focus:ring-4 focus:ring-lime-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-business-time mr-2"></i>W trakcie realizacji</a>
+                            <a href="{{route('dashboard.order.status', ['id'=>$order->id, 'slug'=>'2'])}}" class="text-xl mt-8 mb-4 text-white bg-emerald-500 hover:bg-emerald-600 focus:ring-4 focus:ring-emerald-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-check mr-2"></i>Zrealizowane</a>
+                            <a href="{{route('dashboard.order.status', ['id'=>$order->id, 'slug'=>'3'])}}" class="text-xl mt-8 mb-4 text-white bg-rose-500 hover:bg-rose-600 focus:ring-4 focus:ring-rose-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-x mr-2"></i>Anulowano</a>
+                        </div>
+                        <div class="flex flex-row justify-between">
+                            <h1 class="mt-8 mb-4 text-2xl font-medium text-gray-900">
+                                Funkcje fakturownia
+                            </h1>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <a href="{{route('dashboard.order.email', $order)}}" class="text-xl mt-8 mb-4 text-white bg-violet-500 hover:bg-violet-600 focus:ring-4 focus:ring-violet-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-file mr-2"></i>Utwórz fakturę + wyślij mailem</a>
+                        </div>
+                        <div class="flex flex-row justify-between">
+                            <h1 class="mt-8 mb-4 text-2xl font-medium text-gray-900">
+                                Funkcje InPost
+                            </h1>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <a href="#" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-box-open mr-2"></i>Utwórz przesyłkę</a>
+                            <a href="#" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-check mr-2"></i>Sprawdź status</a>
+                            <a href="#" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-download mr-2"></i>Pobierz etykietę</a>
+                            <a href="#" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-truck-fast mr-2"></i>Zamówienie kuriera</a>
+                            <a href="#" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-plus mr-2"></i>Wygenerowanie potwierdzenia nadania</a>
+                        </div>
+                    </div>
+                    <div class="flex flex-row justify-between">
+                        <h1 class="mt-8 mb-4 text-2xl font-medium text-gray-900">
+                            Historia operacji
+                        </h1>
                     </div>
                     <div class="grid grid-cols-1 mt-8">
 

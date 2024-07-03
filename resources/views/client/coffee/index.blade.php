@@ -32,6 +32,43 @@
     </div>
 </section>
 <!--VIDEO-->
+<!--
+<section>
+    <div class="container mt-5" style="background-color: #f7f6f5;">
+        <div class="row">
+            <div class="col-6">
+                <div class="row w-100 h-100">
+                    <div class="col-6">
+                        <div class="h-100 d-flex flex-row justify-content-center align-items-center overflow-hidden">
+                            <img src="http://localhost/kawa1/public/photo/169574317930.jpg" alt="" class="img-fluid" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="h-100 d-flex flex-row justify-content-center align-items-center overflow-hidden">
+                            <div class="d-flex flex-column justify-content-center align-items-center w-100">
+                                <h5 class="mt-2 font-custom-2" style="color:#F9CAAC">100g Ziarnista</h5>
+                                <h4 class="font-custom text-center">Peru Alpamayo</h4>
+                                <p>11 PLN</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 pb-5">
+                <a href="{{route('shop')}}" class="d-flex flex-column justify-content-center align-items-center my-3 text-center text-decoration-none">
+                    <h3 class="mt-5 font-custom-2" style="color:#F9CAAC">Ostatnie zamówienie</h3>
+                    <h2 class="font-custom h1">Zamów ponownie</h2>
+                </a>
+                <div class="d-flex flex-row justify-content-center align-items-center overflow-hidden">
+                    <div class="w-100 h-100 text-center">
+                        <a href="" class="btn btn-success"><i class="fa-solid fa-angles-right me-2"></i>Dodaj do koszyka i przejdź do płatności</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+-->
 <!--SHOP-->
 <section>
     <div class="container">
