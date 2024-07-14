@@ -163,7 +163,11 @@
             <div class="col-12">
                 @include('client.coffee.module.alert')
             </div>
+            <div class="col-12 mb-4 text-end">
+                <a href="{{route('shop')}}" class="btn btn-outline-primary"><i class="fa-solid fa-chevron-left"></i>  Sklep - Wszystkie produkty</a>
+            </div>
             <div class="col-12 col-lg-6">
+                @if($product->photo_second != null)
                 <button type="button" class="p-0 m-0 mb-3 border-0 d-flex align-items-center justify-content-center bg-transparent overflow-hidden" id="button-studio-photo-main" data-bs-toggle="modal" data-bs-target="#studio-photo-main">
                     @foreach($photos as $photo)
                     @if($photo->product_id == $product->id)
@@ -173,6 +177,21 @@
                     @endif
                     @endforeach
                 </button>
+                <button type="button" class="p-0 m-0 mb-3 border-0 d-flex align-items-center justify-content-center bg-transparent overflow-hidden" id="button-studio-photo-main" data-bs-toggle="modal" data-bs-target="#studio-photo-main">
+                    <img src="{{ asset('photo/' . $product->photo_second) }}" alt="" class="img-fluid" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
+                </button>
+                @else
+                <button type="button" class="p-0 m-0 mb-3 border-0 d-flex align-items-center justify-content-center bg-transparent overflow-hidden" id="button-studio-photo-main" data-bs-toggle="modal" data-bs-target="#studio-photo-main">
+                    @foreach($photos as $photo)
+                    @if($photo->product_id == $product->id)
+                    @if($photo->order == 1)
+                    <img src="{{ asset('photo/' . $photo->image_path) }}" alt="" class="img-fluid" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
+                    @endif
+                    @endif
+                    @endforeach
+                </button>
+                @endif
+
                 <div class="col-12 text-center my-4 d-none d-lg-block">
                     <div class="d-flex flex-xl-row flex-column justify-content-center align-items-center gap-4 mt-5 h-100 flex-wrap">
                         @if($product->height)
@@ -292,10 +311,17 @@
                                                         <h2 class="fw-bold mt-4">Jaki rozmiar kawy?</h2>
                                                         <p class="fw-bold mt-4">Wybierz rozmiar opakowania</p>
                                                         <div class="d-flex flex-row justify-content-start align-items-center flex-wrap mb-2">
+                                                            @php
+                                                            $countSize = 0;
+                                                            @endphp
                                                             @foreach($sizes as $size)
                                                             @foreach($variants as $variant)
                                                             @if($size->id == $variant->size_id)
                                                             @if($product->id == $variant->product_id)
+                                                            @php
+                                                            $countSize += 1;
+                                                            $idSize = $size->id;
+                                                            @endphp
                                                             <div class="m-2 gsap-2">
                                                                 <input type="radio" class="btn-check" data-price-show="{{$variant->price}} PLN" name="size" value="{{$size->id}}" id="size-{{$size->id}}">
                                                                 <label class="btn btn-outline-primary btn-1" for="size-{{$size->id}}">
@@ -548,8 +574,33 @@
         });
     });
     $(document).ready(function() {
+        $('#grind-1').prop('checked', true);
+        $('#step-2').addClass('bg-success-c');
+
         var first = false;
-        var second = false;
+        var second = true;
+
+        @if($countSize == 1)
+        price = $('#size-{{$idSize}}').data('price-show');
+        $('#step-1').addClass('bg-success-c');
+        $('#price-show').html(price);
+        first = true;
+        $('#size-{{$idSize}}').prop('checked', true);
+        @endif
+
+        if (first === true && second === true) {
+            $('#step-3').addClass('bg-success-c');
+            Toastify({
+                text: "Możesz dodać produkt do koszyka!",
+                duration: 5000,
+                close: true,
+                gravity: "top",
+                position: "center",
+                backgroundColor: "#4bbf73",
+            }).showToast();
+            $('#add-to-cart-button').prop('disabled', !(first && second));
+        }
+
         $('input[name="size"]').change(function() {
             price = $(this).data('price-show');
             $('#step-1').addClass('bg-success-c');

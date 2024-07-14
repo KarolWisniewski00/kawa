@@ -27,6 +27,9 @@
                                         Email
                                     </th>
                                     <th scope="col" class="px-6 py-3">
+                                        Liczba zamówień
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
                                         Utworzono
                                     </th>
                                     <th scope="col" class="px-6 py-3">
@@ -42,6 +45,9 @@
                                     </td>
                                     <td class="px-6 py-4">
                                         {{$user->email}}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{$user->orders_count}}
                                     </td>
                                     <td class="px-6 py-4">
                                         {{$user->created_at}}

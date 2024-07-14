@@ -32,6 +32,7 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\SizeAdminController;
 use App\Http\Controllers\UserAdminController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WebhookController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -70,6 +71,10 @@ Route::get('/login/google', [GoogleLoginController::class, 'redirectToGoogle'])-
 Route::get('/login/google/callback', [GoogleLoginController::class, 'handleGoogleCallback']);
 
 Route::post('/payment/status', [PaymentController::class, 'status'])->name('payment.status');
+
+Route::prefix('webhook')->group(function () {
+    Route::get('/', [WebhookController::class, 'inpost'])->name('webhook.inpost');
+});
 
 Route::prefix('blog')->group(function () {
     Route::get('/', [BlogController::class, 'index'])->name('blog');
@@ -144,6 +149,7 @@ Route::middleware([
         Route::prefix('/')->group(function () {
             Route::get('/', [OrderAdminController::class, 'index'])->name('dashboard');
             Route::get('/show/{order}', [OrderAdminController::class, 'show'])->name('dashboard.order.show');
+            Route::get('/showByShipmentId/{id}', [OrderAdminController::class, 'showByShipmentId'])->name('dashboard.order.showByShipmentId');
             Route::put('/update/{order}', [OrderAdminController::class, 'update'])->name('dashboard.order.update');
             Route::delete('/delete/{order}', [OrderAdminController::class, 'delete'])->name('dashboard.order.delete');
             Route::get('/status/{id}/{slug}', [OrderAdminController::class, 'status'])->name('dashboard.order.status');
@@ -168,6 +174,11 @@ Route::middleware([
         });
         Route::prefix('inpost')->group(function () {
             Route::get('/', [InpostAdminController::class, 'index'])->name('dashboard.inpost');
+            Route::get('/createShipmentPointToPoint/{order}/{size}', [InpostAdminController::class, 'createShipmentPointToPoint'])->name('inpost.createShipmentPointToPoint');
+            Route::get('/checkStatusShipmentById/{order}', [InpostAdminController::class, 'checkStatusShipmentById'])->name('inpost.checkStatusShipmentById');
+            Route::get('/getLabel/{order}', [InpostAdminController::class, 'getLabel'])->name('inpost.getLabel');
+            Route::get('/getLabelByShipmentId/{id}', [InpostAdminController::class, 'getLabelByShipmentId'])->name('inpost.getLabelByShipmentId');
+            Route::get('/orderCarrier/{order}', [InpostAdminController::class, 'orderCarrier'])->name('inpost.orderCarrier');
         });
         Route::prefix('shop')->group(function () {
             Route::prefix('product')->group(function () {
@@ -234,7 +245,9 @@ Route::middleware([
                 Route::put('/update/{element}', [CompanyAdminController::class, 'update'])->name('dashboard.technic.company.update');
             });
             Route::prefix('version')->group(function () {
-                Route::get('/', function () {return view('admin.technic.version.index');})->name('dashboard.technic.version');
+                Route::get('/', function () {
+                    return view('admin.technic.version.index');
+                })->name('dashboard.technic.version');
             });
             Route::prefix('instagram')->group(function () {
                 Route::get('/', [InstagramAdminController::class, 'index'])->name('dashboard.technic.instagram');

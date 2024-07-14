@@ -16,140 +16,69 @@
                             Inpost
                         </h1>
                     </div>
-                    <div class="grid grid-cols-1">
-                        <div class="bg-stone-50 my-5 p-5 rounded-xl shadow">
-                            <div class="flex flex-row justify-between">
-                                <h1 class="mt-8 mb-4 text-2xl font-medium text-gray-900">
-                                    Dane zaczerpnięte z InPost API
-                                </h1>
-                            </div>
-                            <dl class="max-w-md text-gray-900 divide-y divide-gray-200 w-full">
-                                <div class="flex flex-col pb-3">
-                                    <dt class="mb-1 text-gray-500 md:text-lg">Źródło</dt>
-                                    <dd class="text-lg font-semibold">{{$data['items'][0]['href']}}</dd>
-                                </div>
-                                <div class="flex flex-col py-3">
-                                    <dt class="mb-1 text-gray-500 md:text-lg">ID</dt>
-                                    <dd class="text-lg font-semibold">{{$data['items'][0]['id']}}</dd>
-                                </div>
-                                <div class="flex flex-col pt-3">
-                                    <dt class="mb-1 text-gray-500 md:text-lg">OwnerID</dt>
-                                    <dd class="text-lg font-semibold">{{$data['items'][0]['owner_id']}}</dd>
-                                </div>
-                                <div class="flex flex-col pt-3">
-                                    <dt class="mb-1 text-gray-500 md:text-lg">NIP</dt>
-                                    <dd class="text-lg font-semibold">{{$data['items'][0]['tax_id']}}</dd>
-                                </div>
-                                <div class="flex flex-col pt-3">
-                                    <dt class="mb-1 text-gray-500 md:text-lg">Nazwa</dt>
-                                    <dd class="text-lg font-semibold">{{$data['items'][0]['name']}}</dd>
-                                </div>
-                                <div class="flex flex-col pt-3">
-                                    <dt class="mb-1 text-gray-500 md:text-lg">Data utworzenia</dt>
-                                    <dd class="text-lg font-semibold">{{$data['items'][0]['created_at']}}</dd>
-                                </div>
-                                <div class="flex flex-col pt-3">
-                                    <dt class="mb-1 text-gray-500 md:text-lg">Data aktualizacji</dt>
-                                    <dd class="text-lg font-semibold">{{$data['items'][0]['updated_at']}}</dd>
-                                </div>
-                            </dl>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-2 gap-5">
-                        <div>
-                            <div class="bg-blue-50 my-5 p-5 rounded-xl shadow">
-                                <div class="flex flex-row justify-between">
-                                    <h1 class="mt-8 mb-4 text-2xl font-medium text-gray-900">
-                                        Usługi
-                                    </h1>
-                                </div>
-                                <dl class="max-w-md text-gray-900 divide-y divide-gray-200">
-                                    @foreach($data['items'][0]['services'] as $k => $s)
-                                    <div class="flex flex-col pb-3">
-                                        <dt class="mb-1 text-gray-500 md:text-lg">{{$k}}</dt>
-                                        <dd class="text-lg font-semibold">{{$s}}</dd>
-                                    </div>
-                                    @endforeach
-                                </dl>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="bg-amber-50 my-5 p-5 rounded-xl shadow">
-                                <div class="flex flex-row justify-between">
-                                    <h1 class="mt-8 mb-4 text-2xl font-medium text-gray-900">
-                                        Adres
-                                    </h1>
-                                </div>
-                                <dl class="max-w-md text-gray-900 divide-y divide-gray-200">
-                                    @foreach($data['items'][0]['address'] as $k => $s)
-                                    <div class="flex flex-col pb-3">
-                                        <dt class="mb-1 text-gray-500 md:text-lg">{{$k}}</dt>
-                                        <dd class="text-lg font-semibold">{{$s}}</dd>
-                                    </div>
-                                    @endforeach
-                                </dl>
-                            </div>
-                            <div class="bg-rose-50 my-5 p-5 rounded-xl shadow">
-                                <div class="flex flex-row justify-between">
-                                    <h1 class="mt-8 mb-4 text-2xl font-medium text-gray-900">
-                                        Adres FV
-                                    </h1>
-                                </div>
-                                <dl class="max-w-md text-gray-900 divide-y divide-gray-200">
-                                    @foreach($data['items'][0]['invoice_address'] as $k => $s)
-                                    <div class="flex flex-col pb-3">
-                                        <dt class="mb-1 text-gray-500 md:text-lg">{{$k}}</dt>
-                                        <dd class="text-lg font-semibold">{{$s}}</dd>
-                                    </div>
-                                    @endforeach
-                                </dl>
-                            </div>
-                        </div>
-                    </div>
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                         <table class="w-full text-sm text-left text-gray-500">
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                                 <tr>
                                     <th scope="col" class="px-2 py-1">
-                                        ID
+                                        Numer Przesyłki
                                     </th>
                                     <th scope="col" class="px-2 py-1">
-                                        Status
+                                        Osoba odbierająca
                                     </th>
                                     <th scope="col" class="px-2 py-1">
-                                        Referencja
+                                        Rozmiar przesyłki
                                     </th>
                                     <th scope="col" class="px-2 py-1">
-                                        Usługa
+                                        Typ przesyłki
                                     </th>
                                     <th scope="col" class="px-2 py-1">
-                                        Utworzono
+                                        Pobierz etykietę A6P
                                     </th>
                                     <th scope="col" class="px-2 py-1">
-                                        Aktualizacja
+                                        Podgląd zamówienia
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($data2['items'] as $k => $i)
-                                <tr class="bg-gray-100">
+                                @foreach($shipments['items'] as $key => $shipment)
+                                <tr class="
+                                        @if($shipment['custom_attributes']['sending_method'] == 'any_point')
+                                        bg-lime-100
+                                        @else
+                                        bg-gray-100
+                                        @endif
+                                        text-sm">
                                     <td class="px-2 py-1">
-                                        {{$i['id']}}
+                                        {{$shipment['tracking_number']}}
                                     </td>
                                     <td class="px-2 py-1">
-                                        {{$i['status']}}
+                                        <div>{{$shipment['receiver']['first_name']}}</div>
+                                        <div>{{$shipment['receiver']['last_name']}}</div>
+                                        <div><a href="tel:{{$shipment['receiver']['phone']}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{{$shipment['receiver']['phone']}}</a></div>
+                                        <div><a href="mailto:{{$shipment['receiver']['email']}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{{$shipment['receiver']['email']}}</a></div>
                                     </td>
                                     <td class="px-2 py-1">
-                                        {{$i['reference']}}
+                                        {{$shipment['parcels'][0]['template']}}
                                     </td>
                                     <td class="px-2 py-1">
-                                        {{$i['service']}}
+                                        @if($shipment['custom_attributes']['sending_method'] == 'any_point')
+                                        Paczkomat -> Paczkomat
+                                        @else
+                                        {{$shipment['custom_attributes']['sending_method']}}
+                                        @endif
                                     </td>
                                     <td class="px-2 py-1">
-                                        {{$i['created_at']}}
+                                        @if($shipment['custom_attributes']['sending_method'] == 'any_point')
+                                        <a href="{{route('inpost.getLabelByShipmentId', $shipment['id'])}}" class="text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none">
+                                            <i class="fa-solid fa-download"></i>
+                                        </a>
+                                        @endif
                                     </td>
                                     <td class="px-2 py-1">
-                                        {{$i['updated_at']}}
+                                        @if($shipment['custom_attributes']['sending_method'] == 'any_point')
+                                        <a href="{{route('dashboard.order.showByShipmentId', $shipment['id'])}}" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-600 focus:z-10 focus:ring-4 focus:ring-gray-200"><i class="fa-solid fa-eye"></i></a>
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach

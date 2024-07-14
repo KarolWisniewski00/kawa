@@ -84,7 +84,11 @@
                                         @endforeach
 
                                         @if($minPrice !== null && $maxPrice !== null)
+                                        @if($minPrice == $maxPrice)
+                                        {{$minPrice}} PLN
+                                        @else
                                         {{$minPrice}} PLN - {{$maxPrice}} PLN
+                                        @endif
                                         @else
                                         Brak dostępnych cen.
                                         @endif

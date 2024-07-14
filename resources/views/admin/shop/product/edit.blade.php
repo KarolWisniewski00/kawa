@@ -262,9 +262,11 @@
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
                         </div>
-                        <!-- Add the "Show More" button below the existing code -->
+                        <!-- Existing photo grid -->
                         <div class="mb-6">
                             <h3 class="mb-5 text-lg font-medium text-gray-900">Zdjęcie</h3>
+                            <!-- Modal Trigger -->
+                            <button id="openModalBtn" type="button" class="my-8 text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 focus:outline-none"><i class="fa-solid fa-folder-open mr-2"></i>Otwórz Modal aby ustawić drugie zdjęcie</button>
                             <ul class="grid w-full gap-6 md:grid-cols-3" id="photoGrid">
                                 <!-- The first 9 photos will be loaded initially, the rest will be hidden -->
                                 @foreach($photos as $index => $photo)
@@ -289,32 +291,73 @@
                             @enderror
                         </div>
 
+                        <!-- Modal -->
+                        <div id="photoModal" class="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-75 hidden">
+                            <div class="bg-white w-11/12 max-w-3xl mx-auto mt-20 p-6 rounded-lg shadow-lg">
+                                <button id="closeModalBtn" type="button" class="text-gray-500 hover:text-gray-700 float-right">&times;</button>
+                                <h3 class="mb-5 text-lg font-medium text-gray-900">Zdjęcie w Modalu</h3>
+                                <ul class="grid w-full gap-6 md:grid-cols-3 overflow-y-scroll h-96" id="photoGridModal">
+                                    <!-- The first 9 photos will be loaded initially, the rest will be hidden -->
+                                    @foreach($photos as $index => $photo_second)
+                                    <li class="{{ $index >= 9 ? 'hidden' : '' }}">
+                                        <input @if(old('photo_second')==$photo_second->getFilename())
+                                        checked
+                                        @else
+                                        {{ $product->photo_second == $photo_second->getFilename() ? 'checked' : '' }}
+                                        @endif name="photo_second" type="radio" id="modal-photo-second-{{ $photo_second->getFilename() }}" value="{{ $photo_second->getFilename() }}" class="hidden peer">
+                                        <label for="modal-photo-second-{{ $photo_second->getFilename() }}" class="h-full inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 hover:text-gray-600 peer-checked:text-gray-600 hover:bg-gray-50">
+                                            <div class="block">
+                                                <div class="w-full text-lg font-semibold"><img src="{{ asset('photo/' . $photo_second->getFilename()) }}" alt=""></div>
+                                            </div>
+                                        </label>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                                <!-- "Show More" button for modal -->
+                                <button id="showMoreBtnModal" type="button" class="mt-8 text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"><i class="fa-solid fa-caret-down mr-2"></i>Pokaż więcej</button>
+                            </div>
+                        </div>
+
                         <script>
                             $(document).ready(function() {
-                                // Set the initial count of visible photos
+                                // Existing photo grid "Show More" functionality
                                 let visiblePhotoCount = 9;
 
-                                // Show additional photos when the "Show More" button is clicked
                                 $("#showMoreBtn").on("click", function() {
-                                    // Get all the hidden photos
                                     const hiddenPhotos = $("#photoGrid li:hidden");
-
-                                    // Calculate the end index for displaying the next 9 photos
                                     const endIndex = visiblePhotoCount + 9;
-
-                                    // Show the next 9 photos
-                                    hiddenPhotos.slice(visiblePhotoCount, endIndex).removeClass("hidden");
-
-                                    // Update the visiblePhotoCount for the next click
-                                    visiblePhotoCount = endIndex;
-                                    console.log(hiddenPhotos.length)
-                                    // Hide the "Show More" button if all photos are displayed
-                                    if (hiddenPhotos.length - 9 - 9 <= 9) {
+                                    hiddenPhotos.slice(0, 9).removeClass("hidden");
+                                    visiblePhotoCount += 9;
+                                    if (hiddenPhotos.length - 9 <= 0) {
                                         $(this).hide();
                                     }
                                 });
+
+                                // Modal photo grid "Show More" functionality
+                                let visiblePhotoCountModal = 9;
+
+                                $("#showMoreBtnModal").on("click", function() {
+                                    const hiddenPhotosModal = $("#photoGridModal li:hidden");
+                                    const endIndexModal = visiblePhotoCountModal + 9;
+                                    hiddenPhotosModal.slice(0, 9).removeClass("hidden");
+                                    visiblePhotoCountModal += 9;
+                                    if (hiddenPhotosModal.length - 9 <= 0) {
+                                        $(this).hide();
+                                    }
+                                });
+
+                                // Open modal
+                                $("#openModalBtn").on("click", function() {
+                                    $("#photoModal").removeClass("hidden");
+                                });
+
+                                // Close modal
+                                $("#closeModalBtn").on("click", function() {
+                                    $("#photoModal").addClass("hidden");
+                                });
                             });
                         </script>
+
 
                         <button type="submit" class="text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2"><i class="fa-solid fa-floppy-disk mr-2"></i>Zapisz</button>
                         <a href="{{route('dashboard.shop.product')}}" class="text-red-500 hover:text-white border border-red-600 hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"><i class="fa-solid fa-x mr-2"></i>Anuluj</a>

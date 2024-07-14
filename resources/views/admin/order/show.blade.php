@@ -275,13 +275,36 @@
                             <h1 class="mt-8 mb-4 text-2xl font-medium text-gray-900">
                                 Funkcje InPost
                             </h1>
+                            @if($order->shipment_id == null)
+                            @if($order->point != null)
+                            @else
+                            <h6 class="mt-8 mb-4 text-2xl font-medium text-red-500">
+                                Usługa Kurier Kurier w trakcie przygotowywania
+                            </h6>
+                            @endif
+                            @endif
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                            <a href="#" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-box-open mr-2"></i>Utwórz przesyłkę</a>
-                            <a href="#" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-check mr-2"></i>Sprawdź status</a>
-                            <a href="#" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-download mr-2"></i>Pobierz etykietę</a>
-                            <a href="#" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-truck-fast mr-2"></i>Zamówienie kuriera</a>
+                            @if($order->shipment_id == null)
+                            @if($order->point != null)
+                            <a href="{{route('inpost.createShipmentPointToPoint',[$order,'small'])}}" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-box-open mr-2"></i>Utwórz przesyłkę Paczkomat -> Paczkomat A</a>
+                            <a href="{{route('inpost.createShipmentPointToPoint',[$order,'medium'])}}" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-box-open mr-2"></i>Utwórz przesyłkę Paczkomat -> Paczkomat B</a>
+                            <a href="{{route('inpost.createShipmentPointToPoint',[$order,'large'])}}" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-box-open mr-2"></i>Utwórz przesyłkę Paczkomat -> Paczkomat C</a>
+                            @else
+                            <a href="#" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-box-open mr-2"></i>Utwórz przesyłkę Kurier -> Kurier A</a>
+                            <a href="#" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-box-open mr-2"></i>Utwórz przesyłkę Kurier -> Kurier B</a>
+                            <a href="#" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-box-open mr-2"></i>Utwórz przesyłkę Kurier -> Kurier C</a>
+                            <a href="#" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-box-open mr-2"></i>Utwórz przesyłkę Kurier -> Kurier D</a>
+                            @endif
+                            @else
+                            <a href="{{route('inpost.checkStatusShipmentById',$order)}}" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-check mr-2"></i>Sprawdź status przesyłki</a>
+                            <a href="{{route('inpost.getLabel',$order)}}" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-download mr-2"></i>Pobierz etykietę A6P</a>
+                            @if($order->point != null)
+                            @else
+                            <a href="{{route('inpost.orderCarrier',$order)}}" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-truck-fast mr-2"></i>Zamówienie kuriera</a>
                             <a href="#" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-plus mr-2"></i>Wygenerowanie potwierdzenia nadania</a>
+                            @endif
+                            @endif
                         </div>
                     </div>
                     <div class="flex flex-row justify-between">
@@ -291,14 +314,14 @@
                     </div>
                     <div class="grid grid-cols-1 mt-8">
 
-                        <ol class="relative border-s border-gray-200 dark:border-gray-700">
+                        <ol class="relative border-s border-gray-200">
                             @if($order_logs)
                             @foreach($order_logs as $log)
                             <li class="mb-10 ms-4">
-                                <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
-                                <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{{$log->created_at}}</time>
-                                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{{$log->name}}</h3>
-                                <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">{{$log->description}}</p>
+                                <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white"></div>
+                                <time class="mb-1 text-sm font-normal leading-none text-gray-400">{{$log->created_at}}</time>
+                                <h3 class="text-lg font-semibold text-gray-900">{{$log->name}}</h3>
+                                <p class="mb-4 text-base font-normal text-gray-500">{{$log->description}}</p>
                             </li>
                             @endforeach
                             @endif

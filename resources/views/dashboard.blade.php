@@ -116,7 +116,7 @@
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                                 <tr>
                                     <th scope="col" class="px-2 py-1">
-                                        Numer zamówienia
+                                        Numer paczkomatu
                                     </th>
                                     <th scope="col" class="px-2 py-1">
                                         Imię i Nazwisko
@@ -169,7 +169,7 @@
                                     @endif
                                     ">
                                     <td class="px-2 py-1">
-                                        {{$order->number}}
+                                        {{$order->point}}
                                     </td>
                                     <td class="px-2 py-1">
                                         {{$order->name}}

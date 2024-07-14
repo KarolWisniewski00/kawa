@@ -14,6 +14,24 @@ use Illuminate\Support\Facades\Auth;
 
 class OrderAdminController extends Controller
 {
+    private function gShow(Order $order){
+        $user = Auth::user();
+        $orders = OrderItem::where('order_id', $order->id)->get();
+        $photos = ProductImage::get();
+        foreach ($orders as $o) {
+            foreach ($photos as $photo) {
+                $p = Product::where('name', $o->name)->first();
+                if ($photo->product_id == $p->id) {
+                    if ($photo->order == 1) {
+                        $photo_good = $photo->image_path;
+                    }
+                }
+            }
+        }
+        $order = Order::where('id', $order->id)->first();
+        $order_logs = OrderLog::where('order_id', $order->id)->get();
+        return view('admin.order.show', compact('order', 'orders', 'photos', 'photo_good', 'order_logs'));
+    }
     public function index()
     {
         $orders = Order::orderBy('created_at', 'desc')->paginate(20);
@@ -52,24 +70,14 @@ class OrderAdminController extends Controller
 
         return view('dashboard', compact('orders', 'ordersJS', 'totalSevenDaysAgo', 'totalToday', 'totalThisMonth'));
     }
+    public function showByShipmentId(Int $id)
+    {
+        $order = Order::where('shipment_id', $id)->first();
+        return $this->gShow($order);
+    }
     public function show(Order $order)
     {
-        $user = Auth::user();
-        $orders = OrderItem::where('order_id', $order->id)->get();
-        $photos = ProductImage::get();
-        foreach ($orders as $o) {
-            foreach ($photos as $photo) {
-                $p = Product::where('name', $o->name)->first();
-                if ($photo->product_id == $p->id) {
-                    if ($photo->order == 1) {
-                        $photo_good = $photo->image_path;
-                    }
-                }
-            }
-        }
-        $order = Order::where('id', $order->id)->first();
-        $order_logs = OrderLog::where('order_id', $order->id)->get();
-        return view('admin.order.show', compact('order', 'orders', 'photos', 'photo_good', 'order_logs'));
+        return $this->gShow($order);
     }
     public function status($id, $slug)
     {

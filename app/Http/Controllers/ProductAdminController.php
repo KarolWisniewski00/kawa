@@ -133,6 +133,7 @@ class ProductAdminController extends Controller
             'tool' =>  $request->tool != null ? $request->tool : 0,
             'lemon' =>  $request->lemon != null ? $request->lemon : 0,
             'height' =>  $request->height != null ? $request->height : 0,
+            'photo_second' =>  $request->photo_second,
         ]);
         // Usuwamy wszystkie stare warianty produktu i zapisujemy nowe dane
         $prices = $request->price;

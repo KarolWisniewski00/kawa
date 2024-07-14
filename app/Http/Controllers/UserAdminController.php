@@ -10,8 +10,10 @@ class UserAdminController extends Controller
 {
     public function index()
     {
+        $users = User::withCount('orders')->orderBy('created_at', 'desc')->paginate(20);
+
         return view('admin.user.index', [
-            'users' => User::orderBy('created_at', 'desc')->paginate(20),
+            'users' => $users,
         ]);
     }
     public function delete(User $user)
