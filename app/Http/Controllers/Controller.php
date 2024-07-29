@@ -180,7 +180,7 @@ class Controller extends BaseController
         String $company_name = null,
         String $template = "small",
         String $service = "inpost_locker_standard",
-        String $reference = 'TEST',
+        String $reference = 'coffeesummit.pl',
     ) {
         return Http::withHeaders([
             'Accept' => 'application/json',

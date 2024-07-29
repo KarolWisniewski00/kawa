@@ -19,7 +19,7 @@
     }
 </style>
 <section class="hero">
-    <div class="container-fluid px-0 position-relative video-container overflow-hidden">
+    <div class="container-fluid px-0 position-relative video-container overflow-hidden bg-dark">
         <video autoplay="autoplay" loop="loop" muted="muted" preload="auto" playsinline class="v-size" id="vid">
             <source src="{{asset('video/video_11.mp4')}}" type="video/mp4">
         </video>

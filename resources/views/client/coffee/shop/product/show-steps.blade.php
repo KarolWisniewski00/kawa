@@ -326,8 +326,8 @@
                                                                 <input type="radio" class="btn-check" data-price-show="{{$variant->price}} PLN" name="size" value="{{$size->id}}" id="size-{{$size->id}}">
                                                                 <label class="btn btn-outline-primary btn-1" for="size-{{$size->id}}">
                                                                     <div class="flex flex-column justify-content-center align-items-center">
-                                                                        <div>{{$size->name}}</div>
-                                                                        <div>{{$variant->price}} PLN</div>
+                                                                        <div id="size-name">{{$size->name}}</div>
+                                                                        <div id="size-price">{{$variant->price}} PLN</div>
                                                                     </div>
                                                                 </label>
                                                             </div>
@@ -584,6 +584,7 @@
         price = $('#size-{{$idSize}}').data('price-show');
         $('#step-1').addClass('bg-success-c');
         $('#price-show').html(price);
+        $('#size-name').html('Zestaw');
         first = true;
         $('#size-{{$idSize}}').prop('checked', true);
         @endif
@@ -616,13 +617,7 @@
                     position: "center",
                     backgroundColor: "#4bbf73",
                 }).showToast();
-                $('html').animate({
-                    scrollTop: $('#step-3').offset().top - 130
-                });
             } else {
-                $('html').animate({
-                    scrollTop: $('#step-2').offset().top - 130
-                });
             }
         });
         $('input[name="grind"]').change(function() {
@@ -638,13 +633,7 @@
                     position: "center",
                     backgroundColor: "#4bbf73",
                 }).showToast();
-                $('html').animate({
-                    scrollTop: $('#step-3').offset().top - 130
-                });
             } else {
-                $('html').animate({
-                    scrollTop: $('#step-1').offset().top - 130
-                });
             }
         });
     });

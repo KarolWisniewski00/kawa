@@ -15,6 +15,15 @@
                     <ol class="relative border-s border-gray-200 ">
                         <li class="mb-10 ms-4">
                             <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white "></div>
+                            <time class="mb-1 text-sm font-normal leading-none text-gray-400 ">29 lipiec 2024 V 1.2.3</time>
+                            <h3 class="text-lg font-semibold text-gray-900 ">Aktualizacja</h3>
+                            <p class="text-base font-normal text-gray-500 ">1. Usunięcie Auto scrolla w podglądzie produktu</p>
+                            <p class="text-base font-normal text-gray-500 ">2. Usunięcie gramatury w przypadku jednej ceny w podglądzie zamówienia</p>
+                            <p class="text-base font-normal text-gray-500 ">3. Dodanie znikania mapki inpost po wybraniu paczkomatu w składaniu zamówienia</p>
+                            <p class="text-base font-normal text-gray-500 ">4. Dodanie tła pod wideo na stronie głównej innego niż biały - czasami na telefonach się nie ładuje wtedy widać tylko białe zostało to naprawione dodaniem domyślnego tła ciemnego koloru tak aby napis i przycisk nad wideo w momenie niezaładowania był widoczny</p>
+                        </li>
+                        <li class="mb-10 ms-4">
+                            <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white "></div>
                             <time class="mb-1 text-sm font-normal leading-none text-gray-400 ">14 lipiec 2024 V 1.2.2</time>
                             <h3 class="text-lg font-semibold text-gray-900 ">Aktualizacja - Usługa integracja z InPost API</h3>
                             <p class="text-base font-normal text-gray-500 ">1. Aktywacja przycisków utwórz przesyłkę ABC Paczkomat Paczkomat</p>
@@ -22,13 +31,15 @@
                             <p class="text-base font-normal text-gray-500 ">2. Aktywacja przycisku sprawdź status</p>
                             <p class="text-base font-normal text-gray-500 ">3. Aktywacja przycisku pobierz etykietę A6P</p>
                             <p class="text-base font-normal text-gray-500 ">- Pobieranie pliku pod nazwą numeru paczkomatu lub paczkopunktu</p>
-                            <p class="text-base font-normal text-gray-500 ">4. Dodanie automatycznego wybierania rozmiaru gdy jest tylko jedna opcja  w widoku dla klienta</p>
-                            <p class="text-base font-normal text-gray-500 ">5. Redesing zakładki InPost</p>
-                            <p class="text-base font-normal text-gray-500 ">6. Zmiana w podglądzie zamówień z numer zamówienia na numer paczkomatu</p>
-                            <p class="text-base font-normal text-gray-500 ">7. Dodanie przycisku powrót do sklepu - wszystkie produkty w podglądzie produktu dla klienta</p>
-                            <p class="text-base font-normal text-gray-500 ">8. Dodanie wyświetlania drugiego zdjecia niżej jeśli jest ustawione w podglądzie produktu dla klienta</p>
-                            <p class="text-base font-normal text-gray-500 ">9. Dodanie automatyczne zaznaczenie kawy ziarnistej w podglądzie produktu dla klienta</p>
-                            <p class="text-base font-normal text-gray-500 ">10. Dodanie podglądu liczby zamówień złożonych przez uzytkownika</p>
+                            <p class="text-base font-normal text-gray-500 ">4. Redesing zakładki InPost</p>
+                            <p class="text-base font-normal text-gray-500 ">- Lista przesyłek (możliwe że tylko te które zostały stworzone za pomocą coffeesummit.pl)</p>
+                            <p class="text-base font-normal text-gray-500 ">- Zielone oznacza paczkomat paczkomat</p>
+                            <p class="text-base font-normal text-gray-500 ">5. Zmiana w podglądzie zamówień z numer zamówienia na numer paczkomatu</p>
+                            <p class="text-base font-normal text-gray-500 ">6. Dodanie przycisku powrót do sklepu - wszystkie produkty w podglądzie produktu dla klienta</p>
+                            <p class="text-base font-normal text-gray-500 ">7. Dodanie wyświetlania drugiego zdjecia niżej jeśli jest ustawione w podglądzie produktu dla klienta</p>
+                            <p class="text-base font-normal text-gray-500 ">8. Dodanie automatyczne zaznaczenie kawy ziarnistej w podglądzie produktu dla klienta</p>
+                            <p class="text-base font-normal text-gray-500 ">9. Dodanie podglądu liczby zamówień złożonych przez uzytkownika</p>
+                            <p class="text-base font-normal text-gray-500 ">10. Ustawiony webhook</p>
                         </li>
                         <li class="mb-10 ms-4">
                             <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white "></div>

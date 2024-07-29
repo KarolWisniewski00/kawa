@@ -77,6 +77,7 @@
             $('#street').val(point.address.line1);
             $('#street_extra').val(point.location_description);
             $('#post').val(point.address_details.post_code);
+            $('#easypack-map').css('display', 'none');
             city = true;
             street = true;
             post = true;
