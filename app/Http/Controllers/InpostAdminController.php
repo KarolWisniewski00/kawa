@@ -25,7 +25,8 @@ class InpostAdminController extends Controller
             'last_name' => $lastName,
         ];
     }
-    private function gLabel(Order $order, User $user){
+    private function gLabel(Order $order, User $user)
+    {
         $res = Http::withHeaders([
             'Accept' => 'application/json',
             'Content-Type' => 'application/json',
@@ -152,7 +153,7 @@ class InpostAdminController extends Controller
     public function getLabelByShipmentId(Int $id)
     {
         $user = Auth::user();
-        $order = Order::where('shipment_id',$id)->first();
+        $order = Order::where('shipment_id', $id)->first();
         return $this->gLabel($order, $user);
     }
     public function getLabel(Order $order)
@@ -160,55 +161,69 @@ class InpostAdminController extends Controller
         $user = Auth::user();
         return $this->gLabel($order, $user);
     }
-    public function orderCarrier(Order $order)
+    public function createShipmentCarrierToCarrier(Order $order, String $size)
     {
         $user = Auth::user();
-
-        $res = Http::withHeaders([
-            'Accept' => 'application/json',
-            'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJzQlpXVzFNZzVlQnpDYU1XU3JvTlBjRWFveFpXcW9Ua2FuZVB3X291LWxvIn0.eyJleHAiOjIwMzUyMTU3OTQsImlhdCI6MTcxOTg1NTc5NCwianRpIjoiZmZkY2VmOGUtYjZhZS00ZWU5LTgwMTYtNGU0OTYyZWNlYWVkIiwiaXNzIjoiaHR0cHM6Ly9sb2dpbi5pbnBvc3QucGwvYXV0aC9yZWFsbXMvZXh0ZXJuYWwiLCJzdWIiOiJmOjEyNDc1MDUxLTFjMDMtNGU1OS1iYTBjLTJiNDU2OTVlZjUzNToyNzl1VzdDNW1FdnFfTHZLRVpudGJTXzJ5alVaZmMyWUtRUzlyNUdCVS1FIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoic2hpcHgiLCJzZXNzaW9uX3N0YXRlIjoiMzZkNjljOTQtZjNiOS00YmIxLTgyODMtN2I4MWMzZDkzMzdhIiwic2NvcGUiOiJvcGVuaWQgYXBpOmFwaXBvaW50cyBhcGk6c2hpcHgiLCJzaWQiOiIzNmQ2OWM5NC1mM2I5LTRiYjEtODI4My03YjgxYzNkOTMzN2EiLCJhbGxvd2VkX3JlZmVycmVycyI6IiIsInV1aWQiOiIxYzk1MGYyMS00ZDY5LTRmZGYtYmExYi1lNmI4MmQ5YmMzMDciLCJlbWFpbCI6ImtvbnRha3RAY29mZmVlc3VtbWl0LnBsIn0.f8YrzvlREQZrtaSmHdnPU-D8iNMouo5ovRypCodA8ZUFCkAmL28Viv7admOdP2_NTbqCvdpaKo1R6W3dLHiMV200Rcc8rF99V0nLkIt2qoAdUkP3yN4ZXyD7GFSNs7n5ygGLA17hNR_wTTZ8AamwZveyR4g9SBUNSJ4OIrNJy_v53IE8Yh-Mh4DqwaHlTCzZG03IsG4kk46zHCKvAnoqciBuCd0WX9a0PQ1VSJ07h8cli4CPeJyxn81vcfK0WgYhcZinUydTdofDXVE2SKzpfbCXQwASVTU36FjsSob_NqFj-D0__JTY92eOS3N791Ya9U3MU7mft7EUPfRrv34eRA',
-        ])->post('https://api-shipx-pl.easypack24.net/v1/organizations/92302/dispatch_orders', [
-            "shipments" => [
-                strval($order->shipment_id)
-            ],
-            "comment" => "proszę dzwonić 694702980 lub 512260080",
-            "name" => "Palarnia kawy Coffee Summit API",
-            "phone" => "696093616",
-            "email" => "radek.karminski@gmail.com",
-            "address" => [
-                "street" => "Warsztatowa",
-                "building_number" => "8",
-                "city" => "Piła",
-                "post_code" => "64-920",
-                "country_code" => "PL"
-            ],
-        ]);
-        if ($res) {
-            if ($res['status'] == 400) {
+        if ($order->name_recive != null) {
+            $name = $order->name_recive;
+        } else {
+            $name = $order->name;
+        }
+        if ($order->email_recive != null) {
+            $email = $order->email_recive;
+        } else {
+            $email = $order->email;
+        }
+        if ($order->phone_recive != null) {
+            $phone = $order->phone_recive;
+        } else {
+            $phone = $order->phone;
+        }
+        $name_splited = $this->splitName($name);
+        if ($order->point != null) {
+            OrderLog::create([
+                'name' => $user->name,
+                'description' => 'Nie utworzono przesyłki - Jest numer paczkomatu.',
+                'type' => EnumsOrderLog::ADMIN,
+                'order_id' => $order->id,
+            ]);
+            return redirect()->route('dashboard.order.show', $order->id)->with('fail', 'Przesyłka nie została utworzona - Jest numer paczkomatu.');
+        } else {
+            $shipment =  $this->createShipment(
+                $name_splited['first_name'],
+                $name_splited['last_name'],
+                $email,
+                $phone,
+                'null',
+                $order->company,
+                $size,
+                "inpost_courier_standard",
+                'test'
+            );
+            if ($shipment['status'] == 400) {
                 OrderLog::create([
                     'name' => $user->name,
-                    'description' => 'Nie udało się utworzyć zlecenia odbioru',
+                    'description' => 'Podaj numer trucker',
                     'type' => EnumsOrderLog::ADMIN,
                     'order_id' => $order->id,
                 ]);
-                return redirect()->route('dashboard.order.show', $order->id)->with('fail', 'Nie udało się utworzyć zlecenia odbioru');
+                return redirect()->route('dashboard.order.show', $order->id)->with('fail', 'Brak numeru trucker.');
+            } else {
+                OrderLog::create([
+                    'name' => $user->name,
+                    'description' => 'Utworzono przesyłkę w InPost',
+                    'type' => EnumsOrderLog::ADMIN,
+                    'order_id' => $order->id,
+                ]);
+                OrderLog::create([
+                    'name' => $user->name,
+                    'description' => 'Nnumer id przesyłki - ' . $shipment['id'],
+                    'type' => EnumsOrderLog::ADMIN,
+                    'order_id' => $order->id,
+                ]);
+                //Order::where('id', '=', $order->id)->update(['shipment_id' => $shipment['id']]);
+                return redirect()->route('dashboard.order.show', $order->id)->with('success', 'Przesyłkę utworzono.');
             }
-            OrderLog::create([
-                'name' => $user->name,
-                'description' => 'Utworzono zlecenie odbioru dla przesyłki o numerze id ' . strval($order->shipment_id),
-                'type' => EnumsOrderLog::ADMIN,
-                'order_id' => $order->id,
-            ]);
-            return redirect()->route('dashboard.order.show', $order->id)->with('success', 'Utworzono zlecenie odbioru dla przesyłki o numerze id ' . strval($order->shipment_id));
-        } else {
-            OrderLog::create([
-                'name' => $user->name,
-                'description' => 'Nie udało się utworzyć zlecenia odbioru',
-                'type' => EnumsOrderLog::ADMIN,
-                'order_id' => $order->id,
-            ]);
-            return redirect()->route('dashboard.order.show', $order->id)->with('fail', 'Nie udało się utworzyć zlecenia odbioru');
         }
     }
 }

@@ -278,9 +278,6 @@
                             @if($order->shipment_id == null)
                             @if($order->point != null)
                             @else
-                            <h6 class="mt-8 mb-4 text-2xl font-medium text-red-500">
-                                Usługa Kurier Kurier w trakcie przygotowywania
-                            </h6>
                             @endif
                             @endif
                         </div>
@@ -291,10 +288,10 @@
                             <a href="{{route('inpost.createShipmentPointToPoint',[$order,'medium'])}}" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-box-open mr-2"></i>Utwórz przesyłkę Paczkomat -> Paczkomat B</a>
                             <a href="{{route('inpost.createShipmentPointToPoint',[$order,'large'])}}" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-box-open mr-2"></i>Utwórz przesyłkę Paczkomat -> Paczkomat C</a>
                             @else
-                            <a href="#" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-box-open mr-2"></i>Utwórz przesyłkę Kurier -> Kurier A</a>
-                            <a href="#" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-box-open mr-2"></i>Utwórz przesyłkę Kurier -> Kurier B</a>
-                            <a href="#" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-box-open mr-2"></i>Utwórz przesyłkę Kurier -> Kurier C</a>
-                            <a href="#" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-box-open mr-2"></i>Utwórz przesyłkę Kurier -> Kurier D</a>
+                            <a href="{{route('inpost.createShipmentCarrierToCarrier',[$order,'small'])}}" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-box-open mr-2"></i>Utwórz przesyłkę Kurier -> Kurier A</a>
+                            <a href="{{route('inpost.createShipmentCarrierToCarrier',[$order,'medium'])}}" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-box-open mr-2"></i>Utwórz przesyłkę Kurier -> Kurier B</a>
+                            <a href="{{route('inpost.createShipmentCarrierToCarrier',[$order,'large'])}}" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-box-open mr-2"></i>Utwórz przesyłkę Kurier -> Kurier C</a>
+                            <a href="{{route('inpost.createShipmentCarrierToCarrier',[$order,'xlarge'])}}" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-box-open mr-2"></i>Utwórz przesyłkę Kurier -> Kurier D</a>
                             @endif
                             @else
                             <a href="{{route('inpost.checkStatusShipmentById',$order)}}" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-check mr-2"></i>Sprawdź status przesyłki</a>

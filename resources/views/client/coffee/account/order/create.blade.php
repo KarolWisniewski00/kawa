@@ -52,44 +52,31 @@
         }
     }
 </script>
-<script src="https://geowidget.easypack24.net/js/sdk-for-javascript.js"></script>
-<script type="text/javascript">
+<link rel="stylesheet" href="https://geowidget.inpost.pl/inpost-geowidget.css"/>
+<script src='https://geowidget.inpost.pl/inpost-geowidget.js' defer></script>
+<script> 
     var fifth = false;
     var city = false;
     var street = false;
     var post = false;
-    window.easyPackAsyncInit = function() {
-        easyPack.init({
-            defaultLocale: 'pl',
-            mapType: 'osm',
-            searchType: 'osm',
-            points: {
-                types: ['parcel_locker'],
-                functions: ['parcel_collect']
-            },
-            map: {
-                initialTypes: ['parcel_locker']
-            }
-        });
-        var map = easyPack.mapWidget('easypack-map', function(point) {
-            $('#selectedPoint').val(point.name).addClass('show');
-            $('#city').val(point.address_details.city);
-            $('#street').val(point.address.line1);
-            $('#street_extra').val(point.location_description);
-            $('#post').val(point.address_details.post_code);
-            $('#easypack-map').css('display', 'none');
-            city = true;
-            street = true;
-            post = true;
-            fifth = chceckStepFifth(true, true, true);
-        });
-    };
+    document.addEventListener('onpointselect', (event) => {
+        console.log(event.detail);
+        $('#selectedPoint').val(event.detail.name).addClass('show');
+        $('#city').val(event.detail.address_details.city);
+        $('#street').val(event.detail.address.line1);
+        $('#street_extra').val(event.detail.location_description);
+        $('#post').val(event.detail.address_details.post_code);
+        $('#easypack-map').css('display', 'none');
+        city = true;
+        street = true;
+        post = true;
+        fifth = chceckStepFifth(true, true, true);
+    });
 </script>
-<link rel="stylesheet" href="https://geowidget.easypack24.net/css/easypack.css" />
 @endsection
 @section('content')
 <style>
-    <style>body {
+body {
         margin-top: 20px;
     }
 
@@ -223,7 +210,6 @@
         color: #3f43fd;
     }
 </style>
-</style>
 <!--ORDER-->
 <section>
     <div class="container-fluid">
@@ -310,7 +296,7 @@
                                                             <img class="img-fluid ms-2" style="height: 1.35em;" alt="inpost-logo.svg" src="{{asset('image/inpost-logo.svg')}}">
                                                     </label>
                                                 </div>
-                                                <div id="easypack-map"></div>
+                                                <inpost-geowidget id="easypack-map" onpoint="onpointselect" class="w-100" style="height:80vh" token='eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJzQlpXVzFNZzVlQnpDYU1XU3JvTlBjRWFveFpXcW9Ua2FuZVB3X291LWxvIn0.eyJleHAiOjIwMzkyNzM4NTcsImlhdCI6MTcyMzkxMzg1NywianRpIjoiMzYxNWMyMjctOWJlMS00NjQ4LWJhNDgtMTExMTkzOTE3MTcwIiwiaXNzIjoiaHR0cHM6Ly9sb2dpbi5pbnBvc3QucGwvYXV0aC9yZWFsbXMvZXh0ZXJuYWwiLCJzdWIiOiJmOjEyNDc1MDUxLTFjMDMtNGU1OS1iYTBjLTJiNDU2OTVlZjUzNToyNzl1VzdDNW1FdnFfTHZLRVpudGJTXzJ5alVaZmMyWUtRUzlyNUdCVS1FIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoic2hpcHgiLCJzZXNzaW9uX3N0YXRlIjoiOWQ0OWZjMTQtMzVkNS00NjUxLTgzMjMtMTdjNmI3NzRiZjU1Iiwic2NvcGUiOiJvcGVuaWQgYXBpOmFwaXBvaW50cyIsInNpZCI6IjlkNDlmYzE0LTM1ZDUtNDY1MS04MzIzLTE3YzZiNzc0YmY1NSIsImFsbG93ZWRfcmVmZXJyZXJzIjoiY29mZmVlc3VtbWl0LnBsIiwidXVpZCI6IjFjOTUwZjIxLTRkNjktNGZkZi1iYTFiLWU2YjgyZDliYzMwNyJ9.O2yJpMb-e8-2aN6hHEzt4iX_q5eT0SM8Br-mmhyWWGEFWGiqHOs3KX68bKPoZQzPzca5mZyKOvLgGG5xRmTqyaMh9OF3enzU2KU6RBCjq2i-WFPSfzZotQoJ-RuNx4OIsGkyPVSmSo71A2_Tyyg_DRQej1NAGBzKIy94tjSh56v0cNjg23LibBrhAejaRgOlhMest7y1gAYXXtztyFLzWLjxM3uR6IhQgw4vb6OmwhqCb7WDPirBbfXVs6tJZT7YesiZhRO42STfYR7POVOGZnOcxUSYirmBpj-7A3bkTWBhkYdNyiYp0jCFkkt6fVuUn_e7K3eoEhl_Ah322V54AA.eyJleHAiOjIwMzkyNzM4NjMsImlhdCI6MTcyMzkxMzg2MywianRpIjoiNDk2NzlmM2EtYTMyNC00OGRjLTg2ZmItZDExMGExZjIwYzEyIiwiaXNzIjoiaHR0cHM6Ly9sb2dpbi5pbnBvc3QucGwvYXV0aC9yZWFsbXMvZXh0ZXJuYWwiLCJzdWIiOiJmOjEyNDc1MDUxLTFjMDMtNGU1OS1iYTBjLTJiNDU2OTVlZjUzNToyNzl1VzdDNW1FdnFfTHZLRVpudGJTXzJ5alVaZmMyWUtRUzlyNUdCVS1FIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoic2hpcHgiLCJzZXNzaW9uX3N0YXRlIjoiYmI1YjQ5MTItNzJiZS00NWEyLWE1MDQtZGY4ZjJjZmQ4Y2E3Iiwic2NvcGUiOiJvcGVuaWQgYXBpOmFwaXBvaW50cyIsInNpZCI6ImJiNWI0OTEyLTcyYmUtNDVhMi1hNTA0LWRmOGYyY2ZkOGNhNyIsImFsbG93ZWRfcmVmZXJyZXJzIjoiIiwidXVpZCI6IjFjOTUwZjIxLTRkNjktNGZkZi1iYTFiLWU2YjgyZDliYzMwNyJ9.nu78VIfd5NyW0IoVKc7WGyrU3ZPDsxaGwblh82do01zwb9JN6hkwS5bZzwXpyI3sMqIYdvn7npYG-1NJnbIWB5UC6fihihmY_SpcQf2z2NFZ17l2hZlRd4dIpmLW67biDxUxFUTQI-N9WJWyYHMmX1Qo3-l4vze9ysfQfd5a7prpOXDrHUpUGcacFo1878NYYDptoSVDjzoRoCgrDLQhp8zWHEyQHWdqWhzJ6wHrA5onZDjVZwYiQc3iLM-kS56UggmcdeMn8hPWDyxk2nNl5YldNHmBIJC01XpOmHKW-lQc9R8giAH9VWBtM-pJcwX_AF06eXjf6Ld4-d2Ni8el6g' language='pl' config='parcelcollect'></inpost-geowidget>
                                                 <div class="form-floating my-3 w-100" id="point-input-container">
                                                     <input type="text" class="form-control" id="selectedPoint" placeholder="Numer paczkomatu" name="point" >
                                                     <label for="point">Numer paczkomatu</label>

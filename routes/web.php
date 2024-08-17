@@ -5,6 +5,7 @@ use App\Http\Controllers\AjaxAdminController;
 use App\Http\Controllers\BlogAdminController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BusketController;
+use App\Http\Controllers\ClientAdminController;
 use App\Http\Controllers\CollaborationController;
 use App\Http\Controllers\CompanyAdminController;
 use App\Http\Controllers\ContactController;
@@ -175,10 +176,10 @@ Route::middleware([
         Route::prefix('inpost')->group(function () {
             Route::get('/', [InpostAdminController::class, 'index'])->name('dashboard.inpost');
             Route::get('/createShipmentPointToPoint/{order}/{size}', [InpostAdminController::class, 'createShipmentPointToPoint'])->name('inpost.createShipmentPointToPoint');
+            Route::get('/createShipmentCarrierToCarrier/{order}/{size}', [InpostAdminController::class, 'createShipmentCarrierToCarrier'])->name('inpost.createShipmentCarrierToCarrier');
             Route::get('/checkStatusShipmentById/{order}', [InpostAdminController::class, 'checkStatusShipmentById'])->name('inpost.checkStatusShipmentById');
             Route::get('/getLabel/{order}', [InpostAdminController::class, 'getLabel'])->name('inpost.getLabel');
             Route::get('/getLabelByShipmentId/{id}', [InpostAdminController::class, 'getLabelByShipmentId'])->name('inpost.getLabelByShipmentId');
-            Route::get('/orderCarrier/{order}', [InpostAdminController::class, 'orderCarrier'])->name('inpost.orderCarrier');
         });
         Route::prefix('shop')->group(function () {
             Route::prefix('product')->group(function () {
@@ -261,6 +262,9 @@ Route::middleware([
         Route::prefix('user')->group(function () {
             Route::get('/', [UserAdminController::class, 'index'])->name('dashboard.user');
             Route::delete('/delete/{user}', [UserAdminController::class, 'delete'])->name('dashboard.user.delete');
+        });
+        Route::prefix('client')->group(function () {
+            Route::get('/', [ClientAdminController::class, 'index'])->name('dashboard.client');
         });
     });
 });
