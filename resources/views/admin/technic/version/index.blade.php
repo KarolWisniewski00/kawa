@@ -13,14 +13,22 @@
                     @include('admin.module.alerts')
 
                     <ol class="relative border-s border-gray-200 ">
-                    <li class="mb-10 ms-4">
+                        <li class="mb-10 ms-4">
                             <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white "></div>
-                            <time class="mb-1 text-sm font-normal leading-none text-gray-400 ">17 lipiec 2024 V 1.2.4</time>
+                            <time class="mb-1 text-sm font-normal leading-none text-gray-400 ">21 sierpień 2024 V 1.2.5</time>
+                            <h3 class="text-lg font-semibold text-gray-900 ">Aktualizacja - Usługa integracja z InPost API</h3>
+                            <p class="text-base font-normal text-gray-500 ">1. Uzyskanie dostępu do usługi kurier -> kurier</p>
+                            <p class="text-base font-normal text-gray-500 ">2. Redesing tworzenia przesyłki kurier -> kurier</p>
+                            <p class="text-base font-normal text-gray-500 ">3. Obsługa kurier -> kurier w zakładce inpost</p>
+                            <p class="text-base font-normal text-gray-500 ">4. Przygotowanie pod tworzenie przesyłki + utworzenie zamówienia testowego</p>
+                        </li>
+                        <li class="mb-10 ms-4">
+                            <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white "></div>
+                            <time class="mb-1 text-sm font-normal leading-none text-gray-400 ">17 sierpień 2024 V 1.2.4</time>
                             <h3 class="text-lg font-semibold text-gray-900 ">Aktualizacja - Usługa integracja z InPost API</h3>
                             <p class="text-base font-normal text-gray-500 ">1. Zamiana geowigetu InPosta API z v4 na v5</p>
                             <p class="text-base font-normal text-gray-500 ">2. Dodanie w panelu admina zakładki klienci która ukazuje liste wszystkich osób które złożyły zamówienie z statusem platności success gdzie imie nazwisko email i numer telefonu są takie same</p>
                             <p class="text-base font-normal text-gray-500 ">3. Dodanie NIEPEŁNE usługi kurier->kurier - BRAK NUMERU TRUCKER</p>
-
                         </li>
                         <li class="mb-10 ms-4">
                             <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white "></div>

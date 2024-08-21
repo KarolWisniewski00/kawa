@@ -171,6 +171,17 @@ class Controller extends BaseController
             }
         }
     }
+    public function splitName($name)
+    {
+        $parts = explode(' ', $name);
+        $firstName = array_shift($parts);
+        $lastName = implode(' ', $parts);
+
+        return [
+            'first_name' => $firstName,
+            'last_name' => $lastName,
+        ];
+    }
     public function createShipment(
         String $first_name,
         String $last_name,
@@ -181,6 +192,13 @@ class Controller extends BaseController
         String $template = "small",
         String $service = "inpost_locker_standard",
         String $reference = 'coffeesummit.pl',
+        String $street = null,
+        String $building_number = null,
+        String $city = null,
+        String $post_code = null,
+        $parcels = null,
+        $insurance = null,
+        $cod = null,
     ) {
         if ($target_point == 'null') {
             return Http::withHeaders([
@@ -194,13 +212,50 @@ class Controller extends BaseController
                     "last_name" => $last_name,
                     "email" => $email,
                     "phone" => $phone,
+                    "address" => [
+                        "street" => $street,
+                        "building_number" => $building_number,
+                        "city" => $city,
+                        "post_code" => $post_code,
+                        "country_code" => "PL"
+                    ]
                 ],
                 "parcels" => [
-                    "template" => $template
+                    $parcels
+                    //[
+                    //    "dimensions" => [
+                    //        "length" => "80",
+                    //        "width" => "360",
+                    //        "height" => "640",
+                    //        "unit" => "mm"
+                    //    ],
+                    //    "weight" => [
+                    //        "amount" => "25",
+                    //        "unit" => "kg"
+                    //    ],
+                    //    "is_non_standard" => false
+                    //]
                 ],
-                "service" => $service,
+                $insurance,
+                //"insurance" => [
+                //    "amount" => $insurance,
+                //    "amount" => 25,
+                //    "currency" => "PLN"
+                //],
+                $cod,
+                //"cod" => [
+                //    "amount" => 12.50,
+                //    "currency" => "PLN"
+                //],
+
+                "service" => "inpost_courier_standard",
+
+                //"additional_services" => [
+                //    "email",
+                //    "sms"
+                //],
                 "reference" => $reference,
-                'trucker_id' => null
+                'trucker_id' => 45903608
             ]);
         } else {
             return Http::withHeaders([

@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Auth;
 
 class OrderAdminController extends Controller
 {
-    private function gShow(Order $order){
+    private function gShow(Order $order)
+    {
         $user = Auth::user();
         $orders = OrderItem::where('order_id', $order->id)->get();
         $photos = ProductImage::get();
@@ -30,7 +31,36 @@ class OrderAdminController extends Controller
         }
         $order = Order::where('id', $order->id)->first();
         $order_logs = OrderLog::where('order_id', $order->id)->get();
-        return view('admin.order.show', compact('order', 'orders', 'photos', 'photo_good', 'order_logs'));
+        //
+        if ($order->name_recive != null) {
+            $name = $order->name_recive;
+        } else {
+            $name = $order->name;
+        }
+        if ($order->email_recive != null) {
+            $email = $order->email_recive;
+        } else {
+            $email = $order->email;
+        }
+        if ($order->phone_recive != null) {
+            $phone = $order->phone_recive;
+        } else {
+            $phone = $order->phone;
+        }
+        $name_splited = $this->splitName($name);
+        $adres_splited = $this->splitName($order->adres);
+        //
+        return view('admin.order.show', compact(
+            'order',
+            'orders',
+            'photos',
+            'photo_good',
+            'order_logs',
+            'name_splited',
+            'adres_splited',
+            'email',
+            'phone',
+        ));
     }
     public function index()
     {

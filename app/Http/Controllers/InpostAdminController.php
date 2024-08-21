@@ -14,17 +14,6 @@ use Illuminate\Support\Facades\Response;
 
 class InpostAdminController extends Controller
 {
-    private function splitName($name)
-    {
-        $parts = explode(' ', $name);
-        $firstName = array_shift($parts);
-        $lastName = implode(' ', $parts);
-
-        return [
-            'first_name' => $firstName,
-            'last_name' => $lastName,
-        ];
-    }
     private function gLabel(Order $order, User $user)
     {
         $res = Http::withHeaders([
@@ -104,7 +93,7 @@ class InpostAdminController extends Controller
             );
             OrderLog::create([
                 'name' => $user->name,
-                'description' => 'Utworzono przesyłkę w InPost',
+                'description' => 'Utworzono przesyłkę w InPost - ' . $size,
                 'type' => EnumsOrderLog::ADMIN,
                 'order_id' => $order->id,
             ]);
@@ -164,6 +153,14 @@ class InpostAdminController extends Controller
     public function createShipmentCarrierToCarrier(Order $order, String $size)
     {
         $user = Auth::user();
+        OrderLog::create([
+            'name' => $user->name,
+            'description' => 'Tymczasowo zablokowane.',
+            'type' => EnumsOrderLog::ADMIN,
+            'order_id' => $order->id,
+        ]);
+        return redirect()->route('dashboard.order.show', $order->id)->with('fail', 'Tymczasowo zablokowane.');
+        //
         if ($order->name_recive != null) {
             $name = $order->name_recive;
         } else {
@@ -180,6 +177,8 @@ class InpostAdminController extends Controller
             $phone = $order->phone;
         }
         $name_splited = $this->splitName($name);
+        $adres_splited = $this->splitName($order->adres);
+        //
         if ($order->point != null) {
             OrderLog::create([
                 'name' => $user->name,
@@ -189,6 +188,7 @@ class InpostAdminController extends Controller
             ]);
             return redirect()->route('dashboard.order.show', $order->id)->with('fail', 'Przesyłka nie została utworzona - Jest numer paczkomatu.');
         } else {
+
             $shipment =  $this->createShipment(
                 $name_splited['first_name'],
                 $name_splited['last_name'],
@@ -198,12 +198,19 @@ class InpostAdminController extends Controller
                 $order->company,
                 $size,
                 "inpost_courier_standard",
-                'test'
+                'test',
+                $adres_splited['first_name'],
+                $adres_splited['last_name'],
+                $order->city,
+                $order->post,
+                $parcels = null,
+                $insurance = null,
+                $cod = null,
             );
             if ($shipment['status'] == 400) {
                 OrderLog::create([
                     'name' => $user->name,
-                    'description' => 'Podaj numer trucker',
+                    'description' => $shipment,
                     'type' => EnumsOrderLog::ADMIN,
                     'order_id' => $order->id,
                 ]);

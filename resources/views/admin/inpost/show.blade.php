@@ -43,10 +43,14 @@
                             <tbody>
                                 @foreach($shipments['items'] as $key => $shipment)
                                 <tr class="
+                                        @if(isset($shipment['custom_attributes']['sending_method']))
                                         @if($shipment['custom_attributes']['sending_method'] == 'any_point')
                                         bg-lime-100
                                         @else
                                         bg-gray-100
+                                        @endif
+                                        @else
+                                        bg-yellow-100
                                         @endif
                                         text-sm">
                                     <td class="px-2 py-1">
@@ -62,22 +66,30 @@
                                         {{$shipment['parcels'][0]['template']}}
                                     </td>
                                     <td class="px-2 py-1">
+                                        @if(isset($shipment['custom_attributes']['sending_method']))
                                         @if($shipment['custom_attributes']['sending_method'] == 'any_point')
                                         Paczkomat -> Paczkomat
                                         @else
                                         {{$shipment['custom_attributes']['sending_method']}}
                                         @endif
+                                        @else
+                                        Kurier -> Kurier
+                                        @endif
                                     </td>
                                     <td class="px-2 py-1">
+                                        @if(isset($shipment['custom_attributes']['sending_method']))
                                         @if($shipment['custom_attributes']['sending_method'] == 'any_point')
                                         <a href="{{route('inpost.getLabelByShipmentId', $shipment['id'])}}" class="text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none">
                                             <i class="fa-solid fa-download"></i>
                                         </a>
                                         @endif
+                                        @endif
                                     </td>
                                     <td class="px-2 py-1">
+                                        @if(isset($shipment['custom_attributes']['sending_method']))
                                         @if($shipment['custom_attributes']['sending_method'] == 'any_point')
                                         <a href="{{route('dashboard.order.showByShipmentId', $shipment['id'])}}" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-600 focus:z-10 focus:ring-4 focus:ring-gray-200"><i class="fa-solid fa-eye"></i></a>
+                                        @endif
                                         @endif
                                     </td>
                                 </tr>

@@ -269,7 +269,7 @@
                             </h1>
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                            <a href="{{route('dashboard.order.email', $order)}}" class="text-xl mt-8 mb-4 text-white bg-violet-500 hover:bg-violet-600 focus:ring-4 focus:ring-violet-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-file mr-2"></i>Utwórz fakturę + wyślij mailem</a>
+                            <a href="{{route('dashboard.order.email', $order)}}" class="col-span-2 text-xl mt-8 mb-4 text-white bg-violet-500 hover:bg-violet-600 focus:ring-4 focus:ring-violet-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-file mr-2"></i>Utwórz fakturę + wyślij mailem</a>
                         </div>
                         <div class="flex flex-row justify-between">
                             <h1 class="mt-8 mb-4 text-2xl font-medium text-gray-900">
@@ -288,21 +288,172 @@
                             <a href="{{route('inpost.createShipmentPointToPoint',[$order,'medium'])}}" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-box-open mr-2"></i>Utwórz przesyłkę Paczkomat -> Paczkomat B</a>
                             <a href="{{route('inpost.createShipmentPointToPoint',[$order,'large'])}}" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-box-open mr-2"></i>Utwórz przesyłkę Paczkomat -> Paczkomat C</a>
                             @else
-                            <a href="{{route('inpost.createShipmentCarrierToCarrier',[$order,'small'])}}" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-box-open mr-2"></i>Utwórz przesyłkę Kurier -> Kurier A</a>
-                            <a href="{{route('inpost.createShipmentCarrierToCarrier',[$order,'medium'])}}" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-box-open mr-2"></i>Utwórz przesyłkę Kurier -> Kurier B</a>
-                            <a href="{{route('inpost.createShipmentCarrierToCarrier',[$order,'large'])}}" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-box-open mr-2"></i>Utwórz przesyłkę Kurier -> Kurier C</a>
-                            <a href="{{route('inpost.createShipmentCarrierToCarrier',[$order,'xlarge'])}}" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-box-open mr-2"></i>Utwórz przesyłkę Kurier -> Kurier D</a>
-                            @endif
-                            @else
-                            <a href="{{route('inpost.checkStatusShipmentById',$order)}}" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-check mr-2"></i>Sprawdź status przesyłki</a>
-                            <a href="{{route('inpost.getLabel',$order)}}" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-download mr-2"></i>Pobierz etykietę A6P</a>
-                            @if($order->point != null)
-                            @else
-                            <a href="{{route('inpost.orderCarrier',$order)}}" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-truck-fast mr-2"></i>Zamówienie kuriera</a>
-                            <a href="#" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-plus mr-2"></i>Wygenerowanie potwierdzenia nadania</a>
-                            @endif
-                            @endif
+                            <div class="mb-6 col-span-2">
+                                <label for="company" class="block mb-2 text-sm font-medium text-gray-900">Firma odbiorcy</label>
+                                <input value="{{$order->company}}" name="company" type="text" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                                @error('company')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-6">
+                                <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900">Imię odbiorcy</label>
+                                <input value="{{$name_splited['first_name']}}" name="first_name" type="text" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                                @error('first_name')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-6">
+                                <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900">Nazwisko odbiorcy</label>
+                                <input value="{{$name_splited['last_name']}}" name="last_name" type="text" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                                @error('last_name')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-6 col-span-2">
+                                <label for="email" class="block mb-2 text-sm font-medium text-gray-900">e-mail odbiorcy</label>
+                                <input value="{{$email}}" name="email" type="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                                @error('email')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-6 col-span-2">
+                                <label for="phone" class="block mb-2 text-sm font-medium text-gray-900">Numer telefonu odbiorcy</label>
+                                <input value="{{$phone}}" name="phone" type="text" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                                @error('phone')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-6">
+                                <label for="street" class="block mb-2 text-sm font-medium text-gray-900">Ulica odbiorcy</label>
+                                <input value="{{$adres_splited['first_name']}}" name="street" type="text" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                                @error('street')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-6">
+                                <label for="building_number" class="block mb-2 text-sm font-medium text-gray-900">Numer budynku odbiorcy</label>
+                                <input value="{{$adres_splited['last_name']}}" name="building_number" type="text" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                                @error('building_number')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-6">
+                                <label for="city" class="block mb-2 text-sm font-medium text-gray-900">Miasto odbiorcy</label>
+                                <input value="{{$order->city}}" name="city" type="text" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                                @error('city')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-6">
+                                <label for="post" class="block mb-2 text-sm font-medium text-gray-900">Kod pocztowy odbiorcy</label>
+                                <input value="{{$order->post}}" name="post" type="text" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                                @error('post')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <!--Parcels-->
+                            <div class="col-span-2">
+                                <div class="bg-gray-800 my-5 p-5 text-yellow-500 rounded-xl shadow grid grid-cols-1 md:grid-cols-4 gap-5">
+                                    <span class="mb-6 col-span-2 text-3xl"><i class="fa-solid fa-box-open"></i></span>
+                                    <div class="mb-6 col-span-2">
+                                        <div class="flex items-center mb-4">
+                                            <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 bg-gray-100 border-yellow-500 rounded focus:ring-yellow-500 focus:ring-2 block p-2.5">
+                                            <label for="default-checkbox" class="ms-2 text-sm font-medium">Paczka niestandardowa</label>
+                                        </div>
+                                        @error('weight')
+                                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+
+                                    <div class="mb-6">
+                                        <label for="weight" class="block mb-2 text-sm font-medium">Waga [kg]</label>
+                                        <input value="" name="weight" type="text" class="border-yellow-500 shadow-sm bg-gray-900 border border-gray-300 text-yellow-500 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5" required>
+                                        @error('weight')
+                                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-6">
+                                        <label for="weight" class="block mb-2 text-sm font-medium">Długość [cm]</label>
+                                        <input value="" name="weight" type="text" class="border-yellow-500 shadow-sm bg-gray-900 border border-gray-300 text-yellow-500 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5" required>
+                                        @error('weight')
+                                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-6">
+                                        <label for="weight" class="block mb-2 text-sm font-medium">Szerokość [cm]</label>
+                                        <input value="" name="weight" type="text" class="border-yellow-500 shadow-sm bg-gray-900 border border-gray-300 text-yellow-500 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5" required>
+                                        @error('weight')
+                                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-6">
+                                        <label for="weight" class="block mb-2 text-sm font-medium">Wysokość [cm]</label>
+                                        <input value="" name="weight" type="text" class="border-yellow-500 shadow-sm bg-gray-900 border border-gray-300 text-yellow-500 text-sm rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5" required>
+                                        @error('weight')
+                                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <!--END Parcels-->
+                            <button type="button" class="col-span-2 text-xl mb-6 text-green-100 bg-green-500 hover:bg-green-600 focus:ring-4 focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-plus mr-2"></i>Dodaj kolejną paczkę</button>
+                            <div class="col-span-2">
+                                <div class="flex items-center">
+                                    <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 bg-gray-100 border-grey-500 rounded focus:ring-blue-500 focus:ring-2 block p-2.5">
+                                    <label for="default-checkbox" class="ms-2 text-sm font-medium">Dodatkowa ochrona [zł]</label>
+                                </div>
+                                @error('weight')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-6 col-span-2">
+                                <label for="post" class="block mb-2 text-sm font-medium text-gray-900">Kwota</label>
+                                <input value="" name="post" type="text" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                                @error('post')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="col-span-2">
+                                <div class="flex items-center">
+                                    <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 bg-gray-100 border-grey-500 rounded focus:ring-blue-500 focus:ring-2 block p-2.5">
+                                    <label for="default-checkbox" class="ms-2 text-sm font-medium">Kwota pobrania [zł]</label>
+                                </div>
+                                @error('weight')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-6 col-span-2">
+                                <label for="post" class="block mb-2 text-sm font-medium text-gray-900">Kwota</label>
+                                <input value="" name="post" type="text" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                                @error('post')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-6">
+                                <div class="flex items-center mb-4">
+                                    <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 bg-gray-100 border-grey-500 rounded focus:ring-blue-500 focus:ring-2 block p-2.5">
+                                    <label for="default-checkbox" class="ms-2 text-sm font-medium">Serwis SMS</label>
+                                </div>
+                                @error('weight')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="mb-6">
+                                <div class="flex items-center mb-4">
+                                    <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 bg-gray-100 border-grey-500 rounded focus:ring-blue-500 focus:ring-2 block p-2.5">
+                                    <label for="default-checkbox" class="ms-2 text-sm font-medium">Serwis email</label>
+                                </div>
+                                @error('weight')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <button type="button" class="col-span-2 text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-box-open mr-2"></i>Utwórz przesyłkę Kurier -> Kurier</button>
                         </div>
+                        @endif
+                        @else
+                        <a href="{{route('inpost.checkStatusShipmentById',$order)}}" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-check mr-2"></i>Sprawdź status przesyłki</a>
+                        <a href="{{route('inpost.getLabel',$order)}}" class="text-xl mt-8 mb-4 text-yellow-500 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg  px-5 py-2.5 mb-2 focus:outline-none"><i class="fa-solid fa-download mr-2"></i>Pobierz etykietę A6P</a>
+                        @endif
                     </div>
                     <div class="flex flex-row justify-between">
                         <h1 class="mt-8 mb-4 text-2xl font-medium text-gray-900">

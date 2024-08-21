@@ -72,6 +72,17 @@ class OrderController extends Controller
         if ($cartContent->isEmpty()) {
             return redirect()->back()->with('fail', 'Nie można złożyć zamówienia gdy koszyk jest pusty.');
         }
+        
+        //TODO
+        $request->validate([
+            'phone' => [
+                'required',
+                'string',
+                'max:255',
+                'regex:/^\+?[0-9\s\-]{7,15}$/',
+            ],
+        ]);
+        
         try {
             $user = Auth::user();
             $usrid = $user->id;
