@@ -156,16 +156,18 @@
                             <tbody>
                                 @foreach($orders as $key => $order)
                                 <tr class="
-                                    @if($order->status == "Anulowano")
-                                    bg-rose-100
+                                    @if($order->shipment_id != null && $order->status == "W trakcie realizacji")
+                                    bg-lime-200
                                     @elseif($order->status == "Zrealizowane")
-                                    bg-emerald-100
+                                    bg-lime-200
                                     @elseif($order->status == "W trakcie realizacji")
                                     bg-lime-100
                                     @elseif($order->status == "Weryfikacja płatności")
                                     bg-amber-100
                                     @elseif($order->status == "Oczekujące na płatność")
                                     bg-amber-100
+                                    @elseif($order->status == "Anulowano")
+                                    bg-rose-100
                                     @endif
                                     ">
                                     <td class="px-2 py-1">

@@ -176,7 +176,7 @@ Route::middleware([
         Route::prefix('inpost')->group(function () {
             Route::get('/', [InpostAdminController::class, 'index'])->name('dashboard.inpost');
             Route::get('/createShipmentPointToPoint/{order}/{size}', [InpostAdminController::class, 'createShipmentPointToPoint'])->name('inpost.createShipmentPointToPoint');
-            Route::get('/createShipmentCarrierToCarrier/{order}/{size}', [InpostAdminController::class, 'createShipmentCarrierToCarrier'])->name('inpost.createShipmentCarrierToCarrier');
+            Route::post('/createShipmentCarrierToCarrier', [InpostAdminController::class, 'createShipmentCarrierToCarrier'])->name('inpost.createShipmentCarrierToCarrier');
             Route::get('/checkStatusShipmentById/{order}', [InpostAdminController::class, 'checkStatusShipmentById'])->name('inpost.checkStatusShipmentById');
             Route::get('/getLabel/{order}', [InpostAdminController::class, 'getLabel'])->name('inpost.getLabel');
             Route::get('/getLabelByShipmentId/{id}', [InpostAdminController::class, 'getLabelByShipmentId'])->name('inpost.getLabelByShipmentId');

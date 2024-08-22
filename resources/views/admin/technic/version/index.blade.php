@@ -15,6 +15,17 @@
                     <ol class="relative border-s border-gray-200 ">
                         <li class="mb-10 ms-4">
                             <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white "></div>
+                            <time class="mb-1 text-sm font-normal leading-none text-gray-400 ">22 sierpień 2024 V 1.2.6</time>
+                            <h3 class="text-lg font-semibold text-gray-900 ">Aktualizacja - Usługa integracja z InPost API</h3>
+                            <p class="text-base font-normal text-gray-500 ">1. Ożywienie formularza do zamawiania kurier -> kurier</p>
+                            <p class="text-base font-normal text-gray-500 ">2. Przygotowanie przycisku do zamawiania kuriera w zakladce inpost</p>
+                            <p class="text-base font-normal text-gray-500 ">3. Dodanie zabezpiecznia przed stworzeniem przesyłki jeśli status to anulowano, weryfikacja płatnosci, oczekiwanie na wpłate</p>
+                            <p class="text-base font-normal text-gray-500 ">4. W podglądze zamówienia dodano podświetlanie pierwszego głównego kwadraciku pod status zamówienia + nowy kolor</p>
+                            <p class="text-base font-normal text-gray-500 ">5. W podglądze zamówieniń dodano ciemny zielony, jeśli zamówienie ma id przesyłki w InPost</p>
+                            <p class="text-base font-normal text-gray-500 ">6. Usunięto resztki dark w alertach</p>
+                        </li>
+                        <li class="mb-10 ms-4">
+                            <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white "></div>
                             <time class="mb-1 text-sm font-normal leading-none text-gray-400 ">21 sierpień 2024 V 1.2.5</time>
                             <h3 class="text-lg font-semibold text-gray-900 ">Aktualizacja - Usługa integracja z InPost API</h3>
                             <p class="text-base font-normal text-gray-500 ">1. Uzyskanie dostępu do usługi kurier -> kurier</p>

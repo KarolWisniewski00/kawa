@@ -23,19 +23,23 @@ class InpostAdminController extends Controller
         ])->get('https://api-shipx-pl.easypack24.net/v1/shipments/' . $order->shipment_id . '/label', [
             'type' => 'a6',
         ]);
-
+        if($order->point != null){
+            $point = $order->point;
+        }else{
+            $point = $order->shipment_id;
+        }
 
         if ($res) {
             OrderLog::create([
                 'name' => $user->name,
-                'description' => 'Pobranie etykiety A6P ' . $order->point,
+                'description' => 'Pobranie etykiety A6P - ' . $point,
                 'type' => EnumsOrderLog::ADMIN,
                 'order_id' => $order->id,
             ]);
             // Zwróć plik jako odpowiedź do pobrania
             return Response::make($res->body(), 200, [
                 'Content-Type' => 'application/pdf',
-                'Content-Disposition' => 'attachment; filename="' . $order->point . '.pdf"',
+                'Content-Disposition' => 'attachment; filename="' . $point . '.pdf"',
             ]);
         } else {
             OrderLog::create([
@@ -150,87 +154,50 @@ class InpostAdminController extends Controller
         $user = Auth::user();
         return $this->gLabel($order, $user);
     }
-    public function createShipmentCarrierToCarrier(Order $order, String $size)
+    public function createShipmentCarrierToCarrier(Request $request)
     {
+        $shipment =  $this->createShipmentCToC(
+            $request->first_name,
+            $request->last_name,
+            $request->email,
+            $request->phone,
+            $request->company,
+            'test',
+            $request->street,
+            $request->building_number,
+            $request->city,
+            $request->post,
+            $request->weight,
+            $request->length,
+            $request->width,
+            $request->height,
+            $request->insurance,
+        );
         $user = Auth::user();
-        OrderLog::create([
-            'name' => $user->name,
-            'description' => 'Tymczasowo zablokowane.',
-            'type' => EnumsOrderLog::ADMIN,
-            'order_id' => $order->id,
-        ]);
-        return redirect()->route('dashboard.order.show', $order->id)->with('fail', 'Tymczasowo zablokowane.');
-        //
-        if ($order->name_recive != null) {
-            $name = $order->name_recive;
-        } else {
-            $name = $order->name;
-        }
-        if ($order->email_recive != null) {
-            $email = $order->email_recive;
-        } else {
-            $email = $order->email;
-        }
-        if ($order->phone_recive != null) {
-            $phone = $order->phone_recive;
-        } else {
-            $phone = $order->phone;
-        }
-        $name_splited = $this->splitName($name);
-        $adres_splited = $this->splitName($order->adres);
-        //
-        if ($order->point != null) {
+
+        if ($shipment['status'] == 400) {
             OrderLog::create([
                 'name' => $user->name,
-                'description' => 'Nie utworzono przesyłki - Jest numer paczkomatu.',
+                'description' => $shipment,
                 'type' => EnumsOrderLog::ADMIN,
-                'order_id' => $order->id,
+                'order_id' => $request->order_id,
             ]);
-            return redirect()->route('dashboard.order.show', $order->id)->with('fail', 'Przesyłka nie została utworzona - Jest numer paczkomatu.');
+            return redirect()->route('dashboard.order.show', $request->order_id)->with('fail', 'Coś poszło nie tak.');
         } else {
-
-            $shipment =  $this->createShipment(
-                $name_splited['first_name'],
-                $name_splited['last_name'],
-                $email,
-                $phone,
-                'null',
-                $order->company,
-                $size,
-                "inpost_courier_standard",
-                'test',
-                $adres_splited['first_name'],
-                $adres_splited['last_name'],
-                $order->city,
-                $order->post,
-                $parcels = null,
-                $insurance = null,
-                $cod = null,
-            );
-            if ($shipment['status'] == 400) {
-                OrderLog::create([
-                    'name' => $user->name,
-                    'description' => $shipment,
-                    'type' => EnumsOrderLog::ADMIN,
-                    'order_id' => $order->id,
-                ]);
-                return redirect()->route('dashboard.order.show', $order->id)->with('fail', 'Brak numeru trucker.');
-            } else {
-                OrderLog::create([
-                    'name' => $user->name,
-                    'description' => 'Utworzono przesyłkę w InPost',
-                    'type' => EnumsOrderLog::ADMIN,
-                    'order_id' => $order->id,
-                ]);
-                OrderLog::create([
-                    'name' => $user->name,
-                    'description' => 'Nnumer id przesyłki - ' . $shipment['id'],
-                    'type' => EnumsOrderLog::ADMIN,
-                    'order_id' => $order->id,
-                ]);
-                //Order::where('id', '=', $order->id)->update(['shipment_id' => $shipment['id']]);
-                return redirect()->route('dashboard.order.show', $order->id)->with('success', 'Przesyłkę utworzono.');
-            }
+            OrderLog::create([
+                'name' => $user->name,
+                'description' => 'Utworzono przesyłkę w InPost - '.$request->weight.' kg '.$request->length.' mm '.$request->width.' mm '.$request->height.' mm ',
+                'type' => EnumsOrderLog::ADMIN,
+                'order_id' => $request->order_id,
+            ]);
+            OrderLog::create([
+                'name' => $user->name,
+                'description' => 'Nnumer id przesyłki - ' . $shipment['id'],
+                'type' => EnumsOrderLog::ADMIN,
+                'order_id' => $request->order_id,
+            ]);
+            Order::where('id', '=', $request->order_id)->update(['shipment_id' => $shipment['id']]);
+            return redirect()->route('dashboard.order.show', $request->order_id)->with('success', 'Przesyłkę utworzono.');
         }
     }
 }
