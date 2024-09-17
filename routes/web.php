@@ -10,6 +10,7 @@ use App\Http\Controllers\CollaborationController;
 use App\Http\Controllers\CompanyAdminController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CookiesAdminController;
+use App\Http\Controllers\DiscountAdminController;
 use App\Http\Controllers\GoogleLoginController;
 use App\Http\Controllers\GrindingAdminController;
 use App\Http\Controllers\IndexController;
@@ -205,6 +206,15 @@ Route::middleware([
                 Route::get('/edit/{grinding}', [GrindingAdminController::class, 'edit'])->name('dashboard.shop.grinding.edit');
                 Route::put('/update/{grinding}', [GrindingAdminController::class, 'update'])->name('dashboard.shop.grinding.update');
                 Route::delete('/delete/{grinding}', [GrindingAdminController::class, 'delete'])->name('dashboard.shop.grinding.delete');
+            });
+            Route::prefix('discount')->group(function () {
+                Route::get('/', [DiscountAdminController::class, 'index'])->name('dashboard.shop.discount');
+                Route::get('/create', [DiscountAdminController::class, 'create'])->name('dashboard.shop.discount.create');
+                Route::post('/store', [DiscountAdminController::class, 'store'])->name('dashboard.shop.discount.store');
+                Route::get('/edit/{discount}', [DiscountAdminController::class, 'edit'])->name('dashboard.shop.discount.edit');
+                Route::put('/update/{discount}', [DiscountAdminController::class, 'update'])->name('dashboard.shop.discount.update');
+                Route::delete('/delete/{id}', [DiscountAdminController::class, 'delete'])->name('dashboard.shop.discount.delete');
+                Route::post('/check', [DiscountAdminController::class, 'check'])->name('check.discount');
             });
         });
         Route::prefix('technic')->group(function () {

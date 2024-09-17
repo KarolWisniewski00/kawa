@@ -16,5 +16,10 @@
                 {{ __('Produkty') }}
             </x-nav-link>
         </div>
+        <div class="space-x-8 -my-px ml-10 flex">
+            <x-nav-link href="{{ route('dashboard.shop.discount') }}" :active="Str::startsWith(request()->path(), 'dashboard/shop/discount')">
+                {{ __('Kody rabatowe') }}
+            </x-nav-link>
+        </div>
     </div>
 </div>

@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use App\Mail\OrderMail;
+use App\Models\Discount;
 use App\Models\OrderLog;
 use App\Models\Payment;
 use App\Models\Product;
@@ -62,6 +63,14 @@ class OrderController extends Controller
         $elements = Company::get();
         return view('client.coffee.account.order.create', compact('photos', 'cartItems', 'user', 'elements'));
     }
+    private function calculateDiscount($discount, $price)
+    {
+        if ($discount->type == 'procentowy') {
+            return $price - ($price * ($discount->value /  100));
+        } else {
+            return $price - $discount->value;
+        }
+    }
     public function store(Request $request)
     {
         if ($request->type_transfer == 'false' && $request->type_transfer_24 == 'false') {
@@ -72,7 +81,7 @@ class OrderController extends Controller
         if ($cartContent->isEmpty()) {
             return redirect()->back()->with('fail', 'Nie można złożyć zamówienia gdy koszyk jest pusty.');
         }
-        
+
         //TODO
         $request->validate([
             'phone' => [
@@ -82,7 +91,7 @@ class OrderController extends Controller
                 'regex:/^\+?[0-9\s\-]{7,15}$/',
             ],
         ]);
-        
+
         try {
             $user = Auth::user();
             $usrid = $user->id;
@@ -106,6 +115,12 @@ class OrderController extends Controller
                 $total = $total + $company['price_ship'];
                 Session::put('transfer', true);
             }
+        }
+        $discount = Discount::where('code', $request->input('discount'))->first();
+
+        if ($discount) {
+            $newPrice = (int) $this->calculateDiscount($discount, (int) $total);
+            $total = $newPrice;
         }
         $order = Order::create([
             'number' => Str::random(4),
@@ -152,6 +167,20 @@ class OrderController extends Controller
             'type' => EnumsOrderLog::CLIENT,
             'order_id' => $order->id,
         ]);
+        if ($discount) {
+            OrderLog::create([
+                'name' => 'Klient',
+                'description' => 'KOD RABATOWY ' . $request->discount,
+                'type' => EnumsOrderLog::CLIENT,
+                'order_id' => $order->id,
+            ]);
+            OrderLog::create([
+                'name' => 'Klient',
+                'description' => 'Rabat ' . $discount->type . ' ' . $discount->value,
+                'type' => EnumsOrderLog::CLIENT,
+                'order_id' => $order->id,
+            ]);
+        }
         if ($request->type_transfer_24 == 'true') {
             return $this->paymentTransaction($order);
         } elseif ($request->type_transfer == 'true') {

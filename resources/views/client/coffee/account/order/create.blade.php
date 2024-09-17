@@ -474,7 +474,7 @@ body {
                     @endphp
                     @endforeach
 
-                    <input type="hidden" name="total" value="{{$counter_price}}">
+                    <input type="hidden" name="total" value="{{$counter_price}}" id="total-input">
                     @foreach($elements as $e)
                     @if($e->type == 'order_bank_transfer')
                     @if($e->content == '1')
@@ -490,6 +490,7 @@ body {
                     @endif
                     @endif
                     @endforeach
+                    <input type="hidden" name="discount" id="discount-form">
                 </form>
             </div>
             <div class="col-12 col-md-6 order-2 order-md-2">
@@ -586,14 +587,32 @@ body {
                     <h4>Podsumowanie koszyka</h4>
                     <ul class="list-group ">
                         <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto w-100">
+                                <div class="d-flex align-items-center">
+                                    <!-- Input na kod rabatowy -->
+                                    <div class="form-floating w-75">
+                                        <input type="text" class="form-control" id="discount-code" placeholder="Kod rabatowy">
+                                        <label for="discount-code">Wpisz kod rabatowy</label>
+                                        <span class="text-danger d-none" id="discount-error"></span>
+                                    </div>
+
+                                    <!-- Przycisk sprawdzający kod -->
+                                    <button class="btn btn-primary ms-3" id="check-discount" type="button">
+                                        <i class="fa-solid fa-check me-2"></i>Sprawdź kod
+                                    </button>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
                             <div class="ms-2 me-auto">
                                 @if($counter_price >= $company['free_ship'])
-                                @php
-                                $counter_price = $counter_price - $company['price_ship']
-                                @endphp
-                                <div id="ship-info" class="fw-bold">Wysyłka InPost darmowa</div>
+                                    @php
+                                        $counter_price = $counter_price - $company['price_ship']
+                                    @endphp
+                                    <div id="ship-info" class="fw-bold">Wysyłka InPost darmowa</div>
                                 @else
-                                <div id="ship-info" class="fw-bold">Wysyłka InPost + {{ $company['price_ship'] }} PLN</div>
+                                    <div id="ship-info" class="fw-bold">Wysyłka InPost + {{ $company['price_ship'] }} PLN</div>
                                 @endif
                             </div>
                         </li>
@@ -603,6 +622,58 @@ body {
                                 <span id="all">{{$counter_price}}</span> PLN
                             </div>
                         </li>
+
+                        <!-- AJAX Script -->
+                        <script>
+                            document.getElementById('check-discount').addEventListener('click', function() {
+                                // Pobierz wartość kodu rabatowego z inputa
+                                var discountCode = document.getElementById('discount-code').value;
+                                
+                                // Wyczyść poprzednie błędy
+                                var discountInput = document.getElementById('discount-code');
+                                var errorMessage = document.getElementById('discount-error');
+                                var checkButton = document.getElementById('check-discount');
+                                discountInput.classList.remove('is-invalid', 'is-valid');
+                                errorMessage.classList.add('d-none');
+                                
+                                // AJAX
+                                fetch('{{ route("check.discount") }}', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'X-CSRF-TOKEN': '{{ csrf_token() }}' // Wysyłanie CSRF tokena
+                                    },
+                                    body: JSON.stringify({
+                                        discount_code: discountCode,
+                                        price: document.getElementById('all').innerText
+                                    })
+                                })
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.success) {
+                                        // Kod poprawny - zaznacz na zielono, zaktualizuj cenę i zablokuj input oraz przycisk
+                                        discountInput.classList.add('is-valid');
+                                        checkButton.classList.remove('btn-primary');
+                                        checkButton.classList.add('btn-success');
+                                        checkButton.disabled = true;
+                                        discountInput.disabled = true; // Zablokuj pole tekstowe
+                                        document.getElementById('all').innerText = data.newPrice;
+                                        document.getElementById('total-input').value = data.newPrice;
+                                        document.getElementById('price-printed').value = data.newPrice;
+                                        document.getElementById('discount-form').value = discountCode;
+                                    } else {
+                                        // Kod niepoprawny - zaznacz na czerwono
+                                        discountInput.classList.add('is-invalid');
+                                        errorMessage.innerText = data.message;
+                                        errorMessage.classList.remove('d-none');
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Błąd:', error);
+                                });
+                            });
+                        </script>
+
                     </ul>
                     <div class="flex flex-column my-5">
                         @foreach($elements as $e)
