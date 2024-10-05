@@ -34,4 +34,8 @@ class Product extends Model
     {
         return $this->hasMany(ProductVariant::class);
     }
+    public function discounts()
+    {
+        return $this->belongsToMany(Discount::class, 'discount_product');
+    }
 }

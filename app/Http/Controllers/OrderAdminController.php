@@ -68,6 +68,7 @@ class OrderAdminController extends Controller
         $sevenDaysAgo = Carbon::now()->subDays(7);
         $today = Carbon::now()->startOfDay();
         $startOfMonth = Carbon::now()->startOfMonth();
+        $startOfYear = Carbon::now()->startOfYear();
 
         // Pobranie zamówień z ostatniego tygodnia, których status to "W trakcie realizacji"
         $ordersSevenDaysAgo = Order::where('created_at', '>=', $sevenDaysAgo)
@@ -98,7 +99,127 @@ class OrderAdminController extends Controller
             ->where('status', 'W trakcie realizacji')
             ->get();
 
-        return view('dashboard', compact('orders', 'ordersJS', 'totalSevenDaysAgo', 'totalToday', 'totalThisMonth'));
+        // Pobranie zamówień z bieżącego roku, których status to "W trakcie realizacji"
+        $ordersThisYear = Order::where('created_at', '>=', $startOfYear)
+            ->where('status', 'W trakcie realizacji')
+            ->with('orderItems') // Pobranie elementów zamówienia (OrderItems)
+            ->get();
+
+        // Przechodzimy przez zamówienia i analizujemy atrybuty "attributes_name"
+        $peru_kilos = 0;
+        $brazylia_kilos = 0;
+        $indie_kilos = 0;
+        $etiopia_kilos = 0;
+        foreach ($ordersThisYear as $order) {
+            foreach ($order->orderItems as $item) {
+                if ($item->name == 'Peru ALPAMAYO') {
+                    // Sprawdzenie, czy 'attributes_name' zawiera konkretne wartości, np. '100 g'
+                    if (strpos($item->attributes_name, '100 g') !== false) {
+                        $peru_kilos += 0.1;
+                    }
+                    if (strpos($item->attributes_name, '250 g') !== false) {
+                        $peru_kilos += 0.25;
+                    }
+                    if (strpos($item->attributes_name, '500 g') !== false) {
+                        $peru_kilos += 0.5;
+                    }
+                    if (strpos($item->attributes_name, '1 kg (2 x 500 g)') !== false) {
+                        $peru_kilos += 1;
+                    }
+                    if (strpos($item->attributes_name, '500 g (2 x 250 g)') !== false) {
+                        $peru_kilos += 0.5;
+                    }
+                }
+                if ($item->name == 'Brazylia NEBLINA') {
+                    // Sprawdzenie, czy 'attributes_name' zawiera konkretne wartości, np. '100 g'
+                    if (strpos($item->attributes_name, '100 g') !== false) {
+                        $brazylia_kilos += 0.1;
+                    }
+                    if (strpos($item->attributes_name, '250 g') !== false) {
+                        $brazylia_kilos += 0.25;
+                    }
+                    if (strpos($item->attributes_name, '500 g') !== false) {
+                        $brazylia_kilos += 0.5;
+                    }
+                    if (strpos($item->attributes_name, '1 kg (2 x 500 g)') !== false) {
+                        $brazylia_kilos += 1;
+                    }
+                    if (strpos($item->attributes_name, '500 g (2 x 250 g)') !== false) {
+                        $brazylia_kilos += 0.5;
+                    }
+                }
+                if ($item->name == 'Indie RIMO') {
+                    // Sprawdzenie, czy 'attributes_name' zawiera konkretne wartości, np. '100 g'
+                    if (strpos($item->attributes_name, '100 g') !== false) {
+                        $indie_kilos += 0.1;
+                    }
+                    if (strpos($item->attributes_name, '250 g') !== false) {
+                        $indie_kilos += 0.25;
+                    }
+                    if (strpos($item->attributes_name, '500 g') !== false) {
+                        $indie_kilos += 0.5;
+                    }
+                    if (strpos($item->attributes_name, '1 kg (2 x 500 g)') !== false) {
+                        $indie_kilos += 1;
+                    }
+                    if (strpos($item->attributes_name, '500 g (2 x 250 g)') !== false) {
+                        $indie_kilos += 0.5;
+                    }
+                }
+                if ($item->name == 'Etiopia RAS DASHEN') {
+                    // Sprawdzenie, czy 'attributes_name' zawiera konkretne wartości, np. '100 g'
+                    if (strpos($item->attributes_name, '100 g') !== false) {
+                        $etiopia_kilos += 0.1;
+                    }
+                    if (strpos($item->attributes_name, '250 g') !== false) {
+                        $etiopia_kilos += 0.25;
+                    }
+                    if (strpos($item->attributes_name, '500 g') !== false) {
+                        $etiopia_kilos += 0.5;
+                    }
+                    if (strpos($item->attributes_name, '1 kg (2 x 500 g)') !== false) {
+                        $etiopia_kilos += 1;
+                    }
+                    if (strpos($item->attributes_name, '500 g (2 x 250 g)') !== false) {
+                        $etiopia_kilos += 0.5;
+                    }
+                }
+                if ($item->name == 'ZESTAW Peru + Indie + Etiopia + Brazylia') {
+                    // Sprawdzenie, czy 'attributes_name' zawiera konkretne wartości, np. '100 g'
+                    if (strpos($item->attributes_name, '100 g') !== false) {
+                        $etiopia_kilos += 0.1;
+                        $indie_kilos += 0.1;
+                        $brazylia_kilos += 0.1;
+                        $peru_kilos += 0.1;
+                    }
+                    if (strpos($item->attributes_name, '250 g') !== false) {
+                        $etiopia_kilos += 0.25;
+                        $indie_kilos += 0.25;
+                        $brazylia_kilos += 0.25;
+                        $peru_kilos += 0.25;
+                    }
+                    if (strpos($item->attributes_name, '500 g') !== false) {
+                        $etiopia_kilos += 0.5;
+                        $indie_kilos += 0.5;
+                        $brazylia_kilos += 0.5;
+                        $peru_kilos += 0.5;
+                    }
+                    if (strpos($item->attributes_name, '1 kg (2 x 500 g)') !== false) {
+                        $etiopia_kilos += 1;
+                        $indie_kilos += 1;
+                        $brazylia_kilos += 1;
+                        $peru_kilos += 1;
+                    }
+                    if (strpos($item->attributes_name, '500 g (2 x 250 g)') !== false) {
+                        $etiopia_kilos += 0.5;
+                        $indie_kilos += 0.5;
+                        $brazylia_kilos += 0.5;
+                        $peru_kilos += 0.5;
+                    }
+                }
+            }
+        }
+        return view('dashboard', compact('etiopia_kilos','indie_kilos','brazylia_kilos','peru_kilos', 'orders', 'ordersJS', 'totalSevenDaysAgo', 'totalToday', 'totalThisMonth'));
     }
     public function showByShipmentId(Int $id)
     {

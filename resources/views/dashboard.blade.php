@@ -15,23 +15,52 @@
                             <div class="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
                                 <!-- Pricing Card -->
                                 <div class="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow  xl:p-8  w-full">
-                                    <div class="flex justify-center items-baseline my-8">
-                                        <span class="mr-2 text-5xl font-extrabold">{{ $totalToday }} zł</span>
-                                        <span class="text-gray-500 ">/Dzisiaj</span>
+                                    <div class="flex flex-col justify-center items-center my-8">
+                                        <span class="mr-2 text-3xl font-extrabold">{{ $totalToday }} zł</span>
+                                        <span class="text-gray-500 mt-2">Dzisiaj</span>
                                     </div>
                                 </div>
                                 <!-- Pricing Card -->
                                 <div class="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow  xl:p-8  w-full">
-                                    <div class="flex justify-center items-baseline my-8">
-                                        <span class="mr-2 text-5xl font-extrabold">{{$totalSevenDaysAgo}} zł</span>
-                                        <span class="text-gray-500 ">/Ostatnie 7 dni</span>
+                                    <div class="flex flex-col justify-center items-center my-8">
+                                        <span class="mr-2 text-3xl font-extrabold">{{$totalSevenDaysAgo}} zł</span>
+                                        <span class="text-gray-500 mt-2">Ostatnie 7 dni</span>
                                     </div>
                                 </div>
                                 <!-- Pricing Card -->
                                 <div class="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow xl:p-8  w-full">
-                                    <div class="flex justify-center items-baseline my-8">
-                                        <span class="mr-2 text-5xl font-extrabold">{{ $totalThisMonth }} zł</span>
-                                        <span class="text-gray-500 ">/W tym miesiącu</span>
+                                    <div class="flex flex-col justify-center items-center my-8">
+                                        <span class="mr-2 text-3xl font-extrabold">{{ $totalThisMonth }} zł</span>
+                                        <span class="text-gray-500 mt-2">W tym miesiącu</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="space-y-8 lg:grid lg:grid-cols-4 sm:gap-6 xl:gap-10 lg:space-y-0 mt-8">
+                                <!-- Pricing Card -->
+                                <div class="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow  xl:p-8  w-full">
+                                    <div class="flex flex-col justify-center items-center my-8">
+                                        <span class="mr-2 text-3xl font-extrabold">{{$peru_kilos}} kg</span>
+                                        <span class="text-gray-500 mt-2">Peru ALPAMAYO</span>
+                                    </div>
+                                </div>
+                                <!-- Pricing Card -->
+                                <div class="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow  xl:p-8  w-full">
+                                    <div class="flex flex-col justify-center items-center my-8">
+                                        <span class="mr-2 text-3xl font-extrabold">{{$brazylia_kilos}} kg</span>
+                                        <span class="text-gray-500 mt-2">Brazylia NEBLINA</span>
+                                    </div>
+                                </div>
+                                <!-- Pricing Card -->
+                                <div class="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow xl:p-8  w-full">
+                                    <div class="flex flex-col justify-center items-center my-8">
+                                        <span class="mr-2 text-3xl font-extrabold">{{$indie_kilos}} kg</span>
+                                        <span class="text-gray-500 mt-2">Indie RIMO</span>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow xl:p-8  w-full">
+                                    <div class="flex flex-col justify-center items-center my-8">
+                                        <span class="mr-2 text-3xl font-extrabold">{{$etiopia_kilos}} kg</span>
+                                        <span class="text-gray-500 mt-2">Etiopia RAS DASHEN</span>
                                     </div>
                                 </div>
                             </div>

@@ -287,7 +287,7 @@
         <div class="container">
             <footer class="d-flex flex-wrap justify-content-between align-items-center py-5">
                 <ul class="nav col-md-3 justify-content-center order-2 order-md-1 mx-auto my-2">
-                    <li class="nav-item mx-0"><span class="nav-link px-2 text-secondary text-center">&copy; {{ date('Y') }} Desinged by Karol Wiśniewski</span></li>
+                    <li class="nav-item mx-0"><span class="nav-link px-2 text-secondary text-center">&copy; {{ date('Y') }} Desinged by <a href="https://wibest.pl/" class="text-muted text-underline">WIBEST</a></span></li>
                 </ul>
                 <a href="/" class="d-flex align-items-center justify-content-center col-12 col-md-auto order-1 order-md-2 mx-auto">
                     <img class="img-fluid" src="{{asset('logo/COFFEESUMMIT-LOGO-BIALE-przezroczyste-tlo.png')}}" alt="logo coffee summit" style="height: 6em;">

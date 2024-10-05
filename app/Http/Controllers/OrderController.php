@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use App\Mail\OrderMail;
+use App\Mail\OrderTest;
 use App\Models\Discount;
 use App\Models\OrderLog;
 use App\Models\Payment;
@@ -63,14 +64,6 @@ class OrderController extends Controller
         $elements = Company::get();
         return view('client.coffee.account.order.create', compact('photos', 'cartItems', 'user', 'elements'));
     }
-    private function calculateDiscount($discount, $price)
-    {
-        if ($discount->type == 'procentowy') {
-            return $price - ($price * ($discount->value /  100));
-        } else {
-            return $price - $discount->value;
-        }
-    }
     public function store(Request $request)
     {
         if ($request->type_transfer == 'false' && $request->type_transfer_24 == 'false') {
@@ -104,23 +97,30 @@ class OrderController extends Controller
         if ($request->adres_type == 'adres_person') {
             if ($request->post == '64-920') {
                 Session::put('transfer', false);
+                $ship = false;
             } else {
                 $total = $total + $company['price_ship'];
                 Session::put('transfer', true);
+                $ship = true;
             }
         } else {
             if ($total >= $company['free_ship']) {
                 Session::put('transfer', false);
+                $ship = false;
             } else {
                 $total = $total + $company['price_ship'];
                 Session::put('transfer', true);
+                $ship = true;
             }
         }
         $discount = Discount::where('code', $request->input('discount'))->first();
 
         if ($discount) {
-            $newPrice = (int) $this->calculateDiscount($discount, (int) $total);
+            $newPrice = (float) $this->calculateDiscount($discount, (float) $total);
             $total = $newPrice;
+            $discount = $discount->id;
+        }else{
+            $discount = null;
         }
         $order = Order::create([
             'number' => Str::random(4),
@@ -146,6 +146,8 @@ class OrderController extends Controller
             'adres_type' => $request->adres_type,
             'status' => 'Oczekujące na płatność',
             'point' => $request->point,
+            'discount' => $discount,
+            'ship' => $ship,
         ]);
 
         foreach ($cartContent as $item) {
@@ -186,16 +188,17 @@ class OrderController extends Controller
         } elseif ($request->type_transfer == 'true') {
             \Cart::session('cart')->clear();
 
-            // Wyślij e-mail
-            $email = new OrderMail($order);
+            $email = new OrderTest($order->id);
             Mail::to($request->email)
-                ->to('admin@coffeesummit.pl')
-                ->to('sklep@coffeesummit.pl')
-                ->to('kontakt@coffeesummit.pl')
-                ->to('radek.karminski@coffeesummit.pl')
                 ->send($email->build());
-            $response = $this->createInvoice($order, null);
-            $this->logAndReturnResponseFromCreateInvoice($response, $user, $order, false);
+
+            if ($discount) {
+                $response = $this->createInvoice($order, null, $discount);
+                $this->logAndReturnResponseFromCreateInvoice($response, $user, $order, false);
+            } else {
+                $response = $this->createInvoice($order, null, null);
+                $this->logAndReturnResponseFromCreateInvoice($response, $user, $order, false);
+            }
             return redirect()->route('account.order.show', $order->id)->with('success', 'Dziękujemy, zamówienie zostało złożone.');
         }
     }

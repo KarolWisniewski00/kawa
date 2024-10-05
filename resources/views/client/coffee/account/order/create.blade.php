@@ -52,9 +52,9 @@
         }
     }
 </script>
-<link rel="stylesheet" href="https://geowidget.inpost.pl/inpost-geowidget.css"/>
+<link rel="stylesheet" href="https://geowidget.inpost.pl/inpost-geowidget.css" />
 <script src='https://geowidget.inpost.pl/inpost-geowidget.js' defer></script>
-<script> 
+<script>
     var fifth = false;
     var city = false;
     var street = false;
@@ -76,7 +76,7 @@
 @endsection
 @section('content')
 <style>
-body {
+    body {
         margin-top: 20px;
     }
 
@@ -292,13 +292,13 @@ body {
                                                 <div class="form-check my-3 align-self-start w-100">
                                                     <input class="form-check-input" type="radio" name="adres_type" value="parcel_locker" id="adres_parcel_locker" checked>
                                                     <label class="form-check-label text-start w-100" for="adres_parcel_locker">
-                                                            <span class="">Chcę zamówić do paczkomatu</span>
-                                                            <img class="img-fluid ms-2" style="height: 1.35em;" alt="inpost-logo.svg" src="{{asset('image/inpost-logo.svg')}}">
+                                                        <span class="">Chcę zamówić do paczkomatu</span>
+                                                        <img class="img-fluid ms-2" style="height: 1.35em;" alt="inpost-logo.svg" src="{{asset('image/inpost-logo.svg')}}">
                                                     </label>
                                                 </div>
                                                 <inpost-geowidget id="easypack-map" onpoint="onpointselect" class="w-100" style="height:80vh" token='eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJzQlpXVzFNZzVlQnpDYU1XU3JvTlBjRWFveFpXcW9Ua2FuZVB3X291LWxvIn0.eyJleHAiOjIwMzkyODE2MjksImlhdCI6MTcyMzkyMTYyOSwianRpIjoiMmVjNWFmZTktODcwMC00MzY5LTg0M2YtYTY3YzM0MjEzODA1IiwiaXNzIjoiaHR0cHM6Ly9sb2dpbi5pbnBvc3QucGwvYXV0aC9yZWFsbXMvZXh0ZXJuYWwiLCJzdWIiOiJmOjEyNDc1MDUxLTFjMDMtNGU1OS1iYTBjLTJiNDU2OTVlZjUzNToyNzl1VzdDNW1FdnFfTHZLRVpudGJTXzJ5alVaZmMyWUtRUzlyNUdCVS1FIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoic2hpcHgiLCJzZXNzaW9uX3N0YXRlIjoiYzhmZDliODctM2QzOC00YzM1LWIxMzMtMmZhOWNjYTYxOTJiIiwic2NvcGUiOiJvcGVuaWQgYXBpOmFwaXBvaW50cyIsInNpZCI6ImM4ZmQ5Yjg3LTNkMzgtNGMzNS1iMTMzLTJmYTljY2E2MTkyYiIsImFsbG93ZWRfcmVmZXJyZXJzIjoid3d3LmNvZmZlZXN1bW1pdC5wbCIsInV1aWQiOiIxYzk1MGYyMS00ZDY5LTRmZGYtYmExYi1lNmI4MmQ5YmMzMDcifQ.S_Jc9B1qgk2TSkldPpB69o-riuP2JDa5w1vSJtFLhdH6N4gzocA_r9KyxrkaXY-6gyRH1ypC8HqTQebVjwMGASUK3UkqcXx61v16H-eS-OD2Ah7nkYWIwufTGUiCCVhgI31TOkXX-koDwJSvGT4sIMWUCu3nK69a05DDlkUcz7fox9m6nRh5rU0kj698-cZSrY1J4e2rHws_NnxMNmYppIK5ZGICAlVCK-yOuKtLyMPD1HQ1L8KtZ0YwxCWXFmTR8C1wRbjOJRxJF70QbBExGqFGOr3TmKjkIwiKgp7uGVMaIuaVIRvJZ95uGy6fPG_12cBk4UzGn9NZNrytJnQrpA' language='pl' config='parcelcollect'></inpost-geowidget>
                                                 <div class="form-floating my-3 w-100" id="point-input-container">
-                                                    <input type="text" class="form-control" id="selectedPoint" placeholder="Numer paczkomatu" name="point" >
+                                                    <input type="text" class="form-control" id="selectedPoint" placeholder="Numer paczkomatu" name="point">
                                                     <label for="point">Numer paczkomatu</label>
                                                     <span class="text-danger">@error('point') {{$message}} @enderror</span>
                                                 </div>
@@ -450,12 +450,12 @@ body {
                         <!-- Single Timeline Content-->
                         <div class="single-timeline-area">
                             <div id="step-last" class="timeline-date wow fadeInLeft" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInLeft;">
-                                <p class="text-center">Krok ostatni</p>
+                                <p class="text-center">Krok 8</p>
                             </div>
                             <div class="row">
                                 <div class="col-12">
                                     <div class="single-timeline-content d-flex wow fadeInLeft my-4" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInLeft;">
-                                        <div class="timeline-text text-start">
+                                        <div class="timeline-text text-start w-100">
                                             <button class="w-100 btn btn-success my-4" type="submit"><i class="fa-solid fa-credit-card me-2"></i>Kupuję i płacę</button>
                                         </div>
                                     </div>
@@ -495,7 +495,7 @@ body {
             </div>
             <div class="col-12 col-md-6 order-2 order-md-2">
                 <div class="position-sticky p-2" style="top:10rem; overflow:auto;">
-                    <table class="table text-center">
+                    <table class="table text-center d-none d-md-block">
                         <thead class="">
                             <tr>
                                 <th scope="col">
@@ -584,20 +584,58 @@ body {
                             @endif
                         </tbody>
                     </table>
-                    <h4>Podsumowanie koszyka</h4>
+                    <div class="list-group mb-5 d-block d-md-none">
+                        @if ($cartItems->isEmpty())
+                        <div class="list-group-item list-group-item-action flex-column align-items-start p-3 gap-3">
+                            <div class="d-flex flex-column justify-content-center align-items-center">
+                                <img class="img-fluid" alt="" src="{{asset('image/undraw_shopping_app_flsj.svg')}}">
+                                <div class="h4 m-0 p-0 my-3">Twój koszyk jest pusty!</div>
+                                <a href="{{route('shop')}}" class="btn btn-primary my-3 btn-lg"><i class="fa-solid fa-cart-shopping me-2"></i>Zrób zakupy</a>
+                            </div>
+                        </div>
+                        @else
+                        @php
+                        $k = 1;
+                        @endphp
+                        @foreach ($cartItems as $item)
+                        <div class="list-group-item list-group-item-action flex-column align-items-start p-3 gap-3">
+                            <div class="d-flex flex-column justify-content-center align-items-center">
+                                @foreach($photos as $photo)
+                                @if($photo->product_id == $item->associatedModel->id)
+                                @if($photo->order == 1)
+                                <div><img src="{{ asset('photo/' . $photo->image_path) }}" alt="" class="img-fluid" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;"></div>
+                                @endif
+                                @endif
+                                @endforeach
+                            </div>
+                            <div class="d-flex w-100 justify-content-between pt-3">
+                                <div class="d-fled flex-col">
+                                    <h4>{{ $item->name }}</h4>
+                                    <small class="text-muted fw-bold">@foreach($item->attributes as $attr) {{$attr}} @endforeach</small>
+                                </div>
+                                <div class="d-fled flex-col text-end">
+                                    <small class="text-muted">{{ $item->quantity }} x</small>
+                                    <h4 class="mt-2 mb-0 fw-bold">{{ $item->quantity*$item->price }} PLN</h4>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                        @endif
+                    </div>
+                    <h4 class="text-center">Podsumowanie koszyka</h4>
                     <ul class="list-group ">
-                        <li class="list-group-item d-flex justify-content-between align-items-start">
-                            <div class="ms-2 me-auto w-100">
-                                <div class="d-flex align-items-center">
+                        <li class="list-group-item d-flex justify-content-between align-items-start p-3">
+                            <div class="w-100">
+                                <div class="d-flex flex-column align-items-start">
                                     <!-- Input na kod rabatowy -->
-                                    <div class="form-floating w-75">
+                                    <div class="form-floating w-100">
                                         <input type="text" class="form-control" id="discount-code" placeholder="Kod rabatowy">
                                         <label for="discount-code">Wpisz kod rabatowy</label>
                                         <span class="text-danger d-none" id="discount-error"></span>
                                     </div>
 
                                     <!-- Przycisk sprawdzający kod -->
-                                    <button class="btn btn-primary ms-3" id="check-discount" type="button">
+                                    <button class="btn btn-primary ms-0 mt-3" id="check-discount" type="button">
                                         <i class="fa-solid fa-check me-2"></i>Sprawdź kod
                                     </button>
                                 </div>
@@ -607,12 +645,12 @@ body {
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                             <div class="ms-2 me-auto">
                                 @if($counter_price >= $company['free_ship'])
-                                    @php
-                                        $counter_price = $counter_price - $company['price_ship']
-                                    @endphp
-                                    <div id="ship-info" class="fw-bold">Wysyłka InPost darmowa</div>
+                                @php
+                                $counter_price = $counter_price - $company['price_ship']
+                                @endphp
+                                <div id="ship-info" class="fw-bold">Wysyłka InPost darmowa</div>
                                 @else
-                                    <div id="ship-info" class="fw-bold">Wysyłka InPost + {{ $company['price_ship'] }} PLN</div>
+                                <div id="ship-info" class="fw-bold">Wysyłka InPost + {{ $company['price_ship'] }} PLN</div>
                                 @endif
                             </div>
                         </li>
@@ -628,49 +666,52 @@ body {
                             document.getElementById('check-discount').addEventListener('click', function() {
                                 // Pobierz wartość kodu rabatowego z inputa
                                 var discountCode = document.getElementById('discount-code').value;
-                                
+
                                 // Wyczyść poprzednie błędy
                                 var discountInput = document.getElementById('discount-code');
                                 var errorMessage = document.getElementById('discount-error');
                                 var checkButton = document.getElementById('check-discount');
                                 discountInput.classList.remove('is-invalid', 'is-valid');
                                 errorMessage.classList.add('d-none');
-                                
+
                                 // AJAX
                                 fetch('{{ route("check.discount") }}', {
-                                    method: 'POST',
-                                    headers: {
-                                        'Content-Type': 'application/json',
-                                        'X-CSRF-TOKEN': '{{ csrf_token() }}' // Wysyłanie CSRF tokena
-                                    },
-                                    body: JSON.stringify({
-                                        discount_code: discountCode,
-                                        price: document.getElementById('all').innerText
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'X-CSRF-TOKEN': '{{ csrf_token() }}' // Wysyłanie CSRF tokena
+                                        },
+                                        body: JSON.stringify({
+                                            discount_code: discountCode,
+                                            price: document.getElementById('all').innerText
+                                        })
                                     })
-                                })
-                                .then(response => response.json())
-                                .then(data => {
-                                    if (data.success) {
-                                        // Kod poprawny - zaznacz na zielono, zaktualizuj cenę i zablokuj input oraz przycisk
-                                        discountInput.classList.add('is-valid');
-                                        checkButton.classList.remove('btn-primary');
-                                        checkButton.classList.add('btn-success');
-                                        checkButton.disabled = true;
-                                        discountInput.disabled = true; // Zablokuj pole tekstowe
-                                        document.getElementById('all').innerText = data.newPrice;
-                                        document.getElementById('total-input').value = data.newPrice;
-                                        document.getElementById('price-printed').value = data.newPrice;
-                                        document.getElementById('discount-form').value = discountCode;
-                                    } else {
-                                        // Kod niepoprawny - zaznacz na czerwono
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        if (data.success) {
+                                            // Kod poprawny - zaznacz na zielono, zaktualizuj cenę i zablokuj input oraz przycisk
+                                            discountInput.classList.add('is-valid');
+                                            checkButton.classList.remove('btn-primary');
+                                            checkButton.classList.add('btn-success');
+                                            checkButton.disabled = true;
+                                            discountInput.disabled = true; // Zablokuj pole tekstowe
+                                            document.getElementById('all').innerText = data.newPrice;
+                                            document.getElementById('total-input').value = data.newPrice;
+                                            document.getElementById('price-printed').value = data.newPrice;
+                                            document.getElementById('discount-form').value = discountCode;
+                                        } else {
+                                            // Kod niepoprawny - zaznacz na czerwono
+                                            discountInput.classList.add('is-invalid');
+                                            errorMessage.innerText = data.message;
+                                            errorMessage.classList.remove('d-none');
+                                        }
+                                    })
+                                    .catch(error => {
+                                        console.error('Błąd:', error);
                                         discountInput.classList.add('is-invalid');
-                                        errorMessage.innerText = data.message;
+                                        errorMessage.innerText = 'Błąd: ' + error;
                                         errorMessage.classList.remove('d-none');
-                                    }
-                                })
-                                .catch(error => {
-                                    console.error('Błąd:', error);
-                                });
+                                    });
                             });
                         </script>
 

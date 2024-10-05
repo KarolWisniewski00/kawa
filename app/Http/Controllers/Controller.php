@@ -18,7 +18,17 @@ use Illuminate\Support\Facades\Session;
 class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
-    public function createInvoice(Order $order, $status = null)
+
+    public function calculateDiscount($discount, $price)
+    {
+        if ($discount->type == 'procentowy') {
+            return $price - ($price * ($discount->value /  100));
+        } else {
+            return $price - $discount->value;
+        }
+    }
+
+    public function createInvoice(Order $order, $status = null, $discount = null)
     {
         $apiToken = '6oQip8emYz6GpixnQZeb';
         $order_items = OrderItem::where('order_id', $order->id)->get();
@@ -31,15 +41,69 @@ class Controller extends BaseController
         $company_phone = Company::where('type', 'phone_contact_page')->first();
         $company_email = Company::where('type', 'email_contact_page')->first();
 
-        $counter_price = 0;
-        foreach ($order_items as $key => $value) {
-            array_push($positions, ['name' => $value->name . " " . $value->attributes_name . " " . $value->attributes_grind, 'tax' => 23, 'total_price_gross' => floatval(floatval($value->price) * floatval($value->quantity)), 'quantity' => $value->quantity]);
-            $counter_price += ($value->price * $value->quantity);
-        }
-        $tot = $order->total - $company->content;
-        if ($tot == $counter_price) {
-            if ($counter_price < $company_free->content) {
-                array_push($positions, ['name' => 'Przesyłka InPost', 'tax' => 23, 'total_price_gross' => intval($company->content), 'quantity' => 1]);
+        if ($discount != null) {
+            if ($discount->type == 'procentowy') {
+                $counter_price = 0;
+                foreach ($order_items as $key => $value) {
+                    $total = floatval(floatval($value->price) * floatval($value->quantity));
+                    $newPrice = (float) $this->calculateDiscount($discount, (float) $total);
+                    $total = $newPrice;
+
+                    array_push($positions, ['name' => $value->name . " " . $value->attributes_name . " " . $value->attributes_grind, 'tax' => 23, 'total_price_gross' => $total, 'quantity' => $value->quantity]);
+                    $counter_price += $total;
+                }
+
+                $companyContent = (float) $this->calculateDiscount($discount, (float) $company->content);
+                if ($order->adres_type == 'adres_person') {
+                    if ($order->post == '64-920') {
+                    } else {
+                        array_push($positions, ['name' => 'Przesyłka InPost', 'tax' => 23, 'total_price_gross' => $companyContent, 'quantity' => 1]);
+                    }
+                } else {
+                    if ($total >= $company->content) {
+                    } else {
+                        array_push($positions, ['name' => 'Przesyłka InPost', 'tax' => 23, 'total_price_gross' => $companyContent, 'quantity' => 1]);
+                    }
+                }
+            } else {
+                $counter_price = 0;
+                foreach ($order_items as $key => $value) {
+                    if ($key == 0) {
+                        $total = floatval(floatval($value->price) * floatval($value->quantity));
+                        $newPrice = (float) $this->calculateDiscount($discount, (float) $total);
+                        $total = $newPrice;
+
+                        array_push($positions, ['name' => $value->name . " " . $value->attributes_name . " " . $value->attributes_grind, 'tax' => 23, 'total_price_gross' => $total, 'quantity' => $value->quantity]);
+                        $counter_price += $total;
+                    } else {
+                        array_push($positions, ['name' => $value->name . " " . $value->attributes_name . " " . $value->attributes_grind, 'tax' => 23, 'total_price_gross' => floatval(floatval($value->price) * floatval($value->quantity)), 'quantity' => $value->quantity]);
+                        $counter_price += ($value->price * $value->quantity);
+                    }
+                }
+
+                if ($order->adres_type == 'adres_person') {
+                    if ($order->post == '64-920') {
+                    } else {
+                        array_push($positions, ['name' => 'Przesyłka InPost', 'tax' => 23, 'total_price_gross' =>  (float) $company->content, 'quantity' => 1]);
+                    }
+                } else {
+                    if ($counter_price >= $order->total) {
+                    } else {
+                        array_push($positions, ['name' => 'Przesyłka InPost', 'tax' => 23, 'total_price_gross' =>  (float) $company->content, 'quantity' => 1]);
+                    }
+                }
+            }
+        } else {
+            $counter_price = 0;
+            foreach ($order_items as $key => $value) {
+                array_push($positions, ['name' => $value->name . " " . $value->attributes_name . " " . $value->attributes_grind, 'tax' => 23, 'total_price_gross' => floatval(floatval($value->price) * floatval($value->quantity)), 'quantity' => $value->quantity]);
+                $counter_price += ($value->price * $value->quantity);
+            }
+            $tot = $order->total - $company->content;
+            if ($tot == $counter_price) {
+                if ($counter_price < $company_free->content) {
+                    array_push($positions, ['name' => 'Przesyłka InPost', 'tax' => 23, 'total_price_gross' => intval($company->content), 'quantity' => 1]);
+                }
             }
         }
 
@@ -72,27 +136,7 @@ class Controller extends BaseController
                 ],
             ]);
         } else {
-            $response = Http::withHeaders([
-                'Accept' => 'application/json',
-                'Content-Type' => 'application/json',
-            ])->post('https://coffeesummit.fakturownia.pl/invoices.json', [
-                'api_token' => $apiToken,
-                'invoice' => [
-                    'kind' => 'vat',
-                    'number' => null,
-                    'sell_date' => $order->created_at->format('Y-m-d'),
-                    'issue_date' => $order->created_at->format('Y-m-d'),
-                    'paid_date' => $order->created_at->addDays(7)->format('Y-m-d'),
-                    'buyer_name' => $order->name,
-                    'buyer_post_code' => $order->post,
-                    'buyer_city' => $order->city,
-                    'buyer_street' => $order->street,
-                    'buyer_tax_no' => '',
-                    'positions' => $positions,
-                    "payment_type" => $order_payment,
-                    "status" => $status
-                ],
-            ]);
+            return null;
         }
 
         $response_json = $response->json();
@@ -118,6 +162,14 @@ class Controller extends BaseController
             $name = $user->name;
         } catch (\Throwable $th) {
             $name = 'UNKNOW';
+        }
+        if ($response == null) {
+            OrderLog::create([
+                'name' => $name,
+                'description' => 'Nie utworzono faktury ponieważ nie podano nipu',
+                'type' => EnumsOrderLog::ADMIN,
+                'order_id' => $order->id,
+            ]);
         }
         try {
             if ($response['code'] == 'error') {

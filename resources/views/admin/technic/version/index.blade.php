@@ -13,7 +13,17 @@
                     @include('admin.module.alerts')
 
                     <ol class="relative border-s border-gray-200 ">
-                    <li class="mb-10 ms-4">
+                        <li class="mb-10 ms-4">
+                            <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white "></div>
+                            <time class="mb-1 text-sm font-normal leading-none text-gray-400 ">5 październik 2024 V 1.4.0</time>
+                            <h3 class="text-lg font-semibold text-gray-900 ">Aktualizacja</h3>
+                            <p class="text-base font-normal text-gray-500 ">1. Poprawa naliczania kodów rabatowych w fakturowni</p>
+                            <p class="text-base font-normal text-gray-500 ">2. Naprawa wysłania maili potwierdzenia zamówienia</p>
+                            <p class="text-base font-normal text-gray-500 ">3. Zablokowanie wystawiania faktur dla użytkownika</p>
+                            <p class="text-base font-normal text-gray-500 ">4. Dodanie zliczania kilogramów sprzedanych kaw</p>
+                            <p class="text-base font-normal text-gray-500 ">5. Dodanie zlapisu kuriera i przesyłki w celu przyszłej optymalizacji wyglądu</p>
+                        </li>
+                        <li class="mb-10 ms-4">
                             <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white "></div>
                             <time class="mb-1 text-sm font-normal leading-none text-gray-400 ">17 wrzesień 2024 V 1.3.0</time>
                             <h3 class="text-lg font-semibold text-gray-900 ">Aktualizacja</h3>

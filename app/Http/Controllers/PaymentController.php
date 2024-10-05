@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Enums\OrderLog as EnumsOrderLog;
 use App\Enums\PaymentStatus;
 use App\Mail\OrderMail;
+use App\Mail\OrderTest;
+use App\Models\Discount;
 use App\Models\Order;
 use App\Models\OrderLog;
 use App\Models\Payment;
@@ -35,13 +37,12 @@ class PaymentController extends Controller
             $payment->save();
             Order::where('id', '=', $payment->order_id)->update(['status' => 'W trakcie realizacji']);
             $order = Order::where('id', '=', $payment->order_id)->first();
-            $email = new OrderMail($order);
+            $email = new OrderTest($order->id);
             Mail::to($order->email)->send($email->build());
-            Mail::to('admin@coffeesummit.pl')->send($email->build());
-            Mail::to('sklep@coffeesummit.pl')->send($email->build());
             Mail::to('kontakt@coffeesummit.pl')->send($email->build());
-            Mail::to('radek.karminski@coffeesummit.pl')->send($email->build());
-            $this->createInvoice($order, 'paid');
+            $discount = Discount::where('id', $order->discount)->first();
+            $response = $this->createInvoice($order, 'paid', $discount);
+            $this->logAndReturnResponseFromCreateInvoice($response, 'UNKNOW', $order, false);
             OrderLog::create([
                 'name' => 'Przelewy24',
                 'description' => 'Płatność została zrealizowana. Zmiana statusu na W trakcie realizacji',

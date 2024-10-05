@@ -74,12 +74,5 @@ class DiscountAdminController extends Controller
         }
     }
 
-    private function calculateDiscount($discount, $price)
-    {
-        if ($discount->type == 'procentowy') {
-            return $price - ($price * ($discount->value /  100));
-        } else {
-            return $price - $discount->value;
-        }
-    }
+
 }

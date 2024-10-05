@@ -63,6 +63,7 @@ Route::prefix('shop')->group(function () {
         Route::post('/store', [OrderController::class, 'store'])->name('account.order.store');
         Route::get('/show/{slug}', [OrderController::class, 'show'])->name('account.order.show');
         Route::get('/status/{id}/{slug}', [OrderController::class, 'status'])->name('account.order.status');
+        Route::post('/check', [DiscountAdminController::class, 'check'])->name('check.discount');
     });
     Route::prefix('product')->group(function () {
         Route::get('{slug}', [ProductController::class, 'show'])->name('shop.product.show');
@@ -214,7 +215,6 @@ Route::middleware([
                 Route::get('/edit/{discount}', [DiscountAdminController::class, 'edit'])->name('dashboard.shop.discount.edit');
                 Route::put('/update/{discount}', [DiscountAdminController::class, 'update'])->name('dashboard.shop.discount.update');
                 Route::delete('/delete/{id}', [DiscountAdminController::class, 'delete'])->name('dashboard.shop.discount.delete');
-                Route::post('/check', [DiscountAdminController::class, 'check'])->name('check.discount');
             });
         });
         Route::prefix('technic')->group(function () {
