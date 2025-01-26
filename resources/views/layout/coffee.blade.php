@@ -21,6 +21,24 @@
     <script src="https://kit.fontawesome.com/e37acf9c2e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ asset('css/coffee.css')}}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-PWNLSZXX');
+    </script>
+    <!-- End Google Tag Manager -->
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-2H090DSHDS">
     </script>
@@ -39,6 +57,11 @@
 </head>
 
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PWNLSZXX"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <!--NAV + HEADER-->
     <section id="nav" class="fixed-top bg-secondary bg-trans" style="width: 100vw; z-index:10">
         <header class="py-1 bg-primary">
@@ -48,6 +71,18 @@
                         <li class="nav-item text-white px-1 text-end"> </li>
                     </ul>
                     <ul class="nav col-md-4 justify-content-center">
+                        <style>
+                            @media only screen and (min-width: 992px) {
+                                .ws {
+                                    white-space: wrap!important;
+                                }
+                            }
+                            @media only screen and (min-width: 1400px) {
+                                .ws {
+                                    white-space: nowrap !important;
+                                }
+                            }
+                        </style>
                         <li class="nav-item text-white px-1 text-center mx-0 font-custom-1 ws">{{ $company['info_top_website'] }}</li>
                     </ul>
                     <ul class="nav col-md-3 justify-content-end">

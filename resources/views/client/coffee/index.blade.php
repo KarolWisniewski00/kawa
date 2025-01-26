@@ -81,13 +81,13 @@
             </div>
             @foreach($products as $product)
             @if($product->visibility_on_website == true)
-            <div class="col-12 col-md-4">
-                <a href="{{route('shop.product.show', $product->id)}}" class="gsap h-100 d-flex flex-column justify-content-start align-items-center text-decoration-none">
+            <div class="col-12 col-md-4 product-item" data-category-id="@foreach($product->categories as $pc){{ $pc->id }},@endforeach">
+                <a href="{{route('shop.product.show', $product->id)}}" class="h-100 d-flex flex-column justify-content-between align-items-center text-decoration-none">
                     @foreach($photos as $photo)
                     @if($photo->product_id == $product->id)
                     @if($photo->order == 1)
                     <div class="d-flex flex-column justify-content-center align-items-center h-75 overflow-hidden">
-                        <img src="{{ asset('photo/' . $photo->image_path) }}" alt="{{$product->name}}" class="img-fluid" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
+                        <img src="{{ asset('photo/' . $photo->image_path) }}" alt="" class="img-fluid" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
                     </div>
                     @endif
                     @endif
@@ -114,9 +114,14 @@
                                 @endphp
                                 @endif
                                 @endforeach
-
-                                @if($minPrice !== null && $maxPrice !== null)
+                                @if($product->price_simple != null)
+                                {{$product->price_simple}} PLN
+                                @elseif($minPrice !== null && $maxPrice !== null)
+                                @if($minPrice == $maxPrice)
+                                {{$minPrice}} PLN
+                                @else
                                 {{$minPrice}} PLN - {{$maxPrice}} PLN
+                                @endif
                                 @else
                                 Brak dostępnych cen.
                                 @endif

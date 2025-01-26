@@ -73,7 +73,118 @@
                         @error('visibility_in_google')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
-                        <div class="mb-6">
+                        <div class="mb-6 grid w-full gap-6 md:grid-cols-2">
+                            <div>
+                                <h3 class="mb-5 text-lg font-medium text-gray-900 ">Rodzaj wyświetlania podglądu produktu</h3>
+                                <ul class="grid w-full gap-6 md:grid-cols-2">
+                                    <li>
+                                        <input {{ old('view_type', $product->view_type) == 'variants_full' ? 'checked' : '' }} name="view_type" type="radio" id="view_type1" value="variants_full" class="hidden peer" required>
+                                        <label for="view_type1" class="h-full inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 hover:text-gray-600 peer-checked:text-gray-600 hover:bg-gray-50">
+                                            <div class="block">
+                                                <div class="w-full text-lg font-semibold mb-2">Produkt z wariantami kawowymi pełny</div>
+                                                <div class="block mb-4 text-sm font-medium text-gray-900">Używany do kaw</div>
+                                                <div class="block mb-2 text-sm font-medium text-gray-500">-Różny rozmiar różna cena</div>
+                                                <div class="block mb-2 text-sm font-medium text-gray-500">-Rodzaj mielenia</div>
+                                                <div class="block mb-2 text-sm font-medium text-gray-500">-Ikony (stopień wypalenia itp.)</div>
+                                                <div class="block mb-2 text-sm font-medium text-gray-500">-Kroki</div>
+                                            </div>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <input {{ old('view_type', $product->view_type) == 'variants' ? 'checked' : '' }} name="view_type" type="radio" id="view_type2" value="variants" class="hidden peer" required>
+                                        <label for="view_type2" class="h-full inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 hover:text-gray-600 peer-checked:text-gray-600 hover:bg-gray-50">
+                                            <div class="block">
+                                                <div class="w-full text-lg font-semibold mb-2">Produkt z wariantami kawowymi</div>
+                                                <div class="block mb-4 text-sm font-medium text-gray-900">Używany do zestawów kaw</div>
+                                                <div class="block mb-2 text-sm font-medium text-gray-500">-Różny rozmiar różna cena</div>
+                                                <div class="block mb-2 text-sm font-medium text-gray-500">-Rodzaj mielenia</div>
+                                                <div class="block mb-2 text-sm font-medium text-gray-500">-Kroki</div>
+                                            </div>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <input {{ old('view_type', $product->view_type) == 'single' ? 'checked' : '' }} name="view_type" type="radio" id="view_type3" value="single" class="hidden peer" required>
+                                        <label for="view_type3" class="h-full inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 hover:text-gray-600 peer-checked:text-gray-600 hover:bg-gray-50">
+                                            <div class="block">
+                                                <div class="w-full text-lg font-semibold mb-2">Produkt z wariantem kawowym</div>
+                                                <div class="block mb-4 text-sm font-medium text-gray-900">Używany do zestawów prezentowych kaw</div>
+                                                <div class="block mb-2 text-sm font-medium text-gray-500">-Jeden rozmiar jedna cena</div>
+                                                <div class="block mb-2 text-sm font-medium text-gray-500">-Rodzaj mielenia</div>
+                                                <div class="block mb-2 text-sm font-medium text-gray-500">-Ikony (stopień wypalenia itp.)</div>
+                                                <div class="block mb-2 text-sm font-medium text-gray-500">-Kroki</div>
+                                            </div>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <input {{ old('view_type', $product->view_type) == 'simple' ? 'checked' : '' }} name="view_type" type="radio" id="view_type4" value="simple" class="hidden peer" required>
+                                        <label for="view_type4" class="h-full inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 hover:text-gray-600 peer-checked:text-gray-600 hover:bg-gray-50">
+                                            <div class="block">
+                                                <div class="w-full text-lg font-semibold">Produkt z prosty</div>
+                                                <div class="block mb-2 text-sm font-medium text-gray-500">-Opis</div>
+                                                <div class="block mb-2 text-sm font-medium text-gray-500">-Cena</div>
+                                                <div class="block mb-2 text-sm font-medium text-gray-500">-Dodaj do koszyka</div>
+                                            </div>
+                                        </label>
+                                    </li>
+                                </ul>
+                                @error('view_type')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div>
+                                <h3 class="mb-5 text-lg font-medium text-gray-900">Kategorie</h3>
+                                <a href="{{ route('dashboard.shop.category.create') }}" class="text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none">Utwórz kategorię</a>
+                                <ul class="grid w-full gap-6 md:grid-cols-1 mt-5">
+                                    @foreach($categories as $category)
+                                    @if($category->parent_id == null)
+                                    <li>
+                                        <input {{ in_array($category->id, old('category', $product->categories->pluck('id')->toArray())) ? 'checked' : '' }} name="category[]" type="checkbox" id="category_{{$category->id}}" value="{{$category->id}}" class="hidden peer">
+                                        <label for="category_{{$category->id}}" class="h-full inline-flex items-center justify-between w-fit p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 hover:text-gray-600 peer-checked:text-gray-600 hover:bg-gray-50">
+                                            <div class="block">
+                                                <div class="w-full text-lg font-semibold">{{$category->name}}</div>
+                                            </div>
+                                        </label>
+                                    </li>
+                                    @foreach($categories as $cat)
+                                    @if($cat->parent_id == $category->id)
+                                    <li>
+                                        <input {{ in_array($cat->id, old('category', $product->categories->pluck('id')->toArray())) ? 'checked' : '' }} name="category[]" type="checkbox" id="category_{{$cat->id}}" value="{{$cat->id}}" class="hidden peer">
+                                        <label for="category_{{$cat->id}}" class="ms-10 h-full inline-flex items-center justify-between w-fit p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 hover:text-gray-600 peer-checked:text-gray-600 hover:bg-gray-50">
+                                            <div class="block">
+                                                <div class="w-full text-lg font-semibold">{{$cat->name}}</div>
+                                            </div>
+                                        </label>
+                                    </li>
+                                    @foreach($categories as $c)
+                                    @if($c->parent_id == $cat->id)
+                                    <li>
+                                        <input {{ in_array($c->id, old('category', $product->categories->pluck('id')->toArray())) ? 'checked' : '' }} name="category[]" type="checkbox" id="category_{{$c->id}}" value="{{$c->id}}" class="hidden peer">
+                                        <label for="category_{{$c->id}}" class="ms-20 h-full inline-flex items-center justify-between w-fit p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer peer-checked:border-blue-600 hover:text-gray-600 peer-checked:text-gray-600 hover:bg-gray-50">
+                                            <div class="block">
+                                                <div class="w-full text-lg font-semibold">{{$c->name}}</div>
+                                            </div>
+                                        </label>
+                                    </li>
+                                    @endif
+                                    @endforeach
+                                    @endif
+                                    @endforeach
+                                    @endif
+                                    @endforeach
+                                </ul>
+                                @error('category')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="mb-6 {{ old('view_type', $product->view_type) == 'simple' ? '' : 'hidden' }}" id="price_simple">
+                            <label for="number" class="block mb-2 text-sm font-medium text-gray-900 ">Cena</label>
+                            <input value="{{ old('price_simple', $product->price_simple) }}" name="price_simple" type="number" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                            @error('price_simple')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-6" id="size_price">
 
                             <h3 class="mb-5 text-lg font-medium text-gray-900 ">Rozmiar opakowania</h3>
                             <ul class="grid w-full gap-6 md:grid-cols-3">
@@ -113,7 +224,7 @@
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
                         </div>
-                        <div class="mb-6">
+                        <div class="mb-6" id="grind">
 
                             <h3 class="mb-5 text-lg font-medium text-gray-900 ">Rozmiar mielenia</h3>
                             <ul class="grid w-full gap-6 md:grid-cols-3">
@@ -132,7 +243,7 @@
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
                         </div>
-                        <div class="flex flex-col items-center mb-6">
+                        <div class="flex flex-col items-center mb-6" id="icons">
                             <h3 class="mb-5 text-lg font-medium text-gray-900 ">Dodatkowe informacje</h3>
                             <div class="mb-6">
                                 <label for="text" class="block mb-2 text-sm font-medium text-gray-900 ">Wysokość m n.p.m.</label>
@@ -317,9 +428,64 @@
                                 <button id="showMoreBtnModal" type="button" class="mt-8 text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"><i class="fa-solid fa-caret-down mr-2"></i>Pokaż więcej</button>
                             </div>
                         </div>
-
+                        <input type="hidden" id="view_type_hidden" value="{{$product->view_type}}" />
                         <script>
                             $(document).ready(function() {
+                                const view = $('#view_type_hidden').val();
+                                switch (view) {
+                                    case 'simple':
+                                        $('#price_simple').removeClass('hidden');
+                                        $('#size_price').addClass('hidden');
+                                        $('#grind').addClass('hidden');
+                                        $('#icons').addClass('hidden');
+                                        break;
+                                    case 'single':
+                                        $('#price_simple').removeClass('hidden');
+                                        $('#size_price').addClass('hidden');
+                                        $('#grind').removeClass('hidden');
+                                        $('#icons').removeClass('hidden');
+                                        break;
+                                    case 'variants':
+                                        $('#price_simple').addClass('hidden');
+                                        $('#size_price').removeClass('hidden');
+                                        $('#grind').removeClass('hidden');
+                                        $('#icons').addClass('hidden');
+                                        break;
+                                    case 'variants_full':
+                                        $('#price_simple').addClass('hidden');
+                                        $('#size_price').removeClass('hidden');
+                                        $('#grind').removeClass('hidden');
+                                        $('#icons').removeClass('hidden');
+                                        break;
+
+                                    default:
+                                        break;
+                                }
+                                $("#view_type1").on("click", function() {
+                                    $('#price_simple').addClass('hidden');
+                                    $('#size_price').removeClass('hidden');
+                                    $('#grind').removeClass('hidden');
+                                    $('#icons').removeClass('hidden');
+                                });
+                                $("#view_type2").on("click", function() {
+                                    $('#price_simple').addClass('hidden');
+                                    $('#size_price').removeClass('hidden');
+                                    $('#grind').removeClass('hidden');
+                                    $('#icons').addClass('hidden');
+                                });
+                                $("#view_type3").on("click", function() {
+                                    $('#price_simple').removeClass('hidden');
+                                    $('#size_price').addClass('hidden');
+                                    $('#grind').removeClass('hidden');
+                                    $('#icons').removeClass('hidden');
+                                });
+                                $("#view_type4").on("click", function() {
+                                    $('#price_simple').removeClass('hidden');
+                                    $('#size_price').addClass('hidden');
+                                    $('#grind').addClass('hidden');
+                                    $('#icons').addClass('hidden');
+                                });
+
                                 // Existing photo grid "Show More" functionality
                                 let visiblePhotoCount = 9;
 

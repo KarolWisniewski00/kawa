@@ -124,11 +124,17 @@ $counter_price = intval($company['price_ship']);
                                             <form method="POST" action="{{route('shop.cart.minus', $item->associatedModel)}}">
                                                 @csrf
                                                 @foreach($sizes as $size)
+                                                @if(!empty($item->attributes))
                                                 @if($size->name == $item->attributes[0])
                                                 <input type="hidden" name="size" value="{{$size->id}}">
                                                 @endif
+                                                @else
+                                                <input type="hidden" name="size" value="0">
+                                                @endif
                                                 @endforeach
+                                                @if(!empty($item->attributes))
                                                 <input type="hidden" name="grind" value="{{$item->attributes[1]}}">
+                                                @endif
                                                 <button type="submit" class="btn btn-sm btn-danger me-2" onclick="return confirm('Czy na pewno chcesz usunąć ten produkt?');">
                                                     <i class="fa-solid fa-minus"></i>
                                                 </button>
@@ -138,11 +144,17 @@ $counter_price = intval($company['price_ship']);
                                                 @csrf
                                                 <input type="hidden" name="quantity" value="1">
                                                 @foreach($sizes as $size)
+                                                @if(!empty($item->attributes))
                                                 @if($size->name == $item->attributes[0])
                                                 <input type="hidden" name="size" value="{{$size->id}}">
                                                 @endif
+                                                @else
+                                                <input type="hidden" name="size" value="0">
+                                                @endif
                                                 @endforeach
+                                                @if(!empty($item->attributes))
                                                 <input type="hidden" name="grind" value="{{$item->attributes[1]}}">
+                                                @endif
                                                 <button type="submit" class="btn btn-sm btn-success ms-2">
                                                     <i class="fa-solid fa-plus"></i>
                                                 </button>
@@ -162,11 +174,17 @@ $counter_price = intval($company['price_ship']);
                                             <form method="POST" action="{{route('shop.cart.remove', $item->associatedModel)}}">
                                                 @csrf
                                                 @foreach($sizes as $size)
+                                                @if(!empty($item->attributes))
                                                 @if($size->name == $item->attributes[0])
                                                 <input type="hidden" name="size" value="{{$size->id}}">
                                                 @endif
+                                                @else
+                                                <input type="hidden" name="size" value="0">
+                                                @endif
                                                 @endforeach
+                                                @if(!empty($item->attributes))
                                                 <input type="hidden" name="grind" value="{{$item->attributes[1]}}">
+                                                @endif
                                                 <button type="submit" class="btn btn-danger" onclick="return confirm('Czy na pewno chcesz usunąć ten produkt?');"><i class="fa-solid fa-trash"></i>
                                                 </button>
                                             </form>

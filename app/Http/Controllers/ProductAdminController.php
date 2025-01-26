@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateProductRequest;
+use App\Models\Category;
 use App\Models\Grinding;
 use App\Models\Product;
 use App\Models\ProductImage;
@@ -34,26 +35,47 @@ class ProductAdminController extends Controller
             'sizes' => Size::get(),
             'grindTypes' => Grinding::get(),
             'photos' => $photos,
+            'categories' => Category::paginate(20),
         ]);
     }
-    public function store(CreateProductRequest $request)
+    public function store(Request $request)
     {
+        if($request->description == null){
+            $description = '';
+        }else{
+            $description = $request->description;
+        }
+        if($request->seo_title == null){
+            $seo_title = $request->name;
+        }else{
+            $seo_title = $request->seo_title;
+        }
+        if($request->seo_description == null){
+            $seo_description = $request->name;
+        }else{
+            $seo_description = $request->seo_description;
+        }
+
         $product = Product::create([
             'name' => $request->name,
-            'description' => $request->description,
+            'description' => $description,
             'order' => $request->order,
             'view' => 0,
             'busket' => 0,
             'sell' => 0,
             'visibility_on_website' => isset($request->visibility_on_website)  ? 1 : 0,
-            'seo_title' => $request->seo_title,
-            'seo_description' => $request->seo_description,
+            'seo_title' => $seo_title,
+            'seo_description' => $seo_description,
             'visibility_in_google' => isset($request->visibility_in_google)  ? 1 : 0,
             'coffee' => $request->coffee != null ? $request->coffee : 0,
             'tool' =>  $request->tool != null ? $request->tool : 0,
             'lemon' =>  $request->lemon != null ? $request->lemon : 0,
             'height' =>  $request->height != null ? $request->height : 0,
+            'view_type' =>  $request->view_type,
+            'price_simple' =>  $request->price_simple,
         ]);
+        $product->categories()->sync($request->category);
+
         if ($product) {
             // Save product variants
             $prices = $request->price;
@@ -115,26 +137,46 @@ class ProductAdminController extends Controller
         usort($photos, function ($a, $b) {
             return filemtime($b) - filemtime($a);
         });
-        return view('admin.shop.product.edit', compact('product', 'sizes', 'grindTypes', 'photos', 'productSizes', 'productGrinds', 'productPhotos'));
+        $categories = Category::paginate(20);
+        return view('admin.shop.product.edit', compact('categories', 'product', 'sizes', 'grindTypes', 'photos', 'productSizes', 'productGrinds', 'productPhotos'));
     }
 
     public function update(CreateProductRequest $request, Product $product)
     {
+        if($request->description == null){
+            $description = '';
+        }else{
+            $description = $request->description;
+        }
+        if($request->seo_title == null){
+            $seo_title = $request->name;
+        }else{
+            $seo_title = $request->seo_title;
+        }
+        if($request->seo_description == null){
+            $seo_description = $request->name;
+        }else{
+            $seo_description = $request->seo_description;
+        }
+
         // Aktualizujemy dane produktu
         $res = $product->update([
             'name' => $request->name,
-            'description' => $request->description,
+            'description' => $description,
             'order' => $request->order,
             'visibility_on_website' => isset($request->visibility_on_website)  ? 1 : 0,
-            'seo_title' => $request->seo_title,
-            'seo_description' => $request->seo_description,
+            'seo_title' => $seo_title,
+            'seo_description' => $seo_description,
             'visibility_in_google' => isset($request->visibility_in_google)  ? 1 : 0,
             'coffee' => $request->coffee != null ? $request->coffee : 0,
             'tool' =>  $request->tool != null ? $request->tool : 0,
             'lemon' =>  $request->lemon != null ? $request->lemon : 0,
             'height' =>  $request->height != null ? $request->height : 0,
             'photo_second' =>  $request->photo_second,
+            'view_type' =>  $request->view_type,
+            'price_simple' =>  $request->price_simple,
         ]);
+        $product->categories()->sync($request->category);
         // Usuwamy wszystkie stare warianty produktu i zapisujemy nowe dane
         $prices = $request->price;
         $grinds = $request->grind;
@@ -165,10 +207,11 @@ class ProductAdminController extends Controller
                 $variant->save();
             }
         }
-
-        ProductImage::where('product_id', $product->id)->update([
-            'image_path' => $request->photo,
-        ]);
+        if ($request->photo != null) {
+            ProductImage::where('product_id', $product->id)->update([
+                'image_path' => $request->photo,
+            ]);
+        }
         if ($res) {
             return redirect()->route('dashboard.shop.product')
                 ->with('success', 'Produkt został zaktualizowany.');

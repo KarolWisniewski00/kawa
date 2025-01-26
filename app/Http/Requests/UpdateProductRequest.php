@@ -10,7 +10,7 @@ class UpdateProductRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'description' => 'required|string|max:4294967295',
+            'description' => 'nullable|string|max:4294967295',
             'order' => 'required|integer',
             'price.*' => 'nullable|numeric|min:0',
             'grinding.*' => 'nullable|exists:grinds,id',
@@ -22,7 +22,10 @@ class UpdateProductRequest extends FormRequest
             'tool' => 'nullable',
             'lemon' => 'nullable',
             'height' => 'nullable|integer',
-            'photo' => 'required|string|max:255',
+            'photo' => 'nullable|string|max:255',
+            'view_type' => 'required|string|max:255',
+            'price_simple' => 'nullable|string|max:255',
+            'category.*' => 'nullable|exists:categories,id',
             'photo_second' => 'nullable|string|max:255',
         ];
     }

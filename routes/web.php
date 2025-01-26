@@ -5,6 +5,7 @@ use App\Http\Controllers\AjaxAdminController;
 use App\Http\Controllers\BlogAdminController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\BusketController;
+use App\Http\Controllers\CategoryAdminController;
 use App\Http\Controllers\ClientAdminController;
 use App\Http\Controllers\CollaborationController;
 use App\Http\Controllers\CompanyAdminController;
@@ -215,6 +216,14 @@ Route::middleware([
                 Route::get('/edit/{discount}', [DiscountAdminController::class, 'edit'])->name('dashboard.shop.discount.edit');
                 Route::put('/update/{discount}', [DiscountAdminController::class, 'update'])->name('dashboard.shop.discount.update');
                 Route::delete('/delete/{id}', [DiscountAdminController::class, 'delete'])->name('dashboard.shop.discount.delete');
+            });
+            Route::prefix('category')->group(function () {
+                Route::get('/', [CategoryAdminController::class, 'index'])->name('dashboard.shop.category');
+                Route::get('/create', [CategoryAdminController::class, 'create'])->name('dashboard.shop.category.create');
+                Route::post('/store', [CategoryAdminController::class, 'store'])->name('dashboard.shop.category.store');
+                Route::get('/edit/{category}', [CategoryAdminController::class, 'edit'])->name('dashboard.shop.category.edit');
+                Route::put('/update/{category}', [CategoryAdminController::class, 'update'])->name('dashboard.shop.category.update');
+                Route::delete('/delete/{category}', [CategoryAdminController::class, 'delete'])->name('dashboard.shop.category.delete');
             });
         });
         Route::prefix('technic')->group(function () {

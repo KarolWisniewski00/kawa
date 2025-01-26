@@ -93,8 +93,9 @@
                                             @endphp
                                             @endif
                                             @endforeach
-
-                                            @if($minPrice !== null && $maxPrice !== null)
+                                            @if($product->price_simple != null)
+                                            {{$product->price_simple}} PLN
+                                            @elseif($minPrice !== null && $maxPrice !== null)
                                             {{$minPrice}} PLN - {{$maxPrice}} PLN
                                             @else
                                             Brak dostępnych cen.

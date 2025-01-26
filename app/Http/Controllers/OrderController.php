@@ -113,13 +113,13 @@ class OrderController extends Controller
                 $ship = true;
             }
         }
-        $discount = Discount::where('code', $request->input('discount'))->first();
+        $discount_obj = Discount::where('code', $request->input('discount'))->first();
 
-        if ($discount) {
-            $newPrice = (float) $this->calculateDiscount($discount, (float) $total);
+        if ($discount_obj) {
+            $newPrice = (float) $this->calculateDiscount($discount_obj, (float) $total);
             $total = $newPrice;
-            $discount = $discount->id;
-        }else{
+            $discount = $discount_obj->id;
+        } else {
             $discount = null;
         }
         $order = Order::create([
@@ -146,20 +146,32 @@ class OrderController extends Controller
             'adres_type' => $request->adres_type,
             'status' => 'Oczekujące na płatność',
             'point' => $request->point,
-            'discount' => $discount,
+            'distount' => $discount,
             'ship' => $ship,
         ]);
 
         foreach ($cartContent as $item) {
-            $o = OrderItem::create([
-                'order_id' => $order->id,
-                'product_id' => $item->id,
-                'name' => $item->name,
-                'price' => $item->price,
-                'quantity' => $item->quantity,
-                'attributes_name' => $item->attributes[0],
-                'attributes_grind' => $item->attributes[1],
-            ]);
+            if (!empty($item->attributes)) {
+                $o = OrderItem::create([
+                    'order_id' => $order->id,
+                    'product_id' => $item->id,
+                    'name' => $item->name,
+                    'price' => $item->price,
+                    'quantity' => $item->quantity,
+                    'attributes_name' => $item->attributes[0],
+                    'attributes_grind' => $item->attributes[1],
+                ]);
+            } else {
+                $o = OrderItem::create([
+                    'order_id' => $order->id,
+                    'product_id' => $item->id,
+                    'name' => $item->name,
+                    'price' => $item->price,
+                    'quantity' => $item->quantity,
+                    'attributes_name' => '',
+                    'attributes_grind' => '',
+                ]);
+            }
             $product = Product::where('name', $item->name)->firstOrFail();
             $product->update(['sell' => intval($product->sell) + $item->quantity]);
         }
@@ -169,7 +181,7 @@ class OrderController extends Controller
             'type' => EnumsOrderLog::CLIENT,
             'order_id' => $order->id,
         ]);
-        if ($discount) {
+        if ($discount_obj) {
             OrderLog::create([
                 'name' => 'Klient',
                 'description' => 'KOD RABATOWY ' . $request->discount,
@@ -178,7 +190,7 @@ class OrderController extends Controller
             ]);
             OrderLog::create([
                 'name' => 'Klient',
-                'description' => 'Rabat ' . $discount->type . ' ' . $discount->value,
+                'description' => 'Rabat ' . $discount_obj->type . ' ' . $discount_obj->value,
                 'type' => EnumsOrderLog::CLIENT,
                 'order_id' => $order->id,
             ]);
@@ -192,8 +204,8 @@ class OrderController extends Controller
             Mail::to($request->email)
                 ->send($email->build());
 
-            if ($discount) {
-                $response = $this->createInvoice($order, null, $discount);
+            if ($discount_obj) {
+                $response = $this->createInvoice($order, null, $discount_obj);
                 $this->logAndReturnResponseFromCreateInvoice($response, $user, $order, false);
             } else {
                 $response = $this->createInvoice($order, null, null);

@@ -29,9 +29,9 @@
         padding-left: 120px;
     }
 
-    @media only screen and (max-width: 575px) {
+    @media only screen and (max-width: 992px) {
         .single-timeline-area {
-            padding-left: 100px;
+            padding-left: 0px;
         }
     }
 
@@ -192,54 +192,6 @@
                 </button>
                 @endif
 
-                <div class="col-12 text-center mb-4 d-none d-lg-block">
-                    <div class="d-flex flex-xl-row flex-column justify-content-center align-items-center gap-4 mt-5 h-100 flex-wrap">
-                        @if($product->height)
-                        <div class="d-flex flex-column justify-content-end align-items-center gap-2 h-100">
-                            <div class="d-flex flex-row justify-content-center align-items-center gap-2 p-4">
-                                <img alt="" class="h-auto w-100" src="{{asset('image/montain.svg')}}">
-                            </div>
-                            <p class="h5 my-3">Wysokość uprawy {{$product->height}} m n.p.m.</p>
-                        </div>
-                        @endif
-                        @if($product->coffee != 0)
-                        <div class="d-flex flex-column justify-content-end align-items-center gap-2 h-100">
-                            <div class="d-flex flex-row justify-content-center align-items-center gap-2 p-4">
-                                @for($i = 0; $i <= 3; $i++) @if($product->coffee <= $i) <img alt="" class="h-auto" style="width: 50px;" src="{{asset('image/coffee_bean_empty.svg')}}">
-                                        @else
-                                        <img alt="" class="h-auto" style="width: 50px;" src="{{asset('image/coffee_bean_fill.svg')}}">
-                                        @endif
-                                        @endfor
-                            </div>
-                            <p class="h5 my-3">Stopień wypalenia</p>
-                        </div>
-                        @endif
-                        @if($product->tool != 0)
-                        <div class="d-flex flex-column justify-content-end align-items-center gap-2 h-100">
-                            <div class="d-flex flex-row justify-content-center align-items-center gap-2 p-4">
-                                @for($i = 0; $i <= 3; $i++) @if($product->tool <= $i) <img alt="" class="h-auto" style="width: 50px;" src="{{asset('image/tool_bean_empty.svg')}}">
-                                        @else
-                                        <img alt="" class="h-auto" style="width: 50px;" src="{{asset('image/tool_bean_fill.svg')}}">
-                                        @endif
-                                        @endfor
-                            </div>
-                            <p class="h5 my-3">Intensywność smaku</p>
-                        </div>
-                        @endif
-                        @if($product->lemon != 0)
-                        <div class="d-flex flex-column justify-content-end align-items-center gap-2 h-100">
-                            <div class="d-flex flex-row justify-content-center align-items-center gap-2 p-4">
-                                @for($i = 0; $i <= 3; $i++) @if($product->lemon <= $i) <img alt="" class="h-auto" style="width: 50px;" src="{{asset('image/lemon_bean_empty.svg')}}">
-                                        @else
-                                        <img alt="" class="h-auto" style="width: 50px;" src="{{asset('image/lemon_bean_fill.svg')}}">
-                                        @endif
-                                        @endfor
-                            </div>
-                            <p class="h5 my-3">kwasowość</p>
-                        </div>
-                        @endif
-                    </div>
-                </div>
                 <div class="modal fade" id="studio-photo-main" tabindex="-1" aria-labelledby="studio-photo-main-label" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content border-0 rounded-0">
@@ -277,34 +229,9 @@
                                                         </div>
                                                         <div class="d-flex flex-column justify-content-center align-items-start my-2 ">
                                                             <div class="fs-1">
-                                                                @php
-                                                                $minPrice = null;
-                                                                $maxPrice = null;
-                                                                @endphp
-
-                                                                @foreach($variants as $variant)
-                                                                @if($variant->product_id == $product->id && $variant->size_id != null)
-                                                                @php
-                                                                // Sprawdź minimalną cenę
-                                                                if ($minPrice === null || $variant->price < $minPrice) { $minPrice=$variant->price;
-                                                                    }
-
-                                                                    // Sprawdź maksymalną cenę
-                                                                    if ($maxPrice === null || $variant->price > $maxPrice) {
-                                                                    $maxPrice = $variant->price;
-                                                                    }
-                                                                    @endphp
-                                                                    @endif
-                                                                    @endforeach
-
-                                                                    @if($minPrice !== null && $maxPrice !== null)
-                                                                    <span class="price-show" id="price-show">{{$minPrice}} PLN - {{$maxPrice}} PLN</span>
-                                                                    @elseif($product->price_simple)
-                                                                    {{$product->price_simple}} PLN
-                                                                    @else
-                                                                    Brak dostępnych cen.
-                                                                    @endif
+                                                                <span class="price-show" id="price-show">{{$product->price_simple}} PLN</span>
                                                             </div>
+                                                            <p class="text-muted">{{$product->description}}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -313,64 +240,19 @@
                                     </div>
                                     <!-- Single Timeline Content-->
                                     <div class="single-timeline-area">
-                                        <div id="step-1" class="timeline-date wow fadeInLeft" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInLeft;">
-                                            <p class="text-center">Krok 1</p>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="single-timeline-content d-flex wow fadeInLeft mb-4" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInLeft;">
-                                                    <div class="timeline-text">
-                                                        <h2 class="fw-bold mt-4">Jaki rozmiar kawy?</h2>
-                                                        <p class="fw-bold mt-4">Wybierz rozmiar opakowania</p>
-                                                        <div class="d-flex flex-row justify-content-start align-items-center flex-wrap mb-2">
-                                                            @php
-                                                            $countSize = 0;
-                                                            @endphp
-                                                            @foreach($sizes as $size)
-                                                            @foreach($variants as $variant)
-                                                            @if($size->id == $variant->size_id)
-                                                            @if($product->id == $variant->product_id)
-                                                            @php
-                                                            $countSize += 1;
-                                                            $idSize = $size->id;
-                                                            @endphp
-                                                            <div class="m-2 gsap-2">
-                                                                <input type="radio" class="btn-check" data-price-show="{{$variant->price}} PLN" name="size" value="{{$size->id}}" id="size-{{$size->id}}">
-                                                                <label class="btn btn-outline-primary btn-1" for="size-{{$size->id}}">
-                                                                    <div class="flex flex-column justify-content-center align-items-center">
-                                                                        <div id="size-name">{{$size->name}}</div>
-                                                                        <div id="size-price">{{$variant->price}} PLN</div>
-                                                                    </div>
-                                                                </label>
-                                                            </div>
-                                                            @endif
-                                                            @endif
-                                                            @endforeach
-                                                            @endforeach
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Single Timeline Content-->
-                                    <div class="single-timeline-area">
-                                        <div id="step-2" class="timeline-date wow fadeInLeft" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInLeft;">
-                                            <p class="text-center">Krok 2</p>
-                                        </div>
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="single-timeline-content d-flex wow fadeInLeft mb-4" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInLeft;">
                                                     <div class="timeline-text">
                                                         <h2 class="fw-bold mt-4">Kawa mielona czy ziarnista?</h2>
                                                         <p class="fw-bold mt-4">Wybierz rodzaj mielenia</p>
-                                                        <div class="d-flex flex-row justify-content-start align-items-center flex-wrap mb-2">
+                                                        <div class="d-flex flex-row justify-content-start align-items-center flex-wrap mb-2 gap-2">
                                                             @foreach($grindTypes as $grindType)
                                                             @foreach($variants as $variant)
                                                             @if($grindType->id == $variant->grinding_id)
                                                             @if($product->id == $variant->product_id)
                                                             @if($grindType->id == 1)
-                                                            <div class="m-2 gsap-2">
+                                                            <div class="gsap-2">
                                                                 <input type="radio" class="btn-check" name="grind" value="{{$grindType->name}}" id="grind-{{$grindType->id}}">
                                                                 <label class="btn btn-outline-primary btn-2" for="grind-{{$grindType->id}}">
                                                                     <div class="flex flex-column justify-content-center align-items-center">
@@ -380,7 +262,7 @@
                                                                 </label>
                                                             </div>
                                                             @else
-                                                            <div class="m-2 gsap-2">
+                                                            <div class="gsap-2">
                                                                 <input type="radio" class="btn-check" name="grind" value="{{$grindType->name}}" id="grind-{{$grindType->id}}">
                                                                 <label class="btn btn-outline-primary btn-2" for="grind-{{$grindType->id}}">
                                                                     <div class="flex flex-column justify-content-center align-items-center">
@@ -402,9 +284,6 @@
                                     </div>
                                     <!-- Single Timeline Content-->
                                     <div class="single-timeline-area">
-                                        <div id="step-3" class="timeline-date wow fadeInLeft" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInLeft;">
-                                            <p class="text-center">Krok 3</p>
-                                        </div>
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="single-timeline-content d-flex wow fadeInLeft mb-4" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInLeft;">
@@ -418,7 +297,7 @@
                                                         <p class="fw-bold mt-4">Jeśli chcesz większą ilość i lepszą cenę przejdź do <a href="{{route('collaboration')}}" class="text-info">Współpraca</a></p>
                                                         <div class="d-flex flex-row justify-content-between align-items-center mb-4 mt-2">
                                                             @csrf
-                                                            <button type="submit" id="add-to-cart-button" class="btn btn-lg btn-primary w-fit h-100" disabled>
+                                                            <button type="submit" id="add-to-cart-button" class="btn btn-lg btn-primary w-fit h-100" @if($product->price_simple == null) disabled @endif>
                                                                 <div class="d-flex justify-content-start align-items-center">
                                                                     <div><i class="fa-solid fa-cart-shopping me-2"></i></div>
                                                                     <div>Dodaj do koszyka</div>
@@ -454,15 +333,7 @@
                     </form>
                 </div>
             </div>
-            @if($product->description != '')
-            <div class="col-12 text-center mt-4">
-                <div class="text-center mb-4">
-                    <h1>Opis produktu</h1>
-                </div>
-                <p class="text-muted">{{$product->description}}</p>
-            </div>
-            @endif
-            <div class="col-12 text-center mb-4 justify-content-center align-items-center d-flex d-lg-none">
+            <div class="col-12 text-center mb-4 justify-content-center align-items-center d-flex">
                 <div class="d-flex flex-xl-row flex-column justify-content-center align-items-center gap-4 mt-5 h-100 ">
                     @if($product->id != 11)
                     @if($product->height)
@@ -613,14 +484,7 @@
         var first = false;
         var second = true;
 
-        @if($countSize == 1)
-        price = $('#size-{{$idSize}}').data('price-show');
-        $('#step-1').addClass('bg-success-c');
-        $('#price-show').html(price);
-        $('#size-name').html('Zestaw');
-        first = true;
-        $('#size-{{$idSize}}').prop('checked', true);
-        @endif
+
 
         if (first === true && second === true) {
             $('#step-3').addClass('bg-success-c');

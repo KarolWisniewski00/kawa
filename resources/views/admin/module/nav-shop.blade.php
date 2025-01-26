@@ -21,5 +21,10 @@
                 {{ __('Kody rabatowe') }}
             </x-nav-link>
         </div>
+        <div class="space-x-8 -my-px ml-10 flex">
+            <x-nav-link href="{{ route('dashboard.shop.category') }}" :active="Str::startsWith(request()->path(), 'dashboard/shop/category')">
+                {{ __('Kategorie') }}
+            </x-nav-link>
+        </div>
     </div>
 </div>

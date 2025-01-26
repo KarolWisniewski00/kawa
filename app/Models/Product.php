@@ -23,6 +23,9 @@ class Product extends Model
         'visibility_in_google',
         'visibility_on_website',
         'photo_second',
+        'view_type',
+        'price_simple',
+        'size_simple',
     ];
 
     public function images()
@@ -37,5 +40,9 @@ class Product extends Model
     public function discounts()
     {
         return $this->belongsToMany(Discount::class, 'discount_product');
+    }
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'category_product');
     }
 }

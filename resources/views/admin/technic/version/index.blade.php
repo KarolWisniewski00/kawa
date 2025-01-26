@@ -11,8 +11,50 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 lg:p-8 bg-white border-b border-gray-200">
                     @include('admin.module.alerts')
-
+<!--
+                    kawa 1 kg
+kawa brazylia
+kawy świata
+kawa na kawe
+kawa picie
+kawa 1kg
+kawa napoj
+kawa z całego świata
+najlepsza kawa speciality
+kawa napój
+kup kawę
+kawa prawdziwa
+kawa ma
+picie kawy
+najlepsza kawa świata
+kawa świata
+coffee czy coffee
+parzyć kawe
+najlepsza kawa swiata
+kawa czy jest zdrowa
+kawa czy zdrowa
+kawa jest zdrowa
+kawa za kawą
+kawa speciality co to
+1 kg kawy-->
                     <ol class="relative border-s border-gray-200 ">
+                    <li class="mb-10 ms-4">
+                            <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white "></div>
+                            <time class="mb-1 text-sm font-normal leading-none text-gray-400 ">26 styczeń 2025 V 2.0.0</time>
+                            <h3 class="text-lg font-semibold text-gray-900 ">Aktualizacja</h3>
+                            <p class="text-base font-normal text-gray-500 ">1. Naprawa usuwania kodu probocyjnego</p>
+                            <p class="text-base font-normal text-gray-500 ">2. Naprawa wyświetlania tekstu w pasku nawigacyjnym</p>
+                            <p class="text-base font-normal text-gray-500 ">3. Dodanie kategorii</p>
+                            <p class="text-base font-normal text-gray-500 ">4. Dodano filtry kategorii w sklepie</p>
+                            <p class="text-base font-normal text-gray-500 ">5. Naprawiono sortowanie</p>
+                            <p class="text-base font-normal text-gray-500 ">6. Dodano/Zmieniono wyświetlanie 4 różnych typów produktów</p>
+                            <p class="text-base font-normal text-gray-500 ">7. Zmieniono ssuwak na counter z inputem</p>
+                            <p class="text-base font-normal text-gray-500 ">8. Poprawiono rozmieszczenie elementów responsywność</p>
+                            <p class="text-base font-normal text-gray-500 ">9. Dodano dodawanie i usuwanie produktów w koszyku dla 4 różnych rodzaji</p>
+                            <p class="text-base font-normal text-gray-500 ">10. Usunięto animacje pokazywania ze względu na filtry i sortowanie</p>
+                            <p class="text-base font-normal text-gray-500 ">11. Usunięto wymagane przy tworzeniu i edycji produktu: opis, seo tytuł, seo opis</p>
+                            <p class="text-base font-normal text-gray-500 ">12. Dodano domyślne 0 w pozycji produktu przy tworzeniu i edycji</p>
+                        </li>
                         <li class="mb-10 ms-4">
                             <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white "></div>
                             <time class="mb-1 text-sm font-normal leading-none text-gray-400 ">5 październik 2024 V 1.4.0</time>
