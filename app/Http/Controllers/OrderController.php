@@ -28,6 +28,7 @@ use App\Models\Product;
 use Devpark\Transfers24\Exceptions\RequestException;
 use Devpark\Transfers24\Exceptions\RequestExecutionException;
 use Devpark\Transfers24\Requests\Transfers24;
+use Exception;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Throwable;
@@ -151,8 +152,8 @@ class OrderController extends Controller
         ]);
 
         foreach ($cartContent as $item) {
-            if (!empty($item->attributes)) {
-                $o = OrderItem::create([
+            try {
+                OrderItem::create([
                     'order_id' => $order->id,
                     'product_id' => $item->id,
                     'name' => $item->name,
@@ -161,8 +162,8 @@ class OrderController extends Controller
                     'attributes_name' => $item->attributes[0],
                     'attributes_grind' => $item->attributes[1],
                 ]);
-            } else {
-                $o = OrderItem::create([
+            } catch (Exception) {
+                OrderItem::create([
                     'order_id' => $order->id,
                     'product_id' => $item->id,
                     'name' => $item->name,
@@ -172,6 +173,7 @@ class OrderController extends Controller
                     'attributes_grind' => '',
                 ]);
             }
+
             $product = Product::where('name', $item->name)->firstOrFail();
             $product->update(['sell' => intval($product->sell) + $item->quantity]);
         }

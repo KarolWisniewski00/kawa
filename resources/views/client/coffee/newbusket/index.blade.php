@@ -123,18 +123,30 @@ $counter_price = intval($company['price_ship']);
                                         <div class="d-flex flex-row justify-content-center align-items-center">
                                             <form method="POST" action="{{route('shop.cart.minus', $item->associatedModel)}}">
                                                 @csrf
+                                                <input type="hidden" name="quantity" value="1">
+                                                @php
+                                                $count = 0;
+                                                @endphp
+
+                                                @foreach($item->attributes as $attr)
+                                                @php
+                                                $count += 1;
+                                                @endphp
+                                                @endforeach
+
+                                                @if($count == 0)
+                                                <input type="hidden" name="size" value="0">
+                                                @else
+
                                                 @foreach($sizes as $size)
-                                                @if(!empty($item->attributes))
                                                 @if($size->name == $item->attributes[0])
                                                 <input type="hidden" name="size" value="{{$size->id}}">
                                                 @endif
-                                                @else
-                                                <input type="hidden" name="size" value="0">
-                                                @endif
                                                 @endforeach
-                                                @if(!empty($item->attributes))
+
                                                 <input type="hidden" name="grind" value="{{$item->attributes[1]}}">
                                                 @endif
+                                                
                                                 <button type="submit" class="btn btn-sm btn-danger me-2" onclick="return confirm('Czy na pewno chcesz usunąć ten produkt?');">
                                                     <i class="fa-solid fa-minus"></i>
                                                 </button>
@@ -143,16 +155,26 @@ $counter_price = intval($company['price_ship']);
                                             <form method="POST" action="{{route('shop.cart.add', $item->associatedModel)}}">
                                                 @csrf
                                                 <input type="hidden" name="quantity" value="1">
+                                                @php
+                                                $count = 0;
+                                                @endphp
+
+                                                @foreach($item->attributes as $attr)
+                                                @php
+                                                $count += 1;
+                                                @endphp
+                                                @endforeach
+
+                                                @if($count == 0)
+                                                <input type="hidden" name="size" value="0">
+                                                @else
+
                                                 @foreach($sizes as $size)
-                                                @if(!empty($item->attributes))
                                                 @if($size->name == $item->attributes[0])
                                                 <input type="hidden" name="size" value="{{$size->id}}">
                                                 @endif
-                                                @else
-                                                <input type="hidden" name="size" value="0">
-                                                @endif
                                                 @endforeach
-                                                @if(!empty($item->attributes))
+                                                
                                                 <input type="hidden" name="grind" value="{{$item->attributes[1]}}">
                                                 @endif
                                                 <button type="submit" class="btn btn-sm btn-success ms-2">
@@ -173,16 +195,27 @@ $counter_price = intval($company['price_ship']);
                                         <div class="d-flex flex-column justify-content-center align-items-center">
                                             <form method="POST" action="{{route('shop.cart.remove', $item->associatedModel)}}">
                                                 @csrf
+                                                <input type="hidden" name="quantity" value="1">
+                                                @php
+                                                $count = 0;
+                                                @endphp
+
+                                                @foreach($item->attributes as $attr)
+                                                @php
+                                                $count += 1;
+                                                @endphp
+                                                @endforeach
+
+                                                @if($count == 0)
+                                                <input type="hidden" name="size" value="0">
+                                                @else
+
                                                 @foreach($sizes as $size)
-                                                @if(!empty($item->attributes))
                                                 @if($size->name == $item->attributes[0])
                                                 <input type="hidden" name="size" value="{{$size->id}}">
                                                 @endif
-                                                @else
-                                                <input type="hidden" name="size" value="0">
-                                                @endif
                                                 @endforeach
-                                                @if(!empty($item->attributes))
+                                                
                                                 <input type="hidden" name="grind" value="{{$item->attributes[1]}}">
                                                 @endif
                                                 <button type="submit" class="btn btn-danger" onclick="return confirm('Czy na pewno chcesz usunąć ten produkt?');"><i class="fa-solid fa-trash"></i>

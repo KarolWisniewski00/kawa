@@ -410,10 +410,21 @@
                                                 <div class="single-timeline-content d-flex wow fadeInLeft mb-4" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInLeft;">
                                                     <div class="timeline-text">
                                                         <p class="fw-bold mt-4">Wybierz ilość opakowań.</p>
+                                                        <style>
+                                                            .w-60 {
+                                                                width: 40px;
+                                                            }
+
+                                                            @media only screen and (min-width: 375px) {
+                                                                .w-60 {
+                                                                    width: 60px;
+                                                                }
+                                                            }
+                                                        </style>
                                                         <div class="d-flex flex-row justify-content-start align-items-center flex-wrap mb-2">
-                                                            <button type="button" class="btn btn-outline-primary text-center" id="quantity-decrease" style="width: 60px; height: 52px">-</button>
+                                                            <button type="button" class="btn btn-outline-primary text-center w-60 p-0" id="quantity-decrease" style="height: 52px">-</button>
                                                             <input type="number" class="form-control mx-2" id="quantity" name="quantity" value="1" min="1" max="35" style="width: 75px; height: 52px">
-                                                            <button type="button" class="btn btn-outline-primary text-center" id="quantity-increase" style="width: 60px; height: 52px">+</button>
+                                                            <button type="button" class="btn btn-outline-primary text-center w-60 p-0" id="quantity-increase" style="height: 52px">+</button>
                                                         </div>
                                                         <p class="fw-bold mt-4">Jeśli chcesz większą ilość i lepszą cenę przejdź do <a href="{{route('collaboration')}}" class="text-info">Współpraca</a></p>
                                                         <div class="d-flex flex-row justify-content-between align-items-center mb-4 mt-2">
