@@ -197,7 +197,7 @@
                     <div class="text-center mb-4">
                         <h1>Opis produktu</h1>
                     </div>
-                    <p class="text-muted">{{$product->description}}</p>
+                    <p class="text-muted">{!! $product->description !!}</p>
                 </div>
                 @endif
 

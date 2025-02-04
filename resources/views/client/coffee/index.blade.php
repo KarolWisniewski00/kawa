@@ -132,8 +132,65 @@
             @endif
             @endforeach
             <div class="col-12">
+                <a href="{{route('shop')}}" class="d-flex flex-column justify-content-center align-items-center my-3 text-center text-decoration-none">
+                    <h2 class="font-custom h1">Nowość</h2>
+                </a>
+            </div>
+            @foreach($products2 as $product)
+            @if($product->visibility_on_website == true)
+            <div class="col-12 col-md-4 product-item" data-category-id="@foreach($product->categories as $pc){{ $pc->id }},@endforeach">
+                <a href="{{route('shop.product.show', $product->id)}}" class="h-100 d-flex flex-column justify-content-between align-items-center text-decoration-none">
+                    @foreach($photos as $photo)
+                    @if($photo->product_id == $product->id)
+                    @if($photo->order == 1)
+                    <div class="d-flex flex-column justify-content-center align-items-center h-75 overflow-hidden">
+                        <img src="{{ asset('photo/' . $photo->image_path) }}" alt="" class="img-fluid" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
+                    </div>
+                    @endif
+                    @endif
+                    @endforeach
+                    <div class="d-flex flex-column justify-content-center align-items-center h-25">
+                        <h4 class="font-custom mt-2 text-center">{{$product->name}}</h4>
+                        <p>
+                            @php
+                            $minPrice = null;
+                            $maxPrice = null;
+                            @endphp
+
+                            @foreach($variants as $variant)
+                            @if($variant->product_id == $product->id && $variant->size_id != null)
+                            @php
+                            // Sprawdź minimalną cenę
+                            if ($minPrice === null || $variant->price < $minPrice) { $minPrice=$variant->price;
+                                }
+
+                                // Sprawdź maksymalną cenę
+                                if ($maxPrice === null || $variant->price > $maxPrice) {
+                                $maxPrice = $variant->price;
+                                }
+                                @endphp
+                                @endif
+                                @endforeach
+                                @if($product->price_simple != null)
+                                {{$product->price_simple}} PLN
+                                @elseif($minPrice !== null && $maxPrice !== null)
+                                @if($minPrice == $maxPrice)
+                                {{$minPrice}} PLN
+                                @else
+                                {{$minPrice}} PLN - {{$maxPrice}} PLN
+                                @endif
+                                @else
+                                Brak dostępnych cen.
+                                @endif
+                        </p>
+                    </div>
+                </a>
+            </div>
+            @endif
+            @endforeach
+            <div class="col-12">
                 <div class="d-flex flex-column justify-content-center align-items-center my-3 text-center">
-                    <a href="{{route('shop')}}" class="btn btn-primary"><i class="fa-solid fa-angles-right me-2"></i>Zobacz więcej</a>
+                    <a href="{{route('shop')}}" class="btn btn-primary"><i class="fa-solid fa-angles-right me-2"></i>Zobacz sklep</a>
                 </div>
             </div>
         </div>

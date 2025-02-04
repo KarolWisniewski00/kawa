@@ -95,20 +95,30 @@ class InpostAdminController extends Controller
                 $order->company,
                 $size
             );
-            OrderLog::create([
-                'name' => $user->name,
-                'description' => 'Utworzono przesyłkę w InPost - ' . $size,
-                'type' => EnumsOrderLog::ADMIN,
-                'order_id' => $order->id,
-            ]);
-            OrderLog::create([
-                'name' => $user->name,
-                'description' => 'Nnumer id przesyłki - ' . $shipment['id'],
-                'type' => EnumsOrderLog::ADMIN,
-                'order_id' => $order->id,
-            ]);
-            Order::where('id', '=', $order->id)->update(['shipment_id' => $shipment['id']]);
-            return redirect()->route('dashboard.order.show', $order->id)->with('success', 'Przesyłkę utworzono.');
+            if($shipment['status'] == 400){
+                OrderLog::create([
+                    'name' => $user->name,
+                    'description' => 'Nie można utworzy przesyłki z powodu błędnie uzupełnionego formularza przez klienta',
+                    'type' => EnumsOrderLog::ADMIN,
+                    'order_id' => $order->id,
+                ]);
+                return redirect()->route('dashboard.order.show', $order->id)->with('fail', 'Nie można utworzy przesyłki z powodu błędnie uzupełnionego formularza przez klienta.');
+            }else{
+                OrderLog::create([
+                    'name' => $user->name,
+                    'description' => 'Utworzono przesyłkę w InPost - ' . $size,
+                    'type' => EnumsOrderLog::ADMIN,
+                    'order_id' => $order->id,
+                ]);
+                OrderLog::create([
+                    'name' => $user->name,
+                    'description' => 'Nnumer id przesyłki - ' . $shipment['id'],
+                    'type' => EnumsOrderLog::ADMIN,
+                    'order_id' => $order->id,
+                ]);
+                Order::where('id', '=', $order->id)->update(['shipment_id' => $shipment['id']]);
+                return redirect()->route('dashboard.order.show', $order->id)->with('success', 'Przesyłkę utworzono.');
+            }
         } else {
             OrderLog::create([
                 'name' => $user->name,

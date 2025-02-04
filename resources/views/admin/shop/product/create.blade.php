@@ -27,13 +27,35 @@
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
                         </div>
-                        <div class="mb-6">
-                            <label for="description" class="block mb-2 text-sm font-medium text-gray-900 ">Opis</label>
-                            <textarea id="description" name="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Wpisz treść tutaj">{{ old('description') ? old('description') : ''}}</textarea>
-                            @error('description')
-                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                            @enderror
+                        <!-- Include stylesheet -->
+                        <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+
+                        <!-- Create the editor container -->
+                        <div id="editor">
+                            {!! old('description') ? old('description') : '' !!}
                         </div>
+
+                        <!-- Hidden input to store the description -->
+                        <input type="hidden" name="description" id="description">
+
+                        <!-- Include the Quill library -->
+                        <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+
+                        <!-- Initialize Quill editor -->
+                        <script>
+                            const quill = new Quill('#editor', {
+                                theme: 'snow'
+                            });
+
+                            // Ustawienie początkowej wartości edytora
+                            const descriptionInput = document.getElementById('description');
+                            descriptionInput.value = quill.root.innerHTML;
+
+                            // Aktualizowanie ukrytego inputa przy każdej zmianie w Quill
+                            quill.on('text-change', function() {
+                                descriptionInput.value = quill.root.innerHTML;
+                            });
+                        </script>
                         <div class="mb-6">
                             <label for="number" class="block mb-2 text-sm font-medium text-gray-900 ">Kolejność</label>
                             <input value="{{ old('order') ? old('order') : '0'}}" name="order" type="number" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required>

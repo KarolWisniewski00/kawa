@@ -74,9 +74,10 @@
                         <style>
                             @media only screen and (min-width: 992px) {
                                 .ws {
-                                    white-space: wrap!important;
+                                    white-space: wrap !important;
                                 }
                             }
+
                             @media only screen and (min-width: 1400px) {
                                 .ws {
                                     white-space: nowrap !important;
@@ -153,9 +154,9 @@
                 </a>
             </li>
             <li>
-                <a href="{{route('shop')}}" class="nav-link link-dark">
+                <button id="shop-button" class="nav-link link-dark">
                     Sklep
-                </a>
+                </button>
             </li>
             <li>
                 <a href="{{route('collaboration')}}" class="nav-link link-dark">
@@ -215,6 +216,59 @@
             </li>
             @endauth
         </ul>
+
+        <script>
+            $(document).ready(function() {
+                $('#shop-button').click(function() {
+                    $('#sidebar').html(`
+<!--Liczenie kategorii-->
+            @php
+            $count = 0;
+            @endphp
+            @foreach($categories as $category)
+            @php
+            $count += 1;
+            @endphp
+            @endforeach
+            <!--Liczenie kategorii-->
+
+            @if($count == 0)
+            @else
+            <div class="col-12 col-md-3">
+                @foreach($categories as $category)
+                @if($category->parent_id == null)
+            <li>
+                <a href="{{route('shop.category', $category->name)}}" class="nav-link link-dark">
+                    {{ $category->name }}
+                </a>
+            </li>
+                @foreach($categories as $cat)
+                @if($cat->parent_id == $category->id)
+            <li>
+                <a href="{{route('shop.category', $cat->name)}}" class="nav-link link-dark">
+                    {{ $cat->name }}
+                </a>
+            </li>
+                @foreach($categories as $c)
+                @if($c->parent_id == $cat->id)
+            <li>
+                <a href="{{route('shop.category', $c->name)}}" class="nav-link link-dark">
+                    {{ $c->name }}
+                </a>
+            </li>
+                @endif
+                @endforeach
+                @endif
+                @endforeach
+                @endif
+                @endforeach
+            </div>
+            @endif
+
+                `);
+                });
+            });
+        </script>
     </div>
     <input type="hidden" value='@json($photos)' id="photos">
     <!--Busket-->

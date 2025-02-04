@@ -45,103 +45,7 @@
                     </div>
                 </div>
             </div>
-            <!--Liczenie kategorii-->
-            @php
-            $count = 0;
-            @endphp
-            @foreach($categories as $category)
-            @php
-            $count += 1;
-            @endphp
-            @endforeach
-            <!--Liczenie kategorii-->
-
-            @if($count == 0)
-            @else
-            <div class="d-none d-md-block col-md-3">
-                <h2 class="font-custom h1 pb-4">Kategorie</h2>
-                @foreach($categories as $category)
-                @if($category->parent_id == null)
-
-                <!--Liczenie produktów-->
-                @php
-                $count = 0;
-                @endphp
-                @foreach($products as $product)
-                @foreach($product->categories as $category_product)
-                @if($category_product->id == $category->id)
-                @if($product->visibility_on_website == true)
-                @php
-                $count += 1;
-                @endphp
-                @endif
-                @endif
-                @endforeach
-                @endforeach
-                <!--Liczenie produktów-->
-
-                <button type="button" class="pb-2 m-0 cat-btn nav-link link-primary" data-category-id="{{ $category->id }}">{{ $category->name }}<!--<span>({{$count}})</span>--></button>
-                @foreach($categories as $cat)
-                @if($cat->parent_id == $category->id)
-
-                <!--Liczenie produktów-->
-                @php
-                $count = 0;
-                @endphp
-                @foreach($products as $product)
-                @foreach($product->categories as $category_product)
-                @if($category_product->id == $cat->id)
-                @if($product->visibility_on_website == true)
-                @php
-                $count += 1;
-                @endphp
-                @endif
-                @endif
-                @endforeach
-                @endforeach
-                <!--Liczenie produktów-->
-
-                <button type="button" class="ms-4 pb-2 cat-btn nav-link link-primary" data-category-id="{{ $cat->id }}">{{ $cat->name }}<!--<span>({{$count}})</span>--></button>
-                @foreach($categories as $c)
-                @if($c->parent_id == $cat->id)
-
-                <!--Liczenie produktów-->
-                @php
-                $count = 0;
-                @endphp
-                @foreach($products as $product)
-                @foreach($product->categories as $category_product)
-                @if($category_product->id == $c->id)
-                @if($product->visibility_on_website == true)
-                @php
-                $count += 1;
-                @endphp
-                @endif
-                @endif
-                @endforeach
-                @endforeach
-                <!--Liczenie produktów-->
-
-                <button type="button" class="ms-4 ps-4 pb-2 cat-btn nav-link link-primary" data-category-id="{{ $c->id }}">{{ $c->name }}<!--<span>({{$count}})</span>--></button>
-                @endif
-                @endforeach
-                @endif
-                @endforeach
-                @endif
-                @endforeach
-            </div>
-            @endif
-
-            <!--Liczenie kategorii-->
-            @php
-            $count = 0;
-            @endphp
-            @foreach($categories as $category)
-            @php
-            $count += 1;
-            @endphp
-            @endforeach
-            <!--Liczenie kategorii-->
+            
 
             @if($count == 0)
             <div class="col-12">
@@ -235,24 +139,6 @@
                 return priceB - priceA;
             });
             $("#sort-container").html(products);
-        });
-
-        // Funkcja do filtrowania produktów według kategorii
-        $(".cat-btn").click(function() {
-            var categoryId = $(this).data("category-id"); // ID wybranej kategorii
-            $(".cat-btn").css("font-weight", "normal"); // Resetuj styl przycisków
-            $(this).css("font-weight", "bold"); // Wyróżnij wybrany przycisk
-
-            var products = $(".product-item"); // Wszystkie produkty
-
-            products.each(function() {
-                var categoryIds = $(this).data("category-id").toString().split(","); // Pobierz listę kategorii produktu
-                if (categoryIds.includes(categoryId.toString())) {
-                    $(this).show(); // Pokaż produkt, jeśli ID kategorii pasuje
-                } else {
-                    $(this).hide(); // Ukryj w przeciwnym wypadku
-                }
-            });
         });
     });
 </script>

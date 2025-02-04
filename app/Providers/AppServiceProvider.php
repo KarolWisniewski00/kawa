@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
 use App\Models\Company;
 use App\Models\ProductImage;
 use Illuminate\Support\Facades\Blade;
@@ -28,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
             $company = Company::get()->pluck('content', 'type');
             $photos = ProductImage::get();
             if (!Str::startsWith(request()->path(), 'dashboard/')) {
-                $view->with('company', $company)->with('photos', $photos);
+                $view->with('company', $company)->with('photos', $photos)->with('categories', Category::paginate(20));
             }
         });
     }

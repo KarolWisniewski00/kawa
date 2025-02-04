@@ -54,6 +54,7 @@ Route::get('/dark', [IndexController::class, 'dark'])->name('dark');
 
 Route::prefix('shop')->group(function () {
     Route::get('/', [ShopController::class, 'index'])->name('shop');
+    Route::get('category/{name}', [ShopController::class, 'indexCategory'])->name('shop.category');
     Route::prefix('cart')->group(function () {
         Route::get('/', [NewBusketController::class, 'index'])->name('shop.cart.busket');
         Route::get('get', [NewBusketController::class, 'get'])->name('shop.cart.get');

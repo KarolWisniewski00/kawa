@@ -11,7 +11,7 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 lg:p-8 bg-white border-b border-gray-200">
                     @include('admin.module.alerts')
-<!--
+                    <!--
                     kawa 1 kg
 kawa brazylia
 kawy świata
@@ -38,7 +38,13 @@ kawa za kawą
 kawa speciality co to
 1 kg kawy-->
                     <ol class="relative border-s border-gray-200 ">
-                    <li class="mb-10 ms-4">
+                        <li class="mb-10 ms-4">
+                            <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white "></div>
+                            <time class="mb-1 text-sm font-normal leading-none text-gray-400 ">4 Luty 2025 V 2.0.1</time>
+                            <h3 class="text-lg font-semibold text-gray-900 ">Aktualizacja</h3>
+                            <p class="text-base font-normal text-gray-500 ">1. Naprawa blędnie uzupełnionego formularza od strony klienta tak aby system nie pokazywał błędu</p>
+                        </li>
+                        <li class="mb-10 ms-4">
                             <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white "></div>
                             <time class="mb-1 text-sm font-normal leading-none text-gray-400 ">26 styczeń 2025 V 2.0.0</time>
                             <h3 class="text-lg font-semibold text-gray-900 ">Aktualizacja</h3>

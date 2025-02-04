@@ -231,7 +231,7 @@
                                                             <div class="fs-1">
                                                                 <span class="price-show" id="price-show">{{$product->price_simple}} PLN</span>
                                                             </div>
-                                                            <p class="text-muted">{{$product->description}}</p>
+                                                            <p class="text-muted">{!! $product->description !!}</p>
                                                         </div>
                                                     </div>
                                                 </div>

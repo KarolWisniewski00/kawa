@@ -161,7 +161,7 @@ class Controller extends BaseController
         try {
             $name = $user->name;
         } catch (\Throwable $th) {
-            $name = 'UNKNOW';
+            $name = 'SYSTEM';
         }
         if ($response == null) {
             OrderLog::create([
