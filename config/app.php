@@ -83,7 +83,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'pl',
 
     /*
     |--------------------------------------------------------------------------
@@ -96,7 +96,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'pl',
 
     /*
     |--------------------------------------------------------------------------
@@ -109,7 +109,8 @@ return [
     |
     */
 
-    'faker_locale' => 'en_US',
+    'faker_locale' => 'pl_PL',
+
 
     /*
     |--------------------------------------------------------------------------
@@ -167,11 +168,12 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
         DaveJamesMiller\Breadcrumbs\BreadcrumbsServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        App\Providers\CookiesServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
     ])->toArray(),
 
     /*

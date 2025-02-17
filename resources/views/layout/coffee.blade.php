@@ -16,7 +16,6 @@
     <meta name="twitter:card" content="summary" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Coffee Summit</title>
     <link href="https://bootswatch.com/5/lux/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/e37acf9c2e.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ asset('css/coffee.css')}}">
@@ -36,9 +35,9 @@
             j.src =
                 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
             f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-PWNLSZXX');
+        })(window, document, 'script', 'dataLayer', 'GTM-5TK28R2F');
     </script>
-    <!-- End Google Tag Manager -->
+    <!-- End Google Tag Manager -->
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-2H090DSHDS">
     </script>
@@ -54,14 +53,20 @@
     </script>
     <!--SEO-->
     @yield('SEO')
+    @cookieconsentscripts
+    <style>
+        .cookies__alert{
+            margin-right: 0px!important;
+            margin-left: 8%!important;
+        }
+    </style>
 </head>
 
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PWNLSZXX"
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5TK28R2F"
             height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-
+    <!-- End Google Tag Manager (noscript) -->
     <!--NAV + HEADER-->
     <section id="nav" class="fixed-top bg-secondary bg-trans" style="width: 100vw; z-index:10">
         <header class="py-1 bg-primary">
@@ -238,21 +243,21 @@
                 @foreach($categories as $category)
                 @if($category->parent_id == null)
             <li>
-                <a href="{{route('shop.category', $category->name)}}" class="nav-link link-dark">
+                <a href="{{route('shop.category', str_replace(' ', '-', $category->name))}}" class="nav-link link-dark">
                     {{ $category->name }}
                 </a>
             </li>
                 @foreach($categories as $cat)
                 @if($cat->parent_id == $category->id)
             <li>
-                <a href="{{route('shop.category', $cat->name)}}" class="nav-link link-dark">
+                <a href="{{route('shop.category', str_replace(' ', '-', $cat->name))}}" class="nav-link link-dark">
                     {{ $cat->name }}
                 </a>
             </li>
                 @foreach($categories as $c)
                 @if($c->parent_id == $cat->id)
             <li>
-                <a href="{{route('shop.category', $c->name)}}" class="nav-link link-dark">
+                <a href="{{route('shop.category', str_replace(' ', '-', $c->name))}}" class="nav-link link-dark">
                     {{ $c->name }}
                 </a>
             </li>
@@ -386,7 +391,6 @@
                     <li class="nav-item mx-0"><a href="{{route('policy-priv')}}" class="nav-link px-2 text-secondary">Polityka prywatności</a></li>
                     <li class="nav-item mx-0"><a href="{{route('policy-cookies')}}" class="nav-link px-2 text-secondary">Polityka Cookies</a></li>
                     <li class="nav-item mx-0"><a href="{{route('rule')}}" class="nav-link px-2 text-secondary">Regulamin</a></li>
-                    <li class="nav-item mx-0"><a href="{{route('info')}}" class="nav-link px-2 text-secondary">Informacje wysyłkowe</a></li>
                 </ul>
             </footer>
         </div>
@@ -561,6 +565,7 @@
     </script>
     @yield('js')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    @cookieconsentview
 </body>
 
 </html>

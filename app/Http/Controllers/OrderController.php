@@ -94,7 +94,7 @@ class OrderController extends Controller
         }
 
         $total = \Cart::session('cart')->getTotal();
-        $company = Company::get()->pluck('content', 'type');
+        $company = Company::get()->pluck('content', 'type');//ustawienia
         if ($request->adres_type == 'adres_person') {
             if ($request->post == '64-920') {
                 Session::put('transfer', false);

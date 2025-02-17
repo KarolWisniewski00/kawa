@@ -36,6 +36,8 @@ use App\Http\Controllers\SizeAdminController;
 use App\Http\Controllers\UserAdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebhookController;
+use App\Models\Blog;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,23 +54,23 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [IndexController::class, 'index'])->name('index');
 Route::get('/dark', [IndexController::class, 'dark'])->name('dark');
 
-Route::prefix('shop')->group(function () {
+Route::prefix('sklep')->group(function () {
     Route::get('/', [ShopController::class, 'index'])->name('shop');
-    Route::get('category/{name}', [ShopController::class, 'indexCategory'])->name('shop.category');
+    Route::get('kategoria/{name}', [ShopController::class, 'indexCategory'])->name('shop.category');//
+    Route::get('platności', [OrderController::class, 'create'])->name('account.order.create');
+    Route::get('koszyk', [NewBusketController::class, 'index'])->name('shop.cart.busket');
+    Route::get('zamowienie/{slug}', [OrderController::class, 'show'])->name('account.order.show');
     Route::prefix('cart')->group(function () {
-        Route::get('/', [NewBusketController::class, 'index'])->name('shop.cart.busket');
         Route::get('get', [NewBusketController::class, 'get'])->name('shop.cart.get');
         Route::post('add/{product}', [NewBusketController::class, 'add'])->name('shop.cart.add');
         Route::post('minus/{product}', [NewBusketController::class, 'minus'])->name('shop.cart.minus');
         Route::post('remove/{product}', [NewBusketController::class, 'remove'])->name('shop.cart.remove');
-        Route::get('/create', [OrderController::class, 'create'])->name('account.order.create');
         Route::post('/store', [OrderController::class, 'store'])->name('account.order.store');
-        Route::get('/show/{slug}', [OrderController::class, 'show'])->name('account.order.show');
         Route::get('/status/{id}/{slug}', [OrderController::class, 'status'])->name('account.order.status');
         Route::post('/check', [DiscountAdminController::class, 'check'])->name('check.discount');
     });
-    Route::prefix('product')->group(function () {
-        Route::get('{slug}', [ProductController::class, 'show'])->name('shop.product.show');
+    Route::prefix('produkt')->group(function () {
+        Route::get('{name}', [ProductController::class, 'show'])->name('shop.product.show');//
     });
 });
 
@@ -83,35 +85,79 @@ Route::prefix('webhook')->group(function () {
 
 Route::prefix('blog')->group(function () {
     Route::get('/', [BlogController::class, 'index'])->name('blog');
-    Route::get('{blog}', [BlogController::class, 'show'])->name('blog.show');
+    Route::get('{title}', [BlogController::class, 'show'])->name('blog.show');//
 });
 
-Route::prefix('about')->group(function () {
+Route::prefix('o-nas')->group(function () {
     Route::get('/', [AboutController::class, 'index'])->name('about');
 });
 
-Route::prefix('contact')->group(function () {
+Route::prefix('kontakt')->group(function () {
     Route::get('/', [ContactController::class, 'index'])->name('contact');
     Route::post('/store', [ContactController::class, 'store'])->name('contact.store');
 });
 
-Route::prefix('policy-cookies')->group(function () {
+Route::prefix('polityka-cookies')->group(function () {
     Route::get('/', [PolicyCookiesController::class, 'index'])->name('policy-cookies');
 });
 
-Route::prefix('policy-priv')->group(function () {
+Route::prefix('polityka-prywatnosci')->group(function () {
     Route::get('/', [PolicyPrivController::class, 'index'])->name('policy-priv');
 });
 
-Route::prefix('collaboration')->group(function () {
+Route::prefix('wspolpraca')->group(function () {
     Route::get('/', [CollaborationController::class, 'index'])->name('collaboration');
 });
 
-Route::prefix('info')->group(function () {
-    Route::get('/', [InfoController::class, 'index'])->name('info');
-});
-Route::prefix('rule')->group(function () {
+Route::prefix('regulamin')->group(function () {
     Route::get('/', [RuleController::class, 'index'])->name('rule');
+});
+
+//REDIRECT 301
+Route::prefix('shop')->group(function () {
+    Route::get('/', function () {
+        return redirect()->route('shop')->setStatusCode(301);
+    });
+    Route::get('category/{name}', function ($name) {
+        return redirect()->route('shop.category', ['name' => str_replace(' ', '-', $name)])->setStatusCode(301);
+    });
+    Route::prefix('cart')->group(function () {
+        Route::get('/', function () {
+            return redirect()->route('shop.cart.busket')->setStatusCode(301);
+        });
+        Route::get('/create', function () {
+            return redirect()->route('account.order.create')->setStatusCode(301);
+        });
+        Route::get('/show/{slug}', function ($slug) {
+            return redirect()->route('account.order.show', ['slug' => $slug])->setStatusCode(301);
+        });
+    });
+    Route::get('product/{slug}', function ($slug) {
+        $product = Product::where('id', $slug)->first();
+        return redirect()->route('shop.product.show', ['name' => str_replace(' ', '-', $product->name)])->setStatusCode(301);
+    });
+});
+Route::get('blog/{blog}', function ($blog) {
+    $blog = Blog::where('id', $blog)->first();
+    return redirect()->route('blog.show', ['name' => str_replace(' ', '-', $blog->name)])->setStatusCode(301);
+});
+Route::get('about', function () {
+    return redirect()->route('about')->setStatusCode(301);
+});
+Route::get('policy-priv', function () {
+    return redirect()->route('policy-priv')->setStatusCode(301);
+});
+Route::get('policy-cookies', function () {
+    return redirect()->route('policy-cookies')->setStatusCode(301);
+});
+Route::get('collaboration', function () {
+    return redirect()->route('collaboration')->setStatusCode(301);
+});
+Route::get('rule', function () {
+    return redirect()->route('rule')->setStatusCode(301);
+});
+Route::get('contact', function () {
+    return redirect()->route('contact')->setStatusCode(301);
 });
 //LOGGED IN
 Route::middleware([
@@ -119,26 +165,19 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::prefix('account')->group(function () {
-        Route::prefix('user')->group(function () {
+    Route::prefix('konto')->group(function () {
+        Route::prefix('uzytkownik')->group(function () {
             Route::get('/', [UserController::class, 'index'])->name('account.user');
-            Route::get('/edit/{element}', [UserController::class, 'edit'])->name('account.user.edit');
+            Route::get('/edycja/{element}', [UserController::class, 'edit'])->name('account.user.edit');
             Route::put('/update/{element}', [UserController::class, 'update'])->name('account.user.update');
             Route::delete('/delete', [UserController::class, 'delete'])->name('account.user.delete');
         });
-        Route::prefix('order')->group(function () {
+        Route::prefix('zamowienia')->group(function () {
             Route::get('/', [OrderController::class, 'index'])->name('account.order');
         });
-        /*
-        Route::prefix('busket')->group(function () {
-            Route::get('/', [BusketController::class, 'index'])->name('account.busket');
-            Route::post('/add/{product}', [BusketController::class, 'add'])->name('account.busket.add');
-            Route::post('/minus/{product}', [BusketController::class, 'minus'])->name('account.busket.minus');
-            Route::post('/remove/{product}', [BusketController::class, 'remove'])->name('account.busket.remove');
-        });
-        */
     });
 });
+
 
 //ADMIN
 Route::middleware([

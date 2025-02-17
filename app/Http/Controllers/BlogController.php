@@ -10,11 +10,12 @@ use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 
 class BlogController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         Breadcrumbs::for('index', function ($trail) {
             $trail->push('Home', route('index'));
         });
-    
+
         Breadcrumbs::for('blog', function ($trail) {
             $trail->parent('index');
             $trail->push('Blog', route('blog'));
@@ -22,16 +23,17 @@ class BlogController extends Controller
         $blogs = Blog::orderBy('order')->paginate(10);
         return view('client.coffee.blog.index', compact('blogs'));
     }
-    public function show($blog) {
+    public function show($title)
+    {
         Breadcrumbs::for('index', function ($trail) {
             $trail->push('Home', route('index'));
         });
-    
+
         Breadcrumbs::for('blog', function ($trail) {
             $trail->parent('index');
             $trail->push('Blog', route('blog'));
         });
-    
+
         Breadcrumbs::for('blog.show', function ($trail, $slug) {
             $trail->parent('blog');
             // Dodaj odpowiednie dane zależne od bloga, na przykład:
@@ -39,10 +41,14 @@ class BlogController extends Controller
             // $trail->push($blog->title, route('blog.show', $slug));
             $trail->push('Blog Post', route('blog.show', $slug));
         });
-        $blog = Blog::where('id',$blog)->first();
+        $title = str_replace('-', ' ', $title);
+        $blog = Blog::where('title', $title)->first();
+        if ($blog == null) {
+            $blog = Blog::where('title', $title . '?')->first();
+        }
+
         $products = Product::take(3)->get();
         $variants = ProductVariant::get();
         return view('client.coffee.blog.show', compact('blog', 'products', 'variants'));
     }
-    
 }

@@ -24,7 +24,7 @@
                 <div class="d-flex flex-column justify-content-center align-items-center my-2">
                     <div class="row">
                         <div class="col-12 col-md-5">
-                            <a href="{{route('blog.show', $blog)}}" class="d-flex flex-column justify-content-center align-items-end">
+                            <a href="{{route('blog.show', str_replace(' ', '-', $blog->title))}}" class="d-flex flex-column justify-content-center align-items-end">
                                 <img class="img-fluid" alt="" src="{{asset('photo/'.$blog->photo)}}">
                             </a>
                         </div>
@@ -33,7 +33,7 @@
                                 <h3 class="text-muted mt-5 font-custom-2">{{$blog->created_at}}</h3>
                                 <h1 class="font-custom">{{$blog->title}}</h1>
                                 <p class="d-none d-md-flex lead">{{$blog->start}}</p>
-                                <a href="{{route('blog.show', $blog)}}" class="btn btn-primary">
+                                <a href="{{route('blog.show', str_replace(' ', '-', $blog->title))}}" class="btn btn-primary">
                                     <i class="fa-solid fa-angles-right me-2"></i>Czytaj więcej
                                 </a>
                             </div>

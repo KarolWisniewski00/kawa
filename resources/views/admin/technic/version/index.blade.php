@@ -40,6 +40,14 @@ kawa speciality co to
                     <ol class="relative border-s border-gray-200 ">
                         <li class="mb-10 ms-4">
                             <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white "></div>
+                            <time class="mb-1 text-sm font-normal leading-none text-gray-400 ">4 Luty 2025 V 2.0.2</time>
+                            <h3 class="text-lg font-semibold text-gray-900 ">Aktualizacja</h3>
+                            <p class="text-base font-normal text-gray-500 ">1. zmiana linkowania</p>
+                            <p class="text-base font-normal text-gray-500 ">2. zmiana gtm</p>
+                            <p class="text-base font-normal text-gray-500 ">3. usunięcie informacji wysyłkowych</p>
+                        </li>
+                        <li class="mb-10 ms-4">
+                            <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white "></div>
                             <time class="mb-1 text-sm font-normal leading-none text-gray-400 ">4 Luty 2025 V 2.0.1</time>
                             <h3 class="text-lg font-semibold text-gray-900 ">Aktualizacja</h3>
                             <p class="text-base font-normal text-gray-500 ">1. Naprawa blędnie uzupełnionego formularza od strony klienta tak aby system nie pokazywał błędu</p>

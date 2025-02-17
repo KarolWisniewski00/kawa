@@ -466,11 +466,13 @@
 
                     @php
                     $counter_price = intval($company['price_ship']);
+                    $counter_price_no_ship = 0;
                     @endphp
 
                     @foreach ($cartItems as $item)
                     @php
                     $counter_price += ($item->quantity*$item->price);
+                    $counter_price_no_ship += ($item->quantity*$item->price);
                     @endphp
                     @endforeach
 
@@ -644,9 +646,9 @@
 
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                             <div class="ms-2 me-auto">
-                                @if($counter_price >= $company['free_ship'])
+                                @if($counter_price_no_ship >= $company['free_ship'])
                                 @php
-                                $counter_price = $counter_price - $company['price_ship']
+                                $counter_price_no_ship = $counter_price_no_ship - $company['price_ship']
                                 @endphp
                                 <div id="ship-info" class="fw-bold">Wysyłka InPost darmowa</div>
                                 @else

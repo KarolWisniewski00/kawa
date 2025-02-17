@@ -32,43 +32,7 @@
     </div>
 </section>
 <!--VIDEO-->
-<!--
-<section>
-    <div class="container mt-5" style="background-color: #f7f6f5;">
-        <div class="row">
-            <div class="col-6">
-                <div class="row w-100 h-100">
-                    <div class="col-6">
-                        <div class="h-100 d-flex flex-row justify-content-center align-items-center overflow-hidden">
-                            <img src="http://localhost/kawa1/public/photo/169574317930.jpg" alt="" class="img-fluid" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="h-100 d-flex flex-row justify-content-center align-items-center overflow-hidden">
-                            <div class="d-flex flex-column justify-content-center align-items-center w-100">
-                                <h5 class="mt-2 font-custom-2" style="color:#F9CAAC">100g Ziarnista</h5>
-                                <h4 class="font-custom text-center">Peru Alpamayo</h4>
-                                <p>11 PLN</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 pb-5">
-                <a href="{{route('shop')}}" class="d-flex flex-column justify-content-center align-items-center my-3 text-center text-decoration-none">
-                    <h3 class="mt-5 font-custom-2" style="color:#F9CAAC">Ostatnie zamówienie</h3>
-                    <h2 class="font-custom h1">Zamów ponownie</h2>
-                </a>
-                <div class="d-flex flex-row justify-content-center align-items-center overflow-hidden">
-                    <div class="w-100 h-100 text-center">
-                        <a href="" class="btn btn-success"><i class="fa-solid fa-angles-right me-2"></i>Dodaj do koszyka i przejdź do płatności</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
--->
+
 <!--SHOP-->
 <section>
     <div class="container">
@@ -82,7 +46,7 @@
             @foreach($products as $product)
             @if($product->visibility_on_website == true)
             <div class="col-12 col-md-4 product-item" data-category-id="@foreach($product->categories as $pc){{ $pc->id }},@endforeach">
-                <a href="{{route('shop.product.show', $product->id)}}" class="h-100 d-flex flex-column justify-content-between align-items-center text-decoration-none">
+                <a href="{{route('shop.product.show', str_replace(' ', '-', $product->name))}}" class="h-100 d-flex flex-column justify-content-between align-items-center text-decoration-none">
                     @foreach($photos as $photo)
                     @if($photo->product_id == $product->id)
                     @if($photo->order == 1)
@@ -139,7 +103,7 @@
             @foreach($products2 as $product)
             @if($product->visibility_on_website == true)
             <div class="col-12 col-md-4 product-item" data-category-id="@foreach($product->categories as $pc){{ $pc->id }},@endforeach">
-                <a href="{{route('shop.product.show', $product->id)}}" class="h-100 d-flex flex-column justify-content-between align-items-center text-decoration-none">
+                <a href="{{route('shop.product.show', str_replace(' ', '-', $product->name))}}" class="h-100 d-flex flex-column justify-content-between align-items-center text-decoration-none">
                     @foreach($photos as $photo)
                     @if($photo->product_id == $product->id)
                     @if($photo->order == 1)
@@ -242,7 +206,7 @@
                 <div class="d-flex flex-column justify-content-center align-items-center my-2">
                     <div class="row">
                         <div class="col-12 col-md-5">
-                            <a href="{{route('blog.show',$blog)}}" class="d-flex flex-column justify-content-center align-items-end">
+                            <a href="{{route('blog.show',str_replace(' ', '-', $blog->title))}}" class="d-flex flex-column justify-content-center align-items-end">
                                 <img class="img-fluid" alt="Zdjęcie główne wpisu bloga" src="{{asset('photo/'.$blog->photo)}}" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
                             </a>
                         </div>
@@ -251,7 +215,7 @@
                                 <div class="text-muted mt-5 font-custom-2 h3">{{$blog->created_at}}</div>
                                 <div class="font-custom h1">{{$blog->title}}</div>
                                 <p class="d-none d-md-flex lead">{{$blog->start}}</p>
-                                <a href="{{route('blog.show',$blog)}}" class="btn btn-primary">
+                                <a href="{{route('blog.show',str_replace(' ', '-', $blog->title))}}" class="btn btn-primary">
                                     <i class="fa-solid fa-angles-right me-2"></i>Czytaj więcej
                                 </a>
                             </div>

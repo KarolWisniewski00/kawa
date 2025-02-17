@@ -38,7 +38,7 @@ class ShopController extends Controller
             $trail->parent('index');
             $trail->push('Sklep', route('shop'));
         });
-
+        $name = str_replace('-', ' ', $name);
         $category = Category::where('name', $name)->first();
 
         if (!$category) {

@@ -12,7 +12,7 @@ use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 
 class ProductController extends Controller
 {
-    public function show($slug)
+    public function show($name)
     {
         Breadcrumbs::for('index', function ($trail) {
             $trail->push('Home', route('index'));
@@ -30,8 +30,10 @@ class ProductController extends Controller
             // $trail->push($product->name, route('shop.product.show', $productId));
             $trail->push('Product', route('shop.product.show', $productId));
         });
-
-        $product = Product::where('id', $slug)->first();
+        $name = str_replace('---', ' _ ', $name);
+        $name = str_replace('-', ' ', $name);
+        $name = str_replace(' _ ', ' - ', $name);
+        $product = Product::where('name', $name)->first();
         $product->update(['view' => intval($product->view) + 1]);
         if ($product->view_type == null) {
             return view('client.coffee.shop.product.show-steps', [

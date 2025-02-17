@@ -1,15 +1,11 @@
 @extends('layout.coffee')
 @section('SEO')
-<title>{{$product->seo_title}} | Coffee Summit</title>
-@if( $product->visibility_in_google == true )
-<meta property="og:title" content="{{$product->seo_title}} | Coffee Summit" />
-<meta name="twitter:title" content="{{$product->seo_title}} | Coffee Summit" />
-<meta name="description" content="{{$product->seo_description}}">
-<meta property="og:description" content="{{$product->seo_description}}" />
-<meta name="twitter:description" content="{{$product->seo_description}}" />
-@else
-<meta name="robots" content="noindex, nofollow">
-@endif
+<title>{{$product->name}} | Coffee Summit</title>
+<meta property="og:title" content="{{$product->name}} | Coffee Summit" />
+<meta name="twitter:title" content="{{$product->name}} | Coffee Summit" />
+<meta name="description" content="{{$product->description}}">
+<meta property="og:description" content="{{$product->description}}" />
+<meta name="twitter:description" content="{{$product->description}}" />
 @endsection
 @section('content')
 <!--PRODUCT-->
@@ -528,7 +524,7 @@
             </div>
             @foreach($products as $p)
             <div class="col-12 col-md-4">
-                <a href="{{route('shop.product.show', $p->id)}}" class="h-100 d-flex flex-column justify-content-start align-items-center text-decoration-none">
+                <a href="{{route('shop.product.show', str_replace(' ', '-', $p->name))}}" class="h-100 d-flex flex-column justify-content-start align-items-center text-decoration-none">
 
                     @foreach($photos as $photo)
                     @if($photo->product_id == $p->id)

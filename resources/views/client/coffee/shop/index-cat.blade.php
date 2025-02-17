@@ -56,7 +56,7 @@
                         @foreach($products as $product)
                         @if($product->visibility_on_website == true)
                         <div class="col-12 col-md-4 product-item" data-category-id="@foreach($product->categories as $pc){{ $pc->id }},@endforeach">
-                            <a href="{{route('shop.product.show', $product->id)}}" class="h-100 d-flex flex-column justify-content-between align-items-center text-decoration-none">
+                            <a href="{{route('shop.product.show', str_replace(' ', '-', $product->name))}}" class="h-100 d-flex flex-column justify-content-between align-items-center text-decoration-none">
                                 @foreach($photos as $photo)
                                 @if($photo->product_id == $product->id)
                                 @if($photo->order == 1)
