@@ -15,11 +15,11 @@
                         <h1 class="mt-8 mb-4 text-2xl font-medium text-gray-900">
                             Wszystkie wpisy
                         </h1>
-                        <a href="{{route('dashboard.blog.create')}}" class="inline-flex items-center justify-center w-10 h-10 mr-2 text-green-100 transition-colors duration-150 bg-green-500 rounded-full focus:shadow-outline hover:bg-green-600">
-                            <i class="fa-solid fa-plus"></i>
+                        <a href="{{route('dashboard.blog.create')}}" class="h-10 whitespace-nowrap inline-flex items-center px-4 py-2 bg-green-300 dark:bg-green-300 border border-transparent rounded-lg font-semibold text-sm text-white dark:text-gray-900 uppercase tracking-widest hover:bg-green-700 dark:hover:bg-green-300 focus:bg-green-700 dark:focus:bg-green-300 active:bg-green-900 dark:active:bg-green-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-green-800 transition ease-in-out duration-150">
+                            <i class="fa-solid fa-plus mr-2"></i>NOWA WPIS KRÓTKI
                         </a>
-                        <a href="{{route('dashboard.blog.create.second')}}" class="inline-flex items-center justify-center w-10 h-10 mr-2 text-emerald-100 transition-colors duration-150 bg-emerald-500 rounded-full focus:shadow-outline hover:bg-emerald-600">
-                            <i class="fa-solid fa-plus"></i>
+                        <a href="{{route('dashboard.blog.create.second')}}" class="h-10 whitespace-nowrap inline-flex items-center px-4 py-2 bg-emerald-300 dark:bg-emerald-300 border border-transparent rounded-lg font-semibold text-sm text-white dark:text-gray-900 uppercase tracking-widest hover:bg-emerald-700 dark:hover:bg-emerald-300 focus:bg-emerald-700 dark:focus:bg-emerald-300 active:bg-emerald-900 dark:active:bg-emerald-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-emerald-800 transition ease-in-out duration-150">
+                            <i class="fa-solid fa-plus mr-2"></i>NOWA WPIS DŁUGI
                         </a>
                     </div>
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -34,6 +34,9 @@
                                     </th>
                                     <th scope="col" class="px-6 py-3">
                                         Data
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Motyw
                                     </th>
                                     <th scope="col" class="px-6 py-3">
                                         Edycja
@@ -55,16 +58,19 @@
                                     <td class="px-6 py-4">
                                         {{$blog->created_at}}
                                     </td>
+                                    <td class="px-6 py-4">
+                                        {{$blog->type}}
+                                    </td>
                                     @if($blog->type == null)
                                     <td class="px-6 py-4">
-                                        <a href="{{ route('dashboard.blog.edit', $blog->id) }}" class="text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none">
-                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        <a href="{{ route('dashboard.blog.edit', $blog->id) }}" class="h-10  mt-8  whitespace-nowrap inline-flex items-center px-4 py-2 bg-blue-300 dark:bg-blue-300 border border-transparent rounded-lg font-semibold text-sm text-white dark:text-gray-900 uppercase tracking-widest hover:bg-blue-700 dark:hover:bg-blue-300 focus:bg-blue-700 dark:focus:bg-blue-300 active:bg-blue-900 dark:active:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-blue-800 transition ease-in-out duration-150">
+                                            <i class="fa-solid fa-pen-to-square mr-2"></i>EDYTUJ WPIS KRÓTKI
                                         </a>
                                     </td>
                                     @else
                                     <td class="px-6 py-4">
-                                        <a href="{{ route('dashboard.blog.edit.second', $blog->id) }}" class="text-white bg-violet-500 hover:bg-violet-600 focus:ring-4 focus:ring-violet-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none">
-                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        <a href="{{ route('dashboard.blog.edit.second', $blog->id) }}" class="h-10 whitespace-nowrap inline-flex items-center px-4 py-2 bg-violet-300 dark:bg-violet-300 border border-transparent rounded-lg font-semibold text-sm text-white dark:text-gray-900 uppercase tracking-widest hover:bg-violet-700 dark:hover:bg-violet-300 focus:bg-violet-700 dark:focus:bg-violet-300 active:bg-violet-900 dark:active:bg-violet-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-violet-800 transition ease-in-out duration-150">
+                                            <i class="fa-solid fa-pen-to-square mr-2"></i>EDYTUJ WPIS DŁUGI
                                         </a>
                                     </td>
                                     @endif
@@ -72,7 +78,7 @@
                                         <form action="{{ route('dashboard.blog.delete', $blog->id) }}" method="POST" onsubmit="return confirm('Czy na pewno chcesz usunąć ten wpis?')">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="text-red-500 hover:text-white border border-red-600 hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                                            <button type="submit" class="h-10 whitespace-nowrap inline-flex items-center px-4 py-2 bg-red-300 dark:bg-red-300 border border-transparent rounded-lg font-semibold text-sm text-white dark:text-gray-900 uppercase tracking-widest hover:bg-green-700 dark:hover:bg-red-300 focus:bg-red-700 dark:focus:bg-red-300 active:bg-red-900 dark:active:bg-red-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-red-800 transition ease-in-out duration-150">
                                                 <i class="fa-solid fa-trash"></i>
                                             </button>
                                         </form>

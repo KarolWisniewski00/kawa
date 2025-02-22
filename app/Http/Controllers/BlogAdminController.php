@@ -46,10 +46,10 @@ class BlogAdminController extends Controller
             'end' => $request->end,
             'order' => $request->order,
             'visibility_on_website' => isset($request->visibility_on_website)  ? 1 : 0,
-            'seo_title' => $request->seo_title,
-            'seo_description' => $request->seo_description,
+            'seo_title' => $request->title,
+            'seo_description' => $request->start,
             'seo_keywards' => $request->seo_keywards,
-            'visibility_in_google' => isset($request->visibility_in_google)  ? 1 : 0,
+            'visibility_in_google' => 1,
         ]);
         if ($product) {
             return redirect()->route('dashboard.blog')
@@ -80,10 +80,10 @@ class BlogAdminController extends Controller
             'end' => $request->end,
             'order' => $request->order,
             'visibility_on_website' => isset($request->visibility_on_website)  ? 1 : 0,
-            'seo_title' => $request->seo_title,
-            'seo_description' => $request->seo_description,
+            'seo_title' => $request->title,
+            'seo_description' => $request->start,
             'seo_keywards' => $request->seo_keywards,
-            'visibility_in_google' => isset($request->visibility_in_google)  ? 1 : 0,
+            'visibility_in_google' => 1,
         ]);
         if ($product) {
             return redirect()->route('dashboard.blog')
@@ -128,10 +128,10 @@ class BlogAdminController extends Controller
             'end' => $request->end,
             'order' => $request->order,
             'visibility_on_website' => isset($request->visibility_on_website)  ? 1 : 0,
-            'seo_title' => $request->seo_title,
-            'seo_description' => $request->seo_description,
+            'seo_title' => $request->title,
+            'seo_description' => $request->start,
             'seo_keywards' => $request->seo_keywards,
-            'visibility_in_google' => isset($request->visibility_in_google)  ? 1 : 0,
+            'visibility_in_google' => 1,
         ]);
 
         if ($res) {
@@ -163,10 +163,10 @@ class BlogAdminController extends Controller
             'end' => $request->end,
             'order' => $request->order,
             'visibility_on_website' => isset($request->visibility_on_website)  ? 1 : 0,
-            'seo_title' => $request->seo_title,
-            'seo_description' => $request->seo_description,
+            'seo_title' => $request->title,
+            'seo_description' => $request->start,
             'seo_keywards' => $request->seo_keywards,
-            'visibility_in_google' => isset($request->visibility_in_google)  ? 1 : 0,
+            'visibility_in_google' => 1,
         ]);
 
         if ($res) {

@@ -59,7 +59,7 @@
             @foreach($products as $product)
             @if($product->visibility_on_website == true)
             <div class="col-12 col-md-4">
-                <a href="{{route('shop.product.show', $product->id)}}" class="gsap h-100 d-flex flex-column justify-content-start align-items-center text-decoration-none">
+                <a href="{{route('shop.product.show', str_replace(' ', '-', $product->name))}}" class="gsap h-100 d-flex flex-column justify-content-start align-items-center text-decoration-none">
                     @foreach($photos as $photo)
                     @if($photo->product_id == $product->id)
                     @if($photo->order == 1)
@@ -253,16 +253,17 @@
                 <div class="col-12 text-start">
                     <h1 class="h1 fw-bold">{{$blog->title}}</h1>
                     <p class="mb-5">{{$blog->start}}</p>
-
+                    @if($blog->content_photo_1 != null)
                     <div class="d-flex flex-column justify-content-center align-items-center mb-5">
                         <img src="{{ asset('photo/'.$blog->content_photo_1) }}" alt="" class="img-fluid" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
                     </div>
+                    @endif
                     <h3>{{$blog->content_text_1}}</h3>
                     <p class="mb-5">{{$blog->content_text_2}}</p>
 
                     <h3>{{$blog->content_text_3}}</h3>
                     <p class="mb-5">{{$blog->content_text_4}}</p>
-
+                    @if($blog->content_photo_2 != null)
                     <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-5">
                         <div class="d-flex flex-column justify-content-center align-items-center w-100 w-md-50">
                             <img src="{{ asset('photo/'.$blog->content_photo_2) }}" alt="" class="img-fluid" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
@@ -273,13 +274,22 @@
                         </div>
                     </div>
                     <hr>
+                    @else
+                    <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-5">
+                        <div class="w-100">
+                            <h3>{{$blog->content_text_5}}</h3>
+                            <p>{{$blog->content_text_6}}</p>
+                        </div>
+                    </div>
+                    @endif
+                    @if($blog->title == 'Dlaczego-kawa-jest-zdrowa?')
                     <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-5">
                         <div class="w-100 w-md-50">
                             <h3>{{$blog->content_text_7}}</h3>
                             <p>{{$blog->content_text_8}}</p>
                         </div>
                         <div class="w-100 w-md-50">
-                            <a href="{{route('shop.product.show', 12)}}" class="gsap h-100 d-flex flex-column justify-content-between align-items-center text-decoration-none">
+                            <a href="{{route('shop.product.show', 'Brazylia-NEBLINA')}}" class="gsap h-100 d-flex flex-column justify-content-between align-items-center text-decoration-none">
                                 <div class="d-flex flex-column justify-content-center align-items-center h-75 overflow-hidden">
                                     <img src="{{ asset('photo/169574317966.jpg') }}" alt="" class="img-fluid" onerror="this.onerror=null; this.src=`{{ asset('image/undraw_photos_re_pvh3.svg') }}`;">
                                 </div>
@@ -293,6 +303,14 @@
                             </a>
                         </div>
                     </div>
+                    @else
+                    <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-5">
+                        <div class="w-100">
+                            <h3>{{$blog->content_text_7}}</h3>
+                            <p>{{$blog->content_text_8}}</p>
+                        </div>
+                    </div>
+                    @endif
                     <hr>
                     <p>{{$blog->end}}</p>
                 </div>
@@ -305,7 +323,7 @@
                     </div>
                     @foreach($products as $p)
                     <div class="col-12 col-md-4">
-                        <a href="{{route('shop.product.show', $p->id)}}" class="h-100 d-flex flex-column justify-content-start align-items-center text-decoration-none">
+                        <a href="{{route('shop.product.show', str_replace(' ', '-', $p->name))}}" class="h-100 d-flex flex-column justify-content-start align-items-center text-decoration-none">
 
                             @foreach($photos as $photo)
                             @if($photo->product_id == $p->id)

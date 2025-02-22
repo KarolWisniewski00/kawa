@@ -15,7 +15,7 @@
                         <h1 class="mt-8 mb-4 text-2xl font-medium text-gray-900">
                             Tworzenie wpisu
                         </h1>
-                        <a href="{{route('dashboard.blog')}}" type="button" class="mt-8 mb-4 text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"><i class="fa-solid fa-chevron-left me-2"></i>Powrót</span></a>
+                        <a href="{{route('dashboard.blog')}}" type="button" class="h-10  mt-8  whitespace-nowrap inline-flex items-center px-4 py-2 bg-blue-300 dark:bg-blue-300 border border-transparent rounded-lg font-semibold text-sm text-white dark:text-gray-900 uppercase tracking-widest hover:bg-blue-700 dark:hover:bg-blue-300 focus:bg-blue-700 dark:focus:bg-blue-300 active:bg-blue-900 dark:active:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-blue-800 transition ease-in-out duration-150"><i class="fa-solid fa-chevron-left me-2"></i>Powrót</span></a>
                     </div>
                     <form action="{{route('dashboard.blog.store')}}" method="POST">
                         @csrf
@@ -43,7 +43,7 @@
                                 @endforeach
                             </ul>
                             <!-- "Show More" button -->
-                            <button id="showMoreBtn" type="button" class="mt-8 text-white bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 focus:outline-none"><i class="fa-solid fa-caret-down mr-2"></i>Pokaż więcej</button>
+                            <button id="showMoreBtn" type="button" class="h-10  mt-8  whitespace-nowrap inline-flex items-center px-4 py-2 bg-blue-300 dark:bg-blue-300 border border-transparent rounded-lg font-semibold text-sm text-white dark:text-gray-900 uppercase tracking-widest hover:bg-blue-700 dark:hover:bg-blue-300 focus:bg-blue-700 dark:focus:bg-blue-300 active:bg-blue-900 dark:active:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-blue-800 transition ease-in-out duration-150"><i class="fa-solid fa-caret-down mr-2"></i>Pokaż więcej</button>
                             @error('photo')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
@@ -114,40 +114,22 @@
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
                         <div class="mb-6">
-                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900 ">SEO Tytuł</label>
-                            <input value="{{ old('seo_title') ? old('seo_title') : ''}}" type="text" name="seo_title" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="Brazil Santos" required>
-                            @error('seo_title')
-                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        <div class="mb-6">
-                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900 ">SEO Opis</label>
-                            <input value="{{ old('seo_description') ? old('seo_description') : ''}}" type="text" name="seo_description" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="Wysokiej jakości kawa z Brazylii" required>
-                            @error('seo_description')
-                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="mb-6">
                             <label for="text" class="block mb-2 text-sm font-medium text-gray-900 ">SEO Keywards</label>
                             <input value="{{ old('seo_keywards') ? old('seo_keywards') : ''}}" type="text" name="seo_keywards" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="Wysokiej jakości kawa z Brazylii" required>
                             @error('seo_keywards')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
                         </div>
-                        <div class="mb-6">
-                            <label class="relative inline-flex items-center cursor-pointer">
-                                <input name="visibility_in_google" type="checkbox" value="1" class="sr-only peer" {{ old('visibility_in_google') ? 'checked' : '' }}>
-                                <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-                                <span class="ml-3 text-sm font-medium text-gray-900">Widoczność w google</span>
-                            </label>
-                        </div>
-                        @error('visibility_in_google')
-                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                        @enderror
 
-                        <button type="submit" class="text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2"><i class="fa-solid fa-floppy-disk mr-2"></i>Zapisz</button>
-                        <a href="{{route('dashboard.blog')}}" class="text-red-500 hover:text-white border border-red-600 hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"><i class="fa-solid fa-x mr-2"></i>Anuluj</a>
+
+                        Jeśli po kliknięciu zapisz nic sie nie dzieje, upewnij się że wybrałeś zdjęcie główne bo jest wymagane<br>
+
+                        <button type="submit" class="h-10 whitespace-nowrap inline-flex items-center px-4 py-2 bg-green-300 dark:bg-green-300 border border-transparent rounded-lg font-semibold text-sm text-white dark:text-gray-900 uppercase tracking-widest hover:bg-green-700 dark:hover:bg-green-300 focus:bg-green-700 dark:focus:bg-green-300 active:bg-green-900 dark:active:bg-green-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-green-800 transition ease-in-out duration-150">
+                            <i class="fa-solid fa-floppy-disk mr-2"></i>Zapisz
+                        </button>
+                        <a href="{{route('dashboard.blog')}}" class="h-10 whitespace-nowrap inline-flex items-center px-4 py-2 bg-red-300 dark:bg-red-300 border border-transparent rounded-lg font-semibold text-sm text-white dark:text-gray-900 uppercase tracking-widest hover:bg-green-700 dark:hover:bg-red-300 focus:bg-red-700 dark:focus:bg-red-300 active:bg-red-900 dark:active:bg-red-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-red-800 transition ease-in-out duration-150">
+                            <i class="fa-solid fa-x mr-2"></i>Anuluj
+                        </a>
                     </form>
                 </div>
             </div>
